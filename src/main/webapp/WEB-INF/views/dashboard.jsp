@@ -228,7 +228,7 @@
                   <td>Curabitur</td>
                 </tr>
                 <tr>
-                  <td>1,015</td>
+                  <td>1,013</td>
                   <td>sodales</td>
                   <td>ligula</td>
                   <td>in</td>

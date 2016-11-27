@@ -45,18 +45,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#"><img src="img/tools.png"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>Dashboard</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>設定</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Help</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
         </div>
       </div>
     </nav>
@@ -65,17 +62,15 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
+          	<li><form class="navbar-form "">
+            <input style="background-color:#434856;border:0px solid #434856;" type="text" class="form-control" placeholder="Search...">
+          </form></li>
+          	<li><a href="#">會員管理 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">產品列表 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">評論查看</a></li>
+            <li><a href="#">存貨情況</a></li>
+            <li><a href="#">出貨</a></li>
+            <li><a href="#">訂單明細</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="">Nav item again</a></li>
@@ -228,7 +223,7 @@
                   <td>Curabitur</td>
                 </tr>
                 <tr>
-                  <td>1,013</td>
+                  <td>1,015</td>
                   <td>sodales</td>
                   <td>ligula</td>
                   <td>in</td>

@@ -5,7 +5,7 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
-  background-color: #3A4750;
+  background-color: #FFFFFF;
 }
 
 
@@ -17,7 +17,15 @@ body {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
 }
-
+a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.nav-sidebar > li > a :hover{
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color:#434856;
+}
 /*
  * Top navigation
  * Hide default border to remove 1px line.
@@ -37,7 +45,7 @@ body {
 @media (min-width: 768px) {
   .sidebar {
     position: fixed;
-    top: 51px;
+    top: 50px;
     bottom: 0;
     left: 0;
     z-index: 1000;

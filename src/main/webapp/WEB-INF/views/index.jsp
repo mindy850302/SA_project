@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>index</title>
+	<title>Strawberry</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/mystyle.css">
@@ -34,10 +34,10 @@
 <div style="margin:45px auto 45px auto; background-color:#333">
 <center>
 <h1>
-Pineapple
+Strawberry
 </h1>
 <p>
-by pineapple
+by Strawberry
 </p>
 </center>
 </div>

@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Pineapple</title>
+    <title>Strawberry</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 

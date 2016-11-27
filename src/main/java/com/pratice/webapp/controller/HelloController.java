@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloController {
 	//ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
-	
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public ModelAndView getDashboard(String name) {
 		ModelAndView model = new ModelAndView("dashboard");

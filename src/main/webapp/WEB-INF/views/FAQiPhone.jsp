@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" import="java.sql.*"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<div class="container">
     <!--
 Design by TEMPLATED
 http://templated.co
@@ -16,85 +15,91 @@ Released   : 20131203
     <html xmlns="http://www.w3.org/1999/xhtml">
 
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
-        <meta name="keywords" content="" />
-        <meta name="description" content="" />
-        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
-        <link href="css/default.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="css/fonts.css" rel="stylesheet" type="text/css" media="all" />
-        <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
-    </head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <title>FAQ-iPhone</title>
+            <meta name="keywords" content="" />
+            <meta name="description" content="" />
+            <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+            <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+            <link href="../css/default.css" rel="stylesheet" type="text/css" media="all" />
+            <link href="../css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+            <link rel="stylesheet" type="text/css" href="../css/header_css.css">
+            <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+        </head>
 
     <body>
-        <div id="logo">
-            <h1><a href="#">F A Q</a></h1>
-            <br>
-            <br> <span>By Pineapple <a href="http://templated.co" rel="nofollow">&nbsp; Supporter</a></span> </div>
-</div>
-</div>
+       <%@include file="header.jsp"%>
+         <div  style="height: 100px;">
+    </div>
+     <div class="row" >
+                <div id="logo">
+                <h1><a href="#">F A Q</a></h1>
+                <br>
+            </div>
+            </div>
 <div id="wrapper3">
-    <div id="welcome" class="container">
+    <div id="welcome" class="container" style="line-height:30px;">
         <div class="title">
-           <img src="images/iphone7.jpg">
-            <h2>iPhone ç¶­ä¿®è§£ç­ä¸­å¿</h2> <span class="byline">iPhone support</span> </div>
+           <img src="../images/iphone7.jpg">
+            <h2>iPhone 維修解答中心</h2> <span class="byline">iPhone support</span> </div>
         <div class="content">
-            <p>é²ä¸æ­¥ç­è§£ iPhone ç¶­ä¿®é¸é ãä¿åºåå¹æ ¼ã</p>
-            <h2 style="color:#333">å¦ä½å° iPhone éä¿®ï¼</h2>
-            <p>æåå¯ä»¥åå©æ¨æ¾å°æè¿çç¶­ä¿®æé»ã</p>
-            <h2 style="color:#333">éè¦å¤å°è²»ç¨ï¼</h2>
-            <p>è²»ç¨æè¦åé¡åä¿åºèå®ã</p>
-            <h2 style="color:#333">éè¦å¤é·æéï¼</h2>
-            <p>æª¢é±ç¶­ä¿®é¸é ï¼ä¾ææ¨çéæ±é¸ææä½³çæç¨ã</p>
+            <p>進一步瞭解 iPhone 維修選項、保固和價格。</p>
+            <h2 style="color:#333">如何將 iPhone 送修？</h2>
+            <p>我們可以協助您找到最近的維修據點。</p>
+            <h2 style="color:#333">需要多少費用？</h2>
+            <p>費用會視問題和保固而定。</p>
+            <h2 style="color:#333">需要多長時間？</h2>
+            <p>檢閱維修選項，依據您的需求選擇最佳的時程。</p>
         </div>
     </div>
 </div>
 <div id="wrapper2">
     <div id="welcome" class="container">
-        <div class="title">
-            <h2>å¦ä½å° iPhone éä¿®ï¼</h2> <span class="byline">Apple æä¾å¤ç¨®åå¾ iPhone æ¯æ´åç¶­ä¿®çéå¾ãè«é¸ææé©åæ¨çé¸é ãæåçæ¯æ´æç« æè¨±è½åç­æ¨çåé¡ï¼æèæåå¯ä»¥åå©æ¨ç¶­ä¿®ç ´è£çè¢å¹ãæ´æé»æ± ï¼ä»¥åä¿®å¾©å¶ä»åé¡ã</span> </div>
+        <div class="title" style="line-height:40px;">
+            <h2>如何將 iPhone 送修？</h2> <span class="byline">Apple 提供多種取得 iPhone 支援和維修的途徑。請選擇最適合您的選項。我們的支援文章或許能回答您的問題，或者我們可以協助您維修破裂的螢幕、更換電池，以及修復其他問題。</span> </div>
         <div class="content">
-            <h2 style="color:#333">è¯çµ¡ç¶­ä¿®ä¸­å¿</h2>
-            <p>è¯çµ¡ Apple ææ¬ç¶­ä¿®ä¸­å¿ä»¥åå¾ iPhone ç¸éåå©ãå¨æ­¤ä¹åï¼è«åæºåæ¨çç¢ååºèï¼ä»¥åæ¨ç Apple ID åå¯ç¢¼ã</p>
-            <h2 style="color:#333">è¦ªèªéä¿®</h2>
-            <p>å¦éå°äººè¦ªèªæåï¼è«å°æ¨çç¢åå¸¶å° Apple ææ¬ç¶­ä¿®ä¸­å¿ãè«åå¿å¨äºåè¨å¾æ¨ç Apple ID åå¯ç¢¼ã</p>
-            <h2 style="color:#333">éè¦å¤å°è²»ç¨ï¼</h2>
-            <p>å¦æåé¡å¨ä¿åºææ¶è²»èä¿è­·æ³çç¯åå§ï¼å°ä¸ææ¶åä»»ä½è²»ç¨ãå¦ææ¨çåé¡ä¸å¨ä¿åºå§ï¼è²»ç¨å°è¦ç¶­ä¿®é¡åèå®ãå¦ææåç¡æ³ç¶­ä¿®æ¨ç iPhoneï¼å¯è½æéè¦æ´æã</p>
-            <h2 style="color:#333">éè¦å¤é·æéï¼</h2>
-            <p>æ¨å¯è½å¯ä»¥å¨ç·ä¸æ¥çç¶­ä¿®çæï¼å¯¦éåä¾åå¾ç¶­ä¿®çå°é»èå®ã</p>
-            <h2 style="color:#333">Apple æéä¿åºç¯å</h2>
-            <p>Apple æéä¿åºæ¶µèèªç¢åè³¼è²·æ¥èµ·ä¸å¹´å§ï¼iPhone å Apple åå» éä»¶çè£½é ççµãæåçä¿åºé¡å¤éå æ¼æ¶è²»èä¿è­·æ³æä¾çæ¬çã
-æåçä¿åºä¸¦æªæ¶µèæå¤æå£ææèªæ¹è£ãè©³æè«æ¥çå®æ´çä¿åºè©³ç´°è³æãæ¨å¯ä»¥å¨ç·ä¸æª¢æ¥æ¨çä¿åºçæï¼ä¸å¯æ´æ°ä»»ä½è¨éåºé¯çè³¼è²·è­æè³è¨ã</p>
-           <h2 style="color:#333">è¶éä¿åºæç¶­ä¿®</h2>
-            <p>æåæä¾æè¶éä¿åºæçè²»ç¨ç¶­ä¿®ææ´ææ¨çç¢åãææ´æç iPhone ææ¯æ°åï¼ææ¯æè½èç©©å®æ§çç¸ç¶æ¼æ°åçè£ç½®ãæåçä¿åºé¡å¤éå æ¼æ¶è²»èä¿è­·æ³æä¾çæ¬çã</p>
-            <h2 style="color:#333">é»æ± ç¶­ä¿®</h2>
-            <p>Apple æéä¿åºæ¶µèæéé»æ± ï¼ä½ä¸åæ¬æ­£å¸¸ä½¿ç¨é æçèæãApple ææ¬æè¡äººå¡å¯è½æéè¦æ¸¬è©¦æ¨çç¢åï¼ä»¥ä¾¿æ¾åºé»æ± åé¡çåå ã å¦ææ¨çé»æ± æè£½é ççµä¸å¨æåçä¿åºææ¶è²»èä¿è­·æ³çç¯åå§ï¼Apple ææ¬ç¶­ä¿®ä¸­å¿å°é²è¡ç¶­ä¿®èä¸æ¶åé¡å¤è²»ç¨ãå¦ææ¨ç iPhone é»æ± ä¸å¨ä¿åºç¯åå§ï¼è«å Apple ææ¬ç¶­ä¿®ä¸­å¿æ´½è©¢è¶éä¿åºæçé»æ± ç¶­ä¿®ã</p>
-            <h2 style="color:#333">æºåéä¿® iPhone</h2>
-            <p>ä½¿ç¨ iCloud æ iTunes å° iPhone è³æåä»½ãå¦ææåå¿é éç½®ææ´ææ¨ç iPhoneï¼æ¨å°æéè¦åä»½ä¾é²è¡å§å®¹åå¾©ã
-                <br> è«åå¿è¨å¾æ¨ç Apple ID åå¯ç¢¼ã
-                <br> å¦ææ¨ç iPhone æ SIM å¡ï¼è«ååºä¸¦ä¿å­å¥½ã
-                <br> ç¶­ä¿®æéï¼è«ä¿çèªå·±çé£æ¥ç·åå¶ä»éä»¶ã
-                <br> åé±æåæéå¦ä½æºåå° iPhone éä¿®çå®æ´æç¤ºã</p>
-            <h2 style="color:#333">ç¶­ä¿®å¾</h2>
-            <p>ç¶æ¨ç iPhone ä¿®å¥½ååæï¼å¯è½æææ°çä½æ¥­ç³»çµ±ãå¦ææ¨ç iPhone ä½¿ç¨ SIM å¡ï¼è«å°å¶æ¾å¥ãå° iPhone éæ©ï¼ä¸¦éµå¾ªè¢å¹ä¸çæ­¥é©é²è¡ãå®æè¨­å®ä¹å¾ï¼å¾åä»½åå¾©è³æã ç¶­ä¿®ï¼åæ¬æ´æé¶ä»¶ï¼äº«æ 90 å¤©ä¿åºï¼ææ¯ Apple ä¿åºçå©é¤ä¿åºæï¼ä»¥è¼é·èçºæºãéæ¯é¡å¤éå æ¼æ¶è²»èä¿è­·æ³æä¾çæ¬çãç¡è«æ¯å¾æåæ Apple ææ¬ç¶­ä¿®ä¸­å¿åå¾ç¶­ä¿®ï¼åäº«ææ­¤ä¿åºæ¬çï¼</p>
+            <h2 style="color:#333">聯絡維修中心</h2>
+            <p style="line-height:40px;">聯絡 Apple 授權維修中心以取得 iPhone 相關協助。在此之前，請先準備您的產品序號，以及您的 Apple ID 和密碼。</p>
+            <h2 style="color:#333">親自送修</h2>
+            <p style="line-height:40px;">如需專人親自服務，請將您的產品帶到 Apple 授權維修中心。請務必在事前記得您的 Apple ID 和密碼。</p>
+            <h2 style="color:#333">需要多少費用？</h2>
+            <p style="line-height:40px;">如果問題在保固或消費者保護法的範圍內，將不會收取任何費用。如果您的問題不在保固內，費用將視維修類型而定。如果我們無法維修您的 iPhone，可能會需要更換。</p>
+            <h2 style="color:#333">需要多長時間？</h2>
+            <p style="line-height:40px;">您可能可以在線上查看維修狀態，實際則依取得維修的地點而定。</p>
+            <h2 style="color:#333">Apple 有限保固範圍</h2>
+            <p style="line-height:40px;">Apple 有限保固涵蓋自產品購買日起一年內，iPhone 和 Apple 原廠配件的製造瑕疵。我們的保固額外附加於消費者保護法提供的權益。
+我們的保固並未涵蓋意外損壞或擅自改裝。詳情請查看完整的保固詳細資料。您可以在線上檢查您的保固狀態，且可更新任何記錄出錯的購買證明資訊。</p>
+           <h2 style="color:#333">超過保固期維修</h2>
+            <p style="line-height:40px;">我們會依據超過保固期的費用維修或更換您的產品。所更換的 iPhone 會是新品，或是效能與穩定性皆相當於新品的裝置。我們的保固額外附加於消費者保護法提供的權益。</p>
+            <h2 style="color:#333">電池維修</h2>
+            <p style="line-height:40px;">Apple 有限保固涵蓋故障電池，但不包括正常使用造成的耗損。Apple 授權技術人員可能會需要測試您的產品，以便找出電池問題的原因。 如果您的電池有製造瑕疵且在我們的保固或消費者保護法的範圍內，Apple 授權維修中心將進行維修而不收取額外費用。如果您的 iPhone 電池不在保固範圍內，請和 Apple 授權維修中心洽詢超過保固期的電池維修。</p>
+            <h2 style="color:#333">準備送修 iPhone</h2>
+            <p style="line-height:40px !important;">使用 iCloud 或 iTunes 將 iPhone 資料備份。如果我們必須重置或更換您的 iPhone，您將會需要備份來進行內容回復。
+                <br> 請務必記得您的 Apple ID 及密碼。
+                <br> 如果您的 iPhone 有 SIM 卡，請取出並保存好。
+                <br> 維修期間，請保留自己的連接線和其他配件。
+                <br> 參閱我們有關如何準備將 iPhone 送修的完整指示。</p>
+            <h2 style="color:#333">維修後</h2>
+            <p>當您的 iPhone 修好取回時，可能會有新的作業系統。如果您的 iPhone 使用 SIM 卡，請將其放入。將 iPhone 開機，並遵循螢幕上的步驟進行。完成設定之後，從備份回復資料。 維修（包括更換零件）享有 90 天保固，或是 Apple 保固的剩餘保固期，以較長者為準。這是額外附加於消費者保護法提供的權益。無論是從我們或 Apple 授權維修中心取得維修，均享有此保固權益，</p>
         </div>
     </div>
 </div>
 <div id="wrapper2">
     <div id="featured" class="container">
         <div class="box1">
-            <h2><span class="icon icon-group"></span>éä¿®å°å</h2>
+            <h2><span class="icon icon-group"></span>送修專區</h2>
             <p></p>
         </div>
         <div class="box2">
-            <h2><span class="icon icon-briefcase"></span>çåå°å</h2>
+            <h2><span class="icon icon-briefcase"></span>疑問專區</h2>
             <p></p>
         </div>
     </div>
 </div>
 <div id="copyright">
     <div class="title">
-        <h2>æ´å¤è³è¨</h2> <span class="byline">follow us in anyway</span> </div>
+        <h2>更多資訊</h2> <span class="byline">follow us in anyway</span> </div>
     <ul class="contact">
         <li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
         <li><a href="#" class="icon icon-facebook"><span></span></a></li>
@@ -102,7 +107,7 @@ Released   : 20131203
         <li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
         <li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
     </ul>
-    <p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">igraph</a> | Design by <a href="http://templated.co" rel="nofollow">Pineapple</a>.</p>
+    <p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">igraph</a> | Design by <a href="http://templated.co" rel="nofollow">Strawberry</a>.</p>
 </div>
 </body>
 

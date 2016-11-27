@@ -1,0 +1,172 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Order</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/myscript.js"></script>
+</head>
+<body style="background-color: #434856;color: #181A19;">
+    <div style="height: 60px;">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-nav">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <center>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" style="margin-right: 120px;"><img src="img/tools.png"></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="#"><b>About US</b></a></li>
+          <li><a href="#"><b>iPhone</b></a></li>
+          <li><a href="#"><b>iPad</b></a></li>
+          <li><a href="#"><b>MacBook</b></a></li>
+          <li><a href="#"><b>Contact US</b></a></li>
+          <li><a href="#"><b>Sign up</b></a></li>
+          <li><a href="#"><b>Sign in</b></a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+      </center>
+    </div><!-- /.container-fluid -->
+  </nav>
+  </div>
+  <div class="container">
+    <div class="row" style="margin-top: 50px;">
+    <div class="col-lg-1 col-md-1"></div>
+    <div class="col-lg-10 col-md-10" style="border: 1px solid #c8c8c8;border-radius: 5px;box-shadow: 6px 0px 73px -6px rgba(0,0,0,0.75);background-color: #FFFFFF;color: #252830;">
+      <h3>訂單編號：1345678</h3>
+      <table class="table table-hover" style="margin-top: 20px;">
+        <tr>
+          <td><img style="width: 150px;" src="img/macpro1.jpg"></td>
+          <td>1190</td>
+          <td>MacBook Pro 13寸</td> 
+          <td>NT.&nbsp23900</td>
+          <td>數量&nbsp:&nbsp 1</td>
+          <td>NT.&nbsp23900</td>
+        </tr>
+        <tr>
+          <td><img style="width: 150px;" src="img/macpro2.jpg"></td>
+          <td>1191</td>
+          <td>MacBook Pro 13寸</td> 
+          <td>NT.&nbsp43500</td>
+          <td>數量&nbsp:&nbsp 2</td>
+          <td>NT.&nbsp87000</td>
+        </tr>
+      </table>
+      <hr>
+      <div class="row">
+        <div class="col-lg-8 ">
+          <h6>欲使用銀行轉帳付款，請致電 0800-020-021。 </h6>
+        </div>
+        <div class="col-lg-4 ">
+          <h4>總金額 ： NT . 10900</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <table class="table table-striped" style="margin-top: 20px;">
+        <tr>
+          <td><img src="img/question.png">&nbsp&nbsp我要如何查詢配送進度？</td>
+        </tr>
+        <tr>
+          <td>您於登入會員後，至『訂單管理』查詢配送狀況，訂單狀態：配送中-表示已通知廠商出貨；已配送-表示廠商已送交郵局或貨運寄送。</td>
+        </tr>
+        <tr>
+          <td><img src="img/question.png">&nbsp&nbsp我可以指定送貨地點嗎？</td>
+        </tr>
+        <tr>
+          <td>目前僅限台灣本島可正常配送，離島全區恕無法配送。</td>
+        </tr>
+        <tr>
+          <td><img src="img/question.png">&nbsp&nbsp請問離島的範圍有哪些？</td>
+        </tr>
+        <tr>
+          <td>您於登入會員後，至『訂單管理』查詢配送狀況，訂單狀態：配送中-表示已通知廠商出貨；已配送-表示廠商已送交郵局或貨運寄送。</td>
+        </tr>
+      </table>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="col-lg-1 col-md-1"></div>
+    </div>
+    <div class="row" style="margin-top: 50px;">
+    <div class="col-lg-12 col-md-12" style="border: 1px solid #c8c8c8;border-radius: 5px;box-shadow: 6px 0px 73px -6px rgba(0,0,0,0.75);background-color: #FFFFFF;color: #252830;">
+      <h3>&nbsp&nbsp瀏覽其他產品</h3>
+      <hr>
+      <center>
+      <div class="row container">
+      <div class="col-sm-4 col-md-3">
+        <div class="thumbnail">
+          <img  src="img/macpro1.jpg" alt="...">
+          <div class="caption">
+            <h3>13 吋 MacBook Pro</h3>
+            <center>
+            <h4 style="color: #777070;line-height: 25px;">2.0GHz 處理器 <br>256GB 儲存容量</h4>
+            <p style="margin-top:30px;"><a href="#" class="btn btn-default" role="button">加入購物車</a></p>
+            </center>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-3">
+        <div class="thumbnail">
+          <img src="img/macpro2.jpg" alt="...">
+          <div class="caption">
+            <h3>13 吋 MacBook Pro</h3>
+            <center>
+            <h4 style="color: #777070;line-height: 25px;">Touch Bar 和 Touch ID<br>2.9GHz 處理器 <br>256GB 儲存容量</h4>
+            <p style="margin-top: 30px;"><a href="#" class="btn btn-default" role="button">加入購物車</a></p>
+            </center>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-3">
+        <div class="thumbnail">
+          <img src="img/macpro2.jpg" alt="...">
+          <div class="caption">
+            <h3>13 吋 MacBook Pro</h3>
+            <center>
+            <h4 style="color: #777070;line-height: 25px;">Touch Bar 和 Touch ID<br>2.9GHz 處理器 <br>256GB 儲存容量</h4>
+            <p style="margin-top: 30px;"><a href="#" class="btn btn-default" role="button">加入購物車</a></p>
+            </center>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-3">
+        <div class="thumbnail">
+          <img src="img/macpro2.jpg" alt="...">
+          <div class="caption">
+            <h3>13 吋 MacBook Pro</h3>
+            <center>
+            <h4 style="color: #777070;line-height: 25px;">Touch Bar 和 Touch ID<br>2.9GHz 處理器 <br>256GB 儲存容量</h4>
+            <p style="margin-top: 30px;"><a href="#" class="btn btn-default" role="button">加入購物車</a></p>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+    </center>
+    <div class="row">
+        <center>
+          <p style="margin-top: 30px;"><a href="#" class="btn btn-default btn-lg" role="button">More&nbsp></a></p>
+        </center>
+    </div>
+    </div>
+    <div class="col-lg-2 col-md-1"></div>
+    </div>
+</body>
+</html>

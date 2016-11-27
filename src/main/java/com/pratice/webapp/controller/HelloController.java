@@ -21,14 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloController {
 	//ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
-	@RequestMapping(value = "/hello", method = RequestMethod.GET)
-	public ModelAndView getHello(String name) {
-		ModelAndView model = new ModelAndView("hello");
-		// = model.setViewName("hello");
-		String message = "Hello!"+name;
-		model.addObject("message", message);
-		return model;
-	}
+	
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public ModelAndView getDashboard(String name) {
 		ModelAndView model = new ModelAndView("dashboard");
@@ -36,9 +29,9 @@ public class HelloController {
 		model.addObject("message");
 		return model;
 	}
-	@RequestMapping(value = "/Accountlist", method = RequestMethod.GET)
-	public ModelAndView getAccountlist(String name) {
-		ModelAndView model = new ModelAndView("Accountlist");
+	@RequestMapping(value = "/AccountList", method = RequestMethod.GET)
+	public ModelAndView getAccountList(String name) {
+		ModelAndView model = new ModelAndView("AccountList");
 		// = model.setViewName("Accountlist");
 		model.addObject("message");
 		return model;

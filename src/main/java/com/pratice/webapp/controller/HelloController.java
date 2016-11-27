@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloController {
 	//ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
-	private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public ModelAndView getHello(String name) {
 		ModelAndView model = new ModelAndView("hello");

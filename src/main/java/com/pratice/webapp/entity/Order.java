@@ -1,3 +1,5 @@
+package com.pratice.webapp.entity;
+
 public class Order {
 
 	private int order_id;

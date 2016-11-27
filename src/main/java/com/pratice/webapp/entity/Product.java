@@ -1,3 +1,5 @@
+package com.pratice.webapp.entity;
+
 public class Product {
 
 	private int p_id;

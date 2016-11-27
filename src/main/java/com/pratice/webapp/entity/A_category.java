@@ -1,3 +1,5 @@
+package com.pratice.webapp.entity;
+
 public class A_category {
 
 	private int c_id;

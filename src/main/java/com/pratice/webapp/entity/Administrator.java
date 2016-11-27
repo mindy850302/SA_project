@@ -1,3 +1,5 @@
+package com.pratice.webapp.entity;
+
 public class Administrator {
 
 	private int A_id;

@@ -1,3 +1,5 @@
+package com.pratice.webapp.entity;
+
 public class Comment {
 
 	private int comment_M_id;

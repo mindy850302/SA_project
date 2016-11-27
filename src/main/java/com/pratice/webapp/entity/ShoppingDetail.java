@@ -1,3 +1,5 @@
+package com.pratice.webapp.entity;
+
 public class ShoppingDetail {
 
 	private int shopping_cart_id;

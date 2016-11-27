@@ -1,3 +1,5 @@
+package com.pratice.webapp.entity;
+
 public class DiscountDetail {
 
 	private int discount_id;

@@ -1,3 +1,5 @@
+package com.pratice.webapp.entity;
+
 public class Member {
 
 	private int M_id;

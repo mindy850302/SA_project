@@ -1,3 +1,5 @@
+package com.pratice.webapp.entity;
+
 public class ShipProduct {
 
 	private int order_id;

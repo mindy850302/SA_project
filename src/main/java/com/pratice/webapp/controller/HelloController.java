@@ -5,10 +5,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Controller;
+//import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloController {
 	//ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
+	private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public ModelAndView getHello(String name) {
 		ModelAndView model = new ModelAndView("hello");

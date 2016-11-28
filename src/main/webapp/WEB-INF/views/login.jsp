@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>log in</title>
+<title>Log in</title>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/mystyle.css">

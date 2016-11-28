@@ -1,22 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@ page contentType="text/html;charset=UTF-8" import="java.sql.*"%>
    
-        <!--
-Design by TEMPLATED
-http://templated.co
-Released for free under the Creative Commons Attribution License
-
-Name       : Veridical 
-Description: A two-column, fixed-width design with dark color scheme.
-Version    : 1.0
-Released   : 20131203
-
--->
         <html xmlns="http://www.w3.org/1999/xhtml">
 
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <title></title>
+            <title>FAQ</title>
             <meta name="keywords" content="" />
             <meta name="description" content="" />
             <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -36,7 +25,7 @@ Released   : 20131203
                 <div id="logo">
                 <h1><a href="#">F A Q</a></h1>
                 <br>
-                <br> <span>By Pineapple <a href="http://templated.co" rel="nofollow">&nbsp; Supporter</a></span> </div>
+            </div>
             </div>
     <div id="wrapper1">
         <div id="welcome" class="container">
@@ -49,18 +38,18 @@ Released   : 20131203
                         <tr>
                             <td width="50%" valign="top">
                                 <ul class="square"> <img src="images/ipad.png">
-                                    <li><a href="FAQiPad.html" class="button">iPad</a></li>
+                                    <li><a href="/webapp/FAQ/iPad" class="button">iPad</a></li>
                                     <br>
                                     <br> <img src="images/iphone.png">
-                                    <li><a href="FAQiPhone.html" class="button">iPhone</a></li>
+                                    <li><a href="/webapp/FAQ/iPhone" class="button">iPhone</a></li>
                                 </ul>
                             </td>
                             <td width="50%" valign="top">
                                 <ul class="square"> <img src="images/macbook.png">
-                                    <li><a href="FAQMac.html" class="button">MacBook Air</a></li>
+                                    <li><a href="/webapp/FAQ/Mac" class="button">MacBook Air</a></li>
                                     <br>
                                     <br> <img src="images/macbook1.png">
-                                    <li><a href="FAQMac.html" class="button">MacBook Pro</a></li>
+                                    <li><a href="/webapp/FAQ/Mac" class="button">MacBook Pro</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -149,7 +138,7 @@ Released   : 20131203
             <li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
             <li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
         </ul>
-        <p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">igraph</a> | Design by <a href="http://templated.co" rel="nofollow">Pineapple</a>.</p>
+        <p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">igraph</a> | Design by <a href="http://templated.co" rel="nofollow">Strawberry</a>.</p>
     </div>
     </body>
 

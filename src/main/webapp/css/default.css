@@ -19,6 +19,7 @@
 	{
 		margin: 0;
 		padding: 0;
+		padding-top:80px;
 	}
 	
 	p, ol, ul
@@ -34,7 +35,7 @@
 	
 	p
 	{
-		line-height: 180%;
+		line-height: 40px;
 	}
 	
 	strong
@@ -246,7 +247,7 @@
 	ul.contact li a:before
 	{
 		display: inline-block;
-		text-align: center;
+		text-align: left;
 		color: rgba(255,255,255,.4);
 	}
 	
@@ -455,7 +456,7 @@
 	{
 		overflow: hidden;
 		padding: 8em 0em;
-		text-align: center;
+		text-align: left;
 		color: rgba(0,0,0,0.5);
 	}
 	

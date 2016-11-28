@@ -283,14 +283,16 @@
 }
 
 	/* Buttons */
-		
+		a{
+		text-decoration: none;
+		}
 		.button
 		{
 			position: relative;
 			display: inline-block;
 			margin-top: 0.5em;
 			padding: 1em 1.5em;
-			background: #c61732;
+			background: #5eb990 !important;
 			border-radius: 6px;
 			text-decoration: none;
 			text-transform: uppercase;

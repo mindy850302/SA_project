@@ -1,5 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" import="java.sql.*"%>
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<div class="container">
+
     <!--
 Design by TEMPLATED
 http://templated.co
@@ -13,28 +15,34 @@ Released   : 20131203
 -->
     <html xmlns="http://www.w3.org/1999/xhtml">
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
-        <meta name="keywords" content="" />
-        <meta name="description" content="" />
-        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
-        <link href="css/default.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="css/fonts.css" rel="stylesheet" type="text/css" media="all" />
-        <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
-    </head>
+   <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <title>FAQ-iPad</title>
+            <meta name="keywords" content="" />
+            <meta name="description" content="" />
+            <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+            <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+            <link href="../css/default.css" rel="stylesheet" type="text/css" media="all" />
+            <link href="../css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+            <link rel="stylesheet" type="text/css" href="../css/header_css.css">
+            <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+        </head>
 
     <body>
-        <div id="logo">
-            <h1><a href="#">F A Q</a></h1>
-            <br>
-            <br> <span>By Pineapple <a href="http://templated.co" rel="nofollow">&nbsp; Supporter</a></span> </div>
-</div>
-</div>
+       <%@include file="header.jsp"%>
+         <div  style="height: 100px;">
+    </div>
+     <div class="row" >
+                <div id="logo">
+                <h1><a href="#">F A Q</a></h1>
+                <br>
+            </div>
+            </div>
 <div id="wrapper3">
     <div id="welcome" class="container">
         <div class="title">
-           <img src="images/iPad.jpg">
+           <img src="../images/iPad.jpg">
             <h2>iPad 維修解答中心</h2> <span class="byline">iPhone support</span> </div>
         <div class="content">
             <p>進一步瞭解 iPad 維修選項、保固和價格。</p>
@@ -103,7 +111,7 @@ Released   : 20131203
         <li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
         <li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
     </ul>
-    <p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">igraph</a> | Design by <a href="http://templated.co" rel="nofollow">Pineapple</a>.</p>
+    <p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">igraph</a> | Design by <a href="http://templated.co" rel="nofollow">Strawberry</a>.</p>
 </div>
 </body>
 

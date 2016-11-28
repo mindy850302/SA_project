@@ -6,8 +6,8 @@
 	<title>Strawberry</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/mystyle.css">
     <link rel="stylesheet" type="text/css" href="css/ihover.css">
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
   <link rel="stylesheet" type="text/css" href="css/header_css.css">
@@ -18,72 +18,10 @@
 
 <%@include file="header.jsp"%>
 
-<!--
-<div class="container">
-  
-<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner" style="margin-bottom:0px; border-bottom:0px; background-color: rgba(252, 120, 140,0.65)">
-<div class="navbar-header">
-<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
-                  -->
-<!--
-<div style="margin:45px auto 45px auto; background-color:#333">
-<center>
-<h1>
-Strawberry
-</h1>
-<p>
-by Strawberry
-</p>
-</center>
-</div>
--->
-<!--
-              
-                      <a href="about.jsp" c class="navbar-brand"><img src="appleimg/papple.jpg" width="40%" ></img></a>
-                   </div>
-
- 
-  <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation" >
- 
-                  <ul class="nav navbar-nav navbar-brand" style="margin:0.1px 10px 20px 50px" >
-                  
-                    <li>
-                      <a href="about.jsp">About us</a>
-                    </li>
-                    <li>
-                      <a href="newProduct.jsp">iPhone</a>
-                    </li>
-                     <li>
-                      <a href="productList.jsp">ipad</a>
-                    </li>
-                     <li>
-                      <a href="productList.jsp">MacBook</a>
-                    </li>
-                   
-                  </ul>
-                   <ul class="nav navbar-nav navbar-right">
-                    <li><a href="signup.jsp">Sign up </a></li>
-                     <li><a href="login.jsp">Log in </a></li>
+<div class="row" style="margin-top:90px; background-color:#2C3338; border-bottom:4px solid #2C3338">
+ <div class="col-xs-12 col-md-12" >
                  
-</nav> 
-
-
-</div>
-</div>
-
-                 </header>
--->                 
-
-                 <div class="row" style="margin-top:90px; background-color:#272727; border-bottom:4px solid rgb(246, 126, 144)">
-                 <div class="col-xs-2 col-md-2" ></div>
- <div class="col-xs-8 col-md-8" >
-                 
- <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+ <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:100%;">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -93,25 +31,25 @@ by Strawberry
 
   <!-- Wrapper for slides -->
    <center>
-  <div class="carousel-inner" role="listbox" >
+  <div class="carousel-inner" role="listbox" style="background-color:#F6F6F6;margin-top:-90px;">
  
     <div class="item active">
-      <img src="appleimg/iphone1.jpg" width="100%" alt="...">
+      <img src="http://store.storeimages.cdn-apple.com/8749/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/gallery2/iphone6s-gallery2-2015?wid=4000&hei=3072&fmt=jpeg&qlt=80&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=2Vkkj2" style="height:800px;widh:100%;" alt="...">
       <div class="carousel-caption">
         
       </div>
     </div>
     <div class="item">
-      <img src="appleimg/macbook1.jpg" alt="...">
+      <img src="http://images.apple.com/tw/ipad-mini-4/overview/images/apps_large_2x.jpg" alt="..." style="height:800px;">
+   
       <div class="carousel-caption">
         
       </div>
     </div>
    <div class="item">
-      <img src="appleimg/imac1.jpg" alt="...">
+   
+      <img src="http://images.apple.com/v/macbook-pro/l/images/overview/performance_large_2x.jpg" alt="..." style="height:800px;">
       <div class="carousel-caption">
-         <h3 style="color:#333">imac</h3>
-    <p>new product</p>
       </div>
     </div>
   </div>
@@ -127,7 +65,7 @@ by Strawberry
     <span class="sr-only">Next</span>
   </a>
 </div>
- <div class="col-xs-2 col-md-2" ></div>
+ 
 </div>
 <!-- 輪播 -->
 
@@ -138,7 +76,6 @@ by Strawberry
  <h2>Welcome to Strawberry!</h2>
  </div>
  <div class="col-xs-3 col-md-3" >
-
  <form class="navbar-form navbar-right" role="search">
    <span class="glyphicon glyphicon-search"></span>
                          <div class="form-group">
@@ -164,7 +101,7 @@ by Strawberry
     <!-- normal -->
     <p align="center"  style="font-size: 30px; color:#333;margin-left:100px"><B><span class="glyphicon glyphicon-off"></span> New</B></p>
     <div class="ih-item square effect13 left_to_right" style="margin-left:100px" ><a href="#">
-        <div class="img"><img src="appleimg/iphone1.jpg" alt="img"></div>
+        <div class="img"><img src="http://store.storeimages.cdn-apple.com/8749/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/gallery2/iphone6s-gallery2-2015?wid=4000&hei=3072&fmt=jpeg&qlt=80&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=2Vkkj2" alt="img"></div>
         <div class="info">
           <h3>iphone7</h3>
           <p>Learn more >></p>
@@ -177,7 +114,7 @@ by Strawberry
     <!-- colored -->
     
     <div class="ih-item square colored effect13 right_to_left" ><a href="#">
-        <div class="img"><img src="appleimg/imac1.jpg" alt="img"></div>
+        <div class="img"><img src="http://images.apple.com/v/apple-pencil/b/images/pencil/ipad_pro_large_2x.jpg" alt="img"></div>
         <div class="info">
           <h3>iMac</h3>
           <p>Learn more >></p>
@@ -190,7 +127,7 @@ by Strawberry
  <p align="center"  style="font-size: 30px; color:#333; margin-right:100px"><B><span class="glyphicon glyphicon-off"></span> Hot!</B></p>
     <!-- colored -->
     <div class="ih-item square effect13 top_to_bottom" style="margin-right:100px"><a href="#">
-        <div class="img"><img src="appleimg/macbook1.jpg" alt="img"></div>
+        <div class="img"><img src="http://images.apple.com/v/macbook-pro/l/images/overview/performance_large_2x.jpg" alt="img"></div>
         <div class="info">
           <h3>MacBook</h3>
           <p>Learn more >></p>

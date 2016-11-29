@@ -6,7 +6,7 @@ public class Product_category {
 
 	private int id;
 
-	private char name;
+	private String name;
 
 	public int getId() {
 		return id;
@@ -16,11 +16,11 @@ public class Product_category {
 		this.id = id;
 	}
 
-	public char getName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setName(char name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 

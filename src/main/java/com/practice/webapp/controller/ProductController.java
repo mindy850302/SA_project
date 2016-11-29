@@ -1,6 +1,4 @@
 package com.practice.webapp.controller;
-
-
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,26 +34,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 @Controller
-public class MemberController {
-	//ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
-	@RequestMapping(value = "/AccountList", method = RequestMethod.GET)
-	public ModelAndView getAccountList(String name) {
-		ModelAndView model = new ModelAndView("AccountList");
-		// = model.setViewName("Accountlist");
+public class ProductController {
+	@RequestMapping(value = "/Product", method = RequestMethod.GET)
+	public ModelAndView getProduct(String name) {
+		ModelAndView model = new ModelAndView("Product");
+		// = model.setViewName("Product");
 		model.addObject("message");
 		return model;
 	}
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public ModelAndView getSignup(String name) {
-		ModelAndView model = new ModelAndView("signup");
-		// = model.setViewName("signup");
+	@RequestMapping(value = "/ProductInfro", method = RequestMethod.GET)
+	public ModelAndView getProductInfro(String name) {
+		ModelAndView model = new ModelAndView("ProductInfro");
+		// = model.setViewName("ProductInfro");
 		model.addObject("message");
 		return model;
 	}
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView getLogin(String name) {
-		ModelAndView model = new ModelAndView("login");
-		// = model.setViewName("login");
+	@RequestMapping(value = "/shoppingCart", method = RequestMethod.GET)
+	public ModelAndView getShoppingCart(String name) {
+		ModelAndView model = new ModelAndView("shoppingCart");
+		// = model.setViewName("shoppingCart");
+		model.addObject("message");
+		return model;
+	}
+	@RequestMapping(value = "/Inventory", method = RequestMethod.GET)
+	public ModelAndView getInventory(String name) {
+		ModelAndView model = new ModelAndView("Inventory");
+		// = model.setViewName("Inventory");
 		model.addObject("message");
 		return model;
 	}

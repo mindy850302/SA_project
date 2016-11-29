@@ -1,4 +1,7 @@
-package com.pratice.webapp.entity;
+
+package com.practice.webapp.entity;
+
+
 public class DiscountDetail {
 
 	private int discount_id;
@@ -44,5 +47,7 @@ public class DiscountDetail {
 		this.p_total = p_total;
 
 	}
+
+
 
 }

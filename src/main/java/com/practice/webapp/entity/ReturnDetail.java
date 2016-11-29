@@ -1,4 +1,7 @@
-package com.pratice.webapp.entity;
+
+package com.practice.webapp.entity;
+
+
 public class ReturnDetail {
 
 	private int return_id;

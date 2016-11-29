@@ -8,13 +8,7 @@
     http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
 
-<bean id="account" class="com.practice.webapp.entity.Member" scope="session">
-      <aop:scoped-proxy/>
-  </bean>
-  
-  <bean id="shoppingcart" class="com.practice.webapp.entity.ShoppingCart" scope="session">
-      <aop:scoped-proxy/>
-  </bean>
+
  <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
     <property name="scopes">
         <map>
@@ -25,19 +19,13 @@
     </property>
 
 	</bean>
-<bean id="dataSource"
+
+	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://127.0.0.1/phpmyadmin" />
+		<property name="url" value="jdbc:mysql://localhost:3306/mydb" />
 		<property name="username" value="root" />
 		<property name="password" value="" />
 	</bean>
 
-	<bean id="productDAO"
-		class="com.sample.product.dao.ProductDAODB">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
 </beans>
-
-
-

@@ -1,4 +1,7 @@
-package com.pratice.webapp.entity;
+
+package com.practice.webapp.entity;
+
+
 public class Comment {
 
 	private int comment_M_id;
@@ -56,4 +59,5 @@ public class Comment {
 
 	}
 
+	
 }

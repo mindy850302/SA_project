@@ -1,4 +1,7 @@
-package com.pratice.webapp.entity;
+
+package com.practice.webapp.entity;
+
+
 public class Administrator {
 
 	private int A_id;
@@ -110,5 +113,7 @@ public class Administrator {
 		this.A_category = A_category;
 
 	}
+
+	
 
 }

@@ -1,4 +1,7 @@
-package com.pratice.webapp.entity;
+
+package com.practice.webapp.entity;
+
+
 public class Discount {
 
 	private int discount_id;
@@ -55,5 +58,7 @@ public class Discount {
 		this.discount_A_id = discount_A_id;
 
 	}
+
+	
 
 }

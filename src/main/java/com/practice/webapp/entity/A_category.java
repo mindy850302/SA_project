@@ -1,4 +1,4 @@
-package com.pratice.webapp.entity;
+package com.practice.webapp.entity;
 
 public class A_category {
 
@@ -21,5 +21,7 @@ public class A_category {
 	public void setC_name(char c_name) {
         this.c_name = c_name;
 	}
+
+	
 
 }

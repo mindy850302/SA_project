@@ -1,6 +1,7 @@
 
 package com.practice.webapp.entity;
 
+import java.sql.*;
 
 public class Product {
 
@@ -16,11 +17,11 @@ public class Product {
 
 	private int p_inventory;
 
-	private char p_onsale_date;
+	private String p_onsale_date;
 
-	private char p_remove_date;
+	private String p_remove_date;
 
-	private char p_update_date;
+	private String p_update_date;
 
 	private int click_count;
 
@@ -76,27 +77,27 @@ public class Product {
 		this.p_inventory = p_inventory;
 	}
 
-	public char getP_onsale_date() {
+	public String getP_onsale_date() {
 		return p_onsale_date;
 	}
 
-	public void setP_onsale_date(char p_onsale_date) {
+	public void setP_onsale_date(String p_onsale_date) {
 		this.p_onsale_date = p_onsale_date;
 	}
 
-	public char getP_remove_date() {
+	public String getP_remove_date() {
 		return p_remove_date;
 	}
 
-	public void setP_remove_date(char p_remove_date) {
+	public void setP_remove_date(String p_remove_date) {
 		this.p_remove_date = p_remove_date;
 	}
 
-	public char getP_update_date() {
+	public String getP_update_date() {
 		return p_update_date;
 	}
 
-	public void setP_update_date(char p_update_date) {
+	public void setP_update_date(String p_update_date) {
 		this.p_update_date = p_update_date;
 	}
 

@@ -6,7 +6,7 @@ public class Discount {
 
 	private int discount_M_id;
 
-	private char discount_date;
+	private String discount_date;
 
 	private int discount_total;
 
@@ -20,7 +20,7 @@ public class Discount {
 		return 0;
 	}
 
-	public char getDiscount_date() {
+	public String getDiscount_date() {
 		return 0;
 	}
 
@@ -40,7 +40,7 @@ public class Discount {
 
 	}
 
-	public void setDiscount_date(char discount_date) {
+	public void setDiscount_date(String discount_date) {
 
 	}
 

@@ -6,7 +6,7 @@ public class Return {
 
 	private int return_M_id;
 
-	private char return_date;
+	private String return_date;
 
 	private int return_total;
 
@@ -20,8 +20,8 @@ public class Return {
 		return 0;
 	}
 
-	public char getReturn_date() {
-		return 0;
+	public String getReturn_date() {
+		return " ";
 	}
 
 	public int getReturn_total() {
@@ -40,7 +40,7 @@ public class Return {
 
 	}
 
-	public void setReturn_date(char return_date) {
+	public void setReturn_date(String return_date) {
 
 	}
 

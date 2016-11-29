@@ -6,11 +6,11 @@ public class Comment {
 
 	private int comment_p_id;
 
-	private char c_comment;
+	private String c_comment;
 
-	private char c_create_date;
+	private String c_create_date;
 
-	private char c_update_date;
+	private String c_update_date;
 
 	public int getComment_M_id() {
 		return 0;
@@ -20,15 +20,15 @@ public class Comment {
 		return 0;
 	}
 
-	public char getC_comment() {
+	public String getC_comment() {
 		return 0;
 	}
 
-	public char getC_create_date() {
+	public String getC_create_date() {
 		return 0;
 	}
 
-	public char getC_update_date() {
+	public String getC_update_date() {
 		return 0;
 	}
 
@@ -40,15 +40,15 @@ public class Comment {
 
 	}
 
-	public void setC_comment(char c_comment) {
+	public void setC_comment(String c_comment) {
 
 	}
 
-	public void setC_create_date(char c_create_date) {
+	public void setC_create_date(String c_create_date) {
 
 	}
 
-	public void setC_update_date(char c_update_date) {
+	public void setC_update_date(String c_update_date) {
 
 	}
 

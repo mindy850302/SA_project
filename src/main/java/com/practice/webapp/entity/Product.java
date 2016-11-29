@@ -6,23 +6,23 @@ public class Product {
 
 	private int p_category;
 
-	private char p_name;
+	private String p_name;
 
-	private char p_describe;
+	private String p_describe;
 
 	private int p_price;
 
 	private int p_inventory;
 
-	private char p_onsale_date;
+	private String p_onsale_date;
 
-	private char p_remove_date;
+	private String p_remove_date;
 
-	private char p_update_date;
+	private String p_update_date;
 
 	private int click_count;
 
-	private char p_image;
+	private String p_image;
 
 	private boolean sale;
 
@@ -34,11 +34,11 @@ public class Product {
 		return 0;
 	}
 
-	public char getP_name() {
+	public String getP_name() {
 		return 0;
 	}
 
-	public char getP_describe() {
+	public String getP_describe() {
 		return 0;
 	}
 
@@ -50,15 +50,15 @@ public class Product {
 		return 0;
 	}
 
-	public char getP_onsale_date() {
+	public String getP_onsale_date() {
 		return 0;
 	}
 
-	public char getP_remove_date() {
+	public String getP_remove_date() {
 		return 0;
 	}
 
-	public char getP_update_date() {
+	public String getP_update_date() {
 		return 0;
 	}
 
@@ -66,7 +66,7 @@ public class Product {
 		return 0;
 	}
 
-	public char getP_image() {
+	public String getP_image() {
 		return 0;
 	}
 
@@ -82,11 +82,11 @@ public class Product {
 
 	}
 
-	public void setP_name(char p_name) {
+	public void setP_name(String p_name) {
 
 	}
 
-	public void setP_describe(char p_describe) {
+	public void setP_describe(String p_describe) {
 
 	}
 
@@ -98,15 +98,15 @@ public class Product {
 
 	}
 
-	public void setP_onsale_date(char p_onsale_date) {
+	public void setP_onsale_date(String p_onsale_date) {
 
 	}
 
-	public void setP_remove_date(char p_remove_date) {
+	public void setP_remove_date(String p_remove_date) {
 
 	}
 
-	public void setP_update_date(char p_update_date) {
+	public void setP_update_date(String p_update_date) {
 
 	}
 
@@ -114,7 +114,7 @@ public class Product {
 
 	}
 
-	public void setP_image(char p_image) {
+	public void setP_image(String p_image) {
 
 	}
 

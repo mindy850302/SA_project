@@ -4,13 +4,13 @@ public class A_category {
 
 	private int c_id;
 
-	private char c_name;
+	private String c_name;
 
 	public int getC_id() {
 		return 0;
 	}
 
-	public char getC_name() {
+	public String getC_name() {
 		return 0;
 	}
 
@@ -18,7 +18,7 @@ public class A_category {
 
 	}
 
-	public void setC_name(char c_name) {
+	public void setC_name(String c_name) {
 
 	}
 

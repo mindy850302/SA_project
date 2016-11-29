@@ -8,13 +8,13 @@ public class Order {
 
 	private int cart_id;
 
-	private char O_date;
+	private String O_date;
 
-	private char receiver_name;
+	private String receiver_name;
 
-	private char receiver_phone;
+	private String receiver_phone;
 
-	private char receiver_address;
+	private String receiver_address;
 
 	public int getOrder_id() {
 		return 0;
@@ -28,19 +28,19 @@ public class Order {
 		return 0;
 	}
 
-	public char getO_date() {
+	public String getO_date() {
 		return 0;
 	}
 
-	public char getReceiver_name() {
+	public String getReceiver_name() {
 		return 0;
 	}
 
-	public char getReceiver_phone() {
+	public String getReceiver_phone() {
 		return 0;
 	}
 
-	public char getReceiver_address() {
+	public String getReceiver_address() {
 		return 0;
 	}
 
@@ -56,19 +56,19 @@ public class Order {
 
 	}
 
-	public void setO_date(char O_date) {
+	public void setO_date(String O_date) {
 
 	}
 
-	public void setReceiver_name(char receiver_name) {
+	public void setReceiver_name(String receiver_name) {
 
 	}
 
-	public void setReceiver_phone(char receiver_phone) {
+	public void setReceiver_phone(String receiver_phone) {
 
 	}
 
-	public void setReceiver_address(char receiver_address) {
+	public void setReceiver_address(String receiver_address) {
 
 	}
 

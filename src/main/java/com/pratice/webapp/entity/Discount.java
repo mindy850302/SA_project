@@ -1,5 +1,4 @@
 package com.pratice.webapp.entity;
-
 public class Discount {
 
 	private int discount_id;
@@ -13,23 +12,48 @@ public class Discount {
 	private int discount_A_id;
 
 	public int getDiscount_id() {
-		return 0;
+		return discount_id;
 	}
 
 	public int getDiscount_M_id() {
-		return 0;
+		return discount_M_id;
 	}
 
 	public char getDiscount_date() {
-		return 0;
+		return discount_date;
 	}
 
 	public int getDiscount_total() {
-		return 0;
+		return discount_total;
 	}
 
 	public int getDiscount_A_id() {
-		return 0;
+		return discount_A_id;
+	}
+
+	public void setDiscount_id(int discount_id) {
+		this.discount_id = discount_id;
+
+	}
+
+	public void setDiscount_M_id(int discount_M_id) {
+		this.discount_M_id = discount_M_id;
+
+	}
+
+	public void setDiscount_date(char discount_date) {
+		this.discount_date = discount_date;
+
+	}
+
+	public void setDiscount_total(int discount_total) {
+		this.discount_total = discount_total;
+
+	}
+
+	public void setDiscount_A_id(int discount_A_id) {
+		this.discount_A_id = discount_A_id;
+
 	}
 
 }

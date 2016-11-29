@@ -1,5 +1,4 @@
 package com.pratice.webapp.entity;
-
 public class ShipProduct {
 
 	private int order_id;
@@ -18,6 +17,18 @@ public class ShipProduct {
 
 	public int getA_id() {
 		return 0;
+	}
+
+	public void setOrder_id(int order_id) {
+
+	}
+
+	public void setShipProduct_Date(char ShipProduct_Date) {
+
+	}
+
+	public void setA_id(int A_id) {
+
 	}
 
 }

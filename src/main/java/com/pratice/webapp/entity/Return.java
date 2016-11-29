@@ -1,5 +1,4 @@
 package com.pratice.webapp.entity;
-
 public class Return {
 
 	private int return_id;
@@ -30,6 +29,26 @@ public class Return {
 
 	public int getReturn_A_id() {
 		return 0;
+	}
+
+	public void setReturn_id(int return_id) {
+
+	}
+
+	public void setReturn_M_id(int return_M_id) {
+
+	}
+
+	public void setReturn_date(char return_date) {
+
+	}
+
+	public void setReturn_total(int return_total) {
+
+	}
+
+	public void setReturn_A_id(int return_A_id) {
+
 	}
 
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+
+<bean id="account" class="com.practice.webapp.entity.Member" scope="session">
+      <aop:scoped-proxy/>
+  </bean>
+  
+  <bean id="shoppingcart" class="com.practice.webapp.entity.ShoppingCart" scope="session">
+      <aop:scoped-proxy/>
+  </bean>
+ <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+    <property name="scopes">
+        <map>
+            <entry key="session">
+	<bean class="org.springframework.web.context.request.SessionScope"/>
+            </entry>
+        </map>
+    </property>
+
+	</bean>
+<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://127.0.0.1/phpmyadmin" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+
+	<bean id="productDAO"
+		class="com.sample.product.dao.ProductDAODB">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+</beans>
+
+
+

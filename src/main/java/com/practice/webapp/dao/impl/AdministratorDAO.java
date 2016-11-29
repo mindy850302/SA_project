@@ -1,6 +1,6 @@
 package com.practice.webapp.dao.impl;
 import java.util.List;
-import com.pratice.webapp.entity.Administrator;
+import com.practice.webapp.entity.Administrator;
 
 public interface AdministratorDAO {
 	public void insert(Administrator aAdministrator);

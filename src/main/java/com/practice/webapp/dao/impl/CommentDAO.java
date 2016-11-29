@@ -3,7 +3,7 @@ package com.practice.webapp.dao.impl;
 import java.util.List;
 
 
-import com.pratice.webapp.entity.Comment;
+import com.practice.webapp.entity.Comment;
 public interface CommentDAO {
 	public void insert(Comment comment);
 	public void delete(Comment comment);

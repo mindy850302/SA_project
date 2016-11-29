@@ -11,27 +11,26 @@ public class ShoppingCart {
 	private int shoppingAmount;
 
 	public int getCart_id() {
-		return 0;
-	}
-
-	public int getM_id() {
-		return 0;
-	}
-
-	public int getShoppingAmount() {
-		return 0;
+		return cart_id;
 	}
 
 	public void setCart_id(int cart_id) {
-
+		this.cart_id = cart_id;
 	}
 
-	public void setM_id(int M_id) {
+	public int getM_id() {
+		return M_id;
+	}
 
+	public void setM_id(int m_id) {
+		M_id = m_id;
+	}
+
+	public int getShoppingAmount() {
+		return shoppingAmount;
 	}
 
 	public void setShoppingAmount(int shoppingAmount) {
-
+		this.shoppingAmount = shoppingAmount;
 	}
-
 }

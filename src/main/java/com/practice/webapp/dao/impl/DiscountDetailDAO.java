@@ -1,6 +1,6 @@
 package com.practice.webapp.dao.impl;
 import java.util.List; 
-import com.pratice.webapp.entity.DiscountDetail;
+import com.practice.webapp.entity.DiscountDetail;
 
 public interface DiscountDetailDAO {
 	public List<DiscountDetail> getList();

@@ -134,7 +134,7 @@ public class MemberDAODB implements MemberDAO {
 		return member;
 	}
 
-	public void update(Member member,int M_id) {
+	public void update(Member member,int id) {
 		
 		String sql = "UPDATE Member SET M_idName=?, M_name=?, M_phone=?, M_email=?,M_address=?,M_discount=?,M_pwd=?,M_update_date=? "
 				+ "WHERE M_id = ?";
@@ -149,6 +149,7 @@ public class MemberDAODB implements MemberDAO {
 			smt.setInt(6, member.getM_discount());
 			smt.setString(7, member.getM_pwd());
 			smt.setString(8, member.getM_update_date());
+			smt.setInt(9,id);
 			smt.executeUpdate();			
 			smt.close();
  

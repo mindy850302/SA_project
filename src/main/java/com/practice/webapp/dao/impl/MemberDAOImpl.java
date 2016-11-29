@@ -29,8 +29,8 @@ public class MemberDAOImpl implements MemberDAO{
 		return MemberList.get((int)id); 
 	}
     public void update(Member member,int M_id){
-    	int id = (int)member.getM_id();
-    	MemberList.set(id, member);
+    	MemberList.remove(M_id);
+    	MemberList.add(M_id,member);
     }
     public void delete(long id){
     	MemberList.remove((int)id);
@@ -39,6 +39,19 @@ public class MemberDAOImpl implements MemberDAO{
 			MemberList.get(i).setM_id(i);
 		}
     }
+    
+	public boolean checkLoginMember(String M_idName, String password){
+		boolean log=false;
+		for (int i = 0; i< MemberList.size(); i++){
+			String idName=MemberList.get(i).getM_idName();
+			String pwd=MemberList.get(i).getM_pwd();
+			if(idName.equals(M_idName)&&pwd.equals(password)){
+				log=true;
+				break;
+			}
+		}
+		return log;
+	}
 //	public int count(){
 //		
 //	}

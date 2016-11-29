@@ -9,6 +9,7 @@ public interface MemberDAO {
 	public Member get(long id);
     public void update(Member member,int M_id);
     public void delete(long id);
+	public boolean checkLoginMember(String M_idName, String password);
 //	public int count();
 	
 }

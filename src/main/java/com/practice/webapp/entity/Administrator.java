@@ -35,7 +35,6 @@ public class Administrator {
 	public String getA_name() {
 		return A_name;
 	}
-
 	public int getA_phone() {
 		return A_phone;
 	}
@@ -70,18 +69,17 @@ public class Administrator {
 	}
 
 	public void setA_idName(String A_idName) {
+
 		this.A_idName = A_idName;
 
-	}
+}
 
 	public void setA_name(String A_name) {
 		this.A_name = A_name;
-
 	}
 
 	public void setA_phone(int A_phone) {
 		this.A_phone = A_phone;
-
 	}
 
 	public void setA_email(String A_email) {
@@ -106,7 +104,6 @@ public class Administrator {
 
 	public void setA_update_date(String A_update_date) {
 		this.A_update_date = A_update_date;
-
 	}
 
 	public void setA_category(int A_category) {

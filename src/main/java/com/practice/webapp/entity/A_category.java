@@ -10,6 +10,7 @@ public class A_category {
 		return c_id;
 	}
 
+
 	public String getC_name() {
 		return c_name;
 	}
@@ -18,8 +19,10 @@ public class A_category {
         this.c_id = c_id;
 	}
 
+
 	public void setC_name(String c_name) {
         this.c_name = c_name;
+
 	}
 
 	

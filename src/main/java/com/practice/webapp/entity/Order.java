@@ -10,13 +10,13 @@ public class Order {
 
 	private int cart_id;
 
-	private char O_date;
+	private String O_date;
 
-	private char receiver_name;
+	private String receiver_name;
 
-	private char receiver_phone;
+	private String receiver_phone;
 
-	private char receiver_address;
+	private String receiver_address;
 
 	public int getOrder_id() {
 		return order_id;
@@ -42,36 +42,37 @@ public class Order {
 		this.cart_id = cart_id;
 	}
 
-	public char getO_date() {
+	public String getO_date() {
 		return O_date;
 	}
 
-	public void setO_date(char o_date) {
+	public void setO_date(String o_date) {
 		O_date = o_date;
 	}
 
-	public char getReceiver_name() {
+
+	public String getReceiver_name() {
 		return receiver_name;
 	}
 
-	public void setReceiver_name(char receiver_name) {
+	public void setReceiver_name(String receiver_name) {
 		this.receiver_name = receiver_name;
 	}
-
-	public char getReceiver_phone() {
+	public String getReceiver_phone() {
 		return receiver_phone;
 	}
 
-	public void setReceiver_phone(char receiver_phone) {
+	public void setReceiver_phone(String receiver_phone) {
 		this.receiver_phone = receiver_phone;
 	}
-
-	public char getReceiver_address() {
+	public String getReceiver_address() {
 		return receiver_address;
 	}
 
-	public void setReceiver_address(char receiver_address) {
+
+	public void setReceiver_address(String receiver_address) {
 		this.receiver_address = receiver_address;
+
 	}
 
 

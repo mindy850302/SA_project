@@ -4,13 +4,13 @@ public class A_category {
 
 	private int c_id;
 
-	private char c_name;
+	private String c_name;
 
 	public int getC_id() {
 		return c_id;
 	}
 
-	public char getC_name() {
+	public String getC_name() {
 		return c_name;
 	}
 
@@ -18,7 +18,7 @@ public class A_category {
         this.c_id = c_id;
 	}
 
-	public void setC_name(char c_name) {
+	public void setC_name(String c_name) {
         this.c_name = c_name;
 	}
 

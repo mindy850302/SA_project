@@ -1,4 +1,6 @@
+
 package com.practice.webapp.entity;
+
 
 public class Product_category {
 
@@ -7,19 +9,21 @@ public class Product_category {
 	private char name;
 
 	public int getId() {
-		return 0;
-	}
-
-	public char getName() {
-		return 0;
+		return id;
 	}
 
 	public void setId(int id) {
+		this.id = id;
+	}
 
+	public char getName() {
+		return name;
 	}
 
 	public void setName(char name) {
-
+		this.name = name;
 	}
+
+
 
 }

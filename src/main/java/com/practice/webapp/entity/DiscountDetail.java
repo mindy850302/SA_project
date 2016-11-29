@@ -1,4 +1,4 @@
-package com.pratice.webapp.entity;
+package com.practice.webapp.entity;
 
 public class DiscountDetail {
 
@@ -24,6 +24,22 @@ public class DiscountDetail {
 
 	public int getP_total() {
 		return 0;
+	}
+
+	public void setDiscount_id(int discount_id) {
+
+	}
+
+	public void setDiscount_p_id(int discount_p_id) {
+
+	}
+
+	public void setP_amount(int p_amount) {
+
+	}
+
+	public void setP_total(int p_total) {
+
 	}
 
 }

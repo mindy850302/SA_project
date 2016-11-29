@@ -1,4 +1,4 @@
-package com.pratice.webapp.entity;
+package com.practice.webapp.entity;
 
 public class Administrator {
 
@@ -67,6 +67,46 @@ public class Administrator {
 	}
 
 	public void login() {
+
+	}
+
+	public void setA_id(int A_id) {
+
+	}
+
+	public void setA_idName(char A_idName) {
+
+	}
+
+	public void setA_name(char A_name) {
+
+	}
+
+	public void setA_phone(int A_phone) {
+
+	}
+
+	public void setA_email(char A_email) {
+
+	}
+
+	public void setA_address(char A_address) {
+
+	}
+
+	public void setA_password(char A_password) {
+
+	}
+
+	public void setA_create_date(char A_create_date) {
+
+	}
+
+	public void setA_update_date(char A_update_date) {
+
+	}
+
+	public void setA_category(int A_category) {
 
 	}
 

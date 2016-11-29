@@ -1,5 +1,4 @@
-package com.pratice.webapp.entity;
-
+package com.practice.webapp.entity;
 public class ShoppingDetail {
 
 	private int shopping_cart_id;
@@ -24,6 +23,22 @@ public class ShoppingDetail {
 
 	public int getP_total() {
 		return 0;
+	}
+
+	public void setShopping_cart_id(int shopping_cart_id) {
+
+	}
+
+	public void setShopping_p_id(int shopping_p_id) {
+
+	}
+
+	public void setP_amount(int p_amount) {
+
+	}
+
+	public void setP_total(int p_total) {
+
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.pratice.webapp.entity;
+package com.practice.webapp.entity;
 
 public class ShoppingCart {
 
@@ -18,6 +18,18 @@ public class ShoppingCart {
 
 	public int getShoppingAmount() {
 		return 0;
+	}
+
+	public void setCart_id(int cart_id) {
+
+	}
+
+	public void setM_id(int M_id) {
+
+	}
+
+	public void setShoppingAmount(int shoppingAmount) {
+
 	}
 
 }

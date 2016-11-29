@@ -1,4 +1,4 @@
-package com.pratice.webapp.entity;
+package com.practice.webapp.entity;
 
 public class Product_category {
 
@@ -12,6 +12,14 @@ public class Product_category {
 
 	public char getName() {
 		return 0;
+	}
+
+	public void setId(int id) {
+
+	}
+
+	public void setName(char name) {
+
 	}
 
 }

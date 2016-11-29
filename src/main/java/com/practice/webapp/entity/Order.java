@@ -1,4 +1,4 @@
-package com.pratice.webapp.entity;
+package com.practice.webapp.entity;
 
 public class Order {
 
@@ -42,6 +42,34 @@ public class Order {
 
 	public char getReceiver_address() {
 		return 0;
+	}
+
+	public void setOrder_id(int order_id) {
+
+	}
+
+	public void setOrder_M_id(int order_M_id) {
+
+	}
+
+	public void setCart_id(int cart_id) {
+
+	}
+
+	public void setO_date(char O_date) {
+
+	}
+
+	public void setReceiver_name(char receiver_name) {
+
+	}
+
+	public void setReceiver_phone(char receiver_phone) {
+
+	}
+
+	public void setReceiver_address(char receiver_address) {
+
 	}
 
 }

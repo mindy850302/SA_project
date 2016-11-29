@@ -1,4 +1,4 @@
-package com.pratice.webapp.entity;
+package com.practice.webapp.entity;
 
 public class Product {
 
@@ -72,6 +72,54 @@ public class Product {
 
 	public boolean isSale() {
 		return false;
+	}
+
+	public void setP_id(int p_id) {
+
+	}
+
+	public void setP_category(int p_category) {
+
+	}
+
+	public void setP_name(char p_name) {
+
+	}
+
+	public void setP_describe(char p_describe) {
+
+	}
+
+	public void setP_price(int p_price) {
+
+	}
+
+	public void setP_inventory(int p_inventory) {
+
+	}
+
+	public void setP_onsale_date(char p_onsale_date) {
+
+	}
+
+	public void setP_remove_date(char p_remove_date) {
+
+	}
+
+	public void setP_update_date(char p_update_date) {
+
+	}
+
+	public void setClick_count(int click_count) {
+
+	}
+
+	public void setP_image(char p_image) {
+
+	}
+
+	public void setSale(boolean sale) {
+
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.pratice.webapp.entity;
+package com.practice.webapp.entity;
 
 public class A_category {
 
@@ -12,6 +12,14 @@ public class A_category {
 
 	public char getC_name() {
 		return 0;
+	}
+
+	public void setC_id(int c_id) {
+
+	}
+
+	public void setC_name(char c_name) {
+
 	}
 
 }

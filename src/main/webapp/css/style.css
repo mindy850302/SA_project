@@ -1,0 +1,270 @@
+body{
+    color: #FFFFFF;
+    font-family: sans-serif;
+}
+a{
+    color: #252830;
+}
+a:hover{
+    color: #ffffff;
+    background-color: #414653 !important;
+}
+.container-nav{
+    margin-left: 5%;
+    width:90%;
+}
+.navbar
+{   
+    border-radius: 0;
+}
+.navbar-inverse
+{
+    background-color: rgba(0, 0, 0, 0.34);
+    font-size: 16px;
+    border: 0px solid #303841 !important;
+    font-weight:bold;
+}
+
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus
+{
+    background-color: #476383 !important;
+    color: #FFFFFF !important;
+    border: 0px solid #303841 !important;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus
+{
+    background-color: #FFFFFF;
+    color: #FFFFFF !important;
+}
+
+.dropdown-menu
+{
+    background-color: #fff;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus
+{
+    background-color: #f0ed8f;
+}
+
+.navbar-inverse
+{
+    background-image: none;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus
+{
+    background-image: none;
+}
+
+.navbar-inverse
+{
+    border-color: transparent;
+}
+
+.navbar-inverse .navbar-brand
+{
+    color: #fff;
+}
+
+.navbar-inverse .navbar-brand:hover
+{
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a
+{
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus
+{
+    color: #222;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus
+{
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus
+{
+    color: #fff;
+}
+
+.dropdown-menu > li > a
+{
+    color: #333;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus
+{
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .dropdown > a .caret
+{
+    border-top-color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .dropdown > a:hover .caret
+{
+    border-top-color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .dropdown > a .caret
+{
+    border-top-color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .dropdown > a:hover .caret
+{
+    border-bottom-color: #fff;
+}
+.navbar{
+    min-height:60px;
+}
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 19px 28px;
+    margin-left:20px;
+    margin-right:20px;
+    border: 0px solid #476383;  
+}
+.table-hover > tbody > tr:hover {
+ /* background-color: #c8c8c8;*/
+}
+.table-hover > tbody > tr >td{
+  font-size: 20px;
+  line-height: 150px;
+}
+.btn-default {
+    color: #181A19;
+    background-color: #ffffff !important;
+    border: 1px solid #cccccc;
+}
+.btn-default:hover{
+    color: #ffffff;
+    background-color: #414653 !important;
+    border: 1px solid #414653;
+}
+.btn-default > a:hover{
+    color: #ffffff;
+    background-color: #414653 !important;
+    border: 1px solid #414653;
+}
+.mb-red {
+    background-color: rgba(118, 197, 210, 0.8);
+}
+.mb-dull {
+    background-color: rgba(241, 221, 82, 0.85);
+}
+.mb-pink {
+    background-color: rgba(239, 139, 139, 0.88);
+}
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+    margin-left: -15px;
+    background-color: #303841;
+}
+.product_img_list{
+    width: 80px;
+}
+.table-show-product > tbody > tr > td{
+    line-height: 30px;
+} 
+.table-show-product-delete > tbody > tr > td{
+    line-height: 30px;
+} 
+
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+.rating2 { 
+  border: none;
+  float: left;
+}
+
+.rating2 > input { display: none; } 
+.rating2 > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating2 > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating2 > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating2 > input:checked ~ label, /* show gold star when clicked */
+.rating2:not(:checked) > label:hover, /* hover current star */
+.rating2:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+.rating2 > input:checked + label:hover, /* hover current star when changing rating */
+.rating2 > input:checked ~ label:hover,
+.rating2 > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating2 > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+

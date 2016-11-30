@@ -4,11 +4,5 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
  
- 	<bean id="articleCategoryDAO" class="com.practice.webapp.dao.impl.ArticleCategoryDAOImpl">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
- 	<bean id="articleDAO" class="com.practice.webapp.dao.impl.ArticleDAOImpl">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
+
 </beans>

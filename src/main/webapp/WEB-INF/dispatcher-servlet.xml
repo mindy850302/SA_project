@@ -10,7 +10,7 @@ xsi:schemaLocation="
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
  
-	<context:component-scan base-package="com.pratice.webapp.controller" />
+	<context:component-scan base-package="com.practice.webapp.controller" />
  
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

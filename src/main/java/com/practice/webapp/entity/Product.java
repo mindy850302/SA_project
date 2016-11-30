@@ -94,7 +94,7 @@ public class Product {
 	public void setP_remove_date(String p_remove_date) {
 		this.p_remove_date = p_remove_date;
 	}
-	public void setP_update_date() {
+	public void setP_update_date(String p_update_date) {
 		this.p_update_date=p_update_date;
 	}
 	public void setClick_count(int click_count) {

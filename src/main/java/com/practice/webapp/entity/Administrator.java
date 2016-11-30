@@ -71,8 +71,8 @@ public class Administrator {
 	public void setA_idName(String A_idName) {
 
 		this.A_idName = A_idName;
+	}
 
-}
 
 	public void setA_name(String A_name) {
 		this.A_name = A_name;

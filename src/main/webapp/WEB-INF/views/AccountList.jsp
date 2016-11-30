@@ -86,17 +86,19 @@
                 </tr>
               </thead>
               <tbody>
+              <c:forEach items="${MemberList}" var="member">
                 <tr>
                   <td>1</td>
                   <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp&nbspmindy850302</td>
                   <td>Mindy Hsu</td>
                   <td>0960730847</td>
-                  <td>mindy850302@gmail.com</td>
+                  <td>${member.M_id}</td>
                   <td>台北市</td>
                   <td>2016/11/02</td>
                   <th><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myModify"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></th>
                   <th><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></th>
                 </tr>
+                </c:forEach>
               </tbody>
             </table>
           </div>
@@ -126,7 +128,7 @@
                   <td>Mindy Hsu</td>
                   <td>行政</td>
                   <td>0960730847</td>
-                  <td>mindy850302@gmail.com</td>
+                  <td>${MemberList.get(0).getM_phone()}</td>
                   <td>台北市</td>
                   <td>2016/11/02</td>
                   <th><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myModify"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></th>

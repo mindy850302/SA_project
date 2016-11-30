@@ -15,6 +15,12 @@ import com.practice.webapp.entity.Member;
 import com.practice.webapp.dao.MemberDAO;
 
 public class MemberDAOImpl implements MemberDAO{
+	
+	private DataSource dataSource;
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+
 	private List<Member> MemberList = new ArrayList<Member>();
 	public MemberDAOImpl(){
 		Member temp=new Member();

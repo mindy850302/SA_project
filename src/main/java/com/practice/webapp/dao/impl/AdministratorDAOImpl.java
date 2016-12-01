@@ -1,4 +1,5 @@
 package com.practice.webapp.dao.impl;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,28 +19,29 @@ public class AdministratorDAOImpl implements AdministratorDAO {
 	public void insert(Administrator administrator) {
 		// TODO Auto-generated method stub
 		AdministratorList.add(administrator);
-		
+
 	}
 
 	@Override
 	public void delete(Administrator administrator) {
 		// TODO Auto-generated method stub
-		AdministratorList.remove(administrator);
-		
+		for (int i = 0; i < AdministratorList.size(); i++) {
+			if (AdministratorList.get(i).getA_id() == administrator.getA_id()) {
+				AdministratorList.remove(i);
+			}
+		}
 	}
 
 	@Override
 	public void update(Administrator administrator) {
 		// TODO Auto-generated method stub
-		int a_id = administrator.getA_id();
-		for(int i = 0;i<AdministratorList.size();i++){
-			if(AdministratorList.get(i).getA_id()==a_id){
+		for (int i = 0; i < AdministratorList.size(); i++) {
+			if (AdministratorList.get(i).getA_id() == administrator.getA_id()) {
 				AdministratorList.remove(i);
-				AdministratorList.add(a_id,administrator);
+				AdministratorList.add(i, administrator);
 			}
 		}
-		
-		
+
 	}
 
 	@Override
@@ -57,14 +59,13 @@ public class AdministratorDAOImpl implements AdministratorDAO {
 	@Override
 	public Administrator get(Administrator administrator) {
 		// TODO Auto-generated method stub
-		int a_id = administrator.getA_id();
 		Administrator administrator1 = new Administrator();
-		for(int i = 0;i<AdministratorList.size();i++){
-			if(AdministratorList.get(i).getA_id()==a_id){
+		for (int i = 0; i < AdministratorList.size(); i++) {
+			if (AdministratorList.get(i).getA_id() == administrator.getA_id()) {
 				administrator1 = AdministratorList.get(i);
 			}
 		}
-		
+
 		return administrator1;
 	}
 

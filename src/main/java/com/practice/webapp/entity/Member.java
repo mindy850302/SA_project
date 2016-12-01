@@ -2,13 +2,13 @@ package com.practice.webapp.entity;
 
 public class Member {
 
-	private int M_id;
+	public int M_id;
 
 	private String M_idName;
 
 	private String M_name;
 
-	private String M_phone;
+	public String M_phone;
 
 	private String M_email;
 
@@ -23,7 +23,7 @@ public class Member {
 	private String M_update_date;
 
 	public int getM_id() {
-		return 0;
+		return M_id;
 	}
 
 	public String getM_idName() {
@@ -71,11 +71,11 @@ public class Member {
 	}
 
 	public void setM_name(String M_name) {
-		this.M_id=M_id;
+		this.M_name=M_name;
 	}
 
 	public void setM_phone(String M_phone) {
-		this. M_name= M_name;
+		this. M_phone= M_phone;
 	}
 
 	public void setM_email(String M_email) {
@@ -83,11 +83,11 @@ public class Member {
 	}
 
 	public void setM_address(String M_address) {
-		this.M_email=M_email;
+		this.M_address=M_address;
 	}
 
 	public void setM_discount(int M_discount) {
-		this.M_address=M_address;
+		this.M_discount=M_discount;
 	}
 
 

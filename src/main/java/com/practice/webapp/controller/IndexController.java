@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 
-	//ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
+	ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getIndex(String name) {

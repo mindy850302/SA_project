@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -86,17 +87,19 @@
                 </tr>
               </thead>
               <tbody>
+              <c:forEach  items="${memberList}" var="member">
                 <tr>
-                  <td>1</td>
-                  <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp&nbspmindy850302</td>
-                  <td>Mindy Hsu</td>
-                  <td>0960730847</td>
-                  <td>mindy850302@gmail.com</td>
-                  <td>台北市</td>
-                  <td>2016/11/02</td>
-                  <th><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myModify"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></th>
-                  <th><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></th>
+                  <td><c:out value="${member.getM_id()}"/></td>
+                  <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp&nbsp<c:out value="${member.getM_idName()}"/></td>
+                  <td><c:out value="${member.getM_name()}"/></td>
+                  <td><c:out value="${member.getM_phone()}"/></td>
+                  <td><c:out value="${member.getM_id()}"/></td>
+                  <td><c:out value="${member.getM_address()}"/></td>
+                  <td><c:out value="${member.getM_create_date()}"/></td>
+                  <th><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></th>
+                  <th><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></th>
                 </tr>
+                </c:forEach>
               </tbody>
             </table>
           </div>
@@ -126,7 +129,7 @@
                   <td>Mindy Hsu</td>
                   <td>行政</td>
                   <td>0960730847</td>
-                  <td>mindy850302@gmail.com</td>
+                  <td></td>
                   <td>台北市</td>
                   <td>2016/11/02</td>
                   <th><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myModify"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></th>
@@ -140,8 +143,9 @@
         </div>
       </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="myModify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <c:forEach  items="${memberList}" var="member1">
+     <!-- Modal -->
+    <div class="modal fade" id="myModify<c:out value="${member1.getM_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -150,54 +154,54 @@
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">成員類別</label>
                 <div class="col-sm-8">
                   <input type="radio" id="Member_check" name="A_category" checked="checked" value="Member"/>&nbsp&nbspMember<br><input id="Administor_check" type="radio" name="A_category" value="Administor"/>&nbsp&nbspAdministor
                 </div>
-              </div>
+              </div> -->
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">帳號</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="帳號" value="mindy850302">
+                  <input type="text" class="form-control" id="inputEmail3" placeholder="帳號" value="<c:out value="${member1.getM_idName()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="姓名" value="Mindy Hsu">
+                  <input type="text" class="form-control" id="inputEmail3" placeholder="姓名" value="<c:out value="${member1.getM_name()}"/>">
                 </div>
               </div>
-              <script>
+              <!-- <script>
                 $('#Administor_check').click(function() {
                     $("#Administor").show();
                 });
                 $('#Member_check').click(function() {
                     $("#Administor").hide();
                 });
-              </script>
-              <div class="form-group" id="Administor" style="display: none;">
+              </script> -->
+              <!-- <div class="form-group" id="Administor" style="display: none;">
                 <label for="inputEmail3" class="col-sm-2 control-label">所屬部門</label>
                 <div class="col-sm-8">
                   <input type="text" class="form-control" id="inputEmail3" placeholder="所屬部門" value="行政">
                 </div>
-              </div>
+              </div> -->
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">電話</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputPassword3" placeholder="電話" value="0960730847">
+                  <input type="text" class="form-control" id="inputPassword3" placeholder="電話" value="<c:out value="${member1.getM_phone()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-8">
-                  <input type="email" class="form-control" id="inputPassword3" placeholder="Email" value="mindy850430@yahoo.com.tw">
+                  <input type="email" class="form-control" id="inputPassword3" placeholder="Email" value="<c:out value="${member1.getM_email()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputPassword3" placeholder="地址" value="台北市">
+                  <input type="text" class="form-control" id="inputPassword3" placeholder="地址" value="<c:out value="${member1.getM_address()}"/>">
                 </div>
               </div>
             </form>
@@ -209,6 +213,7 @@
         </div>
       </div>
     </div>
+    </c:forEach>
     <!-- Modal -->
     <div class="modal fade" id="myAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">

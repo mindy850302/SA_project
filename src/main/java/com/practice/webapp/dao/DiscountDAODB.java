@@ -1,87 +1,178 @@
 package com.practice.webapp.dao;
+
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
+
 import com.practice.webapp.entity.Discount;
 
 public class DiscountDAODB implements DiscountDAO {
 	private DataSource dataSource;
-	private Connection conn = null ;
-	private ResultSet rs = null ;
-	private PreparedStatement smt = null ;
+	private Connection conn = null;
+	private ResultSet rs = null;
+	private PreparedStatement smt = null;
+
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
+
+	@Override
+	public void insert(Discount discount) {
+		// TODO Auto-generated method stub
+		String sql = "INSERT INTO Discount (discount_id,discount_M_id,discount_date,discount_total,discount_A_id) VALUES(?, ?, ?, ?, ?)";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setInt(1, discount.getDiscount_id());
+			smt.setInt(2, discount.getDiscount_M_id());
+			smt.setString(3, discount.getDiscount_date());
+			smt.setInt(4, discount.getDiscount_total());
+			smt.setInt(5, discount.getDiscount_A_id());
+			smt.executeUpdate();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+
+	}
+
+	@Override
+	public void delete(Discount discount) {
+		// TODO Auto-generated method stub
+		String sql = "DELETE FROM Discount WHERE discount_id = ?";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setInt(1, discount.getDiscount_id());
+			smt.executeUpdate();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+
+	}
+
+	@Override
+	public void update(Discount discount) {
+		// TODO Auto-generated method stub
+		String sql = "UPDATE Discount SET discount_id =?, discount_M_id=?,discount_date=?,discount_total=?,discount_A_id=? "
+				+ "WHERE discount_id = ?";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setInt(1, discount.getDiscount_id());
+			smt.setInt(2, discount.getDiscount_M_id());
+			smt.setString(3, discount.getDiscount_date());
+			smt.setInt(4, discount.getDiscount_total());
+			smt.setInt(5, discount.getDiscount_A_id());
+			smt.executeUpdate();			
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+
+	}
+
 	public List<Discount> getList() {
 		String sql = "SELECT * FROM Discount";
 		return getList(sql);
 		// TODO Auto-generated method stub
 	}
+
 	public List<Discount> getList(String sql) {
-		
+
 		List<Discount> DiscountList = new ArrayList<Discount>();
-		
+
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			rs = smt.executeQuery();
-			while(rs.next()){
-				Discount discount= new Discount();
+			while (rs.next()) {
+				Discount discount = new Discount();
 				discount.setDiscount_id(rs.getInt("discount_id"));
 				discount.setDiscount_M_id(rs.getInt("discount_M_id"));
 				discount.setDiscount_date(rs.getString("discount_date"));
 				discount.setDiscount_total(rs.getInt("discount_total"));
 				discount.setDiscount_A_id(rs.getInt("discount_A_id"));
-			
-		}
+				DiscountList.add(discount);
+
+			}
 			rs.close();
 			smt.close();
- 
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
- 
+
 		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
-				} catch (SQLException e) {}
+				} catch (SQLException e) {
+				}
 			}
 		}
 		return DiscountList;
-	 }
-	
-    public Discount get(Discount discount) {
+	}
+
+	public Discount get(Discount discount) {
 		// TODO Auto-generated method stub
-    	discount = new Discount();
+		discount = new Discount();
 		String sql = "SELECT * FROM Discount WHERE discount_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			rs = smt.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				discount.setDiscount_date(rs.getString("discount_date"));
 				discount.setDiscount_total(rs.getInt("discount_total"));
-				
+
 			}
 			rs.close();
 			smt.close();
- 
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
- 
+
 		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
-				} catch (SQLException e) {}
+				} catch (SQLException e) {
+				}
 			}
 		}
 		return discount;
 	}
-
 
 }

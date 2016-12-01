@@ -1,12 +1,12 @@
 package com.practice.webapp.dao.impl;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.sql.DataSource;
 
 //import com.mysql.jdbc.Statement;
@@ -31,14 +31,14 @@ public class MemberDAOImpl implements MemberDAO{
 	public void insert(Member member){
 		MemberList.add(member);
 	}
-	public Member get(long id){
+	public Member get(int id){
 		return MemberList.get((int)id); 
 	}
     public void update(Member member,int M_id){
     	MemberList.remove(M_id);
     	MemberList.add(M_id,member);
     }
-    public void delete(long id){
+    public void delete(int id){
     	MemberList.remove((int)id);
 		// loop through the productList to reset id
 		for (int i = 0; i< MemberList.size(); i++){

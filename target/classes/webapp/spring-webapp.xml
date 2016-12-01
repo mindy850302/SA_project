@@ -3,6 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
- 
+ <bean id="MemberDAO" class="com.practice.webapp.dao.MemberDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
 
 </beans>

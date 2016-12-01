@@ -43,10 +43,11 @@ public class MemberDAODB implements MemberDAO {
 				member.setM_idName(rs.getString("M_idName"));
 				member.setM_name(rs.getString("M_Name"));
 				member.setM_phone(rs.getString("M_phone"));
+				System.out.println("phone in dao"+rs.getString("M_phone"));
 				member.setM_email(rs.getString("M_email"));
 				member.setM_address(rs.getString("M_address"));
 				member.setM_discount(rs.getInt("M_discount"));
-				member.setM_pwd(rs.getString("M_pwd"));
+				member.setM_pwd(rs.getString("M_password"));
 				member.setM_create_date(rs.getString("M_create_date"));
 				member.setM_update_date(rs.getString("M_update_date"));
 				MemberList.add(member);
@@ -70,7 +71,7 @@ public class MemberDAODB implements MemberDAO {
 	public void insert(Member member) {
 
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO Member (M_idName, M_name, M_phone, M_email,M_address,M_discount,M_pwd,M_create_date) VALUES(?, ?, ?, ? , ? , ? , ? , ?)";	
+	    String sql = "INSERT INTO Member (M_idName, M_name, M_phone, M_email,M_address,M_discount,M_password,M_create_date) VALUES(?, ?, ?, ? , ? , ? , ? , ?)";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -114,7 +115,7 @@ public class MemberDAODB implements MemberDAO {
 				member.setM_email(rs.getString("M_email"));
 				member.setM_address(rs.getString("M_address"));
 				member.setM_discount(rs.getInt("M_discount"));
-				member.setM_pwd(rs.getString("M_pwd"));
+				member.setM_pwd(rs.getString("M_password"));
 				member.setM_create_date(rs.getString("M_create_date"));
 				member.setM_update_date(rs.getString("M_update_date"));
 			}
@@ -136,7 +137,7 @@ public class MemberDAODB implements MemberDAO {
 
 	public void update(Member member,int id) {
 		
-		String sql = "UPDATE Member SET M_idName=?, M_name=?, M_phone=?, M_email=?,M_address=?,M_discount=?,M_pwd=?,M_update_date=? "
+		String sql = "UPDATE Member SET M_idName=?, M_name=?, M_phone=?, M_email=?,M_address=?,M_discount=?,M_password=?,M_update_date=? "
 				+ "WHERE M_id = ?";
 		try {
 			conn = dataSource.getConnection();
@@ -225,7 +226,7 @@ public class MemberDAODB implements MemberDAO {
 			rs = smt.executeQuery();
 			while(rs.next()){
 				String Member_idName=rs.getString("M_idName");
-				String Member_pwd=rs.getString("M_pwd");
+				String Member_pwd=rs.getString("M_password");
 				if(Member_idName==M_idName&&password.equals(Member_pwd)){
 					flag=true;
 				}

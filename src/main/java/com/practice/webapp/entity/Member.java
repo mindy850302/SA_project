@@ -8,7 +8,7 @@ public class Member {
 
 	private String M_name;
 
-	private String M_phone;
+	public String M_phone;
 
 	private String M_email;
 
@@ -71,11 +71,11 @@ public class Member {
 	}
 
 	public void setM_name(String M_name) {
-		this.M_id=M_id;
+		this.M_name=M_name;
 	}
 
 	public void setM_phone(String M_phone) {
-		this. M_name= M_name;
+		this. M_phone= M_phone;
 	}
 
 	public void setM_email(String M_email) {

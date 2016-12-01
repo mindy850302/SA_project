@@ -1,11 +1,16 @@
 package com.practice.webapp.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.practice.webapp.dao.MemberDAO;
+import com.practice.webapp.entity.Member;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -37,12 +42,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MemberController {
-	//ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
+	ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
 	@RequestMapping(value = "/AccountList", method = RequestMethod.GET)
 	public ModelAndView getAccountList(String name) {
 		ModelAndView model = new ModelAndView("AccountList");
 		// = model.setViewName("Accountlist");
-		model.addObject("message");
+		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
+		List<Member> MemberList = new ArrayList<Member>();
+		MemberList=memberdao.getList();;
+		System.out.println("size:"+MemberList.size());
+		System.out.println("phone:"+MemberList.get(0).getM_phone());
+		model.addObject("MemberList",MemberList);
 		return model;
 	}
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)

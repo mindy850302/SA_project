@@ -63,4 +63,11 @@ public class ProductController {
 		model.addObject("message");
 		return model;
 	}
+	@RequestMapping(value = "/iPhone7", method = RequestMethod.GET)
+	public ModelAndView getiPhone7(String name) {
+		ModelAndView model = new ModelAndView("iPhone7");
+		// = model.setViewName("iPhone7");
+		model.addObject("message");
+		return model;
+	}
 }

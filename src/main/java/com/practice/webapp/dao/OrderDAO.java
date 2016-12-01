@@ -7,8 +7,8 @@ import com.practice.webapp.entity.Order;
 public interface OrderDAO {
 	public List<Order> getList();
 	public void insert(Order order);
-	public Order get(int id);
-    public void update(Order order,int id);
-    public void delete(int id);
+	public Order get(Order order);
+    public void update(Order order);
+    public void delete(Order order);
 //	public int count();
 }

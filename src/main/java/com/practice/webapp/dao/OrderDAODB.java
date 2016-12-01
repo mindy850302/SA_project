@@ -86,14 +86,14 @@ public class OrderDAODB implements OrderDAO{
 		}
 		
 	}
-	public Order get(int id) {
+	public Order get(Order order) {
+		int order_id=order.getOrder_id();
 		List<Order> OrderList = new ArrayList<Order>();
-		Order order = new Order();
 		String sql = "SELECT * FROM Order WHERE order_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setLong(1, OrderList.get(id).getOrder_id());
+			smt.setLong(1, order_id);
 			rs = smt.executeQuery();
 			if(rs.next()){
 				order.setOrder_M_id(rs.getInt("order_M_id"));
@@ -119,8 +119,7 @@ public class OrderDAODB implements OrderDAO{
 		return order;
 	}
 
-public void update(Order order,int id) {
-		List<Order> OrderList = new ArrayList<Order>();
+public void update(Order order) {
 		String sql = "UPDATE Order SET order_M_id=?, cart_id=?,O_date=?, receiver_name=?,receiver_phone=?,receiver_address=? "
 				+ "WHERE order_id = ?";
 		try {
@@ -132,7 +131,7 @@ public void update(Order order,int id) {
 			smt.setString(4, order.getReceiver_name());
 			smt.setString(5, order.getReceiver_phone());
 			smt.setString(6, order.getReceiver_address());
-			smt.setInt(7, OrderList.get(id).getOrder_id());
+			smt.setInt(7, order.getOrder_id());
 			smt.executeUpdate();			
 			smt.close();
  
@@ -148,13 +147,13 @@ public void update(Order order,int id) {
 		}
 		
 	}
-public void delete(int id) {
+public void delete(Order order) {
 	List<Order> OrderList = new ArrayList<Order>();
 	String sql = "DELETE FROM order WHERE order_id = ?";
 	try {
 		conn = dataSource.getConnection();
 		smt = conn.prepareStatement(sql);
-		smt.setLong(1, OrderList.get(id).getOrder_id());
+		smt.setLong(1, order.getOrder_id());
 		smt.executeUpdate();			
 		smt.close();
 

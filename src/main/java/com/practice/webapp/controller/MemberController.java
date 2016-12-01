@@ -48,11 +48,12 @@ public class MemberController {
 		ModelAndView model = new ModelAndView("AccountList");
 		// = model.setViewName("Accountlist");
 		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
-		List<Member> MemberList = new ArrayList<Member>();
-		MemberList=memberdao.getList();;
-		System.out.println("size:"+MemberList.size());
-		System.out.println("phone:"+MemberList.get(0).getM_phone());
-		model.addObject("MemberList",MemberList);
+		List<Member> memberList = new ArrayList<Member>();
+		memberList=memberdao.getList();;
+		System.out.println("size:"+memberList.size());
+		System.out.println("phone:"+memberList.get(0).getM_phone());
+		model.addObject("memberList",memberList);
+		
 		return model;
 	}
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)

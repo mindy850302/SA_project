@@ -9,11 +9,10 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import com.practice.webapp.entity.Member;
-
 //import com.mysql.jdbc.Statement;
 
 import com.practice.webapp.entity.Return;
+import com.practice.webapp.entity.ReturnDetail;
 import com.practice.webapp.dao.ReturnDAO;
 
 public class ReturnDAOImpl implements ReturnDAO{
@@ -27,19 +26,33 @@ public class ReturnDAOImpl implements ReturnDAO{
 	public void insert(Return areturn){
 		ReturnList.add(areturn);
 	}
-	public Return get(long id){
-		return ReturnList.get((int)id); 
-	}
-    public void update(Return areturn,int return_id){
-    	ReturnList.remove(return_id);
-    	ReturnList.add(return_id,areturn);
-    }
-    public void delete(long id){
-    	ReturnList.remove((int)id);
-		// loop through the ReturnList to reset id
+	public Return get(Return areturn){
+		Return bReturn = new Return();
 		for (int i = 0; i< ReturnList.size(); i++){
-			ReturnList.get(i).setReturn_id(i);
+			if(ReturnList.get(i).getReturn_id() == areturn.getReturn_id()){
+				bReturn = ReturnList.get(i);
+			}
 		}
+		return bReturn; 
+	}
+    public void update(Return areturn){
+		for (int i = 0; i< ReturnList.size(); i++){
+			if(ReturnList.get(i).getReturn_id() == areturn.getReturn_id()){
+				ReturnList.remove(i);
+				ReturnList.add(i,areturn);
+			}
+    	}
+    }
+    public void delete(Return areturn){
+		for (int i = 0; i< ReturnList.size(); i++){
+			if(ReturnList.get(i).getReturn_id() == areturn.getReturn_id()){
+				ReturnList.remove(i);
+			}
+    	}
+		// loop through the ReturnList to reset id
+//		for (int i = 0; i< ReturnList.size(); i++){
+//			ReturnList.get(i).setReturn_id(i);
+//		}
     }
 	
 	

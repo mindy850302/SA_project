@@ -2,7 +2,7 @@ package com.practice.webapp.entity;
 
 public class Member {
 
-	private int M_id;
+	public int M_id;
 
 	private String M_idName;
 
@@ -23,7 +23,7 @@ public class Member {
 	private String M_update_date;
 
 	public int getM_id() {
-		return 0;
+		return M_id;
 	}
 
 	public String getM_idName() {
@@ -83,11 +83,11 @@ public class Member {
 	}
 
 	public void setM_address(String M_address) {
-		this.M_email=M_email;
+		this.M_address=M_address;
 	}
 
 	public void setM_discount(int M_discount) {
-		this.M_address=M_address;
+		this.M_discount=M_discount;
 	}
 
 

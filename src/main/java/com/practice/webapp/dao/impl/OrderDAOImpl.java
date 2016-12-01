@@ -17,12 +17,19 @@ public class OrderDAOImpl {
 	public void insert(Order order){
 		OrderList.add(order);
 	}
-	public Order get(int id){
-		return OrderList.get(id);
+	public Order get(Order order){
+		Order getOrder=new Order();
+		for(int i=0;i<OrderList.size();i++){
+			if(order.getOrder_id()==OrderList.get(i).getOrder_id()){
+				getOrder=OrderList.get(i);
+			}
+		}
+		return getOrder;
 	}
-    public void update(Order order,int id){
-    	id = (int)order.getOrder_id();
-    	OrderList.set((int) id, order);
+    public void update(Order order){
+    	for(int i=0;i<OrderList.size();i++){
+    		
+    	}
     }
     public void delete(int id){
     	OrderList.remove((int)id);

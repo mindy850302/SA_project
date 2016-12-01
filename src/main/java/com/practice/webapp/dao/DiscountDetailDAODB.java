@@ -18,6 +18,79 @@ public class DiscountDetailDAODB implements DiscountDetailDAO {
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
+	public void insert(DiscountDetail discountDetail){
+		String sql = "INSERT INTO DiscountDetail (discount_id,discount_p_id,p_amount,p_total) VALUES(?, ?, ?, ?)";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setInt(1, discountDetail.getDiscount_id());
+			smt.setInt(2, discountDetail.getDiscount_p_id());
+			smt.setInt(3, discountDetail.getP_amount());
+			smt.setInt(4, discountDetail.getP_total());
+			smt.executeUpdate();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		
+	}
+	public void delete(DiscountDetail discountDetail){
+		String sql = "DELETE FROM DiscountDetail WHERE discount_id = ?";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setInt(1, discountDetail.getDiscount_id());
+			smt.executeUpdate();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+
+	}
+	public void update(DiscountDetail discountDetail){
+		String sql = "UPDATE Discount SET discount_id =?, discount_p_id=?,p_amount=?,p_total=?"
+				+ "WHERE discount_id = ?";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setInt(1, discountDetail.getDiscount_id());
+			smt.setInt(2, discountDetail.getDiscount_p_id());
+			smt.setInt(3, discountDetail.getP_amount());
+			smt.setInt(4, discountDetail.getP_total());
+			smt.executeUpdate();			
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+
+		
+	}
 	public List<DiscountDetail> getList() {
 		String sql = "SELECT * FROM DiscountDetail";
 		return getList(sql);
@@ -37,6 +110,7 @@ public class DiscountDetailDAODB implements DiscountDetailDAO {
 				discountDetail.setDiscount_p_id(rs.getInt("discount_p_id"));
 				discountDetail.setP_amount(rs.getInt("p_amount"));
 				discountDetail.setP_total(rs.getInt("p_total"));
+				DiscountDetailList.add(discountDetail);
 		
 		}
 			rs.close();
@@ -83,6 +157,8 @@ public class DiscountDetailDAODB implements DiscountDetailDAO {
 		}
 		return discountDetail;
 	}
+	
+
 
 }
 

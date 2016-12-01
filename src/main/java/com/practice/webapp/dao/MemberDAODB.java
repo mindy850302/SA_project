@@ -98,7 +98,7 @@ public class MemberDAODB implements MemberDAO {
 		
 	}
 
-	public Member get(long id) {
+	public Member get(int id) {
 		Member member = new Member();
 		String sql = "SELECT * FROM Member WHERE M_id = ?";
 		try {
@@ -166,7 +166,7 @@ public class MemberDAODB implements MemberDAO {
 		
 	}
 	
-	public void delete(long id) {
+	public void delete(int id) {
 		
 		String sql = "DELETE FROM Member WHERE M_id = ?";
 		try {

@@ -3,10 +3,10 @@ import java.util.List;
 import com.practice.webapp.entity.Administrator;
 
 public interface AdministratorDAO {
-	public void insert(Administrator aAdministrator);
-	public void delete(long id);
-	public void update(Administrator administrator ,long id);
+	public void insert(Administrator administrator);
+	public void delete(Administrator administrator);
+	public void update(Administrator administrator);
 	public boolean checkLoginAdministrator(String A_idName, String password);
-	public List<Administrator> getList(String sql);
-	public Administrator get(Administrator aAdministrator);
+	public List<Administrator> getList();
+	public Administrator get(Administrator administrator);
 }

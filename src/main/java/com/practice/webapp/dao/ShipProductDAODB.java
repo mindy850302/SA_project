@@ -9,9 +9,11 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import com.practice.webapp.entity.Return;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class ReturnDAODB implements ReturnDAO {
+import com.practice.webapp.entity.Return;
+import com.practice.webapp.entity.ShipProduct;
+public class ShipProductDAODB implements ShipProductDAO {
 	private DataSource dataSource;
 	private Connection conn = null ;
 	private ResultSet rs = null ;
@@ -21,25 +23,25 @@ public class ReturnDAODB implements ReturnDAO {
 		this.dataSource = dataSource;
 	}
 	
-	public List<Return> getList(){
-		String sql = "SELECT * FROM Return";
+	public List<ShipProduct> getList(){
+		String sql = "SELECT * FROM return";
 		return getList(sql);
 	}
 	
-	public List<Return> getList(String sql) {
-		List<Return> ReturnList = new ArrayList<Return>();
+	public List<ShipProduct> getList(String sql) {
+		List<ShipProduct> ShipProductList = new ArrayList<ShipProduct>();
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			rs = smt.executeQuery();
 			while(rs.next()){
-				Return areturn = new Return();
-				areturn.setReturn_A_id(rs.getInt("return_A_id"));
-				areturn.setReturn_date(rs.getString("return_date"));
-				areturn.setReturn_id(rs.getInt("return_id"));
-				areturn.setReturn_M_id(rs.getInt("return_M_id"));
-				areturn.setReturn_total(rs.getInt("return_total"));
-				ReturnList.add(areturn);
+				ShipProduct shipProduct = new ShipProduct();
+				
+				(shipProduct).setShipProduct_id(rs.getInt("ShipProduct_id"));
+				shipProduct.setShipProduct_Date(rs.getString("ShipProduct_date"));
+				
+				shipProduct.setShipProduct_price(rs.getInt("ShipProduct_price"));
+				ShipProductList.add(shipProduct);
 			}
 			rs.close();
 			smt.close();
@@ -53,26 +55,26 @@ public class ReturnDAODB implements ReturnDAO {
 				} catch (SQLException e) {}
 			}
 		}
-		return ReturnList;
+		return ShipProductList;
 	}
 	
-	public void insert(Return areturn) {
+	public void insert(ShipProduct shipproduct) {
 
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO Return (return_A_id, return_date, return_id, return_M_id, return_total) VALUES(?, ?, ?, ?, ?)";	
+	    String sql = "INSERT INTO Return (ShipProduct_id,ShipProduct_date,ShipProduct_price) VALUES(?, ?, ?, ?,?)";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, areturn.getReturn_A_id());
-			smt.setString(2, areturn.getReturn_date());
-			smt.setInt(3, areturn.getReturn_id());
-			smt.setInt(4, areturn.getReturn_M_id());
-			smt.setInt(5, areturn.getReturn_total());
+			smt.setInt(1, shipproduct.getShipProduct_id());
+			smt.setString(2, shipproduct.getShipProduct_Date());
+			
+			smt.setInt(3, shipproduct.getShipProduct_price());
 			smt.executeUpdate();			
 			smt.close();
  
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+ 
 		} finally {
 			if (conn != null) {
 				try {
@@ -82,19 +84,19 @@ public class ReturnDAODB implements ReturnDAO {
 		}
 	}
 		
-		public Return get(Return areturn) {
-			String sql = "SELECT * FROM Return WHERE return_id = ?";
+		public ShipProduct get(long id) {
+			ShipProduct shipproduct = new ShipProduct();
+			String sql = "SELECT * FROM ShipProduct WHERE shipproduct_id = ?";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);
-				smt.setInt(1, areturn.getReturn_id());
+				smt.setLong(1, id);
 				rs = smt.executeQuery();
 				if(rs.next()){
-					areturn.setReturn_A_id(rs.getInt("return_A_id"));
-					areturn.setReturn_date(rs.getString("return_date"));
-					areturn.setReturn_id(rs.getInt("return_id"));
-					areturn.setReturn_M_id(rs.getInt("return_M_id"));
-					areturn.setReturn_total(rs.getInt("return_total"));
+					shipproduct.setShipProduct_id(rs.getInt("ShipProduct_id"));
+					shipproduct.setShipProduct_Date(rs.getString("ShipProduct_date"));
+					
+					shipproduct.setShipProduct_price(rs.getInt("ShipProduct_price"));
 				}
 				rs.close();
 				smt.close();
@@ -109,21 +111,22 @@ public class ReturnDAODB implements ReturnDAO {
 					} catch (SQLException e) {}
 				}
 			}
-			return areturn;
+			return shipproduct;
 		}
 		
-		public void update(Return areturn) {
+		@Autowired
+		public void update(ShipProduct shipproduct,long id) {
 			
-			String sql = "UPDATE Return SET return_A_id=?, return_date=?, return_M_id=?, return_total=? "
-					+ "WHERE return_id = ?";
+			String sql = "UPDATE ShipProduct SET ShipProduct_id=?, ShipProduct_Date=?, ShipProduct_price=?,  "
+					+ "WHERE ShipProduct_id = ?";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);
-				smt.setInt(1, areturn.getReturn_A_id());
-				smt.setString(2, areturn.getReturn_date());
-				smt.setInt(3, areturn.getReturn_M_id());
-				smt.setInt(4, areturn.getReturn_total());
-				smt.setInt(5, areturn.getReturn_id());
+				smt.setInt(1, shipproduct.getShipProduct_id());
+				smt.setString(2, shipproduct.getShipProduct_Date());
+				smt.setInt(3, shipproduct.getShipProduct_id());
+				smt.setLong(4, shipproduct.getShipProduct_price());
+				smt.setLong(5, id);
 				smt.executeUpdate();			
 				smt.close();
 	 
@@ -139,13 +142,13 @@ public class ReturnDAODB implements ReturnDAO {
 			}	
 		}
 		
-		public void delete(Return areturn) {
+		public void delete(long id) {
 			String sql = "DELETE FROM Member WHERE return_id = ?";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);
-				smt.setInt(1, areturn.getReturn_id());
-				smt.executeUpdate();
+				smt.setLong(1, id);
+				smt.executeUpdate();			
 				smt.close();
 	 
 			} catch (SQLException e) {
@@ -159,6 +162,7 @@ public class ReturnDAODB implements ReturnDAO {
 				}
 			}
 		}
+		
 		
 	}
 

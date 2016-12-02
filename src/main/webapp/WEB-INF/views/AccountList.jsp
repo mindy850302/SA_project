@@ -133,7 +133,7 @@
                   <td>Mindy Hsu</td>
                   <td>行政</td>
                   <td>0960730847</td>
-                  <td>${memberList.get(0).getM_phone()}</td>
+                  <td></td>
                   <td>台北市</td>
                   <td>2016/11/02</td>
                   <th><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myModify"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></th>

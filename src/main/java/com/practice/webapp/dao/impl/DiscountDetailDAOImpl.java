@@ -1,4 +1,5 @@
 package com.practice.webapp.dao.impl;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +9,7 @@ import javax.sql.DataSource;
 
 import com.practice.webapp.entity.DiscountDetail;
 import com.practice.webapp.dao.DiscountDetailDAO;
+
 public class DiscountDetailDAOImpl implements DiscountDetailDAO {
 	private List<DiscountDetail> DiscountDetailList = new ArrayList<DiscountDetail>();
 
@@ -20,21 +22,24 @@ public class DiscountDetailDAOImpl implements DiscountDetailDAO {
 	@Override
 	public void delete(DiscountDetail discountDetail) {
 		// TODO Auto-generated method stub
-		DiscountDetailList.remove(discountDetail);
-		
+		for (int i = 0; i < DiscountDetailList.size(); i++) {
+			if (DiscountDetailList.get(i).getDiscount_id() == discountDetail.getDiscount_id()) {
+				DiscountDetailList.remove(i);
+			}
+		}
 	}
 
 	@Override
 	public void update(DiscountDetail discountDetail) {
 		// TODO Auto-generated method stub
-		int discount_id = discountDetail.getDiscount_id();
-		for(int i = 0;i<DiscountDetailList.size();i++){
-			if(DiscountDetailList.get(i).getDiscount_id()==discount_id){
+
+		for (int i = 0; i < DiscountDetailList.size(); i++) {
+			if (DiscountDetailList.get(i).getDiscount_id() == discountDetail.getDiscount_id()) {
 				DiscountDetailList.remove(i);
-				DiscountDetailList.add(discount_id,discountDetail);
+				DiscountDetailList.add(i, discountDetail);
 			}
 		}
-		
+
 	}
 
 	@Override
@@ -46,12 +51,11 @@ public class DiscountDetailDAOImpl implements DiscountDetailDAO {
 	@Override
 	public DiscountDetail get(DiscountDetail discountDetail) {
 		// TODO Auto-generated method stub
-		int discount_id = discountDetail.getDiscount_id();
 		DiscountDetail discountDetail1 = new DiscountDetail();
-		for(int i = 0;i<DiscountDetailList.size();i++){
-			if(DiscountDetailList.get(i).getDiscount_id()==discount_id){
+		for (int i = 0; i < DiscountDetailList.size(); i++) {
+			if (DiscountDetailList.get(i).getDiscount_id() == discountDetail.getDiscount_id()) {
 				discountDetail1 = DiscountDetailList.get(i);
-				
+
 			}
 		}
 		return discountDetail1;

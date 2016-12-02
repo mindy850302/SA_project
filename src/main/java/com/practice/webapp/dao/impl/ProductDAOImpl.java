@@ -39,4 +39,7 @@ public class ProductDAOImpl implements ProductDAO{
 			ProductList.get(i).setP_id(i);
 		}
     }
+    public void average(){
+    	
+    }
 }

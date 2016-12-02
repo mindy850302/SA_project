@@ -18,6 +18,7 @@ public class ProductDAODB implements ProductDAO {
 	private Connection conn = null ;
 	private ResultSet rs = null ;
 	private PreparedStatement smt = null ;
+	private PreparedStatement smt1 = null ;
 	
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -180,6 +181,37 @@ public void delete(int id) {
 			try {
 				conn.close();
 			} catch (SQLException e) {}
+		}
+	}
+}
+public void average(){
+	List<Product> ProductList = new ArrayList<Product>();
+	for(int i=0;i<ProductList.size();i++){
+		
+
+		String sql = "Select AVG(score) as p_average FROM Comment WHERE p_id = ?";
+		String sql1="Update Product SET average =?"+"WHERE p_id = ?";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setInt(1, ProductList.get(i).getP_id());
+			rs = smt.executeQuery();
+			smt1 = conn.prepareStatement(sql1);
+			int average=rs.getInt("average");
+			smt1.setInt(1, average);
+			smt.setInt(2, ProductList.get(i).getP_id());
+			smt.close();
+			smt1.close();
+	
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+	
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
 		}
 	}
 }

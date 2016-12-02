@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language = "java" import = "java.util.*" language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
@@ -46,6 +48,8 @@
 
   <body>
         <%@include file="headerBackground.jsp"%>
+        <% request.setCharacterEncoding("utf-8");%>
+        
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="color: #252830;">
         <div class="row">
           <div class="col-lg-6">
@@ -93,7 +97,7 @@
                   <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp&nbsp<c:out value="${member.getM_idName()}"/></td>
                   <td><c:out value="${member.getM_name()}"/></td>
                   <td><c:out value="${member.getM_phone()}"/></td>
-                  <td><c:out value="${member.getM_id()}"/></td>
+                  <td><c:out value="${member.getM_email()}"/></td>
                   <td><c:out value="${member.getM_address()}"/></td>
                   <td><c:out value="${member.getM_create_date()}"/></td>
                   <th><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></th>
@@ -153,23 +157,24 @@
             <h4 class="modal-title" id="myModalLabel">修改成員</h4>
           </div>
           <div class="modal-body">
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="AccountList"  method="post">
             <!-- <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">成員類別</label>
                 <div class="col-sm-8">
                   <input type="radio" id="Member_check" name="A_category" checked="checked" value="Member"/>&nbsp&nbspMember<br><input id="Administor_check" type="radio" name="A_category" value="Administor"/>&nbsp&nbspAdministor
                 </div>
               </div> -->
+              <input type="hidden" name="M_id" value="<c:out value="${member1.getM_id()}"/>">
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">帳號</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="帳號" value="<c:out value="${member1.getM_idName()}"/>">
+                  <input type="text" class="form-control" name="M_idName" placeholder="帳號" value="<c:out value="${member1.getM_idName()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="姓名" value="<c:out value="${member1.getM_name()}"/>">
+                  <input type="text" class="form-control" name="M_name" placeholder="姓名" value="<c:out value="${member1.getM_name()}"/>">
                 </div>
               </div>
               <!-- <script>
@@ -187,30 +192,37 @@
                 </div>
               </div> -->
               <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">密碼</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="M_pwd" id="inputPassword3" placeholder="密碼" value="<c:out value="${member1.getM_pwd()}"/>">
+                </div>
+              </div>
+              <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">電話</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputPassword3" placeholder="電話" value="<c:out value="${member1.getM_phone()}"/>">
+                  <input type="text" class="form-control" name="M_phone" id="inputPassword3" placeholder="電話" value="<c:out value="${member1.getM_phone()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-8">
-                  <input type="email" class="form-control" id="inputPassword3" placeholder="Email" value="<c:out value="${member1.getM_email()}"/>">
+                  <input type="email" class="form-control" name="M_email" id="inputPassword3" placeholder="Email" value="<c:out value="${member1.getM_email()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputPassword3" placeholder="地址" value="<c:out value="${member1.getM_address()}"/>">
+                  <input type="text" class="form-control" name="M_address" id="inputPassword3" placeholder="地址" value="<c:out value="${member1.getM_address()}"/>">
                 </div>
               </div>
-            </form>
+            
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="submit" class="btn btn-primary" name="modifyMember" >Save changes</button>
           </div>
         </div>
+        </form>
       </div>
     </div>
     </c:forEach>

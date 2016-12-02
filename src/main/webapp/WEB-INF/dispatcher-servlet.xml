@@ -30,4 +30,5 @@ xsi:schemaLocation="
 	<mvc:resources mapping="/fonts/**" location="/fonts/" />
 	<mvc:resources mapping="/img/**" location="/img/" />
 	<mvc:resources mapping="/images/**" location="/images/" />
+	
 </beans>

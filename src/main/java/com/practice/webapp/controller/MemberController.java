@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.practice.webapp.dao.MemberDAO;
+
 import com.practice.webapp.entity.Member;
 
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,9 +53,7 @@ public class MemberController {
 		// = model.setViewName("Accountlist");
 		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
 		List<Member> memberList = new ArrayList<Member>();
-		memberList=memberdao.getList();;
-		System.out.println("size:"+memberList.size());
-		System.out.println("phone:"+memberList.get(0).getM_phone());
+		memberList=memberdao.getList();
 		model.addObject("memberList",memberList);
 		
 		return model;
@@ -69,5 +71,21 @@ public class MemberController {
 		// = model.setViewName("login");
 		model.addObject("message");
 		return model;
+	}
+	@RequestMapping(value = "/updateGraduate", method = RequestMethod.GET)
+	public ModelAndView updateGraduate(@ModelAttribute Member member,HttpServletRequest request) {
+		ModelAndView model = new ModelAndView();
+		MemberDAO memberDAO = (MemberDAO) context.getBean("MemberDAO");
+		model.setViewName("redirect:/AccountList");
+		return model; 
+	}
+	
+	@RequestMapping(value = "/AccountList", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
+	public ModelAndView updateMember(@ModelAttribute Member member){		
+		MemberDAO MemberDAO = (MemberDAO)context.getBean("MemberDAO");
+		ModelAndView model = new ModelAndView();
+		MemberDAO.update(member);
+		model.setViewName("redirect:/AccountList");
+		return model; 
 	}
 }

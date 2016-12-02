@@ -4,18 +4,18 @@ package com.practice.webapp.entity;
 
 public class ShoppingCart {
 
-	private int cart_id;
+	private int shoppingcart_id;
 
 	private int M_id;
 
 	private int shoppingAmount;
 
-	public int getCart_id() {
-		return cart_id;
+	public int getshoppingcart_id() {
+		return shoppingcart_id;
 	}
 
-	public void setCart_id(int cart_id) {
-		this.cart_id = cart_id;
+	public void setshoppingcart_id(int shoppingcart_id) {
+		this.shoppingcart_id = shoppingcart_id;
 	}
 
 	public int getM_id() {

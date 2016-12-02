@@ -99,13 +99,13 @@ public class MemberDAODB implements MemberDAO {
 		
 	}
 
-	public Member get(int id) {
-		Member member = new Member();
+	public Member get(Member member) {
+		
 		String sql = "SELECT * FROM Member WHERE M_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setLong(1, id);
+			smt.setLong(1, member.getM_id());
 			rs = smt.executeQuery();
 			if(rs.next()){
 				member.setM_id(rs.getInt("M_id"));
@@ -135,7 +135,7 @@ public class MemberDAODB implements MemberDAO {
 		return member;
 	}
 
-	public void update(Member member,int id) {
+	public void update(Member member) {
 		
 		String sql = "UPDATE Member SET M_idName=?, M_name=?, M_phone=?, M_email=?,M_address=?,M_discount=?,M_password=?,M_update_date=? "
 				+ "WHERE M_id = ?";
@@ -150,7 +150,7 @@ public class MemberDAODB implements MemberDAO {
 			smt.setInt(6, member.getM_discount());
 			smt.setString(7, member.getM_pwd());
 			smt.setString(8, member.getM_update_date());
-			smt.setInt(9,id);
+			smt.setInt(9,member.getM_id());
 			smt.executeUpdate();			
 			smt.close();
  
@@ -167,13 +167,13 @@ public class MemberDAODB implements MemberDAO {
 		
 	}
 	
-	public void delete(int id) {
+	public void delete(Member member) {
 		
 		String sql = "DELETE FROM Member WHERE M_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setLong(1, id);
+			smt.setLong(1, member.getM_id());
 			smt.executeUpdate();			
 			smt.close();
  
@@ -216,7 +216,7 @@ public class MemberDAODB implements MemberDAO {
 //			}
 //		}
 //	}
-	public boolean checkLoginMember(String M_idName, String password){
+	public boolean checkLoginMember(Member member){
 		boolean flag=false;
 		String sql="SELECT * FROM Member";
 		
@@ -227,7 +227,7 @@ public class MemberDAODB implements MemberDAO {
 			while(rs.next()){
 				String Member_idName=rs.getString("M_idName");
 				String Member_pwd=rs.getString("M_password");
-				if(Member_idName==M_idName&&password.equals(Member_pwd)){
+				if(Member_idName.equals(member.getM_idName())&&Member_pwd.equals(member.getM_pwd())){
 					flag=true;
 				}
 		}

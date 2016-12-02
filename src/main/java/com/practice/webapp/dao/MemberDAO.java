@@ -6,10 +6,10 @@ import com.practice.webapp.entity.Member;
 public interface MemberDAO {
 	public List<Member> getList();
 	public void insert(Member member);
-	public Member get(int id);
-    public void update(Member member,int M_id);
-    public void delete(int id);
-	public boolean checkLoginMember(String M_idName, String password);
+	public Member get(Member member);
+    public void update(Member member);
+    public void delete(Member member);
+	public boolean checkLoginMember(Member member);
 //	public int count();
 	
 }

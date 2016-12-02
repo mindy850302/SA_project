@@ -10,5 +10,6 @@ public interface ProductDAO {
 	public Product get(int id);
     public void update(Product product,int id);
     public void delete(int id);
+    public void average();
 
 }

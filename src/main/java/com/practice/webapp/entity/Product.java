@@ -28,6 +28,16 @@ public class Product {
 	private String p_image;
 
 	private boolean sale;
+	
+	private int average;
+
+	public int getAverage() {
+		return average;
+	}
+
+	public void setAverage(int average) {
+		this.average = average;
+	}
 
 	public int getP_id() {
 		return p_id;

@@ -86,6 +86,7 @@
                   <th>Email</th>
                   <th>地址</th>
                   <th>建立日期</th>
+                  <th>更新日期</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -100,6 +101,7 @@
                   <td><c:out value="${member.getM_email()}"/></td>
                   <td><c:out value="${member.getM_address()}"/></td>
                   <td><c:out value="${member.getM_create_date()}"/></td>
+                  <td><c:out value="${member.getM_update_date()}"/></td>
                   <th><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></th>
                   <th><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></th>
                 </tr>
@@ -156,8 +158,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">修改成員</h4>
           </div>
+          <form class="form-horizontal" action="updateMember"  method="post">
           <div class="modal-body">
-            <form class="form-horizontal" action="AccountList"  method="post">
+            
             <!-- <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">成員類別</label>
                 <div class="col-sm-8">
@@ -219,10 +222,11 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" name="modifyMember" >Save changes</button>
+            <input type="submit" class="btn btn-primary" name="type" value="modifyMember" >Save changes
           </div>
-        </div>
+        
         </form>
+        </div>
       </div>
     </div>
     </c:forEach>
@@ -235,23 +239,29 @@
             <h4 class="modal-title" id="myModalLabel">新增成員</h4>
           </div>
           <div class="modal-body">
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="post" action="AccountList">
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">成員類別</label>
                 <div class="col-sm-8">
-                  <input type="radio" id="Member_check_add" name="A_category" checked="checked" value="Member"/>&nbsp&nbspMember<br><input id="Administor_check_add" type="radio" name="A_category" value="Administor"/>&nbsp&nbspAdministor
+                  <input type="radio" id="Member_check_add" name="m_category" checked="checked" value="Member"/>&nbsp&nbspMember<br><input id="Administor_check_add" type="radio" name="m_category" value="Administor"/>&nbsp&nbspAdministor
                 </div>
               </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">帳號</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="帳號" >
+                  <input type="text" class="form-control" name="M_idName" id="inputEmail3" placeholder="帳號" >
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="姓名" >
+                  <input type="text" class="form-control" name="M_name" id="inputEmail3" placeholder="姓名" >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">密碼</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="M_pwd" id="inputEmail3" placeholder="密碼" >
                 </div>
               </div>
               <script>
@@ -264,38 +274,48 @@
               </script>
               <div class="form-group" id="Administor_add" style="display: none;">
                 <label for="inputEmail3" class="col-sm-2 control-label">所屬部門</label>
-                <div class="col-sm-8">
+                <!-- <div class="col-sm-8">
                   <input type="text" class="form-control" id="inputEmail3" placeholder="所屬部門" >
+                </div> -->
+                <div class="col-sm-8">
+                <select  name="A_category" class="form-control">
+                  <option value="1">行政</option>
+                  <option value="2">銷售</option>
+                  <option value="3">倉儲</option>
+                </select>
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">電話</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputPassword3" placeholder="電話" >
+                  <input type="text" class="form-control" name="M_phone" id="inputPassword3" placeholder="電話" >
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-8">
-                  <input type="email" class="form-control" id="inputPassword3" placeholder="Email" >
+                  <input type="email" class="form-control" name="M_email" id="inputPassword3" placeholder="Email" >
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputPassword3" placeholder="地址" >
+                  <input type="text" class="form-control" name="M_address" id="inputPassword3" placeholder="地址" >
                 </div>
               </div>
+              <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary" name="action_type" value="addMember">Save changes</input>
+          </div>
             </form>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+          
         </div>
       </div>
     </div>
-    <div class="modal fade" id="mydelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+     <c:forEach  items="${memberList}" var="member2">
+     <form action="deleteMember" method="post">
+    <div class="modal fade" id="mydelete<c:out value="${member2.getM_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -305,26 +325,28 @@
                 <div class="modal-body">
                   <table class="table table-striped">
               <tbody>
+              <input type="hidden" name="M_id" value="${member2.getM_id()}">
                 <tr>
-                  <td>1</td>
-                  <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp&nbspmindy850302</td>
-                  <td>Mindy Hsu</td>
-                  <td>0960730847</td>
-                  <td>mindy850302@gmail.com</td>
-                  <td>台北市</td>
-                  <td>2016/11/02</td>
+                  <td><c:out value="${member2.getM_id()}"/></td>
+                  <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp&nbspe<c:out value="${member2.getM_idName()}"/></td>
+                  <td>e<c:out value="${member2.getM_name()}"/></td>
+                  <td>e<c:out value="${member2.getM_phone()}"/></td>
+                  <td>e<c:out value="${member2.getM_email()}"/></td>
+                  <td>e<c:out value="${member2.getM_address()}"/></td>
+                  <td>e<c:out value="${member2.getM_create_date()}"/></td>
                 </tr>
               </tbody>
             </table>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">確認</button>
+                  <button type="submit" action="AccountList" name="type" value="deleteMember" class="btn btn-primary">確認</button>
                 </div>
               </div>
             </div>
           </div>
-
+          </form>
+</c:forEach>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

@@ -6,21 +6,21 @@ public class Administrator {
 
 	private int A_id;
 
-	private String A_idName;
+	private String M_idName;
 
-	private String A_name;
+	private String M_name;
 
-	private int A_phone;
+	private String M_phone;
 
-	private String A_email;
+	private String M_email;
 
-	private String A_address;
+	private String M_address;
 
-	private String A_password;
+	private String M_pwd;
 
-	private String A_create_date;
+	private String M_create_date;
 
-	private String A_update_date;
+	private String M_update_date;
 
 	private int A_category;
 
@@ -28,88 +28,82 @@ public class Administrator {
 		return A_id;
 	}
 
-	public String getA_idName() {
-		return A_idName;
+	public void setA_id(int a_id) {
+		A_id = a_id;
 	}
 
-	public String getA_name() {
-		return A_name;
-	}
-	public int getA_phone() {
-		return A_phone;
+	public String getM_idName() {
+		return M_idName;
 	}
 
-	public String getA_email() {
-		return A_email;
+	public void setM_idName(String m_idName) {
+		M_idName = m_idName;
 	}
 
-	public String getA_address() {
-		return A_address;
+	public String getM_name() {
+		return M_name;
 	}
 
-	public String getA_password() {
-		return A_password;
+	public void setM_name(String m_name) {
+		M_name = m_name;
 	}
 
-	public String getA_create_date() {
-		return A_create_date;
+	public String getM_phone() {
+		return M_phone;
 	}
 
-	public String getA_update_date() {
-		return A_update_date;
+	public void setM_phone(String m_phone) {
+		M_phone = m_phone;
+	}
+
+	public String getM_email() {
+		return M_email;
+	}
+
+	public void setM_email(String m_email) {
+		M_email = m_email;
+	}
+
+	public String getM_address() {
+		return M_address;
+	}
+
+	public void setM_address(String m_address) {
+		M_address = m_address;
+	}
+
+	public String getM_pwd() {
+		return M_pwd;
+	}
+
+	public void setM_pwd(String m_pwd) {
+		M_pwd = m_pwd;
+	}
+
+	public String getM_create_date() {
+		return M_create_date;
+	}
+
+	public void setM_create_date(String m_create_date) {
+		M_create_date = m_create_date;
+	}
+
+	public String getM_update_date() {
+		return M_update_date;
+	}
+
+	public void setM_update_date(String m_update_date) {
+		M_update_date = m_update_date;
 	}
 
 	public int getA_category() {
 		return A_category;
 	}
 
-
-	public void setA_id(int A_id) {
-       this.A_id = A_id;
+	public void setA_category(int a_category) {
+		A_category = a_category;
 	}
 
-	public void setA_idName(String A_idName) {
-
-		this.A_idName = A_idName;
-	}
-
-
-	public void setA_name(String A_name) {
-		this.A_name = A_name;
-	}
-
-	public void setA_phone(int A_phone) {
-		this.A_phone = A_phone;
-	}
-
-	public void setA_email(String A_email) {
-		this.A_email = A_email;
-
-	}
-
-	public void setA_address(String A_address) {
-		this.A_address = A_address;
-
-	}
-
-	public void setA_password(String A_password) {
-		this.A_password = A_password;
-
-	}
-
-	public void setA_create_date(String A_create_date) {
-		this.A_create_date = A_create_date;
-
-	}
-
-	public void setA_update_date(String A_update_date) {
-		this.A_update_date = A_update_date;
-	}
-
-	public void setA_category(int A_category) {
-		this.A_category = A_category;
-
-	}
 
 	
 

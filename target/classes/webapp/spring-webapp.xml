@@ -6,5 +6,8 @@
  <bean id="MemberDAO" class="com.practice.webapp.dao.MemberDAODB">
  	<property name="dataSource" ref="dataSource"></property>
  </bean>
+ <bean id="AdministratorDAO" class="com.practice.webapp.dao.AdministratorDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
 
 </beans>

@@ -23,19 +23,17 @@ public class AdministratorDAODB implements AdministratorDAO {
 
 	public void insert(Administrator administrator) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO Administrator (A_idName, A_name, A_phone, A_email,A_address,A_password,A_create_date,A_update_date,A_category) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Administrator (A_idName, A_name, A_phone, A_email,A_address,A_password,A_create_date,A_category) VALUES(?, ?, ?, ?, ?, ?, CURRENT_TIME(),  ?)";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setString(1, administrator.getA_idName());
-			smt.setString(2, administrator.getA_name());
-			smt.setInt(3, administrator.getA_phone());
-			smt.setString(4, administrator.getA_email());
-			smt.setString(5, administrator.getA_address());
-			smt.setString(6, administrator.getA_password());
-			smt.setString(7, administrator.getA_create_date());
-			smt.setString(8, administrator.getA_update_date());
-			smt.setInt(9, administrator.getA_category());
+			smt.setString(1, administrator.getM_idName());
+			smt.setString(2, administrator.getM_name());
+			smt.setString(3, administrator.getM_phone());
+			smt.setString(4, administrator.getM_email());
+			smt.setString(5, administrator.getM_address());
+			smt.setString(6, administrator.getM_pwd());
+			smt.setInt(7, administrator.getA_category());
 			smt.executeUpdate();
 			smt.close();
 
@@ -79,20 +77,18 @@ public class AdministratorDAODB implements AdministratorDAO {
 
 	public void update(Administrator administrator) {
 		// TODO Auto-generated method stub
-		String sql = "UPDATE Administrator SET A_Name=?, A_idName=?, A_phone=?, A_email=?,A_address=?,A_password=?,A_create_date=?,A_update_date=?,A_category=? "
+		String sql = "UPDATE Administrator SET A_Name=?, A_idName=?, A_phone=?, A_email=?,A_address=?,A_password=?,A_update_date=CURRENT_TIME(),A_category=? "
 				+ "WHERE A_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setString(1, administrator.getA_idName());
-			smt.setString(2, administrator.getA_name());
-			smt.setInt(3, administrator.getA_phone());
-			smt.setString(4, administrator.getA_email());
-			smt.setString(5, administrator.getA_address());
-			smt.setString(6, administrator.getA_password());
-			smt.setString(7, administrator.getA_create_date());
-			smt.setString(8, administrator.getA_update_date());
-			smt.setInt(9, administrator.getA_category());
+			smt.setString(1, administrator.getM_idName());
+			smt.setString(2, administrator.getM_name());
+			smt.setString(3, administrator.getM_phone());
+			smt.setString(4, administrator.getM_email());
+			smt.setString(5, administrator.getM_address());
+			smt.setString(6, administrator.getM_pwd());
+			smt.setInt(7, administrator.getA_category());
 			smt.executeUpdate();
 			smt.close();
 
@@ -156,14 +152,14 @@ public class AdministratorDAODB implements AdministratorDAO {
 			while (rs.next()) {
 				Administrator administrator = new Administrator();
 				administrator.setA_id(rs.getInt("A_id"));
-				administrator.setA_idName(rs.getString("A_idName"));
-				administrator.setA_name(rs.getString("A_Name"));
-				administrator.setA_phone(rs.getInt("A_phone"));
-				administrator.setA_email(rs.getString("A_email"));
-				administrator.setA_address(rs.getString("A_address"));
-				administrator.setA_password(rs.getString("A_password"));
-				administrator.setA_create_date(rs.getString("A_create_date"));
-				administrator.setA_update_date(rs.getString("A_update_date"));
+				administrator.setM_idName(rs.getString("A_idName"));
+				administrator.setM_name(rs.getString("A_Name"));
+				administrator.setM_phone(rs.getString("A_phone"));
+				administrator.setM_email(rs.getString("A_email"));
+				administrator.setM_address(rs.getString("A_address"));
+				administrator.setM_pwd(rs.getString("A_password"));
+				administrator.setM_create_date(rs.getString("A_create_date"));
+				administrator.setM_update_date(rs.getString("A_update_date"));
 				administrator.setA_category(rs.getInt("A_category"));
 				AdministratorList.add(administrator);
 			}
@@ -192,14 +188,14 @@ public class AdministratorDAODB implements AdministratorDAO {
 			smt.setInt(1, administrator.getA_id());
 			rs = smt.executeQuery();
 			if (rs.next()) {
-				administrator.setA_idName(rs.getString("A_idName"));
-				administrator.setA_name(rs.getString("A_name"));
-				administrator.setA_phone(rs.getInt("A_phone"));
-				administrator.setA_email(rs.getString("A_email"));
-				administrator.setA_address(rs.getString("A_address"));
-				administrator.setA_password(rs.getString("A_password"));
-				administrator.setA_create_date(rs.getString("A_create_date"));
-				administrator.setA_update_date(rs.getString("A_update_date"));
+				administrator.setM_idName(rs.getString("A_idName"));
+				administrator.setM_name(rs.getString("A_name"));
+				administrator.setM_phone(rs.getString("A_phone"));
+				administrator.setM_email(rs.getString("A_email"));
+				administrator.setM_address(rs.getString("A_address"));
+				administrator.setM_pwd(rs.getString("A_password"));
+				administrator.setM_create_date(rs.getString("A_create_date"));
+				administrator.setM_update_date(rs.getString("A_update_date"));
 				administrator.setA_category(rs.getInt("A_category"));
 			}
 			rs.close();

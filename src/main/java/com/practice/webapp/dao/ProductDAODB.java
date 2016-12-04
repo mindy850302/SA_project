@@ -40,7 +40,7 @@ public class ProductDAODB implements ProductDAO {
 				Product product = new Product();
 				product.setP_id(rs.getInt("p_id"));
 				product.setP_category(rs.getInt("p_category"));
-				product.setClick_count(rs.getInt("p_click_count"));
+				product.setClick_count(rs.getInt("click_count"));
 				product.setP_describe(rs.getString("p_describe"));
 				product.setP_image(rs.getString("p_image"));
 				product.setP_inventory(rs.getInt("p_inventory"));
@@ -69,7 +69,7 @@ public class ProductDAODB implements ProductDAO {
 	public void insert(Product product) {
 
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO Product ( p_category,p_click_count, p_describe,p_image,p_inventory,p_name,p_price,p_onsale_date) VALUES( ?, ?, ? , ? , ? , ? , ? , ? )";	
+	    String sql = "INSERT INTO Product ( p_category,click_count, p_describe,p_image,p_inventory,p_name,p_price,p_onsale_date) VALUES( ?, ?, ? , ? , ? , ? , ? , ? )";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -108,7 +108,7 @@ public class ProductDAODB implements ProductDAO {
 			if(rs.next()){
 				product.setP_id(rs.getInt("p_id"));
 				product.setP_category(rs.getInt("p_category"));
-				product.setClick_count(rs.getInt("p_click_count"));
+				product.setClick_count(rs.getInt("click_count"));
 				product.setP_describe(rs.getString("p_describe"));
 				product.setP_image(rs.getString("p_image"));
 				product.setP_inventory(rs.getInt("p_inventory"));

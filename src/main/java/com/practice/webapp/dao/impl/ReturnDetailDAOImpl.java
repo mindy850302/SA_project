@@ -37,10 +37,8 @@ public class ReturnDetailDAOImpl implements ReturnDetailDAO{
 		return returnDetail; 
 	}
     public void update(ReturnDetail return_detail){
-    	int return_id = return_detail.getReturn_id();
-		int return_p_id = return_detail.getReturn_p_id();
-		for (int i = 0; i< ReturnDetailList.size(); i++){
-			if(ReturnDetailList.get(i).getReturn_id() == return_id && ReturnDetailList.get(i).getReturn_p_id() == return_p_id){
+    	for (int i = 0; i< ReturnDetailList.size(); i++){
+			if(ReturnDetailList.get(i).getReturn_id() == return_detail.getReturn_id()){
 				ReturnDetailList.remove(i);
 				ReturnDetailList.add(i,return_detail);
 			}

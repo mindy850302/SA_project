@@ -76,7 +76,7 @@
               <thead>
                 <tr>
                   <th>#退貨編號</th>
-                  <th>產品明細</th>
+                  <th>產品編號</th>
                   <th>產品數量</th>
                   <th>退貨人姓名</th>
                   <th>承辦人員</th>
@@ -87,17 +87,17 @@
               <tbody>
              <c:forEach  items="${ReturnList}" var="Return">
              	<c:forEach  items="${ReturnDetailList}" var="ReturnDetail">
-             	<c:if test="${ Return.getReturn_id()==ReturnDetail.getReturn_id()}" >
+             	<c:if test="${Return.getReturn_id()==ReturnDetail.getReturn_id()}" >
 	                <tr>
 	                  <td><c:out value="${ReturnDetail.getReturn_id()}"/></td>
 		              <td><c:out value="${ReturnDetail.getReturn_p_id()}"/></td>
 	                  <td><c:out value="${ReturnDetail.getP_amount()}"/></td>
 	                  <td><c:out value="${Return.getReturn_M_id()}"/></td>
-	                  <td><c:out value="${Return.getReturn_M_id()}"/></td>
+	                  <td><c:out value="${Return.getReturn_A_id()}"/></td>
 	                  <td><c:out value="${Return.getReturn_total()}"/></td>
 	                  <td><c:out value="${Return.getReturn_date()}"/>2</td>
-	                  <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></td>
-                  	  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
+	                  <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${ReturnDetail.getReturn_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></td>
+                  	  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete<c:out value="${ReturnDetail.getReturn_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
 	                </tr>
 	                </c:if>
 	                </c:forEach>
@@ -108,9 +108,94 @@
             </div>
         </div>
       </div>
-  
+    <c:forEach  items="${ReturnList}" var="Return1">
+    <c:forEach  items="${ReturnDetailList}" var="ReturnDetail1">
+     <!-- Modal -->
+     <c:if test="${Return1.getReturn_id()==ReturnDetail1.getReturn_id()}" >
+    <div class="modal fade" id="myModify<c:out value="${Return1.getReturn_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">修改成員</h4>
+          </div>
+          <form class="form-horizontal" action="updateReturn"  method="post">
+          <div class="modal-body">
+              <input type="hidden" name="return_id" value="<c:out value="${Return1.getReturn_id()}"/>">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">產品編號</label>
+	                <div class="col-sm-5">
+		                <select name="return_p_id" class="form-control">
+	                     <c:forEach items="${ProductList}" var="Product1">
+	                     <c:if test="${ReturnDetail1.getReturn_p_id()==Product1.getP_id()}">
+	                     <script>
+	                     $(document).ready(function(){       
+	                      $('#product<c:out value="${Return1.getReturn_id()}"/><c:out value="${ReturnDetail1.getReturn_p_id()}"/>').attr("selected","ture");
+	                     });
+	                     </script>
+	                     </c:if>
+	        					<option id="product<c:out value="${Return1.getReturn_id()}"/><c:out value="${Product1.getP_id()}"/>" value="<c:out value="${Product1.getP_id()}"/>"><c:out value="${Product1.getP_name()}"/></option>
+	        			</c:forEach>
+					   </select>
+					   </div>
+					   <div>
+					   <div class="col-sm-2">
+                  			<input type="number" class="form-control" name="p_amount" placeholder="數量" value="<c:out value="${ReturnDetail1.getP_amount()}"/>">
+                		</div>
+					   </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-3 control-label">退貨人姓名</label>
+                <div class="col-sm-7">
+                  <select name="return_M_id" class="form-control">
+	                     <c:forEach items="${memberList}" var="member1">
+	                     <c:if test="${Return1.getReturn_M_id()==member1.getM_id()}">
+	                     <script>
+	                     $(document).ready(function(){       
+	                      $('#member<c:out value="${Return1.getReturn_id()}"/><c:out value="${Return1.getReturn_M_id()}"/>').attr("selected","ture");
+	                     });
+	                     </script>
+	                     </c:if>
+	        					<option id="member<c:out value="${Return1.getReturn_id()}"/><c:out value="${member1.getM_id()}"/>" value="<c:out value="${member1.getM_id()}"/>"><c:out value="${member1.getM_name()}"/></option>
+	        			</c:forEach>
+					   </select>
+					  
+                </div>
+              </div>
+				<div class="form-group">
+                <label for="inputPassword3" class="col-sm-3 control-label">承辦人姓名</label>
+                <div class="col-sm-7">
+                  <select name="return_A_id" class="form-control">
+	                     <c:forEach items="${administratorList}" var="administrator1">
+	                     <c:if test="${Return1.getReturn_A_id()==administrator1.getA_id()}">
+	                     <script>
+	                     $(document).ready(function(){       
+	                      $('#Adminstrator<c:out value="${Return1.getReturn_id()}"/><c:out value="${Return1.getReturn_A_id()}"/>').attr("selected","ture");
+	                     });
+	                     </script>
+	                     </c:if>
+	        					<option id="Adminstrator<c:out value="${Return1.getReturn_id()}"/><c:out value="${administrator1.getA_id()}"/>" value="<c:out value="${administrator1.getA_id()}"/>"><c:out value="${administrator1.getM_name()}"/></option>
+	        			</c:forEach>
+					   </select>
+					  
+                </div>
+              </div>
+              <input type="hidden" name="return_date" value="<c:out value="${Return1.getReturn_date()}"/>">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary" name="type" value="updateReturn" >
+          </div>
+        
+        </form>
+        </div>
+      </div>
+    </div>
    
-    <!-- Modal -->
+    </div>
+    </c:if>
+    </c:forEach>
+    </c:forEach>
     <!-- Modal -->
     <div class="modal fade" id="myAddReturn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -173,39 +258,55 @@
         </div>
       </div>
     </div>
-  
-    <div class="modal fade" id="mydeleteReturn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ <c:forEach  items="${ReturnList}" var="Return2">
+ <c:forEach  items="${ReturnDetailList}" var="ReturnDetail2">
+  <c:if test="${Return2.getReturn_id()==ReturnDetail2.getReturn_id()}" >
+     <form action="deleteReturn" method="post">
+    <div class="modal fade" id="mydelete<c:out value="${Return2.getReturn_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">刪除產品</h4>
+                  <h4 class="modal-title" id="myModalLabel">刪除退貨紀錄</h4>
                 </div>
                 <div class="modal-body">
-                  <table class="table table-striped table-show-product-delete">
+                  <table class="table table-striped">
               <tbody>
-                  <tr>
-                  <td><img class="product_img_list"  src="img/macpro1.jpg"></td>
-                  <td>1789</td>
-                  <td>MacBook Pro 13寸</td>
-                  <td>2.0GHz 處理器 , 256GB 儲存容量</td>
-                  <td>43500</td>
-                  <td>450</td>
-                  <td>2016/11/02</td>
-                  <td>2016/11/02</td>
-                  <td>2016/11/02</td>
+               <thead>
+                <tr>
+                  <th>#退貨編號</th>
+                  <th>產品編號</th>
+                  <th>產品數量</th>
+                  <th>退貨人姓名</th>
+                  <th>承辦人員</th>
+                  <th>總金額</th>
+                  <th>退貨日期</th>
+                </tr>
+              </thead>
+              <input type="hidden" name="return_id" value="${Return2.getReturn_id()}"/>
+                <tr>
+                  <td><c:out value="${Return2.getReturn_id()}"/></td>
+                  <td><c:out value="${ReturnDetail2.getReturn_p_id()}"/></td>
+                  <td><c:out value="${ReturnDetail2.getP_amount()}"/></td>
+                  <td><c:out value="${Return2.getReturn_M_id()}"/></td>
+                  <td><c:out value="${Return2.getReturn_A_id()}"/></td>
+                  <td><c:out value="${Return2.getReturn_total()}"/></td>
+                  <td><c:out value="${Return2.getReturn_date()}"/></td>
                 </tr>
               </tbody>
             </table>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">確認</button>
+                  <button type="submit"  name="type" value="deleteReturn" class="btn btn-primary">確認</button>
                 </div>
               </div>
             </div>
           </div>
-
+          </form>
+          </c:if>
+</c:forEach>
+</c:forEach>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

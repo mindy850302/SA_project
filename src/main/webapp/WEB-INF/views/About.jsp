@@ -123,7 +123,7 @@
                         <p>shana850317@gmail.com</p>
 					</section>
 				</div>
-				<a href="#" style="text-decoration: none;" class="button medium">線上客服>></a>
+				<a href="/webapp/strawberry/Contect" style="text-decoration: none;" class="button medium">線上客服>></a>
 			</div>
 		</div>
 

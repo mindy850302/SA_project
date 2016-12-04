@@ -9,5 +9,7 @@
  <bean id="AdministratorDAO" class="com.practice.webapp.dao.AdministratorDAODB">
  	<property name="dataSource" ref="dataSource"></property>
  </bean>
-
+<bean id="CommentDAO" class="com.practice.webapp.dao.CommentDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
 </beans>

@@ -6,7 +6,7 @@ public interface AdministratorDAO {
 	public void insert(Administrator administrator);
 	public void delete(Administrator administrator);
 	public void update(Administrator administrator);
-	public boolean checkLoginAdministrator(String A_idName, String password);
+	public boolean checkLoginAdministrator(Administrator administrator);
 	public List<Administrator> getList();
 	public Administrator get(Administrator administrator);
 }

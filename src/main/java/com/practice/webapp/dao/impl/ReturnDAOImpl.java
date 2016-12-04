@@ -23,8 +23,9 @@ public class ReturnDAOImpl implements ReturnDAO{
 	public List<Return> getList(){
 		return ReturnList;
 	}
-	public void insert(Return areturn){
-		ReturnList.add(areturn);
+	public int insert(Return areturn){
+		int id=areturn.getReturn_id();
+		return id;
 	}
 	public Return get(Return areturn){
 		Return bReturn = new Return();

@@ -9,5 +9,33 @@
  <bean id="AdministratorDAO" class="com.practice.webapp.dao.AdministratorDAODB">
  	<property name="dataSource" ref="dataSource"></property>
  </bean>
+ <bean id="A_categoryDAO" class="com.practice.webapp.dao.A_categoryDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+ <bean id="CommentDAO" class="com.practice.webapp.dao.CommentDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+ <bean id="DiscountDAO" class="com.practice.webapp.dao.DiscountDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+ <bean id="DiscountDetailDAO" class="com.practice.webapp.dao.DiscountDetailDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+ <bean id="OrderDAO" class="com.practice.webapp.dao.OrderDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+ <bean id="Product_categoryDAO" class="com.practice.webapp.dao.Product_categoryDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+ <bean id="ProductDAO" class="com.practice.webapp.dao.ProductDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+ <bean id="ReturnDAO" class="com.practice.webapp.dao.ReturnDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+ <bean id="ReturnDetailDAO" class="com.practice.webapp.dao.ReturnDetailDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+ 
 
 </beans>

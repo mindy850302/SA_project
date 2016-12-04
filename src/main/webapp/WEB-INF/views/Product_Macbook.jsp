@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="css/header_css.css">
 </head>
 
-<body>
+<body style="background-image: linear-gradient(to top, rgba(46, 49, 65, 0.7), rgba(46, 49, 65, 0.7)), url(img/Macbook/Macbook.jpg)">
 <b>
 	<%@include file="header.jsp"%>
 <!-- Page Wrapper -->
@@ -30,8 +30,8 @@
 <!-- Banner -->
 		<section id="banner">
 			<div class="inner">
-				<div class="logo"><span class="icon fa-mobile"></span></div>
-				<h2>iPhone</h2>
+				<div class="logo"><span class="icon fa-laptop"></span></div>
+				<h2>Macbook</h2>
 				<p></p>
 			</div>
 		</section>
@@ -40,10 +40,10 @@
 <!-- One -->
 			<section id="one" class="wrapper spotlight style1">
 				<div class="inner">
-					<a href="#" class="image"><img src="img/images/iPhone 7 & iPhone 7 Plus.jpg" alt="" /></a>
+					<a href="#" class="image"><img src="img/Macbook/MacbookPro.jpg" alt="" /></a>
 					<div class="content">
-						<h2 class="major">iPhone 7</h2>
-						<p>iPhone 7 將 iPhone 體驗中最重要的環節，大幅提升。它全新推出先進的攝錄鏡頭系統，與 iPhone 歷來最出色的效能表現、最持久的電池續航力，讓人身歷其境的立體聲揚聲器，最亮麗、色彩最豐富的 iPhone 顯示器，而且還能防潑抗水，更有足以媲美強大效能的耀眼外觀。這，就是 iPhone 7。</p>
+						<h2 class="major">MacBook Pro</h2>
+						<p>它比以往更為快速、更加強大，但身形卻更顯纖薄、輕巧。它擁有歷來最亮麗、最多彩的 Mac 筆記型電腦顯示器。它推出 Touch Bar，這是鑲嵌於鍵盤上，可支援 Multi-Touch 的長形玻璃面板，讓你快速取用你需要的各種工具。全新 MacBook Pro，以我們突破性的創意構想打造，現在，它已經準備好，等著助你實現你的每個創意。</p>
 						<a href="#" class="special">Learn more</a>
 					</div>
 				</div>
@@ -51,10 +51,10 @@
 <!-- Two -->
 			<section id="two" class="wrapper alt spotlight style2">
 				<div class="inner">
-					<a href="#" class="image"><img src="img/images/iPhone 6s & iPhone 6s Plus.jpg" alt="" /></a>
+					<a href="#" class="image"><img src="img/Macbook/Macbook.png" alt="" /></a>
 					<div class="content">
-						<h2 class="major">iPhone 6s</h2>
-						<p>iPhone 6s和iPhone 6s Plus是於2015年9月9日發布，具備相當程度改進過的硬體規格與相機及壓力感應觸控螢幕技術3D Touch，同時在機身工藝做出了改造，而配色方面也首次增加了玫瑰金選項。</p>
+						<h2 class="major">MacBook</h2>
+						<p>我們打造 MacBook 的目標，意在實現種種不可能：打造出史上最輕盈、最精巧的 Mac 筆記型電腦，卻仍能提供完整的全尺寸使用體驗。也就是說，每個環節都必須經過重新設計，不但輕巧纖薄，還要更好。我們所成就的，不只是一部新的筆記型電腦，而是筆記型電腦的未來。現在，具備第六代 Intel 處理器、更強的繪圖處理效能、更快速的快閃儲存，以及長達 10 小時的電池續航力*，MacBook 功能更加強大。</p>
 						<a href="#" class="special">Learn more</a>
 					</div>
 				</div>
@@ -62,10 +62,11 @@
 <!-- Three -->
 			<section id="three" class="wrapper spotlight style3">
 				<div class="inner">
-					<a href="#" class="image"><img src="img/images/iPhone SE.jpg" alt="" /></a>
+					<a href="#" class="image"><img src="img/Macbook/MacbookAir.jpg" alt="" /></a>
 					<div class="content">
-						<h2 class="major">iPhone SE</h2>
-						<p>於2016年3月22日上午1時發布，擁有相似iPhone 5s的外觀，因此被認為iPhone 5s的繼任。內部硬體使用iPhone 6s上所使用的蘋果A9處理器以及iPhone 6的收發訊號組件、各種感測器等外圍組件，外觀、螢幕組件則是採用iPhone 5s的，市場定位及定價上屬於入門級價格，以供應發展中國家潛在客戶升級iPhone之用，以及取代iPhone 5s等小螢幕使用者的手機。</p>
+						<h2 class="major">MacBook Air</h2>
+						<p>MacBook Air 的第五代 Intel Core 處理器，給你更多時間處理更多。除了智慧與效率兼具的各式
+功能外，你還能掌握不可思議的強大威力。而攜帶時卻幾乎輕若無物。</p>
 						<a href="#" class="special">Learn more</a>
 					</div>
 				</div>
@@ -77,33 +78,17 @@
 					<p></p>
 					<section class="features">
 						<article>
-							<a href="#" class="image"><img src="img/images/iOS10.jpg" alt="" /></a>
-							<h3 class="major">iOS 10</h3>
-							<p>更個人化，更強大，更有樂趣。</p>
+							<a href="#" class="image"><img src="img/Macbook/MacOS_Sierra.jpg" alt="" /></a>
+							<h3 class="major">MacOS Sierra</h3>
+							<p>現在你的 Mac 能做到什麼？儘管問。</p>
 							<a href="#" class="special">Learn more</a>
 						</article>
 						<article>
-							<a href="#" class="image"><img src="img/images/iphone_accessories.jpg" alt="" /></a>
-							<h3 class="major">配件</h3>
-							<p>搭配， 亮眼奪目。</p>
-							<a href="#" class="special">選購 iPhone 配件</a>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="img/images/comparison.jpg" alt="" /></a>
-							<h3 class="major">比較 iPhone 機種</h3>
-							<p></p>
-							<a href="#" class="special">找出最適合你的 iPhone</a>
-						</article>
-                        <article>
-							<a href="#" class="image"><img src="img/images/iPhone 6 & iPhone 6 Plus.jpg" alt="" /></a>
-							<h3 class="major">iPhone 6</h3>
-							<p>Bigger than bigger. </p>
-							<a href="#" class="special">Learn more</a>
+							<a href="#" class="image"><img src="img/Macbook/Mac_Accessories.jpg" alt="" /></a>
+							<h3 class="major">Mac 配件</h3>
+							<a href="#" class="special">立即選購</a>
 						</article>
 					</section>
-					<ul class="actions">
-						<li><a href="#" class="button">Browse All</a></li>
-					</ul>
 				</div>
 			</section>
 		</section>

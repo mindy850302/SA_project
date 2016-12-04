@@ -71,7 +71,7 @@ public class MemberDAODB implements MemberDAO {
 	public void insert(Member member) {
 
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO Member (M_idName, M_name, M_phone, M_email,M_address,M_discount,M_password,M_create_date) VALUES(?, ?, ?, ? , ? , ? , ? , ?)";	
+	    String sql = "INSERT INTO Member (M_idName, M_name, M_phone, M_email,M_address,M_discount,M_password,M_create_date) VALUES(?, ?, ?, ? , ? , ? , ? , CURRENT_TIME())";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -82,7 +82,7 @@ public class MemberDAODB implements MemberDAO {
 			smt.setString(5, member.getM_address());
 			smt.setInt(6, member.getM_discount());
 			smt.setString(7, member.getM_pwd());
-			smt.setString(8, member.getM_create_date());
+			
 			smt.executeUpdate();			
 			smt.close();
  
@@ -137,7 +137,7 @@ public class MemberDAODB implements MemberDAO {
 
 	public void update(Member member) {
 		
-		String sql = "UPDATE Member SET M_idName=?, M_name=?, M_phone=?, M_email=?,M_address=?,M_discount=?,M_password=?,M_update_date=? "
+		String sql = "UPDATE Member SET M_idName=?, M_name=?, M_phone=?, M_email=?,M_address=?,M_discount=?,M_password=?,M_update_date=CURRENT_TIME() "
 				+ "WHERE M_id = ?";
 		try {
 			conn = dataSource.getConnection();
@@ -149,8 +149,8 @@ public class MemberDAODB implements MemberDAO {
 			smt.setString(5, member.getM_address());
 			smt.setInt(6, member.getM_discount());
 			smt.setString(7, member.getM_pwd());
-			smt.setString(8, member.getM_update_date());
-			smt.setInt(9,member.getM_id());
+			
+			smt.setInt(8,member.getM_id());
 			smt.executeUpdate();			
 			smt.close();
  

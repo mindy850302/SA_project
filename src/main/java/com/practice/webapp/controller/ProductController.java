@@ -1,9 +1,20 @@
 package com.practice.webapp.controller;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.practice.webapp.dao.AdministratorDAO;
+import com.practice.webapp.dao.MemberDAO;
+import com.practice.webapp.dao.ProductDAO;
+import com.practice.webapp.dao.Product_categoryDAO;
+import com.practice.webapp.entity.Administrator;
+import com.practice.webapp.entity.Member;
+import com.practice.webapp.entity.Product;
+import com.practice.webapp.entity.Product_category;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -37,8 +48,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class ProductController {
 	@RequestMapping(value = "/Product", method = RequestMethod.GET)
 	public ModelAndView getProduct(String name) {
+		ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
 		ModelAndView model = new ModelAndView("Product");
 		// = model.setViewName("Product");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
+		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO)context.getBean("Product_categoryDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
+		ProductList=Productdao.getList();
+		Product_categoryList=Product_categoryDAO.getList();
+		model.addObject("ProductList",ProductList);
+		model.addObject("Product_categoryList",Product_categoryList);
 		model.addObject("message");
 		return model;
 	}

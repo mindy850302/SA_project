@@ -1,7 +1,11 @@
 
 package com.practice.webapp.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 
+import com.practice.webapp.dao.ProductDAO;
+import com.practice.webapp.entity.Product;
 public class ReturnDetail {
 
 	private int return_id;
@@ -23,7 +27,11 @@ public class ReturnDetail {
 	public int getReturn_p_id() {
 		return return_p_id;
 	}
-
+	public String getReturn_p_name(ReturnDetail returnDetail) {
+		List<Product> Product =new ArrayList<Product>();
+		String name=Product.get(returnDetail.getReturn_id()).getP_name();
+		return name;
+	}
 	public void setReturn_p_id(int return_p_id) {
 		this.return_p_id = return_p_id;
 	}

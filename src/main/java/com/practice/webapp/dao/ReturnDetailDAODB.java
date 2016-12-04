@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.practice.webapp.entity.Product;
 import com.practice.webapp.entity.ReturnDetail;
 
 public class ReturnDetailDAODB implements ReturnDetailDAO {
@@ -22,7 +23,7 @@ public class ReturnDetailDAODB implements ReturnDetailDAO {
 	}
 	
 	public List<ReturnDetail> getList(){
-		String sql = "SELECT * FROM ReturnDetail";
+		String sql = "SELECT * FROM returnDetail";
 		return getList(sql);
 	}
 	
@@ -57,12 +58,19 @@ public class ReturnDetailDAODB implements ReturnDetailDAO {
 	
 	public void insert(ReturnDetail return_detail) {
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO Return (p_amount, p_total, return_id, return_p_id) VALUES(?, ?, ?, ?)";	
+		int price=0;
+		List<Product> ProductList = new ArrayList<Product>();
+	    for(int i=0;i<ProductList.size();i++){
+	    	if(return_detail.getReturn_p_id()==ProductList.get(i).getP_id()){
+	    		price=ProductList.get(i).getP_price();
+	    	}
+	    }
+	    String sql = "INSERT INTO returnDetail (p_amount, p_total, return_id, return_p_id) VALUES(?, ?, ?, ?)";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setInt(1, return_detail.getP_amount());
-			smt.setInt(2, return_detail.getP_total());
+			smt.setInt(2, price*(return_detail.getP_amount()));
 			smt.setInt(3, return_detail.getReturn_id());
 			smt.setInt(4, return_detail.getReturn_p_id());
 			smt.executeUpdate();			
@@ -79,7 +87,7 @@ public class ReturnDetailDAODB implements ReturnDetailDAO {
 	}
 		
 		public ReturnDetail get(ReturnDetail return_detail) {
-			String sql = "SELECT * FROM ReturnDetail WHERE return_id =? AND return_p_id = ?";
+			String sql = "SELECT * FROM returnDetail WHERE return_id =? AND return_p_id = ?";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);
@@ -107,7 +115,7 @@ public class ReturnDetailDAODB implements ReturnDetailDAO {
 		}
 		
 		public void update(ReturnDetail return_detail) {
-			String sql = "UPDATE ReturnDetail SET p_amount=?, p_total=? "
+			String sql = "UPDATE returnDetail SET p_amount=?, p_total=? "
 					+ "WHERE return_id = ? AND return_p_id = ?";
 			try {
 				conn = dataSource.getConnection();

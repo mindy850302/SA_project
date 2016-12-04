@@ -109,7 +109,60 @@ public class ReturnController {
 		model.setViewName("redirect:/ReturnDetail");
 		return model;
 	}
+	@RequestMapping(value = "/updateReturn", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
+	public ModelAndView getUpdateReturn(@ModelAttribute Return areturn,HttpServletRequest request,@RequestParam("type") String type,@ModelAttribute ReturnDetail areturnDetail){
+		ModelAndView model = new ModelAndView();
+		// = model.setViewName("ReturnDetail");
+		ReturnDAO returnDAOdao = (ReturnDAO)context.getBean("ReturnDAO"); //defined in spring-webapp.xml
+		ReturnDetailDAO returnDetailDAO = (ReturnDetailDAO)context.getBean("ReturnDetailDAO");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO");
+		List<Return> ReturnList = new ArrayList<Return>();
+		List<ReturnDetail> ReturnDetailList = new ArrayList<ReturnDetail>();
+		List<Product> ProductList = new ArrayList<Product>();
+		ReturnList=returnDAOdao.getList();
+		ReturnDetailList=returnDetailDAO.getList();
+		ProductList=Productdao.getList();
+		if(type.equals("updateReturn")){
+			int price =0;
+			for(int i=0;i<ProductList.size();i++){
+				 price=ProductList.get(i).getP_price();
+			}
+			int total=areturnDetail.getP_amount()*price;
+			areturn.setReturn_total(total);
+			returnDAOdao.update(areturn);
+			returnDetailDAO.update(areturnDetail);
+			
+		}
 
+		model.addObject("ReturnList",ReturnList);
+		model.addObject("ReturnDetailList",ReturnDetailList);
+		model.addObject("message");
+		model.setViewName("redirect:/ReturnDetail");
+		return model;
+	}
+	@RequestMapping(value = "/deleteReturn", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
+	public ModelAndView getDeleteReturn(@ModelAttribute Return areturn,HttpServletRequest request,@RequestParam("type") String type,@ModelAttribute ReturnDetail areturnDetail){
+		ModelAndView model = new ModelAndView();
+		// = model.setViewName("ReturnDetail");
+		ReturnDAO returnDAOdao = (ReturnDAO)context.getBean("ReturnDAO"); //defined in spring-webapp.xml
+		ReturnDetailDAO returnDetailDAO = (ReturnDetailDAO)context.getBean("ReturnDetailDAO");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO");
+		List<Return> ReturnList = new ArrayList<Return>();
+		List<ReturnDetail> ReturnDetailList = new ArrayList<ReturnDetail>();
+		List<Product> ProductList = new ArrayList<Product>();
+		ReturnList=returnDAOdao.getList();
+		ReturnDetailList=returnDetailDAO.getList();
+		ProductList=Productdao.getList();
+		if(type.equals("deleteReturn")){
+			returnDAOdao.delete(areturn);
+		}
+
+		model.addObject("ReturnList",ReturnList);
+		model.addObject("ReturnDetailList",ReturnDetailList);
+		model.addObject("message");
+		model.setViewName("redirect:/ReturnDetail");
+		return model;
+	}
 
 }
 

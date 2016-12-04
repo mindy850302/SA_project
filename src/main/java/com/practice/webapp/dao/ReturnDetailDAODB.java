@@ -87,7 +87,7 @@ public class ReturnDetailDAODB implements ReturnDetailDAO {
 	}
 		
 		public ReturnDetail get(ReturnDetail return_detail) {
-			String sql = "SELECT * FROM returnDetail WHERE return_id =? AND return_p_id = ?";
+			String sql = "SELECT * FROM `returnDetail` WHERE `return_id` =? ";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);
@@ -115,20 +115,18 @@ public class ReturnDetailDAODB implements ReturnDetailDAO {
 		}
 		
 		public void update(ReturnDetail return_detail) {
-			String sql = "UPDATE returnDetail SET p_amount=?, p_total=? "
-					+ "WHERE return_id = ? AND return_p_id = ?";
+			String sql ="UPDATE `mydb`.`returnDetail` SET `return_p_id`=?, `p_amount`=? WHERE `return_id`=?";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);
-				smt.setInt(1, return_detail.getP_amount());
-				smt.setInt(2, return_detail.getP_total());
+				smt.setInt(1, return_detail.getReturn_p_id());
+				smt.setInt(2, return_detail.getP_amount());
+				//smt.setInt(3, return_detail.getP_total());
 				smt.setInt(3, return_detail.getReturn_id());
-				smt.setInt(4, return_detail.getReturn_p_id());
 				smt.executeUpdate();			
 				smt.close();
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
-	 
 			} finally {
 				if (conn != null) {
 					try {
@@ -138,7 +136,7 @@ public class ReturnDetailDAODB implements ReturnDetailDAO {
 			}	
 		}
 		public void delete(ReturnDetail return_detail) {
-			String sql = "DELETE FROM Member WHERE return_id = ? AND return_p_id = ?";
+			String sql = "DELETE FROM Member WHERE return_id =?";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);

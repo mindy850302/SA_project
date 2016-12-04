@@ -27,9 +27,14 @@ public class ReturnDetail {
 	public int getReturn_p_id() {
 		return return_p_id;
 	}
-	public String getReturn_p_name(ReturnDetail returnDetail) {
-		List<Product> Product =new ArrayList<Product>();
-		String name=Product.get(returnDetail.getReturn_id()).getP_name();
+	public String getReturn_p_name() {
+		List<Product> ProductList =new ArrayList<Product>();
+		String name="";
+		for(int i=0;i<ProductList.size();i++){
+			if(return_p_id==ProductList.get(i).getP_id()){
+				name=ProductList.get(i).getP_name();
+			}
+		}
 		return name;
 	}
 	public void setReturn_p_id(int return_p_id) {

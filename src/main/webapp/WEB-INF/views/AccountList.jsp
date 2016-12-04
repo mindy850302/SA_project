@@ -222,7 +222,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary" name="type" value="modifyMember" >Save changes
+            <input type="submit" class="btn btn-primary" name="type" value="modifyMember" >
           </div>
         
         </form>
@@ -329,11 +329,11 @@
                 <tr>
                   <td><c:out value="${member2.getM_id()}"/></td>
                   <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp&nbspe<c:out value="${member2.getM_idName()}"/></td>
-                  <td>e<c:out value="${member2.getM_name()}"/></td>
-                  <td>e<c:out value="${member2.getM_phone()}"/></td>
-                  <td>e<c:out value="${member2.getM_email()}"/></td>
-                  <td>e<c:out value="${member2.getM_address()}"/></td>
-                  <td>e<c:out value="${member2.getM_create_date()}"/></td>
+                  <td><c:out value="${member2.getM_name()}"/></td>
+                  <td><c:out value="${member2.getM_phone()}"/></td>
+                  <td><c:out value="${member2.getM_email()}"/></td>
+                  <td><c:out value="${member2.getM_address()}"/></td>
+                  <td><c:out value="${member2.getM_create_date()}"/></td>
                 </tr>
               </tbody>
             </table>

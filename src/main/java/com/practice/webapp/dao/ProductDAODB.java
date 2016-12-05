@@ -1,42 +1,41 @@
 package com.practice.webapp.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javax.sql.DataSource;
-
 
 import com.practice.webapp.entity.Product;
 
 public class ProductDAODB implements ProductDAO {
 	private DataSource dataSource;
-	private Connection conn = null ;
-	private ResultSet rs = null ;
-	private PreparedStatement smt = null ;
-	private PreparedStatement smt1 = null ;
-	
+	private Connection conn = null;
+	private ResultSet rs = null;
+	private PreparedStatement smt = null;
+	private PreparedStatement smt1 = null;
+
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
-	public List<Product> getList(){
-		String sql = "SELECT * FROM Product";
+
+	public List<Product> getList() {
+		String sql = "SELECT * FROM product";
 		return getList(sql);
 	}
-	
-	
+
 	public List<Product> getList(String sql) {
-		
+
 		List<Product> ProductList = new ArrayList<Product>();
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			rs = smt.executeQuery();
-			while(rs.next()){
+			while (rs.next()) {
 				Product product = new Product();
 				product.setP_id(rs.getInt("p_id"));
 				product.setP_category(rs.getInt("p_category"));
@@ -53,23 +52,25 @@ public class ProductDAODB implements ProductDAO {
 			}
 			rs.close();
 			smt.close();
- 
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
- 
+
 		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
-				} catch (SQLException e) {}
+				} catch (SQLException e) {
+				}
 			}
 		}
 		return ProductList;
 	}
+
 	public void insert(Product product) {
 
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO Product ( p_category,click_count, p_describe,p_image,p_inventory,p_name,p_price,p_onsale_date) VALUES( ?, ?, ? , ? , ? , ? , ? , ? )";	
+		String sql = "INSERT INTO product ( p_category,click_count, p_describe,p_image,p_inventory,p_name,p_price,p_onsale_date,sale) VALUES( ?, ?, ? , ? , ? , ? , ? , ? ,?)";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -81,31 +82,34 @@ public class ProductDAODB implements ProductDAO {
 			smt.setString(6, product.getP_name());
 			smt.setInt(7, product.getP_price());
 			smt.setString(8, product.getP_onsale_date());
-			smt.executeUpdate();			
+			smt.setBoolean(9,product.isSale());
+			smt.executeUpdate();
 			smt.close();
- 
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
- 
+
 		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
-				} catch (SQLException e) {}
+				} catch (SQLException e) {
+				}
 			}
 		}
-		
+
 	}
-	public Product get(int id) {
+
+	public Product get(Product product) {
 		List<Product> ProductList = new ArrayList<Product>();
-		Product product = new Product();
-		String sql = "SELECT * FROM Product WHERE p_id = ?";
+
+		String sql = "SELECT * FROM product WHERE p_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setLong(1, ProductList.get(id).getP_id());
+			smt.setInt(1, product.getP_id());
 			rs = smt.executeQuery();
-			if(rs.next()){
+			while (rs.next()) {
 				product.setP_id(rs.getInt("p_id"));
 				product.setP_category(rs.getInt("p_category"));
 				product.setClick_count(rs.getInt("click_count"));
@@ -120,23 +124,23 @@ public class ProductDAODB implements ProductDAO {
 			}
 			rs.close();
 			smt.close();
- 
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
- 
+
 		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
-				} catch (SQLException e) {}
+				} catch (SQLException e) {
+				}
 			}
 		}
 		return product;
 	}
 
-public void update(Product product,int id) {
-		List<Product> ProductList = new ArrayList<Product>();
-		String sql = "UPDATE Product SET click_count=?, p_describe=?,p_image=?, p_inventory=?,p_name=?,p_price=?,p_update_date=? "
+	public void update(Product product) {
+		String sql = "UPDATE product SET click_count=?, p_describe=?,p_image=?, p_inventory=?,p_name=?,p_price=?,p_update_date=? "
 				+ "WHERE p_id = ?";
 		try {
 			conn = dataSource.getConnection();
@@ -147,74 +151,79 @@ public void update(Product product,int id) {
 			smt.setInt(4, product.getP_inventory());
 			smt.setString(5, product.getP_name());
 			smt.setInt(6, product.getP_price());
-			smt.setInt(8, ProductList.get(id).getP_id());
-			smt.executeUpdate();			
+			smt.setString(7, product.getP_update_date());
+			smt.setInt(8, product.getP_id());
+			smt.executeUpdate();
 			smt.close();
- 
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
- 
+
 		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
-				} catch (SQLException e) {}
+				} catch (SQLException e) {
+				}
 			}
 		}
-		
+
 	}
-public void delete(int id) {
-	List<Product> ProductList = new ArrayList<Product>();
-	String sql = "DELETE FROM Product WHERE p_id = ?";
-	try {
-		conn = dataSource.getConnection();
-		smt = conn.prepareStatement(sql);
-		smt.setLong(1, ProductList.get(id).getP_id());
-		smt.executeUpdate();			
-		smt.close();
 
-	} catch (SQLException e) {
-		throw new RuntimeException(e);
-
-	} finally {
-		if (conn != null) {
-			try {
-				conn.close();
-			} catch (SQLException e) {}
-		}
-	}
-}
-public void average(){
-	List<Product> ProductList = new ArrayList<Product>();
-	for(int i=0;i<ProductList.size();i++){
-		
-
-		String sql = "Select AVG(score) as p_average FROM Comment WHERE p_id = ?";
-		String sql1="Update Product SET average =?"+"WHERE p_id = ?";
+	public void delete(Product product) {
+		String sql = "DELETE FROM product WHERE p_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, ProductList.get(i).getP_id());
-			rs = smt.executeQuery();
-			smt1 = conn.prepareStatement(sql1);
-			int average=rs.getInt("average");
-			smt1.setInt(1, average);
-			smt.setInt(2, ProductList.get(i).getP_id());
+			smt.setInt(1, product.getP_id());
+			smt.executeUpdate();
 			smt.close();
-			smt1.close();
-	
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
-	
+
 		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
-				} catch (SQLException e) {}
+				} catch (SQLException e) {
+				}
 			}
 		}
 	}
-}
+
+	public void average() {
+		List<Product> ProductList = new ArrayList<Product>();
+		for (int i = 0; i < ProductList.size(); i++) {
+
+			String sql = "Select AVG(score) as p_average FROM Comment WHERE p_id = ?";
+			String sql1 = "Update Product SET average =?" + "WHERE p_id = ?";
+			try {
+				conn = dataSource.getConnection();
+				smt = conn.prepareStatement(sql);
+				smt.setInt(1, ProductList.get(i).getP_id());
+				rs = smt.executeQuery();
+				smt1 = conn.prepareStatement(sql1);
+				int average = rs.getInt("average");
+				smt1.setInt(1, average);
+				smt.setInt(2, ProductList.get(i).getP_id());
+				smt.close();
+				smt1.close();
+
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+
+			} finally {
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+					}
+				}
+			}
+		}
+	}
+
+	
 
 }
-		  

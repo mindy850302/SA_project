@@ -100,7 +100,7 @@ public class CommentDAODB implements CommentDAO {
 	
 	@Override
 	public List<Comment> getList(){
-		String sql = "SELECT * FROM Comment";
+		String sql = "SELECT * FROM Comment a JOIN product b ON a.comment_p_id = b.p_id JOIN Member c ON a.comment_M_id =c.M_id";
 		return getList(sql);
 	}
 	public List<Comment> getList(String sql) {
@@ -114,7 +114,8 @@ public class CommentDAODB implements CommentDAO {
 			while(rs.next()){
 				Comment comment = new Comment();
 				comment.setComment_M_id(rs.getInt("comment_M_id"));
-				comment.setComment_p_id(rs.getInt("comment_p_id"));
+				comment.getMember().setM_name(rs.getString("M_name"));
+				comment.getProduct().setP_name(rs.getString("p_name"));
 				comment.setC_comment(rs.getString("c_comment"));
 				comment.setC_create_date(rs.getString("c_create_date"));
 				comment.setC_update_date(rs.getString("c_update_date"));

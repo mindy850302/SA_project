@@ -263,12 +263,24 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">部門</label>
                 <div class="col-sm-8">
                   <input type="text" class="form-control" name="A_cat egory" placeholder="姓名" value="<c:out value="${admin1.getM_name()}"/>">
+                  <select name="A_category" class="form-control">
+	                     <c:forEach items="${A_categoryList}" var="A_category2">
+	                     <c:if test="${admin1.getA_category()==A_category2.getC_id()}">
+	                     <script>
+	                     $(document).ready(function(){       
+	                      $('#A_category<c:out value="${admin1.getA_id()}"/><c:out value="${A_category2.getC_id()}"/>').attr("selected","ture");
+	                     });
+	                     </script>
+	                     </c:if>
+	        					<option id="A_category<c:out value="${admin1.getA_id()}"/><c:out value="${A_category2.getC_id()}"/>" value="<c:out value="${A_category2.getC_id()}"/>"><c:out value="${A_category2.getC_name()}"/></option>
+	        			</c:forEach>
+					   </select>
                 </div>
               </div>
-              <!-- <div class="form-group">
+             <!-- <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">所屬部門</label>
                 <div class="col-sm-8">
                 <select class="form-control" name="A_category">
@@ -279,14 +291,6 @@
                 </div>
               </div> -->
               
-              <!-- <script>
-                $('#Administor_check').click(function() {
-                    $("#Administor").show();
-                });
-                $('#Member_check').click(function() {
-                    $("#Administor").hide();
-                });
-              </script> -->
               <!-- <div class="form-group" id="Administor" style="display: none;">
                 <label for="inputEmail3" class="col-sm-2 control-label">所屬部門</label>
                 <div class="col-sm-8">

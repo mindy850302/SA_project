@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Log in</title>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -10,29 +11,17 @@
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <link rel="stylesheet" type="text/css" href="css/header_css.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
 </head>
 
-<body>
+<body class="align" style="margin-top:200px">
 <% request.setCharacterEncoding("utf-8");%>
 <%@include file="header.jsp"%>
-<html lang="en">
-
-  <head>
-    <meta charset="utf-8">
-
-    <title>Login</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-  </head>
-
-  <body class="align" style="margin-top:200px">
-
+<a href="login"> ${newaccount.username}</a>
     <div class="grid">
 
-      <form action="https://httpbin.org/post" method="POST" class="form login">
+      <form action="login" method="POST" class="form login">
 
         <div class="form__field">
           <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg><span class="hidden">Username</span></label>

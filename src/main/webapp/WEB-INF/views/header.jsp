@@ -19,7 +19,7 @@
             <li><a href="/webapp/Product/Macbook" accesskey="5" title="">macbook</a></li>
             <li><a href="/webapp/FAQ" accesskey="5" title="">FAQ</a></li>
             <li><a href="/webapp/login" accesskey="5" title="">Login</a></li>
-            <li><a href="/webapp/signup" accesskey="5" title="">Sign up</a></li>
+            <li><a href="/webapp/signup" accesskey="5" title="">Sign up ${loginsession}</a></li>
         </ul>
     </div>
    

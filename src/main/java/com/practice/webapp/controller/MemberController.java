@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.practice.webapp.dao.A_categoryDAO;
@@ -16,7 +17,7 @@ import com.practice.webapp.entity.A_category;
 import com.practice.webapp.entity.Administrator;
 import com.practice.webapp.entity.Member;
 
-
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
@@ -47,7 +48,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 @Controller
+@SessionAttributes("loginsession")
+
 public class MemberController {
 	
 	ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
@@ -77,9 +81,32 @@ public class MemberController {
 		model.addObject("message");
 		return model;
 	}
+	
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView checkLogin(String name) {
+		ModelAndView model = new ModelAndView("index");
+		
+		/*
+		 * ServletRequest session = null;
+		if(session.getAttribute("login")!=null){
+			session.removeAttribute("login");
+		}
+		*/
+		// = model.setViewName("login");
+		model.addObject("loginsession","ben");
+		return model;
+	}
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView getLogin(String name) {
 		ModelAndView model = new ModelAndView("login");
+		
+		/*
+		 * ServletRequest session = null;
+		if(session.getAttribute("login")!=null){
+			session.removeAttribute("login");
+		}
+		*/
 		// = model.setViewName("login");
 		model.addObject("message");
 		return model;

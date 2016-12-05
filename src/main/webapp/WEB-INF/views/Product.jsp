@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" import="java.sql.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,8 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-
-    <title>Pineapple</title>
+    <title>Strawberry</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -96,22 +96,18 @@
     <div class="row" style="background-color:#eee">
         <div class="col-xs-2 col-md-2" ></div>
         <div class="col-xs-8 col-md-8" >
-            <ul class="nav nav-tabs" role="tablist" >
-                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="color: #252830;">iPhone 7</a></li>
-                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="color: #252830;">iPhone 7 Plus</a></li>
-            </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="home">
                     <div class="table-responsive">
                         <table class="table table-striped table-show-product">
-                        <tbody>
+                        <tbody style="color:#000000">
                             <tr>
-                                <td rowspan="7" style="vertical-align:middle"><img style="max-width:100%; width:100%; height:auto" class="product_img_list"  src="img/iphone7.png"></td>
-                                <td style="vertical-align:middle"><label style="font-size:30px" class="col-sm-11 control-label">iPhone 7</label></td>
+                                <td rowspan="7" style="vertical-align:middle"><img style="max-width:100%; width:100%; height:auto" class="product_img_list"  src="<c:out value="${Product.getP_image()}"></c:out>"></td>
+                                <td style="vertical-align:middle"><label style="font-size:30px" class="col-sm-11 control-label"><c:out value="${Product.getP_name()}"></c:out></label></td>
                             </tr>
                             <tr>
                                 <td style="vertical-align:middle">
-                                    <label class="col-sm-3 control-label">滿意度：</label>
+                                    <label class="col-sm-3 control-label" style="font-size:18px">滿意度：</label>
                                     <!-- Rating Star -->
                                         <div class="col-sm-5">
                                             <fieldset class="rating">
@@ -130,70 +126,10 @@
                                     <label style="color: #ff0000 ; font-size:20px" class="col-sm-2 control-label">10分</label>
                                 </td>
                             </tr>
-                            <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label">4.7 吋顯示器</label></td></tr>
-                            <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label">128GB : NT$28,500</label></td></tr>
-                            <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label">256GB : NT$32,500</label></td></tr>
+                            <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label" style="font-size:18px">NT$<c:out value="${Product.getP_price()}"></c:out></label></td></tr>
+                            <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label" style="font-size:16px"><c:out value="${Product.getP_describe()}"></c:out></label></td></tr>
                             <tr><td style="vertical-align:middle"><div class="form-group">
-                                        <label class="col-sm-2 control-label">評分</label>
-                                        <!-- Rating Star -->
-                                        <div class="col-sm-9">
-                                            <fieldset class="rating">
-                                                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                                            </fieldset>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="vertical-align:middle"><button style="background-color: #286090;border-color: #204d74;" type="button" class="btn btn-success"  data-toggle="modal" data-target="#addToCart">加入購物車</button></td>
-                            </tr>
-                        </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="profile">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-show-product">
-                        <tbody>
-                            <tr>
-                                <td rowspan="7" style="vertical-align:middle"><img style="max-width:100%; width:100%; height:auto" class="product_img_list"  src="img/iphone7-plus.png"></td>
-                                <td style="vertical-align:middle"><label style="font-size:30px" class="col-sm-11 control-label">iPhone 7 Plus</label></td>
-                            </tr>
-                            <tr>
-                                <td style="vertical-align:middle">
-                                    <label class="col-sm-3 control-label">滿意度：</label>
-                                    <!-- Rating Star -->
-                                        <div class="col-sm-4">
-                                            <fieldset class="rating2">
-                                                <input type="radio" id="star5_2" name="rating2" value="5" /><label class = "full" for="star5_2" title="Awesome - 5 stars"></label>
-                                                <input type="radio" id="star4half_2" name="rating2" value="4 and a half" /><label class="half" for="star4half_2" title="Pretty good - 4.5 stars"></label>
-                                                <input type="radio" id="star4_2" name="rating2" value="4" /><label class = "full" for="star4_2" title="Pretty good - 4 stars"></label>
-                                                <input type="radio" id="star3half_2" name="rating2" value="3 and a half" /><label class="half" for="star3half_2" title="Meh - 3.5 stars"></label>
-                                                <input type="radio" id="star3_2" name="rating2" value="3" /><label class = "full" for="star3_2" title="Meh - 3 stars"></label>
-                                                <input type="radio" id="star2half_2" name="rating2" value="2 and a half" /><label class="half" for="star2half_2" title="Kinda bad - 2.5 stars"></label>
-                                                <input type="radio" id="star2_2" name="rating2" value="2" /><label class = "full" for="star2_2" title="Kinda bad - 2 stars"></label>
-                                                <input type="radio" id="star1half_2" name="rating2" value="1 and a half" /><label class="half" for="star1half_2" title="Meh - 1.5 stars"></label>
-                                                <input type="radio" id="star1_2" name="rating2" value="1" /><label class = "full" for="star1_2" title="Sucks big time - 1 star"></label>
-                                                <input type="radio" id="starhalf_2" name="rating2" value="half" /><label class="half" for="starhalf_2" title="Sucks big time - 0.5 stars"></label>
-                                            </fieldset>
-                                        </div>
-                                    <label style="color: #ff0000 ; font-size:20px" class="col-sm-2 control-label">10分</label>
-                                </td>
-                            </tr>
-                            <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label">5.5 吋顯示器</label></td></tr>
-                            <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label">128GB : NT$32,900</label></td></tr>
-                            <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label">256GB : NT$36,900</label></td></tr>
-                            <tr><td style="vertical-align:middle"><div class="form-group">
-                                        <label class="col-sm-2 control-label">評分</label>
+                                        <label class="col-sm-2 control-label" style="font-size:18px">評分</label>
                                         <!-- Rating Star -->
                                         <div class="col-sm-9">
                                             <fieldset class="rating">
@@ -221,7 +157,7 @@
                 </div>
             <div class="modal fade" tabindex="-1" role="dialog" id="addToCart">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content" style="color:#000000">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title">加入購物車</h4>
@@ -231,31 +167,9 @@
                             <div class="form-group">
                                 <label for="choosePattern" class="col-sm-2 control-label">機款</label>
                                 <div class="col-sm-8">
-                                    <input type="radio" id="iPhone7" name="pattern" checked="checked" value="iPhone7"/>  iPhone7<br><input id="iPhone7Plus" type="radio" name="pattern" value="iPhone7Plus"/>  iPhone7 Plus
+                                	<c:out value="${Product.getP_name()}"></c:out>
                                 </div>
                             </div>   
-                            <div class="form-group">
-                                <label for="chooseColor" class="col-sm-2 control-label">顏色</label>
-                                <div class="col-sm-8">
-                                    <select name="color" size="1" id="color" > 
-                                        <option value="1" selected>曜石黑色 Jet Black</option> 
-                                        <option value="2">黑色 Black</option>
-                                        <option value="3">銀色 Silver</option>
-                                        <option value="4">金色 Gold</option>
-                                        <option value="5">玫瑰金色 Rose Gold</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="chooseCapacity" class="col-sm-2 control-label">儲存容量</label>
-                                <div class="col-sm-8">
-                                    <select name="capacity" size="1" id="capacity" > 
-                                        <option value="1" selected>32GB</option>
-                                        <option value="2">128GB</option> 
-                                        <option value="3">256GB</option>
-                                    </select>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <label for="chooseAmount" class="col-sm-2 control-label">數量</label>
                                 <div class="col-sm-8">
@@ -265,6 +179,11 @@
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </div>
                             </div>
@@ -272,12 +191,15 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary">加入購物車</button>
+                            <button type="button" class="btn btn-primary" onclick="addCart()">加入購物車</button>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
-            
-            
+            	<script>
+					function addCart() {
+						alert("加入購物車成功！");
+					}
+				</script>
             </div>
         </div>
         <div class="col-xs-2 col-md-2" ></div>

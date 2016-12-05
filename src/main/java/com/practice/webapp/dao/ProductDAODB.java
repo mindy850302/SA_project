@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javax.sql.DataSource;
 
 
@@ -24,7 +23,7 @@ public class ProductDAODB implements ProductDAO {
 		this.dataSource = dataSource;
 	}
 	public List<Product> getList(){
-		String sql = "SELECT * FROM Product";
+		String sql = "SELECT * FROM product";
 		return getList(sql);
 	}
 	

@@ -116,9 +116,24 @@ public class ProductController {
 		return model;
 	}
 	@RequestMapping(value = "/Product", method = RequestMethod.GET)
-	public ModelAndView getiPhone7(String name) {
+	public ModelAndView getiPhone7(@ModelAttribute("id") int id) {
+		ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
 		ModelAndView model = new ModelAndView("Product");
 		// = model.setViewName("Product");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
+		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO)context.getBean("Product_categoryDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
+		ProductList=Productdao.getList();
+		Product product=new Product();
+		for(int i = 0 ; i < ProductList.size();i++){
+			if (id==ProductList.get(i).getP_id()){
+				product=ProductList.get(i);
+			}
+		}
+		Product_categoryList=Product_categoryDAO.getList();
+		model.addObject("Product",product);
+		System.out.println(id);
 		model.addObject("message");
 		return model;
 	}

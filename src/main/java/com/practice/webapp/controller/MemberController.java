@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.practice.webapp.dao.A_categoryDAO;
 import com.practice.webapp.dao.AdministratorDAO;
 import com.practice.webapp.dao.MemberDAO;
+import com.practice.webapp.entity.A_category;
 import com.practice.webapp.entity.Administrator;
 import com.practice.webapp.entity.Member;
 
@@ -59,12 +61,16 @@ public class MemberController {
 		// = model.setViewName("Accountlist");
 		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
 		AdministratorDAO AdministratorDAO = (AdministratorDAO)context.getBean("AdministratorDAO");
+		A_categoryDAO A_categoryDAO = (A_categoryDAO)context.getBean("A_categoryDAO");
 		List<Member> memberList = new ArrayList<Member>();
 		List<Administrator> administratorList = new ArrayList<Administrator>();
+		List<A_category> A_categoryList = new ArrayList<A_category>();
 		memberList=memberdao.getList();
 		administratorList=AdministratorDAO.getList();
+		A_categoryList=A_categoryDAO.getList();
 		model.addObject("memberList",memberList);
 		model.addObject("administratorList",administratorList);
+		model.addObject("A_categoryList",A_categoryList);
 		
 		return model;
 	}
@@ -105,13 +111,7 @@ public class MemberController {
 		model.addObject("message");
 		return model;
 	}
-	@RequestMapping(value = "/updateGraduate", method = RequestMethod.GET)
-	public ModelAndView updateGraduate(@ModelAttribute Member member,HttpServletRequest request) {
-		ModelAndView model = new ModelAndView();
-		MemberDAO memberDAO = (MemberDAO) context.getBean("MemberDAO");
-		model.setViewName("redirect:/AccountList");
-		return model; 
-	}
+
 	
 	@RequestMapping(value = "/AccountList", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
 	public ModelAndView add(@ModelAttribute Member member,HttpServletRequest request,@RequestParam("action_type") String type,@RequestParam("m_category") String m_category,@ModelAttribute Administrator administrator){		
@@ -160,5 +160,32 @@ public class MemberController {
 		model.setViewName("redirect:/AccountList");
 		return model; 
 	}
-	
+	@RequestMapping(value = "/updateAdministrator", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
+	public ModelAndView updateAdministrator(@ModelAttribute Administrator admin,HttpServletRequest request,@RequestParam("type") String type){		
+		AdministratorDAO AdministratorDAO = (AdministratorDAO)context.getBean("AdministratorDAO");
+		
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+
+		if(type.equals("modifyAdministrator")){
+			AdministratorDAO.update(admin);
+		}
+		model.setViewName("redirect:/AccountList");
+		return model; 
+	}
+	@RequestMapping(value = "/deleteAdministrator", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
+	public ModelAndView deleteAdministrator(@ModelAttribute Administrator admin,HttpServletRequest request,@RequestParam("type") String type){		
+		AdministratorDAO AdministratorDAO = (AdministratorDAO)context.getBean("AdministratorDAO");
+		
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+
+		if(type.equals("deleteAdministrator")){
+			AdministratorDAO.delete(admin);
+		}
+		model.setViewName("redirect:/AccountList");
+		return model; 
+	}
 }

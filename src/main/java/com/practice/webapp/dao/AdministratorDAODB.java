@@ -77,7 +77,7 @@ public class AdministratorDAODB implements AdministratorDAO {
 
 	public void update(Administrator administrator) {
 		// TODO Auto-generated method stub
-		String sql = "UPDATE Administrator SET A_Name=?, A_idName=?, A_phone=?, A_email=?,A_address=?,A_password=?,A_update_date=CURRENT_TIME(),A_category=? "
+		String sql = "UPDATE Administrator SET A_name=?, A_idName=?, A_phone=?, A_email=?,A_address=?,A_password=?,A_update_date=CURRENT_TIME(),A_category=? "
 				+ "WHERE A_id = ?";
 		try {
 			conn = dataSource.getConnection();
@@ -89,6 +89,7 @@ public class AdministratorDAODB implements AdministratorDAO {
 			smt.setString(5, administrator.getM_address());
 			smt.setString(6, administrator.getM_pwd());
 			smt.setInt(7, administrator.getA_category());
+			smt.setInt(8, administrator.getA_id());
 			smt.executeUpdate();
 			smt.close();
 

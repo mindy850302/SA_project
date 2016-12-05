@@ -101,8 +101,8 @@ public class A_categoryDAODB implements A_categoryDAO {
 			rs = smt.executeQuery();
 			while(rs.next()){
 				A_category a_category = new A_category();
-				a_category.setC_id(rs.getInt("C_id"));
-				a_category.setC_name(rs.getString("C_name"));
+				a_category.setC_id(rs.getInt("id"));
+				a_category.setC_name(rs.getString("c_name"));
 				A_categoryList.add(a_category);
 			
 		}
@@ -125,7 +125,7 @@ public class A_categoryDAODB implements A_categoryDAO {
     public A_category get(A_category a_category) {
 		// TODO Auto-generated method stub
     	a_category = new A_category();
-		String sql = "SELECT * FROM A_category WHERE C_id = ?";
+		String sql = "SELECT * FROM A_category WHERE id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);

@@ -18,7 +18,24 @@
 <body>
 <% request.setCharacterEncoding("utf-8");%>
 
-<%@include file="header.jsp"%>
+<%@include file="hearderLogin.jsp"%>
+<div class="modal fade" id="myLogout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Logout</h4>
+      </div>
+      <div class="modal-body">
+       確定登出？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="row" style="margin-top:90px; background-color:#2C3338; border-bottom:4px solid #2C3338">
  <div class="col-xs-12 col-md-12" >

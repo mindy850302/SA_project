@@ -16,6 +16,8 @@ import com.practice.webapp.entity.Product;
 import com.practice.webapp.dao.ProductDAO;
 
 public class ProductDAOImpl implements ProductDAO{
+	private DataSource dataSource;
+
 	private List<Product> ProductList = new ArrayList<Product>();
 	public ProductDAOImpl(){
 		Product temp=new Product();
@@ -55,4 +57,8 @@ public class ProductDAOImpl implements ProductDAO{
     public void average(){
     	
     }
+    
+    public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 }

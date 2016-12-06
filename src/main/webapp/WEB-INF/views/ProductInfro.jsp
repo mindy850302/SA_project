@@ -270,9 +270,9 @@
 				</form>
 			</div>
 		</div>
-
+</div>
 	</c:forEach>
-	<!-- Modal -->
+	<!-- Add Product -->
 	<div class="modal fade" id="myAddProduct" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -290,17 +290,13 @@
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label">產品種類</label>
 							<div class="col-sm-8">
-
-
 								<input type="radio" name="p_category" value="1" />iPhone <input
 									type="radio" name="p_category" value="2" />iPad <input
 									type="radio" name="p_category" value="3" />MacBook
 							</div>
 						</div>
+
 						<div class="form-group">
-
-
-
 							<label for="inputEmail3" class="col-sm-2 control-label">產品圖片</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="p_image"
@@ -355,6 +351,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- Delete Product -->
 	<c:forEach items="${ProductList}" var="product2">
 		<form action="deleteProduct" method="post">
 			<div class="modal fade" id="mydeleteProduct<c:out value="${product2.getP_id()}"/>"  tabindex="-1"
@@ -371,8 +368,8 @@
 						<div class="modal-body">
 							<table class="table table-striped table-show-product-delete">
 								<tbody>
-								<input type="hidden" name="p_id" value="${product2.getP_id()}">
-									<tr>
+								<input type="hidden" name="p_id" value="${product2.getP_id()}"/>
+									
 									<tr>
 										<td><img class="product_img_list"
 											src="<c:out value="${product2.getP_image()}" />"></td>
@@ -385,7 +382,7 @@
 										<td><c:out value="${product2.getP_update_date()}" /></td>
 										<td><c:out value="${product2.getP_remove_date()}" /></td>
 									</tr>
-									</tr>
+								
 								</tbody>
 							</table>
 						</div>

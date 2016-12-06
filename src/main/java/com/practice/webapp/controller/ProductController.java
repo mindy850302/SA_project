@@ -28,8 +28,83 @@ import org.springframework.web.multipart.MultipartFile;
 //import org.springframework.ui.Model;
 @Controller
 public class ProductController {
+
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
 
+	
+
+	@RequestMapping(value = "/Product/iPhone", method = RequestMethod.GET)
+	public ModelAndView getProductiPhone(String name) {
+		ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
+		ModelAndView model = new ModelAndView("Product_iPhone");
+		// = model.setViewName("Product_iPhone");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
+		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO)context.getBean("Product_categoryDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
+		ProductList=Productdao.getList();
+		Product_categoryList=Product_categoryDAO.getList();
+		model.addObject("ProductList",ProductList);
+		model.addObject("Product_categoryList",Product_categoryList);
+		model.addObject("message");
+		return model;
+	}
+	@RequestMapping(value = "/Product/iPad", method = RequestMethod.GET)
+	public ModelAndView getProductiPad(String name) {
+		ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
+		ModelAndView model = new ModelAndView("Product_iPad");
+		// = model.setViewName("Product_iPad");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
+		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO)context.getBean("Product_categoryDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
+		ProductList=Productdao.getList();
+		Product_categoryList=Product_categoryDAO.getList();
+		model.addObject("ProductList",ProductList);
+		model.addObject("Product_categoryList",Product_categoryList);
+		model.addObject("message");
+		return model;
+	}
+	@RequestMapping(value = "/Product/Macbook", method = RequestMethod.GET)
+	public ModelAndView getProductMacbook(String name) {
+		ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
+		ModelAndView model = new ModelAndView("Product_Macbook");
+		// = model.setViewName("Product_Macbook");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
+		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO)context.getBean("Product_categoryDAO");
+
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
+		ProductList = Productdao.getList();
+		Product_categoryList = Product_categoryDAO.getList();
+		model.addObject("ProductList", ProductList);
+		model.addObject("Product_categoryList", Product_categoryList);
+		System.out.println(Product_categoryList.get(0).getName());
+		return model;
+	}
+	@RequestMapping(value = "/Product", method = RequestMethod.GET)
+	public ModelAndView getiPhone7(@ModelAttribute("id") int id) {
+		ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
+		ModelAndView model = new ModelAndView("Product");
+		// = model.setViewName("Product");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
+		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO)context.getBean("Product_categoryDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
+		ProductList=Productdao.getList();
+		Product product=new Product();
+		for(int i = 0 ; i < ProductList.size();i++){
+			if (id==ProductList.get(i).getP_id()){
+				product=ProductList.get(i);
+			}
+		}
+		Product_categoryList=Product_categoryDAO.getList();
+		model.addObject("Product",product);
+		System.out.println(id);
+
+		model.addObject("message");
+		return model;
+	}
 	@RequestMapping(value = "/ProductInfro", method = RequestMethod.GET)
 	public ModelAndView getProduct(String name) {
 
@@ -95,6 +170,7 @@ public class ProductController {
 		return model;
 	}
 
+
 	
 
 	@RequestMapping(value = "/shoppingCart", method = RequestMethod.GET)
@@ -113,11 +189,6 @@ public class ProductController {
 		return model;
 	}
 
-	@RequestMapping(value = "/iPhone7", method = RequestMethod.GET)
-	public ModelAndView getiPhone7(String name) {
-		ModelAndView model = new ModelAndView("iPhone7");
-		// = model.setViewName("iPhone7");
-		model.addObject("message");
-		return model;
-	}
+
+	
 }

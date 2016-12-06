@@ -23,7 +23,8 @@ public class ProductDAODB implements ProductDAO {
 		this.dataSource = dataSource;
 	}
 
-	public List<Product> getList() {
+	public List<Product> getList(){
+
 		String sql = "SELECT * FROM product";
 		return getList(sql);
 	}

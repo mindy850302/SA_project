@@ -49,7 +49,6 @@
   <body>
         <%@include file="headerBackground.jsp"%>
         <% request.setCharacterEncoding("utf-8");%>
-        
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="color: #252830;">
         <div class="row">
           <div class="col-lg-6">
@@ -73,6 +72,7 @@
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="color: #252830;">會員</a></li>
             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="color: #252830;">管理者</a></li>
           </ul>
+<!-- Member -->
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="home">
             <div class="table-responsive">
@@ -102,14 +102,15 @@
                   <td><c:out value="${member.getM_address()}"/></td>
                   <td><c:out value="${member.getM_create_date()}"/></td>
                   <td><c:out value="${member.getM_update_date()}"/></td>
-                  <th><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></th>
-                  <th><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></th>
+                  <th><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myMModify<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></th>
+                  <th><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myMDelete<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></th>
                 </tr>
                 </c:forEach>
               </tbody>
             </table>
           </div>
             </div>
+<!-- Administrator -->
             <div role="tabpanel" class="tab-pane fade" id="profile">
             <div class="table-responsive">
             <table class="table table-striped">
@@ -123,24 +124,51 @@
                   <th>Email</th>
                   <th>地址</th>
                   <th>建立日期</th>
+                  <th>更新日期</th>
                   <th></th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
+              <c:forEach  items="${administratorList}" var="admin">
                 <tr>
-                  <td>1</td>
-                  <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                  &nbsp&nbspmindy850302</td>
-                  <td>Mindy Hsu</td>
-                  <td>行政</td>
-                  <td>0960730847</td>
-                  <td></td>
-                  <td>台北市</td>
-                  <td>2016/11/02</td>
-                  <th><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myModify"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></th>
-                  <th><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></th>
+                  <td><c:out value="${admin.getA_id()}"/></td>
+                  <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp&nbsp<c:out value="${admin.getM_idName()}"/></td>
+                  <td><c:out value="${admin.getM_name()}"/></td>
+                 <%--  <%int categoryNum = request.getParameter(admin.getA_category()); %> --%>
+                 <c:forEach  items="${A_categoryList}" var="A_category">
+                  <script>
+                /*   for(int i=0;i<<c:out value="${A_categoryList.size()}"/>;i++){ */
+                	  
+                		 /*  $(document).ready(function(){
+                			  $('#<c:out value="${admin.getA_id()}"/>categoryName').append('<c:out value="${A_category.getC_name()}"/>');
+                		  
+                		  break; */
+                	
+                 /*  } */
+                  </script>
+                  </c:forEach>
+                 <%--  <%
+                  	String categoryName ;
+                  	switch(categoryNum){
+                		case 1 :
+                			categoryName = "行政" ;
+                		case 2 :
+                			categoryName = "銷售" ;
+                		case 3 :
+                			categoryName = "倉儲" ;
+                  	}
+                  %> --%>
+                  <td id="<c:out value="${admin.getA_id()}"/>categoryName"><c:out value="${admin.getA_category()}"/></td>
+                  <td><c:out value="${admin.getM_phone()}"/></td>
+                  <td><c:out value="${admin.getM_email()}"/></td>
+                  <td><c:out value="${admin.getM_address()}"/></td>
+                  <td><c:out value="${admin.getM_create_date()}"/></td>
+                  <td><c:out value="${admin.getM_update_date()}"/></td>
+                  <th><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myAModify<c:out value="${admin.getA_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></th>
+                  <th><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myADelete<c:out value="${admin.getA_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></th>
                 </tr>
+              </c:forEach>
               </tbody>
             </table>
           </div>
@@ -149,9 +177,9 @@
         </div>
       </div>
     </div>
+<!--Modify Member-->
     <c:forEach  items="${memberList}" var="member1">
-     <!-- Modal -->
-    <div class="modal fade" id="myModify<c:out value="${member1.getM_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="myMModify<c:out value="${member1.getM_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -160,14 +188,7 @@
           </div>
           <form class="form-horizontal" action="updateMember"  method="post">
           <div class="modal-body">
-            
-            <!-- <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">成員類別</label>
-                <div class="col-sm-8">
-                  <input type="radio" id="Member_check" name="A_category" checked="checked" value="Member"/>&nbsp&nbspMember<br><input id="Administor_check" type="radio" name="A_category" value="Administor"/>&nbsp&nbspAdministor
-                </div>
-              </div> -->
-              <input type="hidden" name="M_id" value="<c:out value="${member1.getM_id()}"/>">
+          <input type="hidden" name="M_id" value="<c:out value="${member1.getM_id()}"/>">
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">帳號</label>
                 <div class="col-sm-8">
@@ -180,20 +201,6 @@
                   <input type="text" class="form-control" name="M_name" placeholder="姓名" value="<c:out value="${member1.getM_name()}"/>">
                 </div>
               </div>
-              <!-- <script>
-                $('#Administor_check').click(function() {
-                    $("#Administor").show();
-                });
-                $('#Member_check').click(function() {
-                    $("#Administor").hide();
-                });
-              </script> -->
-              <!-- <div class="form-group" id="Administor" style="display: none;">
-                <label for="inputEmail3" class="col-sm-2 control-label">所屬部門</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="所屬部門" value="行政">
-                </div>
-              </div> -->
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">密碼</label>
                 <div class="col-sm-8">
@@ -222,7 +229,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary" name="type" value="modifyMember" >
+            <input type="submit" class="btn btn-primary" name="type" value="modifyMember" >Save changes
           </div>
         
         </form>
@@ -230,7 +237,101 @@
       </div>
     </div>
     </c:forEach>
-    <!-- Modal -->
+<!--Modify Administrator-->
+    <c:forEach  items="${administratorList}" var="admin1">
+    <div class="modal fade" id="myAModify<c:out value="${admin1.getA_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">修改管理者</h4>
+          </div>
+          <form class="form-horizontal" action="updateAdministrator"  method="post">
+          <div class="modal-body">
+            
+              <input type="hidden" name="A_id" value="<c:out value="${admin1.getA_id()}"/>">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">帳號</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="M_idName" placeholder="帳號" value="<c:out value="${admin1.getM_idName()}"/>">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="M_name" placeholder="姓名" value="<c:out value="${admin1.getM_name()}"/>">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">部門</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="A_cat egory" placeholder="姓名" value="<c:out value="${admin1.getM_name()}"/>">
+                  <select name="A_category" class="form-control">
+	                     <c:forEach items="${A_categoryList}" var="A_category2">
+	                     <c:if test="${admin1.getA_category()==A_category2.getC_id()}">
+	                     <script>
+	                     $(document).ready(function(){       
+	                      $('#A_category<c:out value="${admin1.getA_id()}"/><c:out value="${A_category2.getC_id()}"/>').attr("selected","ture");
+	                     });
+	                     </script>
+	                     </c:if>
+	        					<option id="A_category<c:out value="${admin1.getA_id()}"/><c:out value="${A_category2.getC_id()}"/>" value="<c:out value="${A_category2.getC_id()}"/>"><c:out value="${A_category2.getC_name()}"/></option>
+	        			</c:forEach>
+					   </select>
+                </div>
+              </div>
+             <!-- <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">所屬部門</label>
+                <div class="col-sm-8">
+                <select class="form-control" name="A_category">
+                  <option value="1">行政</option>
+                  <option value="2" selected>銷售</option>
+                  <option value="3">倉儲</option>
+                </select>
+                </div>
+              </div> -->
+              
+              <!-- <div class="form-group" id="Administor" style="display: none;">
+                <label for="inputEmail3" class="col-sm-2 control-label">所屬部門</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="inputEmail3" placeholder="所屬部門" value="行政">
+                </div>
+              </div> -->
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">密碼</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="M_pwd" id="inputPassword3" placeholder="密碼" value="<c:out value="${admin1.getM_pwd()}"/>">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">電話</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="M_phone" id="inputPassword3" placeholder="電話" value="<c:out value="${admin1.getM_phone()}"/>">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">E-mail</label>
+                <div class="col-sm-8">
+                  <input type="email" class="form-control" name="M_email" id="inputPassword3" placeholder="E-mail" value="<c:out value="${admin1.getM_email()}"/>">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="M_address" id="inputPassword3" placeholder="地址" value="<c:out value="${admin1.getM_address()}"/>">
+                </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary" name="type" value="modifyAdministrator" >Save changes
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    </c:forEach>
+<!--Add A Person-->
     <div class="modal fade" id="myAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -313,9 +414,10 @@
         </div>
       </div>
     </div>
-     <c:forEach  items="${memberList}" var="member2">
-     <form action="deleteMember" method="post">
-    <div class="modal fade" id="mydelete<c:out value="${member2.getM_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--Delete Member-->
+<c:forEach  items="${memberList}" var="member2">
+<form action="deleteMember" method="post">
+    <div class="modal fade" id="myMDelete<c:out value="${member2.getM_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -329,11 +431,11 @@
                 <tr>
                   <td><c:out value="${member2.getM_id()}"/></td>
                   <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp&nbspe<c:out value="${member2.getM_idName()}"/></td>
-                  <td><c:out value="${member2.getM_name()}"/></td>
-                  <td><c:out value="${member2.getM_phone()}"/></td>
-                  <td><c:out value="${member2.getM_email()}"/></td>
-                  <td><c:out value="${member2.getM_address()}"/></td>
-                  <td><c:out value="${member2.getM_create_date()}"/></td>
+                  <td>e<c:out value="${member2.getM_name()}"/></td>
+                  <td>e<c:out value="${member2.getM_phone()}"/></td>
+                  <td>e<c:out value="${member2.getM_email()}"/></td>
+                  <td>e<c:out value="${member2.getM_address()}"/></td>
+                  <td>e<c:out value="${member2.getM_create_date()}"/></td>
                 </tr>
               </tbody>
             </table>
@@ -341,6 +443,42 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="submit" action="AccountList" name="type" value="deleteMember" class="btn btn-primary">確認</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          </form>
+</c:forEach>
+<!--Delete Administrator-->
+<c:forEach  items="${administratorList}" var="admin2">
+<form action="deleteAdministrator" method="post">
+    <div class="modal fade" id="myADelete<c:out value="${admin2.getA_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">刪除管理者</h4>
+                </div>
+                <div class="modal-body">
+                  <table class="table table-striped">
+              <tbody>
+              <input type="hidden" name="A_id" value="${admin2.getA_id()}">
+                <tr>
+                  <td><c:out value="${admin2.getA_id()}"/></td>
+                  <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp&nbspe<c:out value="${admin2.getM_idName()}"/></td>
+                  <td>e<c:out value="${admin2.getM_name()}"/></td>
+                  <td>e<c:out value="${admin2.getA_category()}"/></td>
+                  <td>e<c:out value="${admin2.getM_phone()}"/></td>
+                  <td>e<c:out value="${admin2.getM_email()}"/></td>
+                  <td>e<c:out value="${admin2.getM_address()}"/></td>
+                  <td>e<c:out value="${admin2.getM_create_date()}"/></td>
+                </tr>
+              </tbody>
+            </table>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" action="AccountList" name="type" value="deleteAdministrator" class="btn btn-primary">確認</button>
                 </div>
               </div>
             </div>

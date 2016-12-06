@@ -129,7 +129,7 @@
 	</div>
 	</div>
 	<!-- Modal -->
-	<c:forEach items="${CommentList}" var="comment">
+	<c:forEach items="${CommentList}" var="comment1">
 		<div class="modal fade" id="myModifyComment" tabindex="-1"
 			role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
@@ -142,26 +142,26 @@
 						<h4 class="modal-title" id="myModalLabel">修改評論</h4>
 					</div>
 					<div class="modal-body">
-						<form class="form-horizontal" action="modifyComment" method="post">
+						<form class="form-horizontal" action="updateComment" method="post">
 							<div class="form-group">
 								<label for="inputEmail3" class="col-sm-2 control-label">帳號</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="inputEmail3"
-										name="comment_M_id" placeholder="帳號" value="mindy850302">
+										name="comment_M_id.M_idName" placeholder="帳號" value="<c:out value="${comment1.comment_M_id.M_idName}"/>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="inputEmail3"
-										name="" placeholder="姓名" value="Mindy Hsu">
+										name="" placeholder="姓名" value="<c:out value="${comment1.comment_M_id.M_name}"/>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="inputPassword3" class="col-sm-2 control-label">產品名稱</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="inputPassword3"
-										name="" placeholder="產品名稱" value="MacBook Pro">
+										name="" placeholder="產品名稱" value="<c:out value="${comment1.comment_p_id.p_name}"/>">
 								</div>
 							</div>
 							<div class="form-group">
@@ -169,7 +169,7 @@
 								<div class="col-sm-8">
 									<input type="text" class="form-control comment-input"
 										id="inputPassword3" name="c_comment" placeholder="評論內容"
-										value="Defines a password field (characters are masked)">
+										value="<c:out value="${comment1.c_comment}"/>">
 								</div>
 							</div>
 							<div class="form-group">

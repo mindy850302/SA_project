@@ -6,10 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.practice.webapp.dao.A_categoryDAO;
 import com.practice.webapp.dao.AdministratorDAO;
 import com.practice.webapp.dao.MemberDAO;
+import com.practice.webapp.entity.A_category;
 import com.practice.webapp.entity.Administrator;
 import com.practice.webapp.entity.Member;
 
@@ -45,6 +48,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@SessionAttributes("loginsession")
+
 public class MemberController {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
@@ -53,16 +58,21 @@ public class MemberController {
 	public ModelAndView getAccountList(String name) {
 		ModelAndView model = new ModelAndView("AccountList");
 		// = model.setViewName("Accountlist");
+
 		MemberDAO memberdao = (MemberDAO) context.getBean("MemberDAO"); // defined
 																		// in
 																		// spring-webapp.xml
 		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
+		A_categoryDAO A_categoryDAO = (A_categoryDAO) context.getBean("A_categoryDAO");
 		List<Member> memberList = new ArrayList<Member>();
 		List<Administrator> administratorList = new ArrayList<Administrator>();
+		List<A_category> A_categoryList = new ArrayList<A_category>();
 		memberList = memberdao.getList();
 		administratorList = AdministratorDAO.getList();
+		A_categoryList = A_categoryDAO.getList();
 		model.addObject("memberList", memberList);
 		model.addObject("administratorList", administratorList);
+		model.addObject("A_categoryList", A_categoryList);
 
 		return model;
 	}
@@ -75,9 +85,29 @@ public class MemberController {
 		return model;
 	}
 
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView checkLogin(String name) {
+		ModelAndView model = new ModelAndView("index");
+
+		/*
+		 * ServletRequest session = null;
+		 * if(session.getAttribute("login")!=null){
+		 * session.removeAttribute("login"); }
+		 */
+		// = model.setViewName("login");
+		model.addObject("loginsession", "ben");
+		return model;
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView getLogin(String name) {
 		ModelAndView model = new ModelAndView("login");
+
+		/*
+		 * ServletRequest session = null;
+		 * if(session.getAttribute("login")!=null){
+		 * session.removeAttribute("login"); }
+		 */
 		// = model.setViewName("login");
 		model.addObject("message");
 		return model;
@@ -89,6 +119,7 @@ public class MemberController {
 			@ModelAttribute Administrator administrator) {
 		MemberDAO MemberDAO = (MemberDAO) context.getBean("MemberDAO");
 		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
+
 		ModelAndView model = new ModelAndView();
 		System.out.println(request.getCharacterEncoding());
 		System.out.println(type);
@@ -132,6 +163,38 @@ public class MemberController {
 
 		if (type.equals("deleteMember")) {
 			MemberDAO.delete(member);
+		}
+		model.setViewName("redirect:/AccountList");
+		return model;
+	}
+
+	@RequestMapping(value = "/updateAdministrator", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView updateAdministrator(@ModelAttribute Administrator admin, HttpServletRequest request,
+			@RequestParam("type") String type) {
+		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
+
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+
+		if (type.equals("modifyAdministrator")) {
+			AdministratorDAO.update(admin);
+		}
+		model.setViewName("redirect:/AccountList");
+		return model;
+	}
+
+	@RequestMapping(value = "/deleteAdministrator", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView deleteAdministrator(@ModelAttribute Administrator admin, HttpServletRequest request,
+			@RequestParam("type") String type) {
+		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
+
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+
+		if (type.equals("deleteAdministrator")) {
+			AdministratorDAO.delete(admin);
 		}
 		model.setViewName("redirect:/AccountList");
 		return model;

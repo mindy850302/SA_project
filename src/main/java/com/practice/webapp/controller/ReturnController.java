@@ -72,7 +72,6 @@ public class ReturnController {
 		model.addObject("ProductList",ProductList);
 		model.addObject("administratorList",administratorList);
 		model.addObject("memberList",memberList);
-		
 		model.addObject("ReturnList",ReturnList);
 		model.addObject("ReturnDetailList",ReturnDetailList);
 		model.addObject("message");

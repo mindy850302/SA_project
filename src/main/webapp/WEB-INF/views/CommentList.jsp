@@ -15,20 +15,22 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
+	<link href="css/dashboard.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
-    <link href="css/font-awesome.css" rel="stylesheet" />
+    
+     <link href="css/font-awesome.css" rel="stylesheet" />
        <!--CUSTOM BASIC STYLES-->
     <link href="css/basic.css" rel="stylesheet" />
     <!--CUSTOM MAIN STYLES-->
     <link href="css/custom.css" rel="stylesheet" />
+   
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link href="css/styleBackground.css" rel="stylesheet" />
+    
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/jquery-3.1.1.min.js"></script>
@@ -138,6 +140,7 @@
                   <input type="text" class="form-control comment-input" id="inputPassword3" placeholder="評論內容" value="Defines a password field (characters are masked)">
                 </div>
               </div>
+              <!-- Rating Star -->
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">評分</label>
                 <div class="col-sm-8">
@@ -154,6 +157,7 @@
                     <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                 </fieldset>
                 </div>
+                 
               </div>
             </form>
           </div>
@@ -215,12 +219,13 @@
                 </fieldset>
                 </div>
               </div>
-            </form>
+           
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary">Save changes</button>
           </div>
+           </form>
         </div>
       </div>
     </div>

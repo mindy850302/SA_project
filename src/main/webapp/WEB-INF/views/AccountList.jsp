@@ -406,7 +406,7 @@
               </div>
               <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary" name="action_type" value="addMember">Save changes</input>
+            <input type="submit" class="btn btn-primary" name="action_type" value="addMember"></input>
           </div>
             </form>
           </div>

@@ -16,6 +16,7 @@ import com.practice.webapp.dao.MemberDAO;
 import com.practice.webapp.entity.A_category;
 import com.practice.webapp.entity.Administrator;
 import com.practice.webapp.entity.Member;
+import com.practice.webapp.entity.Product;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -232,6 +233,36 @@ public class MemberController {
 		}
 		model.setViewName("redirect:/AccountList");
 		return model;
+	}
+	@RequestMapping(value = "/MemberData", method = RequestMethod.GET)
+	public ModelAndView getMemberData(String name) {
+		ModelAndView model = new ModelAndView("MemberData");
+		// = model.setViewName("MemberData");
+		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
+		List<Member> memberList = new ArrayList<Member>();
+		memberList=memberdao.getList();
+		Member member=new Member();
+		for(int i = 0 ; i < memberList.size();i++){
+			if (1==memberList.get(i).getM_id()){
+				member=memberList.get(i);
+			}
+		}
+		model.addObject("Member",member);
+		model.addObject("memberList",memberList);
+		
+		return model;
+	}
+	@RequestMapping(value = "/updateMemberData", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
+	public ModelAndView updateMemberData(@ModelAttribute Member member,HttpServletRequest request,@RequestParam("type") String type){		
+		MemberDAO MemberDAO = (MemberDAO)context.getBean("MemberDAO");
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+		if(type.equals("modifyMemberData")){
+			MemberDAO.update(member);
+		}
+		model.setViewName("redirect:/MemberData");
+		return model; 
 	}
 
 }

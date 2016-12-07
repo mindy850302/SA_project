@@ -21,7 +21,7 @@ public class OrderDAODB implements OrderDAO{
 		this.dataSource = dataSource;
 	}
 	public List<Order> getList(){
-		String sql = "SELECT * FROM Order";
+		String sql = "SELECT * FROM `order`";
 		return getList(sql);
 	}
 	
@@ -35,12 +35,13 @@ public class OrderDAODB implements OrderDAO{
 			rs = smt.executeQuery();
 			while(rs.next()){
 				Order order = new Order();
+				order.setOrder_id(rs.getInt("order_id"));
 				order.setOrder_M_id(rs.getInt("order_M_id"));
-				order.setCart_id(rs.getInt("cart_id"));
 				order.setO_date(rs.getString("O_date"));
 				order.setReceiver_name(rs.getString("receiver_name"));
 				order.setReceiver_phone(rs.getString("receiver_phone"));
 				order.setReceiver_address(rs.getString("receiver_address"));
+				order.setTotal(rs.getInt("total"));
 				OrderList.add(order);
 			}
 			rs.close();
@@ -61,12 +62,12 @@ public class OrderDAODB implements OrderDAO{
 	public void insert(Order order) {
 
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO Order ( order_M_id,cart_id, O_date,receiver_name,receiver_phone,receiver_address) VALUES(  ? , ? , ? , ? , ? , ?)";	
+	    String sql = "INSERT INTO order ( order_M_id,total, O_date,receiver_name,receiver_phone,receiver_address) VALUES(  ? , ? , ? , ? , ? , ?)";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setInt(1, order.getOrder_M_id());
-			smt.setInt(2, order.getCart_id());
+			smt.setInt(2, order.getTotal());
 			smt.setString(3, order.getO_date());
 			smt.setString(4, order.getReceiver_name());
 			smt.setString(5, order.getReceiver_phone());
@@ -89,7 +90,7 @@ public class OrderDAODB implements OrderDAO{
 	public Order get(Order order) {
 		int order_id=order.getOrder_id();
 		List<Order> OrderList = new ArrayList<Order>();
-		String sql = "SELECT * FROM Order WHERE order_id = ?";
+		String sql = "SELECT * FROM `order` WHERE order_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -97,7 +98,7 @@ public class OrderDAODB implements OrderDAO{
 			rs = smt.executeQuery();
 			if(rs.next()){
 				order.setOrder_M_id(rs.getInt("order_M_id"));
-				order.setCart_id(rs.getInt("cart_id"));
+				order.setTotal(rs.getInt("total"));
 				order.setO_date(rs.getString("O_date"));
 				order.setReceiver_name(rs.getString("receiver_name"));
 				order.setReceiver_phone(rs.getString("receiver_phone"));
@@ -120,13 +121,13 @@ public class OrderDAODB implements OrderDAO{
 	}
 
 public void update(Order order) {
-		String sql = "UPDATE Order SET order_M_id=?, cart_id=?,O_date=?, receiver_name=?,receiver_phone=?,receiver_address=? "
+		String sql = "UPDATE order SET order_M_id=?, total=?,O_date=?, receiver_name=?,receiver_phone=?,receiver_address=? "
 				+ "WHERE order_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setInt(1, order.getOrder_M_id());
-			smt.setInt(2, order.getCart_id());
+			smt.setInt(2, order.getTotal());
 			smt.setString(3, order.getO_date());
 			smt.setString(4, order.getReceiver_name());
 			smt.setString(5, order.getReceiver_phone());

@@ -1,7 +1,6 @@
 
 package com.practice.webapp.entity;
 
-
 public class Comment {
 
 	private int comment_M_id;
@@ -13,6 +12,9 @@ public class Comment {
 	private String c_create_date;
 
 	private String c_update_date;
+	private int score;
+	private Product producttype = new Product();
+	private Member membertype = new Member();
 
 	public int getComment_M_id() {
 		return comment_M_id;
@@ -32,6 +34,9 @@ public class Comment {
 
 	public String getC_update_date() {
 		return c_update_date;
+	}
+	public int getScore() {
+		return score;
 	}
 
 	public void setComment_M_id(int comment_M_id) {
@@ -57,6 +62,25 @@ public class Comment {
 	public void setC_update_date(String c_update_date) {
 		this.c_update_date = c_update_date;
 	}
+	public void setScore(int score) {
+		this.score = score;
+	}
 
-	
+
+	public Product getProduct() {
+		return producttype;
+	}
+
+	public void setProduct(Product producttype) {
+		this.producttype = producttype;
+	}
+
+	public Member getMember() {
+		return membertype;
+	}
+
+	public void setMember(Member membertype) {
+		this.membertype = membertype;
+	}
+
 }

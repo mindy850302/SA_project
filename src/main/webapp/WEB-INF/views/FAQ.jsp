@@ -15,6 +15,8 @@
             <link href="css/fonts.css" rel="stylesheet" type="text/css" media="all" />
             <link rel="stylesheet" type="text/css" href="css/header_css.css">
             <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+            	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+            
         </head>
 
         <body>

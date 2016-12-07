@@ -46,8 +46,9 @@ public class AdministratorDAOImpl implements AdministratorDAO {
 	}
 
 	@Override
-	public boolean checkLoginAdministrator(String A_idName, String password) {
+	public boolean checkLoginAdministrator(Administrator administrator) {
 		// TODO Auto-generated method stub
+		
 		return false;
 	}
 

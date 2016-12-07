@@ -58,6 +58,9 @@
  <bean id="ReturnDetailDAO" class="com.practice.webapp.dao.ReturnDetailDAODB">
  	<property name="dataSource" ref="dataSource"></property>
  </bean>
- 
+ <bean id="ShoppingDetailDAO" class="com.practice.webapp.dao.ShoppingDetailDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+
 
 </beans>

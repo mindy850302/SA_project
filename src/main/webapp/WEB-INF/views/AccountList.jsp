@@ -192,44 +192,44 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">帳號</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_idName" placeholder="帳號" value="<c:out value="${member1.getM_idName()}"/>">
+                  <input type="text" class="form-control" name="M_idName" required="required" placeholder="帳號" value="<c:out value="${member1.getM_idName()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_name" placeholder="姓名" value="<c:out value="${member1.getM_name()}"/>">
+                  <input type="text" class="form-control" name="M_name"required="required"  placeholder="姓名" value="<c:out value="${member1.getM_name()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">密碼</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_pwd" id="inputPassword3" placeholder="密碼" value="<c:out value="${member1.getM_pwd()}"/>">
+                  <input type="password" class="form-control" name="M_pwd" required="required" id="inputPassword3" placeholder="密碼" value="<c:out value="${member1.getM_pwd()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">電話</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_phone" id="inputPassword3" placeholder="電話" value="<c:out value="${member1.getM_phone()}"/>">
+                  <input type="text" class="form-control" name="M_phone" required="required" id="inputPassword3" placeholder="電話" value="<c:out value="${member1.getM_phone()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-8">
-                  <input type="email" class="form-control" name="M_email" id="inputPassword3" placeholder="Email" value="<c:out value="${member1.getM_email()}"/>">
+                  <input type="email" class="form-control" name="M_email" required="required" id="inputPassword3" placeholder="Email" value="<c:out value="${member1.getM_email()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_address" id="inputPassword3" placeholder="地址" value="<c:out value="${member1.getM_address()}"/>">
+                  <input type="text" class="form-control" name="M_address" required="required"  id="inputPassword3" placeholder="地址" value="<c:out value="${member1.getM_address()}"/>">
                 </div>
               </div>
             
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary" name="type" value="modifyMember" >Save changes
+            <input type="submit" class="btn btn-primary" name="type" value="modifyMember" >
           </div>
         
         </form>
@@ -253,19 +253,19 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">帳號</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_idName" placeholder="帳號" value="<c:out value="${admin1.getM_idName()}"/>">
+                  <input type="text" class="form-control" name="M_idName" placeholder="帳號" required="required" value="<c:out value="${admin1.getM_idName()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_name" placeholder="姓名" value="<c:out value="${admin1.getM_name()}"/>">
+                  <input type="text" class="form-control" name="M_name" placeholder="姓名" required="required" value="<c:out value="${admin1.getM_name()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">部門</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="A_cat egory" placeholder="姓名" value="<c:out value="${admin1.getM_name()}"/>">
+                  <input type="text" class="form-control" name="A_cat egory" placeholder="種類" required="required" value="<c:out value="${admin1.getM_name()}"/>">
                   <select name="A_category" class="form-control">
 	                     <c:forEach items="${A_categoryList}" var="A_category2">
 	                     <c:if test="${admin1.getA_category()==A_category2.getC_id()}">
@@ -300,31 +300,31 @@
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">密碼</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_pwd" id="inputPassword3" placeholder="密碼" value="<c:out value="${admin1.getM_pwd()}"/>">
+                  <input type="password" class="form-control" name="M_pwd" required="required" id="inputPassword3" placeholder="密碼" value="<c:out value="${admin1.getM_pwd()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">電話</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_phone" id="inputPassword3" placeholder="電話" value="<c:out value="${admin1.getM_phone()}"/>">
+                  <input type="text" class="form-control" name="M_phone"required="required" id="inputPassword3" placeholder="電話" value="<c:out value="${admin1.getM_phone()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">E-mail</label>
                 <div class="col-sm-8">
-                  <input type="email" class="form-control" name="M_email" id="inputPassword3" placeholder="E-mail" value="<c:out value="${admin1.getM_email()}"/>">
+                  <input type="email" class="form-control" name="M_email" required="required" id="inputPassword3" placeholder="E-mail" value="<c:out value="${admin1.getM_email()}"/>">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_address" id="inputPassword3" placeholder="地址" value="<c:out value="${admin1.getM_address()}"/>">
+                <div class="col-sm-8"> 
+                  <input type="text" class="form-control" name="M_address" required="required" id="inputPassword3" placeholder="地址" value="<c:out value="${admin1.getM_address()}"/>">
                 </div>
               </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary" name="type" value="modifyAdministrator" >Save changes
+            <input type="submit" class="btn btn-primary" name="type" value="modifyAdministrator" >
           </div>
         </form>
         </div>
@@ -350,19 +350,19 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">帳號</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_idName" id="inputEmail3" placeholder="帳號" >
+                  <input type="text" class="form-control" required="required" name="M_idName" id="inputEmail3" placeholder="帳號" >
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_name" id="inputEmail3" placeholder="姓名" >
+                  <input type="text" class="form-control" required="required" name="M_name" id="inputEmail3" placeholder="姓名" >
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">密碼</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_pwd" id="inputEmail3" placeholder="密碼" >
+                  <input type="password" class="form-control" required="required" name="M_pwd" id="inputEmail3" placeholder="密碼" >
                 </div>
               </div>
               <script>
@@ -380,33 +380,33 @@
                 </div> -->
                 <div class="col-sm-8">
                 <select  name="A_category" class="form-control">
-                  <option value="1">行政</option>
-                  <option value="2">銷售</option>
-                  <option value="3">倉儲</option>
+                <c:forEach items="${A_categoryList}" var="A_category3">
+                  <option value="<c:out value="${A_category3.getC_id()}"/>"><c:out value="${A_category3.getC_name()}"/></option>
+                 </c:forEach>
                 </select>
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">電話</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_phone" id="inputPassword3" placeholder="電話" >
+                  <input type="text" class="form-control" required="required" name="M_phone" id="inputPassword3" placeholder="電話" >
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-8">
-                  <input type="email" class="form-control" name="M_email" id="inputPassword3" placeholder="Email" >
+                  <input type="email" class="form-control" required="required" name="M_email" id="inputPassword3" placeholder="Email" >
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="M_address" id="inputPassword3" placeholder="地址" >
+                  <input type="text" class="form-control" required="required" name="M_address" id="inputPassword3" placeholder="地址" >
                 </div>
               </div>
               <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary" name="action_type" value="addMember">Save changes</input>
+            <input type="submit" class="btn btn-primary" name="action_type" value="addMember"></input>
           </div>
             </form>
           </div>

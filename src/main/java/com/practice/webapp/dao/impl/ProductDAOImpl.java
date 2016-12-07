@@ -1,6 +1,7 @@
 package com.practice.webapp.dao.impl;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,18 +28,30 @@ public class ProductDAOImpl implements ProductDAO{
 	public void insert(Product product){
 		ProductList.add(product);
 	}
-	public Product get(int id){
-		return ProductList.get(id); 
+	public Product get(Product product){
+		Product product1 = new Product();
+		for (int i = 0; i < ProductList.size(); i++) {
+			if (ProductList.get(i).getP_id() == product.getP_id()) {
+				product1 = ProductList.get(i);
+			}
+		}
+
+		return product1;
 	}
-    public void update(Product product,int id){
-    	id = (int)product.getP_id();
-    	ProductList.set((int) id, product);
+	
+    public void update(Product product){
+    	for (int i = 0; i < ProductList.size(); i++) {
+			if (ProductList.get(i).getP_id() == product.getP_id()) {
+				ProductList.remove(i);
+				ProductList.add(i, product);
+			}
+		}
     }
-    public void delete(int id){
-    	ProductList.remove((int)id);
-		// loop through the productList to reset id
-		for (int i = 0; i< ProductList.size(); i++){
-			ProductList.get(i).setP_id(i);
+    public void delete(Product product){
+    	for (int i = 0; i < ProductList.size(); i++) {
+			if (ProductList.get(i).getP_id() == product.getP_id()) {
+				ProductList.remove(i);
+			}
 		}
     }
     public void average(){
@@ -48,4 +61,15 @@ public class ProductDAOImpl implements ProductDAO{
     public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
+    public int updateClick(Product product){
+    	int click=0;
+    	for (int i = 0; i < ProductList.size(); i++) {
+			if (ProductList.get(i).getP_id() == product.getP_id()) {
+				click=ProductList.get(i).getClick_count();
+				System.out.println("hi");
+				ProductList.get(i).setClick_count(click);
+			}
+		}
+    	return click;
+    }
 }

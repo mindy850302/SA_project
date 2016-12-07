@@ -14,9 +14,10 @@ public class DiscountDAOImpl implements DiscountDAO {
 	private List<Discount> DiscountList = new ArrayList<Discount>();
 
 	@Override
-	public void insert(Discount discount) {
+	public int insert(Discount discount) {
 		// TODO Auto-generated method stub
 		DiscountList.add(discount);
+		return discount.getDiscount_id();
 
 	}
 

@@ -26,7 +26,7 @@ public class Product_categoryDAODB implements Product_categoryDAO {
 		this.dataSource = dataSource;
 	}
 	public List<Product_category> getList(){
-		String sql = "SELECT * FROM Product_category";
+		String sql = "SELECT * FROM product_category";
 		return getList(sql);
 	}
 	public List<Product_category> getList(String sql) {
@@ -38,8 +38,8 @@ public class Product_categoryDAODB implements Product_categoryDAO {
 			rs = smt.executeQuery();
 			while(rs.next()){
 				Product_category product_category = new Product_category();
-				product_category.setId(rs.getInt("Id"));
-				product_category.setName(rs.getString("Name"));
+				product_category.setId(rs.getInt("id"));
+				product_category.setName(rs.getString("name"));
 				Product_categoryList.add(product_category);
 			}
 			rs.close();
@@ -60,7 +60,7 @@ public class Product_categoryDAODB implements Product_categoryDAO {
 	public void insert(Product_category product_category) {
 
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO Product_category (Id,Name) VALUES(?, ?)";	
+	    String sql = "INSERT INTO product_category (id,name) VALUES(?, ?)";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -81,17 +81,16 @@ public class Product_categoryDAODB implements Product_categoryDAO {
 		}
 		
 	}
-	public Product_category get(long id) {
-		Product_category product_category = new Product_category();
-		String sql = "SELECT * FROM Product_category WHERE Id = ?";
+	public Product_category get(Product_category product_category) {
+	 product_category = new Product_category();
+		String sql = "SELECT * FROM product_category WHERE id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setLong(1, id);
 			rs = smt.executeQuery();
 			if(rs.next()){
-				product_category.setId(rs.getInt("Id"));
-				product_category.setName(rs.getString("Name"));
+				product_category.setId(rs.getInt("id"));
+				product_category.setName(rs.getString("name"));
 			}
 			rs.close();
 			smt.close();
@@ -110,10 +109,10 @@ public class Product_categoryDAODB implements Product_categoryDAO {
 	}
 
 
-public void update(Product_category product_category,long id) {
+public void update(Product_category product_category) {
 		
-		String sql = "UPDATE Product_category SET Id=?, Name=?"
-				+ "WHERE Id = ?";
+		String sql = "UPDATE product_category SET id=?, name=?"
+				+ "WHERE id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -136,13 +135,13 @@ public void update(Product_category product_category,long id) {
 	}
 	
 
-public void delete(long id) {
+public void delete(Product_category product_category) {
 	
 	String sql = "DELETE FROM Product_category WHERE Id = ?";
 	try {
 		conn = dataSource.getConnection();
 		smt = conn.prepareStatement(sql);
-		smt.setLong(1, id);
+		smt.setInt(1, product_category.getId());
 		smt.executeUpdate();			
 		smt.close();
 

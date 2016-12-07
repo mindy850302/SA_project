@@ -51,7 +51,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @SessionAttributes("loginsession")
 
-
 public class MemberController {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
@@ -60,7 +59,9 @@ public class MemberController {
 	public ModelAndView getAccountList(String name) {
 		ModelAndView model = new ModelAndView("AccountList");
 		// = model.setViewName("Accountlist");
-		MemberDAO memberdao = (MemberDAO) context.getBean("MemberDAO"); // defined in spring-webapp.xml
+		MemberDAO memberdao = (MemberDAO) context.getBean("MemberDAO"); // defined
+																		// in
+																		// spring-webapp.xml
 		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
 		A_categoryDAO A_categoryDAO = (A_categoryDAO) context.getBean("A_categoryDAO");
 		List<Member> memberList = new ArrayList<Member>();
@@ -84,73 +85,67 @@ public class MemberController {
 		return model;
 	}
 
-	
-	
-			
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView checkLogin(@ModelAttribute Member member) {
+		MemberDAO MemberDAO = (MemberDAO) context.getBean("MemberDAO");
+		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
+		ModelAndView model = new ModelAndView();
+		List<Member> memberList = new ArrayList<Member>();
+		List<Administrator> administratorList = new ArrayList<Administrator>();
+		System.out.println("id before called:" + member.getM_idName());
+		boolean result = MemberDAO.checkLoginMember(member);
+		System.out.println(result);
+		if (result) {
+			model.addObject("loginsession", member.getM_idName());
+			model.setViewName("index");
+		} else {
+			model.setViewName("signup");
+		}
+		return model;
 
-			@RequestMapping(value = "/login", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
-			public ModelAndView checkLogin(@ModelAttribute Member member) {
-				MemberDAO MemberDAO =(MemberDAO)context.getBean("MemberDAO");
-				AdministratorDAO AdministratorDAO = (AdministratorDAO)context.getBean("AdministratorDAO");
-				ModelAndView model = new ModelAndView();
-				List<Member> memberList = new ArrayList<Member>();
-				List<Administrator> administratorList = new ArrayList<Administrator>();
-				System.out.println("id before called:"+member.getM_idName());
-				boolean result = MemberDAO.checkLoginMember(member);
-				System.out.println(result);
-				if (result){
-				model.addObject("loginsession",member.getM_idName());
-				model.setViewName("index");
-				}
-				else {
-					model.setViewName("signup");
-				}
-				return model;
-				
-				}
+	}
 
-			@RequestMapping(value = "/login", method = RequestMethod.GET)
-			public ModelAndView getLogin(@ModelAttribute("name")String name,SessionStatus sessionStatus) {
-				ApplicationContext context= new ClassPathXmlApplicationContext("spring-module.xml"); 
-				ModelAndView model = new ModelAndView("login");
-				MemberDAO Memberdao = (MemberDAO)context.getBean("MemberDAO");
-				List<Member> MemberList= new ArrayList<Member>();
-				MemberList= Memberdao.getList();
-				Member member = new Member();
-				sessionStatus.setComplete();
-//				for(int i =0; i<MemberList.size(); i++){
-//					if(name==MemberList.get(i).getM_name()){
-//						member=MemberList.get(i);
-//					}
-//				}
-//				
-				/*
-				 * ServletRequest session = null;
-				if(session.getAttribute("login")!=null){
-					session.removeAttribute("login");
-				}
-				*/
-				// = model.setViewName("login");
-				model.addObject("Member", member);
-				model.addObject("message");
-				return model;
-			}
-			@RequestMapping(value = "/logout", method = RequestMethod.GET)
-			public ModelAndView getLogOut(SessionStatus sessionStatus) {
-				
-				ModelAndView model = new ModelAndView();
-				MemberDAO Memberdao = (MemberDAO)context.getBean("MemberDAO");
-				List<Member> MemberList= new ArrayList<Member>();
-				MemberList= Memberdao.getList();
-				Member member = new Member();
-				
-//				model.addObject("loginsession","logout");
-				sessionStatus.setComplete();
-				model.addObject("Member", member);
-				model.setViewName("redirect:/");
-				return model;
-			}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView getLogin(@ModelAttribute("name") String name, SessionStatus sessionStatus) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
+		ModelAndView model = new ModelAndView("login");
+		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
+		List<Member> MemberList = new ArrayList<Member>();
+		MemberList = Memberdao.getList();
+		Member member = new Member();
+		sessionStatus.setComplete();
+		// for(int i =0; i<MemberList.size(); i++){
+		// if(name==MemberList.get(i).getM_name()){
+		// member=MemberList.get(i);
+		// }
+		// }
+		//
+		/*
+		 * ServletRequest session = null;
+		 * if(session.getAttribute("login")!=null){
+		 * session.removeAttribute("login"); }
+		 */
+		// = model.setViewName("login");
+		model.addObject("Member", member);
+		model.addObject("message");
+		return model;
+	}
 
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public ModelAndView getLogOut(SessionStatus sessionStatus) {
+
+		ModelAndView model = new ModelAndView();
+		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
+		List<Member> MemberList = new ArrayList<Member>();
+		MemberList = Memberdao.getList();
+		Member member = new Member();
+
+		// model.addObject("loginsession","logout");
+		sessionStatus.setComplete();
+		model.addObject("Member", member);
+		model.setViewName("redirect:/");
+		return model;
+	}
 
 	@RequestMapping(value = "/AccountList", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	public ModelAndView add(@ModelAttribute Member member, HttpServletRequest request,

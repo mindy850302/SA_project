@@ -30,9 +30,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProductController {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
-
-	
-
 	@RequestMapping(value = "/Product/iPhone", method = RequestMethod.GET)
 	public ModelAndView getProductiPhone(String name) {
 		ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");

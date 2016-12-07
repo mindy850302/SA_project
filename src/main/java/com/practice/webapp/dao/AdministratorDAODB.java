@@ -2,6 +2,7 @@ package com.practice.webapp.dao;
 
 import java.sql.Connection;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -107,7 +108,7 @@ public class AdministratorDAODB implements AdministratorDAO {
 
 	}
 
-	public boolean checkLoginAdministrator(String A_idName, String password) {
+	public boolean checkLoginAdministrator(Administrator administrator){
 		// TODO Auto-generated method stub
 		boolean flag = false;
 		String sql = "SELECT * FROM Administrator";
@@ -119,7 +120,7 @@ public class AdministratorDAODB implements AdministratorDAO {
 			while (rs.next()) {
 				String Administrator_idName = rs.getString("A_idName");
 				String Administrator_pwd = rs.getString("A_password");
-				if (Administrator_idName == A_idName && password.equals(Administrator_pwd)) {
+				if (Administrator_idName.equals(administrator.getM_idName()) && Administrator_pwd.equals(administrator.getM_pwd())) {
 					flag = true;
 				}
 			}

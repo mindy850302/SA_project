@@ -168,17 +168,20 @@
                             <h4 class="modal-title">加入購物車</h4>
                         </div>
                         <div class="modal-body" >
-                            <form class="form-horizontal" action="shoppingCart">
-                            <input type="hidden" name="M_id" value="1">
+                        
+                            <form class="form-horizontal" action="insertShoppingCart">
+                            <input type="hidden" name="shopping_M_id" value="1">
                             <div class="form-group" style="font-size:18px;">
                                 <label for="inputEmail3" class="col-sm-3 control-label" style="padding-top:0px;">機款</label>
                                 <div class="col-sm-8" class="form-control" >
+                               		<input type="hidden" name="shopping_p_id" value="${Product.getP_id()}">
                                 	<c:out value="${Product.getP_name()}"></c:out>
                                 </div>
                             </div>
                             <div class="form-group" style="font-size:18px;">
                                 <label for="inputEmail3" class="col-sm-3 control-label" style="padding-top:0px;">價錢</label>
                                 <div class="col-sm-8" class="form-control" >
+                                <input type="hidden" name="p_price" value="<c:out value="${Product.getP_price()}"></c:out>">
                                 	<c:out value="${Product.getP_price()}"></c:out>
                                 </div>
                             </div>   
@@ -186,7 +189,7 @@
                                 <label for="inputEmail3" class="col-sm-3 control-label" style="padding-top:0px;">數量</label>
                                 <div class="col-sm-8">
                                 <c:if test="${Product.getP_inventory()!=0}">
-                                    <select class="form-control" name="amount"  id="amount" >                                    
+                                    <select class="form-control" name="p_amount"  id="amount" >                                    
 	                                        <c:forEach var="i" begin="1" end="${Product.getP_inventory()}" step="1">
 	                                        	<option value="${(i)}">${(i)}</option>
 	                                        </c:forEach>	                                

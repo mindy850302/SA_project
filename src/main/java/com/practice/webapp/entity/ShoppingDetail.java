@@ -19,7 +19,7 @@ public class ShoppingDetail {
 		return shopping_M_id;
 	}
 
-	public void setShopping_cart_id(int shopping_M_id) {
+	public void setShopping_M_id(int shopping_M_id) {
 		this.shopping_M_id = shopping_M_id;
 	}
 

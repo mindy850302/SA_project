@@ -40,12 +40,12 @@ public class ShoppingDetailDAODB implements ShoppingDetailDAO {
 			rs = smt.executeQuery();
 			while(rs.next()){
 				ShoppingDetail shoppingdetail = new ShoppingDetail();
-				shoppingdetail.setShopping_cart_id(rs.getInt("shopping_M_id"));
+				shoppingdetail.setShopping_M_id(rs.getInt("shopping_M_id"));
 				
 				shoppingdetail.setShopping_p_id(rs.getInt("Shopping_p_id"));
 			
-				shoppingdetail.setP_amount(rs.getInt("P_amount"));
-				shoppingdetail.setP_total(rs.getInt("P_total"));
+				shoppingdetail.setP_amount(rs.getInt("p_amount"));
+				shoppingdetail.setP_total(rs.getInt("p_total"));
 				
 				ShoppingDetailList.add(shoppingdetail);
 			}
@@ -97,7 +97,7 @@ public class ShoppingDetailDAODB implements ShoppingDetailDAO {
 
 	public ShoppingDetail get(ShoppingDetail shoppingdetail) {
 		
-		String sql = "SELECT * FROM shoppingDetail WHERE shopping_M_id = ? ";
+		String sql = "SELECT * FROM shoppingDetail WHERE shopping_M_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -105,9 +105,6 @@ public class ShoppingDetailDAODB implements ShoppingDetailDAO {
 			rs = smt.executeQuery();
 			if(rs.next()){
 				smt.setInt(1, shoppingdetail.getShopping_M_id());
-				smt.setInt(2, shoppingdetail.getShopping_p_id());
-				smt.setInt(3, shoppingdetail.getP_amount());
-				smt.setInt(4, shoppingdetail.getP_total());
 				
 			}
 			rs.close();

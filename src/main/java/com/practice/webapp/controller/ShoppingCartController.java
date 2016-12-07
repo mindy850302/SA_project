@@ -54,20 +54,37 @@ public class ShoppingCartController {
 	ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
 
 	@RequestMapping(value = "/insertShoppingCart", method = RequestMethod.POST)
-	public ModelAndView getShoppingCart(@ModelAttribute ShoppingDetail shoppingdetail,HttpServletRequest request,@RequestParam("type") String type,@ModelAttribute ReturnDetail areturnDetail) {
-		ModelAndView model = new ModelAndView("shoppingCart");
-		// = model.setViewName("shoppingCart");
-		model.addObject("message");
-		
-		return model;
-	}
-	@RequestMapping(value = "/ShoppingCart", method = RequestMethod.GET)
-	public ModelAndView getShoppingCartList(@ModelAttribute ShoppingDetail shoppingdetail,HttpServletRequest request,@RequestParam("type") String type,@ModelAttribute ReturnDetail areturnDetail) {
+	public ModelAndView getShoppingCart(@ModelAttribute ShoppingDetail shoppingdetail,HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("shoppingCart");
 		// = model.setViewName("shoppingCart");
 		ShoppingDetailDAO shoppingDetaildao = (ShoppingDetailDAO) context.getBean("ShoppingDetailDAO");
 		List<ShoppingDetail> ShoppingDetailList = new ArrayList<ShoppingDetail>();
+		
+		model.setViewName("redirect:ShoppingCart");
+		return model;
+	}
+	@RequestMapping(value = "/insertShoppingCart", method = RequestMethod.GET)
+	public ModelAndView insertShoppingCart(@ModelAttribute ShoppingDetail shoppingdetail,@RequestParam("p_price") int price,@RequestParam("shopping_M_id") int M_id) {
+		ModelAndView model = new ModelAndView("shoppingCart");
+		// = model.setViewName("shoppingCart");
+		ShoppingDetailDAO shoppingDetaildao = (ShoppingDetailDAO) context.getBean("ShoppingDetailDAO");
+		List<ShoppingDetail> ShoppingDetailList = new ArrayList<ShoppingDetail>();
+		int amount=shoppingdetail.getP_amount();
+		shoppingdetail.setP_total(amount*price);
+		shoppingdetail.setShopping_M_id(M_id);
+		shoppingDetaildao.insert(shoppingdetail);
 		model.addObject("message");
+		model.addObject("ShoppingDetailList",ShoppingDetailList);
+		model.setViewName("redirect:ShoppingCart");
+		return model;
+	}
+	@RequestMapping(value = "/ShoppingCart", method = RequestMethod.GET)
+	public ModelAndView getShoppingCartList(@ModelAttribute ShoppingDetail shoppingdetail) {
+		ModelAndView model = new ModelAndView("shoppingCart");
+		// = model.setViewName("shoppingCart");
+		ShoppingDetailDAO shoppingDetaildao = (ShoppingDetailDAO) context.getBean("ShoppingDetailDAO");
+		List<ShoppingDetail> ShoppingDetailList = new ArrayList<ShoppingDetail>();
+		model.addObject("ShoppingDetailList",ShoppingDetailList);
 		
 		return model;
 	}

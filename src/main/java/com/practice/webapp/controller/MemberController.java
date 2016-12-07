@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.practice.webapp.dao.A_categoryDAO;
@@ -101,14 +102,7 @@ public class MemberController {
 				boolean result = MemberDAO.checkLoginMember(member);
 				System.out.println(result);
 				if (result){
-				/*
-				 * ServletRequest session = null;
-				if(session.getAttribute("login")!=null){
-					session.removeAttribute("login");
-				}
-				*/
-				// = model.setViewName("login");
-				model.addObject("loginsession","membername");
+				model.addObject("loginsession",member.getM_idName());
 				model.setViewName("index");
 				}
 				else {
@@ -117,30 +111,16 @@ public class MemberController {
 				return model;
 				
 				}
-				
-				
-
-				
-
-		
-		
-		
-		
-	
-	
-	
-
-
-
 
 			@RequestMapping(value = "/login", method = RequestMethod.GET)
-			public ModelAndView getLogin(@ModelAttribute("name")String name) {
+			public ModelAndView getLogin(@ModelAttribute("name")String name,SessionStatus sessionStatus) {
 				ApplicationContext context= new ClassPathXmlApplicationContext("spring-module.xml"); 
 				ModelAndView model = new ModelAndView("login");
 				MemberDAO Memberdao = (MemberDAO)context.getBean("MemberDAO");
 				List<Member> MemberList= new ArrayList<Member>();
 				MemberList= Memberdao.getList();
 				Member member = new Member();
+				sessionStatus.setComplete();
 //				for(int i =0; i<MemberList.size(); i++){
 //					if(name==MemberList.get(i).getM_name()){
 //						member=MemberList.get(i);
@@ -156,6 +136,21 @@ public class MemberController {
 				// = model.setViewName("login");
 				model.addObject("Member", member);
 				model.addObject("message");
+				return model;
+			}
+			@RequestMapping(value = "/logout", method = RequestMethod.GET)
+			public ModelAndView getLogOut(SessionStatus sessionStatus) {
+				
+				ModelAndView model = new ModelAndView();
+				MemberDAO Memberdao = (MemberDAO)context.getBean("MemberDAO");
+				List<Member> MemberList= new ArrayList<Member>();
+				MemberList= Memberdao.getList();
+				Member member = new Member();
+				
+//				model.addObject("loginsession","logout");
+				sessionStatus.setComplete();
+				model.addObject("Member", member);
+				model.setViewName("redirect:/");
 				return model;
 			}
 

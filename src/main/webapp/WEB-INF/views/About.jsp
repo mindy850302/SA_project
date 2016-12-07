@@ -26,6 +26,8 @@
 			<link rel="stylesheet" href="css/style-desktop.css" >
 		
 		<link rel="stylesheet" type="text/css" href="css/header_css.css">
+			<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+		
 	</head>
 	<body class="homepage">
           <%@include file="header.jsp"%>

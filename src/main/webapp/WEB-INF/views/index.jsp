@@ -18,7 +18,7 @@
 <body>
 <% request.setCharacterEncoding("utf-8");%>
 
-<%@include file="hearderLogin.jsp"%>
+<%@include file="header.jsp"%>
 <div class="modal fade" id="myLogout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

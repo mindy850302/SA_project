@@ -72,14 +72,12 @@ public class ProductController {
 		// = model.setViewName("Product_Macbook");
 		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
 		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO)context.getBean("Product_categoryDAO");
-
 		List<Product> ProductList = new ArrayList<Product>();
 		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
 		ProductList = Productdao.getList();
 		Product_categoryList = Product_categoryDAO.getList();
 		model.addObject("ProductList", ProductList);
 		model.addObject("Product_categoryList", Product_categoryList);
-		System.out.println(Product_categoryList.get(0).getName());
 		return model;
 	}
 	@RequestMapping(value = "/Product", method = RequestMethod.GET)

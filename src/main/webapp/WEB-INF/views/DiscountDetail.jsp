@@ -49,11 +49,11 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="color: #252830;">
         <div class="row">
           <div class="col-lg-6">
-            <h1 class="page-header">退貨紀錄</h1>
+            <h1 class="page-header">折讓紀錄</h1>
           </div>
           <div class="col-lg-3">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="退貨查詢" style="border-radius: 40px;">
+                <input type="text" class="form-control" placeholder="折讓查詢" style="border-radius: 40px;">
                 <span class="input-group-btn" >
                   <button class="btn btn-default" type="button" style="border-radius: 40px;"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
                 </span>
@@ -61,12 +61,12 @@
             </div><!-- /.col-lg-6 -->
              <div class="col-lg-3">
               <div class="input-group">
-                <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#myAddReturn"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增退貨</button>
+                <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#myAddDiscount"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增折讓</button>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
         </div>
           <ul class="nav nav-tabs" role="tablist" >
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="color: #252830;">退貨明細</a></li>
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="color: #252830;">折讓明細</a></li>
              <!-- <li role="presentation" ><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="color: #252830;">退貨紀錄</a></li> -->
           </ul>
           <div class="tab-content">
@@ -75,29 +75,29 @@
             <table class="table table-striped table-show-product">
               <thead>
                 <tr>
-                  <th>#退貨編號</th>
+                  <th>#折讓編號</th>
                   <th>產品編號</th>
                   <th>產品數量</th>
-                  <th>退貨人姓名</th>
+                  <th>折讓人姓名</th>
                   <th>承辦人員</th>
-                  <th>總金額</th>
-                  <th>退貨日期</th>
+                  <th>折讓總金額</th>
+                  <th>折讓日期</th>
                 </tr>
               </thead>
               <tbody>
-             <c:forEach  items="${ReturnList}" var="Return">
-             	<c:forEach  items="${ReturnDetailList}" var="ReturnDetail">
-             	<c:if test="${Return.getReturn_id()==ReturnDetail.getReturn_id()}" >
+             <c:forEach  items="${DiscountList}" var="Discount">
+             	<c:forEach  items="${DiscountDetailList}" var="DiscountDetail">
+             	<c:if test="${Discount.getDiscount_id()==DiscountDetail.getDiscount_id()}" >
 	                <tr>
-	                  <td><c:out value="${ReturnDetail.getReturn_id()}"/></td>
-		              <td><c:out value="${ReturnDetail.getReturn_p_id()}"/></td>
-	                  <td><c:out value="${ReturnDetail.getP_amount()}"/></td>
-	                  <td><c:out value="${Return.getReturn_M_id()}"/></td>
-	                  <td><c:out value="${Return.getReturn_A_id()}"/></td>
-	                  <td><c:out value="${Return.getReturn_total()}"/></td>
-	                  <td><c:out value="${Return.getReturn_date()}"/>2</td>
-	                  <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${ReturnDetail.getReturn_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></td>
-                  	  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete<c:out value="${ReturnDetail.getReturn_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
+	                  <td><c:out value="${DiscountDetail.getDiscount_id()}"/></td>
+		              <td><c:out value="${DiscountDetail.getDiscount_p_id()}"/></td>
+	                  <td><c:out value="${DiscountDetail.getP_amount()}"/></td>
+	                  <td><c:out value="${Discount.getDiscount_M_id()}"/></td>
+	                  <td><c:out value="${Discount.getDiscount_A_id()}"/></td>
+	                  <td><c:out value="${Discount.getDiscount_total()}"/></td>
+	                  <td><c:out value="${Discount.getDiscount_date()}"/></td>
+	                  <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${DiscountDetail.getDiscount_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></td>
+                  	  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete<c:out value="${DiscountDetail.getDiscount_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
 	                </tr>
 	                </c:if>
 	                </c:forEach>
@@ -108,83 +108,95 @@
             </div>
         </div>
       </div>
-    <c:forEach  items="${ReturnList}" var="Return1">
-    <c:forEach  items="${ReturnDetailList}" var="ReturnDetail1">
+    <c:forEach  items="${DiscountList}" var="Discount1">
+    <c:forEach  items="${DiscountDetailList}" var="DiscountDetail1">
      <!-- Modal -->
-     <c:if test="${Return1.getReturn_id()==ReturnDetail1.getReturn_id()}" >
-    <div class="modal fade" id="myModify<c:out value="${Return1.getReturn_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+     <c:if test="${Discount1.getDiscount_id()==DiscountDetail1.getDiscount_id()}" >
+    <div class="modal fade" id="myModify<c:out value="${Discount1.getDiscount_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">修改折讓</h4>
           </div>
-          <form class="form-horizontal" action="updateReturn"  method="post">
+          <form class="form-horizontal" action="updateDiscount"  method="post">
           <div class="modal-body">
-              <input type="hidden" name="return_id" value="<c:out value="${Return1.getReturn_id()}"/>">
+              <input type="hidden" name="discount_id" value="<c:out value="${Discount1.getDiscount_id()}"/>">
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-3 control-label">產品編號</label>
 	                <div class="col-sm-5">
-		                <select name="return_p_id" class="form-control">
+		                <select name="discount_p_id" class="form-control">
 	                     <c:forEach items="${ProductList}" var="Product1">
-	                     <c:if test="${ReturnDetail1.getReturn_p_id()==Product1.getP_id()}">
+	                     <c:if test="${DiscountDetail1.getDiscount_p_id()==Product1.getP_id()}">
 	                     <script>
 	                     $(document).ready(function(){       
-	                      $('#product<c:out value="${Return1.getReturn_id()}"/><c:out value="${ReturnDetail1.getReturn_p_id()}"/>').attr("selected","ture");
+	                      $('#product<c:out value="${Discount1.getDiscount_id()}"/><c:out value="${DiscountDetail1.getDiscount_p_id()}"/>').attr("selected","ture");
 	                     });
 	                     </script>
 	                     </c:if>
-	        					<option id="product<c:out value="${Return1.getReturn_id()}"/><c:out value="${Product1.getP_id()}"/>" value="<c:out value="${Product1.getP_id()}"/>"><c:out value="${Product1.getP_name()}"/></option>
+	        					<option id="product<c:out value="${Discount1.getDiscount_id()}"/><c:out value="${Product1.getP_id()}"/>" value="<c:out value="${Product1.getP_id()}"/>"><c:out value="${Product1.getP_name()}"/></option>
 	        			</c:forEach>
 					   </select>
 					   </div>
 					   <div>
 					   <div class="col-sm-2">
-                  			<input type="number" class="form-control" name="p_amount" placeholder="數量" value="<c:out value="${ReturnDetail1.getP_amount()}"/>">
+                  			<input type="number" class="form-control" name="p_amount" placeholder="數量" value="<c:out value="${DiscountDetail1.getP_amount()}"/>">
                 		</div>
-					   </div>
+					   </div>  
               </div>
+              
+              
               <div class="form-group">
-                <label for="inputPassword3" class="col-sm-3 control-label">退貨人姓名</label>
+                <label for="inputPassword3" class="col-sm-3 control-label">折讓人姓名</label>
                 <div class="col-sm-7">
-                  <select name="return_M_id" class="form-control">
+                  <select name="discount_M_id" class="form-control">
 	                     <c:forEach items="${memberList}" var="member1">
-	                     <c:if test="${Return1.getReturn_M_id()==member1.getM_id()}">
+	                     <c:if test="${Discount1.getDiscount_M_id()==member1.getM_id()}">
 	                     <script>
 	                     $(document).ready(function(){       
-	                      $('#member<c:out value="${Return1.getReturn_id()}"/><c:out value="${Return1.getReturn_M_id()}"/>').attr("selected","ture");
+	                      $('#member<c:out value="${Discount1.getDiscount_id()}"/><c:out value="${Discount1.getDiscount_M_id()}"/>').attr("selected","ture");
 	                     });
 	                     </script>
 	                     </c:if>
-	        					<option id="member<c:out value="${Return1.getReturn_id()}"/><c:out value="${member1.getM_id()}"/>" value="<c:out value="${member1.getM_id()}"/>"><c:out value="${member1.getM_name()}"/></option>
+	        					<option id="member<c:out value="${Discount1.getDiscount_id()}"/><c:out value="${member1.getM_id()}"/>" value="<c:out value="${member1.getM_id()}"/>"><c:out value="${member1.getM_name()}"/></option>
 	        			</c:forEach>
 					   </select>
 					  
                 </div>
               </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-3 control-label">折讓價錢</label>
+                <div class="col-sm-7">
+	                     <input type="number" class="form-control" name="discount_total"
+									id="inputEmail3" 
+									value="<c:out value="${Discount1.getDiscount_total()}"/>">  
+                </div>
+              </div>
+              
 				<div class="form-group">
                 <label for="inputPassword3" class="col-sm-3 control-label">承辦人姓名</label>
                 <div class="col-sm-7">
-                  <select name="return_A_id" class="form-control">
+                  <select name="discount_A_id" class="form-control">
 	                     <c:forEach items="${administratorList}" var="administrator1">
-	                     <c:if test="${Return1.getReturn_A_id()==administrator1.getA_id()}">
+	                     <c:if test="${Discount1.getDiscount_A_id()==administrator1.getA_id()}">
 	                     <script>
 	                     $(document).ready(function(){       
-	                      $('#Adminstrator<c:out value="${Return1.getReturn_id()}"/><c:out value="${Return1.getReturn_A_id()}"/>').attr("selected","ture");
+	                      $('#Adminstrator<c:out value="${Discount1.getDiscount_id()}"/><c:out value="${Discount1.getDiscount_A_id()}"/>').attr("selected","ture");
 	                     });
 	                     </script>
 	                     </c:if>
-	        					<option id="Adminstrator<c:out value="${Return1.getReturn_id()}"/><c:out value="${administrator1.getA_id()}"/>" value="<c:out value="${administrator1.getA_id()}"/>"><c:out value="${administrator1.getM_name()}"/></option>
+	        					<option id="Adminstrator<c:out value="${Discount1.getDiscount_id()}"/><c:out value="${administrator1.getA_id()}"/>" value="<c:out value="${administrator1.getA_id()}"/>"><c:out value="${administrator1.getM_name()}"/></option>
 	        			</c:forEach>
 					   </select>
 					  
                 </div>
               </div>
-              <input type="hidden" name="return_date" value="<c:out value="${Return1.getReturn_date()}"/>">
+              <input type="hidden" name="discount_date" value="<c:out value="${Discount1.getDiscount_date()}"/>">
           </div>
+          
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary" name="type" value="updateReturn" >
+            <input type="submit" class="btn btn-primary" name="type" value="modifyDiscount" >
           </div>
         
         </form>
@@ -197,30 +209,30 @@
     </c:forEach>
     </c:forEach>
     <!-- Modal -->
-    <div class="modal fade" id="myAddReturn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+       <div class="modal fade" id="myAddDiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">新增退貨</h4>
+            <h4 class="modal-title" id="myModalLabel">新增折讓</h4>
           </div>
           <div class="modal-body">
-            <form class="form-horizontal" method="post" action="addReturn">
+            <form class="form-horizontal" method="post" action="addDiscount">
            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">退貨人姓名</label>
+                <label for="inputEmail3" class="col-sm-3 control-label">折讓人姓名</label>
                 <div class="col-sm-7">
-                  <select name="return_M_id" class="form-control">
+                  <select name="discount_M_id" class="form-control">
 	                     <c:forEach items="${memberList}" var="member">
 	        					<option value="<c:out value="${member.getM_id()}"/>"><c:out value="${member.getM_name()}"/></option>
 	        			</c:forEach>
 					   </select>
                 </div>
               </div>
-              <div id="product_return">
+              <div id="product_discount">
 	            <div class="form-group" >
 	                <label for="inputEmail3" class="col-sm-3 control-label">產品編號</label>
 	                <div class="col-sm-5">
-		                <select name="return_p_id" class="form-control">
+		                <select name="discount_p_id" class="form-control">
 	                     <c:forEach items="${ProductList}" var="Product">
 	        					<option value="<c:out value="${Product.getP_id()}"/>"><c:out value="${Product.getP_name()}"/></option>
 	        			</c:forEach>
@@ -231,11 +243,23 @@
 	                </div>
 	              </div>
               </div>
+              <div class="form-group" >
+	                <label for="inputEmail3" class="col-sm-3 control-label">折讓金額</label>
+	                <div class="col-sm-5">
+		                
+								<input type="text" class="form-control" name="discount_total"
+									id="inputEmail3" placeholder="價錢"
+									value="<c:out value="${Discount.getDiscount_total()}"/>">
+							
+				   </div>
+	                
+              </div>
+              
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-3 control-label">承辦人姓名</label>
                 <div class="col-sm-7">
                 
-                  <select name="return_A_id" class="form-control">
+                  <select name="discount_A_id" class="form-control">
                      <c:forEach items="${administratorList}" var="administrator2">
         					<option value="<c:out value="${administrator2.getA_id()}"/>"><c:out value="${administrator2.getM_name()}"/></option>
         			</c:forEach>
@@ -243,14 +267,14 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">退貨日期</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">折讓日期</label>
                 <div class="col-sm-8">
-                  <input type="Date" class="form-control" name="return_date" id="inputEmail3" placeholder="退貨日期" >
+                  <input type="Date" class="form-control" name="discount_date" id="inputEmail3" placeholder="折讓日期" >
                 </div>
               </div>
               <div class="modal-footer">
 		            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		            <input type="submit" class="btn btn-primary" name="type" value="addReturn"/>
+<input type="submit" class="btn btn-primary" name="type" value="addDiscount"/>
          	 </div>
             </form>
           </div>
@@ -258,47 +282,48 @@
         </div>
       </div>
     </div>
- <c:forEach  items="${ReturnList}" var="Return2">
- <c:forEach  items="${ReturnDetailList}" var="ReturnDetail2">
-  <c:if test="${Return2.getReturn_id()==ReturnDetail2.getReturn_id()}" >
-     <form action="deleteReturn" method="post">
-    <div class="modal fade" id="mydelete<c:out value="${Return2.getReturn_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ <c:forEach  items="${DiscountList}" var="Discount2">
+ <c:forEach  items="${DiscountDetailList}" var="DiscountDetail2">
+  <c:if test="${Discount2.getDiscount_id()==DiscountDetail2.getDiscount_id()}" >
+     <form action="deleteDiscount" method="post">
+     
+    <div class="modal fade" id="mydelete<c:out value="${Discount2.getDiscount_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">刪除退貨紀錄</h4>
+                  <h4 class="modal-title" id="myModalLabel">刪除折讓紀錄</h4>
                 </div>
                 <div class="modal-body">
                   <table class="table table-striped">
               <tbody>
                <thead>
                 <tr>
-                  <th>#退貨編號</th>
+                  <th>#折讓編號</th>
                   <th>產品編號</th>
                   <th>產品數量</th>
-                  <th>退貨人姓名</th>
+                  <th>折讓人姓名</th>
                   <th>承辦人員</th>
-                  <th>總金額</th>
-                  <th>退貨日期</th>
+                  <th>折讓總金額</th>
+                  <th>折讓日期</th>
                 </tr>
               </thead>
-              <input type="hidden" name="return_id" value="${Return2.getReturn_id()}"/>
+              <input type="hidden" name="discount_id" value="<c:out value="${Discount2.getDiscount_id()}"/>">
                 <tr>
-                  <td><c:out value="${Return2.getReturn_id()}"/></td>
-                  <td><c:out value="${ReturnDetail2.getReturn_p_id()}"/></td>
-                  <td><c:out value="${ReturnDetail2.getP_amount()}"/></td>
-                  <td><c:out value="${Return2.getReturn_M_id()}"/></td>
-                  <td><c:out value="${Return2.getReturn_A_id()}"/></td>
-                  <td><c:out value="${Return2.getReturn_total()}"/></td>
-                  <td><c:out value="${Return2.getReturn_date()}"/></td>
+                  <td><c:out value="${Discount2.getDiscount_id()}"/></td>
+                  <td><c:out value="${DiscountDetail2.getDiscount_p_id()}"/></td>
+                  <td><c:out value="${DiscountDetail2.getP_amount()}"/></td>
+                  <td><c:out value="${Discount2.getDiscount_M_id()}"/></td>
+                  <td><c:out value="${Discount2.getDiscount_A_id()}"/></td>
+                  <td><c:out value="${Discount2.getDiscount_total()}"/></td>
+                  <td><c:out value="${Discount2.getDiscount_date()}"/></td>
                 </tr>
               </tbody>
             </table>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit"  name="type" value="deleteReturn" class="btn btn-primary">確認</button>
+                  <button type="submit"  name="type" value="deleteDiscount" class="btn btn-primary">確認</button>
                 </div>
               </div>
             </div>

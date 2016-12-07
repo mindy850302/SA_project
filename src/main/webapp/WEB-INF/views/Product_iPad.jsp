@@ -17,7 +17,7 @@
 
 <body style="background-image: linear-gradient(to top, rgba(46, 49, 65, 0.7), rgba(46, 49, 65, 0.7)), url(../img/iPad/iPad.jpg)">
 <b>
-	<%@include file="header.jsp"%>
+<%@include file="header.jsp"%>
 <!-- Page Wrapper -->
 	<div id="page-wrapper">
 <!-- Banner -->

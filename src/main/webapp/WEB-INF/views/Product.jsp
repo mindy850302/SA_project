@@ -19,9 +19,10 @@
     <link href="css/font-awesome.css" rel="stylesheet" />
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
     <link href="css/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/myscript.js"></script>
     <link rel="stylesheet" type="text/css" href="css/header_css.css">
 	<!-- <link href="main2.css" rel="stylesheet"> -->
-
+	
 </head>
 
 <body style="background-image: linear-gradient(to top, rgba(46, 49, 65, 0.7), rgba(46, 49, 65, 0.7)), url("../img/images/iPhone.jpg")">
@@ -89,8 +90,8 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
+            </div>
             <div class="col-xs-2 col-md-2" ></div>
-        </div>
     </div>
 
     <div class="row" style="background-color:#eee">
@@ -108,30 +109,30 @@
                             <tr>
                                 <td style="vertical-align:middle">
                                     <label class="col-sm-3 control-label" style="font-size:18px">滿意度：</label>
-                                    <!-- Rating Star -->
-                                        <div class="col-sm-5">
-                                            <fieldset class="rating">
-                                                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                                            </fieldset>
-                                        </div>
-                                    <label style="color: #ff0000 ; font-size:20px" class="col-sm-2 control-label">10分</label>
+                                    <div class="radial-progress" data-score="1.7">
+										<div class="circle">
+											<div class="mask full">
+												<div class="fill"></div>
+											</div>
+											<div class="mask half">
+												<div class="fill"></div>
+												<div class="fill fix"></div>
+											</div>
+										</div>
+										<div class="inset"><span class='big'><c:out value="${Product.getAverage()}"></c:out></span> <span class='little'>/ 5</span></div>
+										
+									</div>
+                                    
                                 </td>
                             </tr>
-                            <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label" style="font-size:18px">NT$<c:out value="${Product.getP_price()}"></c:out></label></td></tr>
+                            <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label" style="font-size:18px">NT . <c:out value="${Product.getP_price()}"></c:out></label></td></tr>
                             <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label" style="font-size:16px"><c:out value="${Product.getP_describe()}"></c:out></label></td></tr>
+                            <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label" style="font-size:16px">存貨 ： <c:out value="${Product.getP_inventory()}"></c:out></label></td></tr>
                             <tr><td style="vertical-align:middle"><div class="form-group">
                                         <label class="col-sm-2 control-label" style="font-size:18px">評分</label>
                                         <!-- Rating Star -->
                                         <div class="col-sm-9">
+                                        <form action="ratingStar" method="post">
                                             <fieldset class="rating">
                                                 <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
                                                 <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
@@ -144,6 +145,8 @@
                                                 <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
                                                 <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                                             </fieldset>
+                                            &nbsp&nbsp&nbsp<input type="submit" class="btn-default btn " name="comment" value="送出評論"/>
+                                        </form>
                                         </div>
                                     </div>
                                 </td>
@@ -155,44 +158,62 @@
                         </table>
                     </div>
                 </div>
-            <div class="modal fade" tabindex="-1" role="dialog" id="addToCart">
+                </div>
+               
+            <div class="modal fade" tabindex="-1" role="dialog" id="addToCart" >
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" style="color:#000000">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title">加入購物車</h4>
                         </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="choosePattern" class="col-sm-2 control-label">機款</label>
-                                <div class="col-sm-8">
+                        <div class="modal-body" >
+                            <form class="form-horizontal" action="shoppingCart">
+                            <input type="hidden" name="M_id" value="1">
+                            <div class="form-group" style="font-size:18px;">
+                                <label for="inputEmail3" class="col-sm-3 control-label" style="padding-top:0px;">機款</label>
+                                <div class="col-sm-8" class="form-control" >
                                 	<c:out value="${Product.getP_name()}"></c:out>
                                 </div>
+                            </div>
+                            <div class="form-group" style="font-size:18px;">
+                                <label for="inputEmail3" class="col-sm-3 control-label" style="padding-top:0px;">價錢</label>
+                                <div class="col-sm-8" class="form-control" >
+                                	<c:out value="${Product.getP_price()}"></c:out>
+                                </div>
                             </div>   
-                            <div class="form-group">
-                                <label for="chooseAmount" class="col-sm-2 control-label">數量</label>
+                            <div class="form-group" style="font-size:18px;">
+                                <label for="inputEmail3" class="col-sm-3 control-label" style="padding-top:0px;">數量</label>
                                 <div class="col-sm-8">
-                                    <select name="amount" size="1" id="amount" > 
-                                        <option value="1" selected>1</option>
-                                        <option value="2">2</option> 
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
+                                <c:if test="${Product.getP_inventory()!=0}">
+                                    <select class="form-control" name="amount"  id="amount" >                                    
+	                                        <c:forEach var="i" begin="1" end="${Product.getP_inventory()}" step="1">
+	                                        	<option value="${(i)}">${(i)}</option>
+	                                        </c:forEach>	                                
+	                                 </select>
+	                                 </div>
+	                                  </div>
+	                                 <div class="modal-footer">
+			                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			                            <button type="submit" class="btn btn-primary" onclick="addCart()">加入購物車</button>
+			                        </div><!-- /.modal-content -->
+	                                 </c:if>
+	                                    <c:if test="${Product.getP_inventory()==0}">
+	                                        <font color=red>存貨不足</font>
+	                                        </div>
+	                                         </div>
+	                                        <div class="modal-footer">
+					                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					                            
+					                        </div><!-- /.modal-content -->
+	                                    </c:if>
+                                   
+                                    
+                                    
                                 </div>
                             </div>
                         </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary" onclick="addCart()">加入購物車</button>
-                        </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
             	<script>

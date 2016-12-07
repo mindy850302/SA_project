@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
 
+import com.mysql.jdbc.Statement;
 import com.practice.webapp.entity.Discount;
 
 public class DiscountDAODB implements DiscountDAO {
@@ -22,18 +23,26 @@ public class DiscountDAODB implements DiscountDAO {
 	}
 
 	@Override
-	public void insert(Discount discount) {
+	public int insert(Discount discount) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO Discount (discount_id,discount_M_id,discount_date,discount_total,discount_A_id) VALUES(?, ?, ?, ?, ?)";
+		int id =0;
+
+		String sql = "INSERT INTO discount (discount_id,discount_M_id,discount_date,discount_total,discount_A_id) VALUES(?, ?, ?, ?, ?)";
 		try {
 			conn = dataSource.getConnection();
-			smt = conn.prepareStatement(sql);
+			smt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			System.out.println(id);
 			smt.setInt(1, discount.getDiscount_id());
 			smt.setInt(2, discount.getDiscount_M_id());
 			smt.setString(3, discount.getDiscount_date());
 			smt.setInt(4, discount.getDiscount_total());
 			smt.setInt(5, discount.getDiscount_A_id());
 			smt.executeUpdate();
+			rs = smt.getGeneratedKeys();
+			if (rs != null && rs.next()) {
+				   id = (int)rs.getLong(1);
+				}
+
 			smt.close();
 
 		} catch (SQLException e) {
@@ -47,13 +56,14 @@ public class DiscountDAODB implements DiscountDAO {
 				}
 			}
 		}
+		return id;
 
 	}
 
 	@Override
 	public void delete(Discount discount) {
 		// TODO Auto-generated method stub
-		String sql = "DELETE FROM Discount WHERE discount_id = ?";
+		String sql = "DELETE FROM discount WHERE discount_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -78,16 +88,16 @@ public class DiscountDAODB implements DiscountDAO {
 	@Override
 	public void update(Discount discount) {
 		// TODO Auto-generated method stub
-		String sql = "UPDATE Discount SET discount_id =?, discount_M_id=?,discount_date=?,discount_total=?,discount_A_id=? "
+		String sql = "UPDATE discount SET  discount_M_id=?,discount_date=?,discount_total=?,discount_A_id=? "
 				+ "WHERE discount_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, discount.getDiscount_id());
-			smt.setInt(2, discount.getDiscount_M_id());
-			smt.setString(3, discount.getDiscount_date());
-			smt.setInt(4, discount.getDiscount_total());
-			smt.setInt(5, discount.getDiscount_A_id());
+			smt.setInt(1, discount.getDiscount_M_id());
+			smt.setString(2, discount.getDiscount_date());
+			smt.setInt(3, discount.getDiscount_total());
+			smt.setInt(4, discount.getDiscount_A_id());
+			smt.setInt(5, discount.getDiscount_id());
 			smt.executeUpdate();			
 			smt.close();
  
@@ -105,7 +115,7 @@ public class DiscountDAODB implements DiscountDAO {
 	}
 
 	public List<Discount> getList() {
-		String sql = "SELECT * FROM Discount";
+		String sql = "SELECT * FROM discount";
 		return getList(sql);
 		// TODO Auto-generated method stub
 	}

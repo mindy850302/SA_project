@@ -46,6 +46,7 @@ public class ProductDAODB implements ProductDAO {
 				product.setP_inventory(rs.getInt("p_inventory"));
 				product.setP_name(rs.getString("p_name"));
 				product.setP_price(rs.getInt("p_price"));
+				product.setAverage(rs.getInt("average"));
 				product.setP_onsale_date(rs.getString("p_onsale_date"));
 				product.setP_remove_date(rs.getString("p_remove_date"));
 				product.setP_update_date(rs.getString("p_update_date"));
@@ -119,6 +120,7 @@ public class ProductDAODB implements ProductDAO {
 				product.setP_inventory(rs.getInt("p_inventory"));
 				product.setP_name(rs.getString("p_name"));
 				product.setP_price(rs.getInt("p_price"));
+				product.setAverage(rs.getInt("average"));
 				product.setP_onsale_date(rs.getString("p_onsale_date"));
 				product.setP_remove_date(rs.getString("p_remove_date"));
 				product.setP_update_date(rs.getString("p_update_date"));
@@ -198,7 +200,7 @@ public class ProductDAODB implements ProductDAO {
 		for (int i = 0; i < ProductList.size(); i++) {
 
 			String sql = "Select AVG(score) as p_average FROM Comment WHERE p_id = ?";
-			String sql1 = "Update Product SET average =?" + "WHERE p_id = ?";
+			String sql1 = "Update product SET average =?" + "WHERE p_id = ?";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);
@@ -224,6 +226,53 @@ public class ProductDAODB implements ProductDAO {
 			}
 		}
 	}
+	public int  updateClick(Product product){
+		List<Product> ProductList = new ArrayList<Product>();
+		int click=0;
+		try {
+			
+			String sql = "SELECT click_count  FROM product WHERE p_id = ?";
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setInt(1, product.getP_id());
+			rs = smt.executeQuery();
+			
+			while (rs.next()) {
+				product.setClick_count(rs.getInt("click_count"));
+				click=rs.getInt("click_count");
+				click++;
+				break;
+			}
+			rs.close();
+			smt.close();
+			
+			 sql = "UPDATE product SET click_count=? "+ "WHERE p_id = ?";
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setInt(1, click);
+//			smt.setString(2, product.getP_describe());
+//			smt.setString(3, product.getP_image());
+//			smt.setInt(4, product.getP_inventory());
+//			smt.setString(5, product.getP_name());
+//			smt.setInt(6, product.getP_price());
+//			smt.setString(7, product.getP_update_date());
+			smt.setInt(2, product.getP_id());
+			smt.executeUpdate();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+    	return click;
+    }
 
 	
 

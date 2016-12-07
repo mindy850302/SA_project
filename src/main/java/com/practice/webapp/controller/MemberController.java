@@ -60,10 +60,7 @@ public class MemberController {
 	public ModelAndView getAccountList(String name) {
 		ModelAndView model = new ModelAndView("AccountList");
 		// = model.setViewName("Accountlist");
-
-		MemberDAO memberdao = (MemberDAO) context.getBean("MemberDAO"); // defined
-																		// in
-																		// spring-webapp.xml
+		MemberDAO memberdao = (MemberDAO) context.getBean("MemberDAO"); // defined in spring-webapp.xml
 		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
 		A_categoryDAO A_categoryDAO = (A_categoryDAO) context.getBean("A_categoryDAO");
 		List<Member> memberList = new ArrayList<Member>();

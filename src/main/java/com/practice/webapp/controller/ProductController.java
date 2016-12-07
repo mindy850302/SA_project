@@ -98,7 +98,9 @@ public class ProductController {
 		}
 		Product_categoryList=Product_categoryDAO.getList();
 		model.addObject("Product",product);
+		int click=Productdao.updateClick(product);
 		System.out.println(id);
+		System.out.println(click);
 
 		model.addObject("message");
 		return model;
@@ -165,17 +167,6 @@ public class ProductController {
 			Productdao.delete(product);
 		}
 		model.setViewName("redirect:/ProductInfro");
-		return model;
-	}
-
-
-	
-
-	@RequestMapping(value = "/shoppingCart", method = RequestMethod.GET)
-	public ModelAndView getShoppingCart(String name) {
-		ModelAndView model = new ModelAndView("shoppingCart");
-		// = model.setViewName("shoppingCart");
-		model.addObject("message");
 		return model;
 	}
 

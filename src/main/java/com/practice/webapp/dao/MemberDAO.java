@@ -10,6 +10,8 @@ public interface MemberDAO {
     public void update(Member member);
     public void delete(Member member);
 	public boolean checkLoginMember(Member member);
+	
+
 //	public int count();
 	
 }

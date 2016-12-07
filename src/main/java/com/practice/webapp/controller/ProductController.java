@@ -117,7 +117,7 @@ public class ProductController {
 		Product_categoryList = Product_categoryDAO.getList();
 		model.addObject("ProductList", ProductList);
 		model.addObject("Product_categoryList", Product_categoryList);
-		System.out.println(Product_categoryList.get(0).getName());
+
 		return model;
 	}
 

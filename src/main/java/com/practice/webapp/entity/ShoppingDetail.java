@@ -3,20 +3,24 @@ package com.practice.webapp.entity;
 
 public class ShoppingDetail {
 
-	private int shopping_cart_id;
+	private int shopping_M_id;
 
 	private int shopping_p_id;
 
 	private int p_amount;
 
 	private int p_total;
+	
+	private Product product=new Product();
+	
+	private Member member=new Member();
 
-	public int getShopping_cart_id() {
-		return shopping_cart_id;
+	public int getShopping_M_id() {
+		return shopping_M_id;
 	}
 
-	public void setShopping_cart_id(int shopping_cart_id) {
-		this.shopping_cart_id = shopping_cart_id;
+	public void setShopping_cart_id(int shopping_M_id) {
+		this.shopping_M_id = shopping_M_id;
 	}
 
 	public int getShopping_p_id() {

@@ -22,7 +22,7 @@ public class ReturnDAODB implements ReturnDAO {
 	}
 	
 	public List<Return> getList(){
-		String sql = "SELECT * FROM `return`";
+		String sql = "SELECT * FROM `return` a JOIN Member b ON a.return_M_id=b.M_id JOIN Administrator c ON a.return_A_id=c.A_id";
 		return getList(sql);
 	}
 	
@@ -39,6 +39,8 @@ public class ReturnDAODB implements ReturnDAO {
 				areturn.setReturn_id(rs.getInt("return_id"));
 				areturn.setReturn_M_id(rs.getInt("return_M_id"));
 				areturn.setReturn_total(rs.getInt("return_total"));
+				areturn.getMember().setM_name(rs.getString("M_name"));
+				areturn.getAdministrato().setM_name(rs.getString("M_name"));
 				ReturnList.add(areturn);
 			}
 			rs.close();

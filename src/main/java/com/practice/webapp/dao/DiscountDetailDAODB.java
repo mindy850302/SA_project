@@ -92,10 +92,10 @@ public class DiscountDetailDAODB implements DiscountDetailDAO {
 		
 	}
 	public List<DiscountDetail> getList() {
-		String sql = "SELECT * FROM discountDetail";
+		String sql = "SELECT * FROM discountDetail a JOIN product b ON a.discount_p_id = b.p_id";
 		return getList(sql);
 		// TODO Auto-generated method stub
-	}
+	} 
 	public List<DiscountDetail> getList(String sql) {
 		
 		List<DiscountDetail> DiscountDetailList = new ArrayList<DiscountDetail>();
@@ -108,6 +108,8 @@ public class DiscountDetailDAODB implements DiscountDetailDAO {
 				DiscountDetail discountDetail = new DiscountDetail();
 				discountDetail.setDiscount_id(rs.getInt("discount_id"));
 				discountDetail.setDiscount_p_id(rs.getInt("discount_p_id"));
+				discountDetail.getProduct().setP_name(rs.getString("p_name"));
+				discountDetail.getProduct().setP_price(rs.getInt("p_price"));
 				discountDetail.setP_amount(rs.getInt("p_amount"));
 				discountDetail.setP_total(rs.getInt("p_total"));
 				DiscountDetailList.add(discountDetail);

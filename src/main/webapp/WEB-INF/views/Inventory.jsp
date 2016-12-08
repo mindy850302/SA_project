@@ -76,6 +76,7 @@
                   <th>上架日期</th>
                   <th>更新日期</th>
                   <th>下架日期</th>
+                  <th>產品狀態</th>
                 </tr>
               </thead>
               <tbody>
@@ -91,6 +92,11 @@
                   <td><c:out value="${ProductList.getP_onsale_date()}"/></td>
                   <td><c:out value="${ProductList.getP_update_date()}"/></td>
                   <td><c:out value="${ProductList.getP_remove_date()}"/></td>
+                  <td>	<c:if test="${ProductList.isSale()==0}" >已下架</c:if>
+                  	<c:if test="${ProductList.isSale()==1}" >上架中</c:if>
+                  
+                 </td>
+                  
                   <td><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myAddInventory<c:out value="${ProductList.getP_id()}"/>">追加存貨</button></td>
                   <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myRemoveInventory<c:out value="${ProductList.getP_id()}"/>">下架產品</button></td>
                 </tr>
@@ -137,7 +143,11 @@
       </div>
     </div>
     </c:forEach>
-	<div class="modal fade" id="myRemoveInventory" tabindex="-1" role="dialog"
+    
+    
+   <c:forEach  items="${ProductList}" var="Product1">
+    
+	<div class="modal fade" id="myRemoveInventory<c:out value="${Product1.getP_id()}"/>" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -148,16 +158,24 @@
 					</button>
 					<h4 class="modal-title" id="myModalLabel">下架</h4>
 				</div>
+				            <form class="form-horizontal" method="post" action="removeInventory">
+				
 				<div class="modal-body">
+				<input type="hidden" name="p_id" value="<c:out value="${Product1.getP_id()}"/>">
+                	<input type="hidden" name="sale" value="<c:out value="${Product1.isSale()}"/>">
+                	
 					<p>下架後產品將不顯示於消費者觀看頁面，確定是否下架？</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" name="sale"  value="1" >確認</button>
+					<input type="submit" class="btn btn-primary" name="type"  value="removeInventory" />
 				</div>
+				</form>
 			</div>
 		</div>
-	</div>
+		</div>
+		</c:forEach>
+	
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->

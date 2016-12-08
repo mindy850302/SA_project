@@ -215,18 +215,35 @@ public class ProductController {
 		return model;
 	}
 	@RequestMapping(value = "/removeInventory", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-	public ModelAndView deleteMember(@ModelAttribute Product aproduct, HttpServletRequest request,
+	public ModelAndView deleteMember(@ModelAttribute Product aproduct, HttpServletRequest request,@RequestParam("sale") int sale,
 			@RequestParam("type") String type) {
-		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
 
 		ModelAndView model = new ModelAndView();
-		System.out.println(request.getCharacterEncoding());
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO)context.getBean("Product_categoryDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Product_category> Product_categoryList = new ArrayList<Product_category>();		
+		Product_categoryList = Product_categoryDAO.getList();
+		ProductList=Productdao.getList();
 		System.out.println(type);
 
-		if (type.equals("removeInventory")) {
-			Productdao.delete(aproduct);
+		if (type.equals("removeInventory")) {			
+			int saleCheck=0;
+			Product removeProduct =new Product();
+			for(int i=0;i<ProductList.size();i++){
+				if(aproduct.getP_id()==ProductList.get(i).getP_id()){
+					removeProduct=ProductList.get(i);
+					break;
+				}
+			}
+			removeProduct.setSale(saleCheck);
+			Productdao.update(removeProduct);
+
 		}
-		model.setViewName("redirect:/AccountList");
+		model.addObject("ProductList",ProductList);
+		model.addObject("Product_categoryList",Product_categoryList);
+		model.addObject("message");
+		model.setViewName("redirect:/Inventory");
 		return model;
 	}
 

@@ -32,8 +32,10 @@
   <body class="align" style="margin-top:160px; ">
 
     <div class="grid">
+    <form action="MemberData" method="get"></form>>
       <div class="form login">
         <table class="table table-striped">
+        
           <tr style="background-color: #D2E9FF		 ;color:#5B5B5B">
             <td>帳號</td>
             <td><c:out value="${Member.getM_idName()}"></c:out></td>

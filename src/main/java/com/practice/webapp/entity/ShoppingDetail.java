@@ -23,6 +23,22 @@ public class ShoppingDetail {
 		this.shopping_M_id = shopping_M_id;
 	}
 
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
 	public int getShopping_p_id() {
 		return shopping_p_id;
 	}

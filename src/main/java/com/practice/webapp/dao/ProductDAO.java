@@ -11,7 +11,10 @@ public interface ProductDAO {
 	public Product get(Product product);
     public void update(Product product);
     public void delete(Product product);
+    public List<Product>  search(String keyword);
     public void average();
+    public void addInventory(Product product);
     public int updateClick(Product product);
+ 
 
 }

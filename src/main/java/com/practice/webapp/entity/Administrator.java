@@ -23,6 +23,7 @@ public class Administrator {
 	private String M_update_date;
 
 	private int A_category;
+	
 
 	public int getA_id() {
 		return A_id;
@@ -103,8 +104,4 @@ public class Administrator {
 	public void setA_category(int a_category) {
 		A_category = a_category;
 	}
-
-
-	
-
 }

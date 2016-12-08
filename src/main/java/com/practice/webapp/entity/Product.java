@@ -27,7 +27,7 @@ public class Product {
 
 	private String p_image;
 
-	private boolean sale;
+	private int sale;
 	
 	private int average;
 
@@ -125,7 +125,7 @@ public class Product {
 		return p_image;
 	}
 
-	public boolean isSale() {
+	public int isSale() {
 		return sale;
 	}
 
@@ -133,7 +133,7 @@ public class Product {
 		this.p_image = p_image;
 	}
 
-	public void setSale(boolean sale) {
+	public void setSale(int sale) {
 		this.sale = sale;
 	}
 

@@ -12,6 +12,7 @@ public interface ShoppingDetailDAO {
     public void update(ShoppingDetail shoppingdetail);
     public void delete(ShoppingDetail shoppingdetail);
 	public boolean checkLoginMember(ShoppingDetail shoppingdetail);
+	public int getTotal(int M_id);
 //	public int count();
 	
 }

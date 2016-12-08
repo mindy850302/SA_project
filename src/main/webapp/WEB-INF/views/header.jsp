@@ -20,7 +20,9 @@
             <li><a href="/webapp/FAQ" accesskey="5" title="">FAQ</a></li>
            <c:if test="${loginsession!=null}">
 	            <li><a href="/webapp/MemberData" accesskey="5" title=""><c:out value="${loginsession}"/></a></li>
+	            <li><a href="/webapp/ShoppingCart" accesskey="5" title=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
 	            <li><a href="/webapp/logout" accesskey="5" title="">Logout</a></li>
+	            
             </c:if>
             <c:if test="${loginsession==null}">
             <li><a href="/webapp/login" accesskey="5" title="">Login</a></li>

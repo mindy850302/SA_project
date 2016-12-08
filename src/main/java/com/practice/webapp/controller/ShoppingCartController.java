@@ -87,7 +87,21 @@ public class ShoppingCartController {
 		List<ShoppingDetail> ShoppingDetailList = new ArrayList<ShoppingDetail>();
 		ShoppingDetailList=shoppingDetaildao.getList();
 		model.addObject("ShoppingDetailList",ShoppingDetailList);
+		request.getSession().getAttribute("loginsession");
+		String idName=(String) request.getSession().getAttribute("loginsession");
+		int M_id=0;
+		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
+		List<Member> MemberList = new ArrayList<Member>();
+		MemberList = Memberdao.getList();
+		for(int i =0;i<MemberList.size();i++){
+			if(MemberList.get(i).getM_idName().equals(idName)){
+				M_id=MemberList.get(i).getM_id();
+				break;
+			}
+		}
+		System.out.print("my_id"+M_id);
 		System.out.print("shopping size"+ShoppingDetailList.size());
+		model.addObject("my_id",M_id);
 		return model;
 	}
 

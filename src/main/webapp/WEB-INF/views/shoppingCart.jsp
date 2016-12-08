@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,30 +47,32 @@
     <!-- </div> --><!-- /.container-fluid -->
  <!--  </nav>
   </div> --> 
-  <div class="container">
+  <div class="container" style="margin-top:80px;">
     <div class="row" style="margin-top: 50px;">
-    <div class="col-lg-1 col-md-1"></div>
-    <div class="col-lg-10 col-md-10" style="border: 1px solid #c8c8c8;border-radius: 5px;box-shadow: 6px 0px 73px -6px rgba(0,0,0,0.75);background-color: #FFFFFF;color: #252830;">
+    <div class="col-lg-12 col-md-10" style="border: 1px solid #c8c8c8;border-radius: 5px;box-shadow: 6px 0px 73px -6px rgba(0,0,0,0.75);background-color: #FFFFFF;color: #252830;">
       <h3>你購物袋中的項目</h3>
       <table class="table table-hover" style="margin-top: 20px;">
-        <tr>
-          <td><img style="width: 150px;" src="img/macpro1.jpg"></td>
-          <td>1190</td>
-          <td>MacBook Pro 13寸</td> 
-          <td>NT.&nbsp23900</td>
-          <td>數量&nbsp:&nbsp 1</td>
-          <td>NT.&nbsp23900</td>
-          <td><button type="button" class="btn btn-danger"><img src="img/garbage.png"></button></td>
-        </tr>
-        <tr>
-          <td><img style="width: 150px;" src="img/macpro2.jpg"></td>
-          <td>1191</td>
-          <td>MacBook Pro 13寸</td> 
-          <td>NT.&nbsp43500</td>
-          <td>數量&nbsp:&nbsp 2</td>
-          <td>NT.&nbsp87000</td>
-          <td><button type="button" class="btn btn-danger"><img src="img/garbage.png"></button></td>
-        </tr>
+      			<tr>
+      			<center>
+     			  <th></th>
+		          <th>產品名稱</th> 
+		          <th>產品價錢</th>
+		          <th>數量</th>
+		          <th>總額</th>
+		         </center>
+		        </tr>
+        <c:forEach items="${ShoppingDetailList}" var="shoppingdetail">
+     		<c:if test="${shoppingdetail.getMember().getM_idName() =='black'}">
+     			<tr>
+     			  <td><img style="width: 140px;" src="<c:out value="${shoppingdetail.getProduct().getP_image()}"></c:out>"></td>
+		          <td><c:out value="${shoppingdetail.getProduct().getP_name()}"></c:out></td> 
+		          <td>ＮＴ.<c:out value="${shoppingdetail.getProduct().getP_price()}"></c:out></td>
+		          <td><c:out value="${shoppingdetail.getP_amount()}"></c:out></td>
+		          <td>ＮＴ.<c:out value="${shoppingdetail.getP_total()}"></c:out></td>
+		          <td><button type="button" class="btn btn-danger"><img src="img/garbage.png"></button></td>
+		        </tr>
+     		</c:if>
+     	</c:forEach>
       </table>
       <hr>
       <div class="row">
@@ -120,18 +123,7 @@
       </div>
       <div class="modal-body">
       <table class="table" style="margin-top: 20px;color:#181A19;font-size: 18px;line-height: 40px;">
-        <tr>
-          <td>MacBook Pro 13寸</td> 
-          <td>NT.&nbsp23900</td>
-          <td>數量&nbsp:&nbsp 1</td>
-          <td>NT.&nbsp23900</td>
-        </tr>
-        <tr>
-          <td>MacBook Pro 13寸</td> 
-          <td>NT.&nbsp43500</td>
-          <td>數量&nbsp:&nbsp 2</td>
-          <td>NT.&nbsp87000</td>
-        </tr>
+     	
       </table>
       <div class="row">
         <div class="col-lg-8 ">

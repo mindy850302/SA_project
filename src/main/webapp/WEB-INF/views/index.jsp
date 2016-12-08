@@ -95,10 +95,10 @@
  <h2>Welcome to Strawberry!</h2>
  </div>
  <div class="col-xs-3 col-md-3" >
- <form class="navbar-form navbar-right" role="search">
+ <form class="navbar-form navbar-right" role="search"action="search"method="POST">
    <span class="glyphicon glyphicon-search"></span>
                          <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Search you like">
+                          <input type="text" class="form-control"name="keyword" placeholder="Search you like">
                          </div>
                              <button type="submit" class="btn btn-default">Submit</button>
                   </form>

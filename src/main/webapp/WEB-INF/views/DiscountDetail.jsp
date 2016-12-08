@@ -77,6 +77,8 @@
                 <tr>
                   <th>#折讓編號</th>
                   <th>產品編號</th>
+                  <th>產品名稱</th>
+                  <th>產品價格</th>
                   <th>產品數量</th>
                   <th>折讓人姓名</th>
                   <th>承辦人員</th>
@@ -91,9 +93,11 @@
 	                <tr>
 	                  <td><c:out value="${DiscountDetail.getDiscount_id()}"/></td>
 		              <td><c:out value="${DiscountDetail.getDiscount_p_id()}"/></td>
+		              <td><c:out value="${DiscountDetail.getProduct().getP_name()}"/></td>
+		              <td><c:out value="${DiscountDetail.getProduct().getP_price()}"/></td>
 	                  <td><c:out value="${DiscountDetail.getP_amount()}"/></td>
-	                  <td><c:out value="${Discount.getDiscount_M_id()}"/></td>
-	                  <td><c:out value="${Discount.getDiscount_A_id()}"/></td>
+	                  <td><c:out value="${Discount.getMember().getM_name()}"/></td>
+	                  <td><c:out value="${Discount.getAdministrator().getM_name()}"/></td>
 	                  <td><c:out value="${Discount.getDiscount_total()}"/></td>
 	                  <td><c:out value="${Discount.getDiscount_date()}"/></td>
 	                  <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${DiscountDetail.getDiscount_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></td>

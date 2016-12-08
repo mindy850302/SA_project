@@ -77,6 +77,7 @@
                 <tr>
                   <th>#退貨編號</th>
                   <th>產品編號</th>
+                  <th>產品名稱</th>
                   <th>產品數量</th>
                   <th>退貨人姓名</th>
                   <th>承辦人員</th>
@@ -91,9 +92,10 @@
 	                <tr>
 	                  <td><c:out value="${ReturnDetail.getReturn_id()}"/></td>
 		              <td><c:out value="${ReturnDetail.getReturn_p_id()}"/></td>
+		              <td><c:out value="${ReturnDetail.getProduct().getP_name()}"/></td>
 	                  <td><c:out value="${ReturnDetail.getP_amount()}"/></td>
-	                  <td><c:out value="${Return.getReturn_M_id()}"/></td>
-	                  <td><c:out value="${Return.getReturn_A_id()}"/></td>
+	                  <td><c:out value="${Return.getMember().getM_name()}"/></td>
+	                  <td><c:out value="${Return.getAdministrato().getM_name()}"/></td>
 	                  <td><c:out value="${Return.getReturn_total()}"/></td>
 	                  <td><c:out value="${Return.getReturn_date()}"/>2</td>
 	                  <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${ReturnDetail.getReturn_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></td>

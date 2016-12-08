@@ -21,15 +21,15 @@ public class CommentDAODB implements CommentDAO {
 	}
 	public void insert(Comment comment) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO Comment (comment_M_id,comment_p_id,c_comment,c_create_date) VALUES(?, ?, ?, ? )";	
+		
+		String sql = "INSERT INTO Comment(comment_M_id,comment_p_id,c_comment,score,c_create_date) VALUES(?, ?, ?, ?,CURRENT_TIME())";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setInt(1, comment.getComment_M_id());
 			smt.setInt(2, comment.getComment_p_id());
 			smt.setString(3, comment.getC_comment());
-			smt.setString(4, comment.getC_create_date());
-			
+			smt.setInt(4, comment.getScore());
 			smt.executeUpdate();			
 			smt.close();
  
@@ -48,7 +48,7 @@ public class CommentDAODB implements CommentDAO {
 	}
 	public void delete(Comment comment) {
 		// TODO Auto-generated method stub
-		String sql = "DELETE FROM Comment  WHERE comment_M_id = ? AND comment_p_id = ?";
+		String sql = "DELETE FROM Comment  WHERE( comment_M_id = ? AND comment_p_id = ? )";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -73,16 +73,17 @@ public class CommentDAODB implements CommentDAO {
 
 	public void update( Comment comment) {
 		// TODO Auto-generated method stub
-		String sql = "UPDATE Comment SET comment_M_id=?, comment_p_id=?, c_comment=?, c_create_date=?,c_update_date=? "
-				+ "WHERE comment_M_id = ? AND comment_p_id = ?";
+		String sql = "UPDATE Comment SET  c_comment=?, c_create_date=?,c_update_date=?,score=? "
+				+ "WHERE (comment_M_id = ? AND comment_p_id = ?)";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, comment.getComment_M_id());
-			smt.setInt(2, comment.getComment_p_id());
-			smt.setString(3, comment.getC_comment());
-			smt.setString(4, comment.getC_create_date());
-			smt.setString(4, comment.getC_update_date());
+			smt.setString(1, comment.getC_comment());
+			smt.setString(2, comment.getC_create_date());
+			smt.setString(3, comment.getC_update_date());
+			smt.setInt(4, comment.getScore());
+			smt.setInt(5, comment.getComment_M_id());
+			smt.setInt(6, comment.getComment_p_id());
 			smt.executeUpdate();			
 			smt.close();
  
@@ -114,11 +115,14 @@ public class CommentDAODB implements CommentDAO {
 			while(rs.next()){
 				Comment comment = new Comment();
 				comment.setComment_M_id(rs.getInt("comment_M_id"));
+				comment.setComment_p_id(rs.getInt("comment_p_id"));
+				comment.getMember().setM_idName(rs.getString("M_idName"));
 				comment.getMember().setM_name(rs.getString("M_name"));
 				comment.getProduct().setP_name(rs.getString("p_name"));
 				comment.setC_comment(rs.getString("c_comment"));
 				comment.setC_create_date(rs.getString("c_create_date"));
 				comment.setC_update_date(rs.getString("c_update_date"));
+				comment.setScore(rs.getInt("score"));
 				CommentList.add(comment);
 			}
 			rs.close();
@@ -140,14 +144,14 @@ public class CommentDAODB implements CommentDAO {
 	@Override
 	public Comment get(Comment comment) {
 		// TODO Auto-generated method stub
-		String sql = "SELECT * FROM Comment WHERE comment_M_id = ? AND comment_p_id = ?";
+		String sql = "SELECT * FROM Comment WHERE (comment_M_id = ? AND comment_p_id = ?)";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setInt(1, comment.getComment_M_id());
 			smt.setInt(2, comment.getComment_p_id());
 			rs = smt.executeQuery();
-			if(rs.next()){
+			while(rs.next()){
 				comment.setComment_M_id(rs.getInt("comment_M_id"));
 				comment.setComment_p_id(rs.getInt("comment_p_id"));
 				comment.setC_comment(rs.getString("c_comment"));

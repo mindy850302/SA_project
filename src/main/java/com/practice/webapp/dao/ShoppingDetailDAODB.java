@@ -14,6 +14,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.practice.webapp.entity.Member;
+import com.practice.webapp.entity.Product;
 import com.practice.webapp.entity.ShoppingDetail;
 
 public class ShoppingDetailDAODB implements ShoppingDetailDAO {
@@ -26,7 +28,7 @@ public class ShoppingDetailDAODB implements ShoppingDetailDAO {
 		this.dataSource = dataSource;
 	}
 	public List<ShoppingDetail> getList(){
-		String sql = "SELECT * FROM shoppingDetail";
+		String sql = "SELECT * FROM shoppingDetail a JOIN product b on a.shopping_p_id=b.p_id JOIN Member c on a.shopping_M_id=c.M_id";
 		return getList(sql);
 	}
 
@@ -39,14 +41,19 @@ public class ShoppingDetailDAODB implements ShoppingDetailDAO {
 			smt = conn.prepareStatement(sql);
 			rs = smt.executeQuery();
 			while(rs.next()){
+				Member member=new Member();
+				Product product=new Product();
 				ShoppingDetail shoppingdetail = new ShoppingDetail();
 				shoppingdetail.setShopping_M_id(rs.getInt("shopping_M_id"));
-				
 				shoppingdetail.setShopping_p_id(rs.getInt("Shopping_p_id"));
-			
 				shoppingdetail.setP_amount(rs.getInt("p_amount"));
 				shoppingdetail.setP_total(rs.getInt("p_total"));
-				
+				shoppingdetail.getMember().setM_idName(rs.getString("M_idName"));
+				shoppingdetail.getMember().setM_id(rs.getInt("M_id"));
+				shoppingdetail.getMember().setM_name(rs.getString("M_name"));
+				shoppingdetail.getProduct().setP_name(rs.getString("p_name"));
+				shoppingdetail.getProduct().setP_price(rs.getInt("p_price"));
+				shoppingdetail.getProduct().setP_image(rs.getString("p_image"));
 				ShoppingDetailList.add(shoppingdetail);
 			}
 			rs.close();
@@ -104,8 +111,16 @@ public class ShoppingDetailDAODB implements ShoppingDetailDAO {
 			smt.setLong(1, shoppingdetail.getShopping_M_id());
 			rs = smt.executeQuery();
 			if(rs.next()){
-				smt.setInt(1, shoppingdetail.getShopping_M_id());
 				
+				shoppingdetail.getMember().setM_idName(rs.getString("M_idName"));
+				shoppingdetail.getMember().setM_name(rs.getString("M_Name"));
+				shoppingdetail.getProduct().setP_name(rs.getString("p_name"));
+				shoppingdetail.getProduct().setP_price(rs.getInt("p_price"));
+				shoppingdetail.setShopping_M_id(rs.getInt("M_id"));
+				shoppingdetail.setShopping_p_id(rs.getInt("p_id"));
+				shoppingdetail.setP_amount(rs.getInt("p_amount"));
+				shoppingdetail.setP_total(rs.getInt("p_total"));
+				shoppingdetail.getProduct().setP_image(rs.getString("p_image"));
 			}
 			rs.close();
 			smt.close();

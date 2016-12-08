@@ -52,6 +52,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @SessionAttributes("loginsession")
 
+
 public class MemberController {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");

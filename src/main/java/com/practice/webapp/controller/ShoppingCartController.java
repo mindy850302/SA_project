@@ -64,14 +64,15 @@ public class ShoppingCartController {
 		return model;
 	}
 	@RequestMapping(value = "/insertShoppingCart", method = RequestMethod.GET)
-	public ModelAndView insertShoppingCart(@ModelAttribute ShoppingDetail shoppingdetail,@RequestParam("p_price") int price,@RequestParam("shopping_M_id") int M_id) {
+	public ModelAndView insertShoppingCart(@ModelAttribute ShoppingDetail shoppingdetail,@RequestParam("p_price") int price,@RequestParam("shopping_M_id") int shopping_M_id) {
 		ModelAndView model = new ModelAndView("shoppingCart");
 		// = model.setViewName("shoppingCart");
 		ShoppingDetailDAO shoppingDetaildao = (ShoppingDetailDAO) context.getBean("ShoppingDetailDAO");
 		List<ShoppingDetail> ShoppingDetailList = new ArrayList<ShoppingDetail>();
 		int amount=shoppingdetail.getP_amount();
 		shoppingdetail.setP_total(amount*price);
-		shoppingdetail.setShopping_M_id(M_id);
+		System.out.println(shopping_M_id);
+		shoppingdetail.setShopping_M_id(shopping_M_id);
 		shoppingDetaildao.insert(shoppingdetail);
 		model.addObject("message");
 		model.addObject("ShoppingDetailList",ShoppingDetailList);
@@ -79,13 +80,14 @@ public class ShoppingCartController {
 		return model;
 	}
 	@RequestMapping(value = "/ShoppingCart", method = RequestMethod.GET)
-	public ModelAndView getShoppingCartList(@ModelAttribute ShoppingDetail shoppingdetail) {
+	public ModelAndView getShoppingCartList(@ModelAttribute ShoppingDetail shoppingdetail,HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("shoppingCart");
 		// = model.setViewName("shoppingCart");
 		ShoppingDetailDAO shoppingDetaildao = (ShoppingDetailDAO) context.getBean("ShoppingDetailDAO");
 		List<ShoppingDetail> ShoppingDetailList = new ArrayList<ShoppingDetail>();
+		ShoppingDetailList=shoppingDetaildao.getList();
 		model.addObject("ShoppingDetailList",ShoppingDetailList);
-		
+		System.out.print("shopping size"+ShoppingDetailList.size());
 		return model;
 	}
 

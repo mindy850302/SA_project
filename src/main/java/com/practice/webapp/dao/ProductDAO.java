@@ -12,5 +12,6 @@ public interface ProductDAO {
     public void update(Product product);
     public void delete(Product product);
     public void average();
+    public void addInventory(Product product);
 
 }

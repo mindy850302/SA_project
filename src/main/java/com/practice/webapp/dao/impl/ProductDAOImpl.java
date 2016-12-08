@@ -61,4 +61,7 @@ public class ProductDAOImpl implements ProductDAO{
     public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
+    public void addInventory(Product product){
+    
+    }
 }

@@ -27,9 +27,12 @@ public class OrderDAOImpl {
 		return getOrder;
 	}
     public void update(Order order){
-    	for(int i=0;i<OrderList.size();i++){
-    		
-    	}
+    	for (int i = 0; i < OrderList.size(); i++) {
+			if (OrderList.get(i).getOrder_id() == order.getOrder_id()) {
+				OrderList.remove(i);
+				OrderList.add(i, order);
+			}
+		}
     }
     public void delete(int id){
     	OrderList.remove((int)id);

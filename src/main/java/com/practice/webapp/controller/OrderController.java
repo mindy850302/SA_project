@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.practice.webapp.dao.OrderDAO;
+import com.practice.webapp.dao.OrderDetailDAO;
 import com.practice.webapp.entity.Order;
+import com.practice.webapp.entity.OrderDetail;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +47,23 @@ public class OrderController {
 	public ModelAndView getOrderDetail(String name) {
 		ModelAndView model = new ModelAndView("OrderDetail");
 		// = model.setViewName("OrderDetail");
+		OrderDAO orderdao = (OrderDAO)context.getBean("OrderDAO"); //defined in spring-webapp.xml
+		OrderDetailDAO orderDetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
+		List<Order> orderList = new ArrayList<Order>();
+		List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
+		orderList=orderdao.getList();
+		orderDetailList=orderDetaildao.getList();
+		Order order=new Order();
+		OrderDetail orderDetail=new OrderDetail();
+		for(int i = 0 ; i < orderList.size();i++){
+			if (1==orderList.get(i).getOrder_id()){
+				order=orderList.get(i);
+			}
+		}
+		model.addObject("Order",order);
+		model.addObject("OrderDetail",orderDetail);
+		model.addObject("OrderList",orderList);
+		model.addObject("OrderDetailList",orderDetailList);
 		model.addObject("message");
 		return model;
 	}
@@ -60,16 +79,23 @@ public class OrderController {
 		ModelAndView model = new ModelAndView("OrderRecord");
 		// = model.setViewName("OrderDetail");
 		OrderDAO orderdao = (OrderDAO)context.getBean("OrderDAO"); //defined in spring-webapp.xml
+		OrderDetailDAO orderDetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
 		List<Order> orderList = new ArrayList<Order>();
+		List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
 		orderList=orderdao.getList();
+		orderDetailList=orderDetaildao.getList();
 		Order order=new Order();
+		OrderDetail orderDetail=new OrderDetail();
 		for(int i = 0 ; i < orderList.size();i++){
 			if (1==orderList.get(i).getOrder_id()){
 				order=orderList.get(i);
 			}
 		}
+		
 		model.addObject("Order",order);
+		model.addObject("OrderDetail",orderDetail);
 		model.addObject("OrderList",orderList);
+		model.addObject("OrderDetailList",orderDetailList);
 		model.addObject("message");
 		return model;
 	}

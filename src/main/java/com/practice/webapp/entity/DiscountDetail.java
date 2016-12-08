@@ -11,6 +11,7 @@ public class DiscountDetail {
 	private int p_amount;
 
 	private int p_total;
+	private Product product = new Product();
 
 	public int getDiscount_id() {
 		return discount_id;
@@ -47,6 +48,15 @@ public class DiscountDetail {
 		this.p_total = p_total;
 
 	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	
 
 
 

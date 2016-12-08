@@ -263,18 +263,28 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/MemberData", method = RequestMethod.GET)
-	public ModelAndView getMemberData(String name) {
+	public ModelAndView getMemberData(String name, HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("MemberData");
+		
 		// = model.setViewName("MemberData");
 		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
 		List<Member> memberList = new ArrayList<Member>();
 		memberList=memberdao.getList();
 		Member member=new Member();
-		for(int i = 0 ; i < memberList.size();i++){
-			if (1==memberList.get(i).getM_id()){
-				member=memberList.get(i);
+		
+		request.getSession().getAttribute("loginsession");
+		String idName=(String)request.getSession().getAttribute("loginsession");
+		MemberDAO Memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
+		List<Member> MemberList = new ArrayList<Member>();
+		MemberList=Memberdao.getList();
+		System.out.print(idName);
+		for(int i = 0 ; i < MemberList.size();i++){
+			if (MemberList.get(i).getM_idName().equals(idName)){
+				member = MemberList.get(i);
+				break;
 			}
 		}
+		
 		model.addObject("Member",member);
 		model.addObject("memberList",memberList);
 		

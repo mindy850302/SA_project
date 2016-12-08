@@ -16,14 +16,14 @@ public class ReturnDetail {
 
 	private int p_total;
 	
-	private Product prodect=new Product();//create a Product class named product,to get p_name
+	private Product product=new Product();//create a Product class named product,to get p_name
 	
-	public Product getProdect() {
-		return prodect;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProdect(Product prodect) {
-		this.prodect = prodect;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public int getReturn_id() {

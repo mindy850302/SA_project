@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -69,134 +68,41 @@
               <thead>
                 <tr>
                   <th>#訂單編號</th>
-                  <th>產品明細</th>
                   <th>訂購人姓名</th>
                   <th>收件人姓名</th>
-                  <th>收件人電話</th>
                   <th>運送地址</th>
+                  <th>收件人電話</th>
                   <th>總金額</th>
                   <th>出貨日期</th>
+                  <th>產品明細</th>
                 </tr>
               </thead>
+            <c:forEach  items="${OrderList}" var="order">
               <tbody>
                 <tr>
-                  <td>1789</td>
-                  <td>MacBook Pro 13寸</td>
+                  <td><c:out value="${order.getOrder_id()}"/></td>
                   <td>許甄珉</td>
-                  <td>魏禎伶</td>
-                  <td>0909268077</td>
-                  <td>台北市</td>
-                  <td>59000</td>
-                  <td>2016/11/02</td>
+                  <td><c:out value="${order.getReceiver_name()}"/></td>
+		          <td><c:out value="${order.getReceiver_address()}"/></td>
+		          <td><c:out value="${order.getReceiver_phone()}"/></td>
+                  <td><c:out value="${order.getTotal()}"/></td>
+                  <td><c:out value="${order.getO_date()}"/></td>
+                  <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModifyProduct<c:out value="${product.getP_id()}" />" style="background-color: #303841;border-color: #101010">明細</button></td>
+                  <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModifyProduct<c:out value="${product.getP_id()}" />">
+						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					  </button>
+				  </td>
+				  <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#mydeleteProduct<c:out value="${product.getP_id()}" />">
+					      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					  </button>
+				  </td>
                 </tr>
               </tbody>
+            </c:forEach>
             </table>
           </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="profile">
-              <h2 id="MacBook_Pro">MacBook Pro</h2>
-            <div class="row">
-              <div class="col-sm-3 col-md-3">
-                <div class="thumbnail">
-                  <img  src="img/macpro1.jpg" alt="...">
-                  <div class="caption">
-                    <center>
-                    <h5>13 吋 MacBook Pro</h5>
-                    <h5 style="color: #777070;line-height: 25px;">2.0GHz 處理器 <br>256GB 儲存容量</h5>
-                    <h5>價錢：43500</h5>
-                    <h5>存貨數量：653</h5>
-                    <h5>上架日期：2016/11/09</h5>
-                    <h5>更新日期：2016/11/09</h5>
-                    <h5>下架日期：2016/11/09</h5>
-                    <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myModifyProduct"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>
-                    <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydeleteProduct"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                    </center>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3 col-md-3">
-                <div class="thumbnail">
-                  <img  src="img/macpro1.jpg" alt="...">
-                  <div class="caption">
-                    <center>
-                    <h5>13 吋 MacBook Pro</h5>
-                    <h5 style="color: #777070;line-height: 25px;">2.0GHz 處理器 <br>256GB 儲存容量</h5>
-                    <h5>價錢：43500</h5>
-                    <h5>存貨數量：653</h5>
-                    <h5>上架日期：2016/11/09</h5>
-                    <h5>更新日期：2016/11/09</h5>
-                    <h5>下架日期：2016/11/09</h5>
-                    <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myModifyProduct"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>
-                    <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydeleteProduct"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                    </center>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3 col-md-3">
-                <div class="thumbnail">
-                  <img  src="img/macpro1.jpg" alt="...">
-                  <div class="caption">
-                    <center>
-                    <h5>13 吋 MacBook Pro</h5>
-                    <h5 style="color: #777070;line-height: 25px;">2.0GHz 處理器 <br>256GB 儲存容量</h5>
-                    <h5>價錢：43500</h5>
-                    <h5>存貨數量：653</h5>
-                    <h5>上架日期：2016/11/09</h5>
-                    <h5>更新日期：2016/11/09</h5>
-                    <h5>下架日期：2016/11/09</h5>
-                    <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myModifyProduct"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>
-                    <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydeleteProduct"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                    </center>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3 col-md-3">
-                <div class="thumbnail">
-                  <img  src="img/macpro1.jpg" alt="...">
-                  <div class="caption">
-                    <center>
-                    <h5>13 吋 MacBook Pro</h5>
-                    <h5 style="color: #777070;line-height: 25px;">2.0GHz 處理器 <br>256GB 儲存容量</h5>
-                    <h5>價錢：43500</h5>
-                    <h5>存貨數量：653</h5>
-                    <h5>上架日期：2016/11/09</h5>
-                    <h5>更新日期：2016/11/09</h5>
-                    <h5>下架日期：2016/11/09</h5>
-                    <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myModifyProduct"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>
-                    <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydeleteProduct"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                    </center>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-         <h2 id="MacBook_Air">MacBook Air</h2>
-          <div class="table-responsive">
-            <div class="col-sm-3 col-md-3">
-                <div class="thumbnail">
-                  <img  src="img/macpro1.jpg" alt="...">
-                  <div class="caption">
-                    <center>
-                    <h5>13 吋 MacBook Pro</h5>
-                    <h5 style="color: #777070;line-height: 25px;">2.0GHz 處理器 <br>256GB 儲存容量</h5>
-                    <h5>價錢：43500</h5>
-                    <h5>存貨數量：653</h5>
-                    <h5>上架日期：2016/11/09</h5>
-                    <h5>更新日期：2016/11/09</h5>
-                    <h5>下架日期：2016/11/09</h5>
-                    <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myModifyProduct"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>
-                    <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydeleteProduct"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                    </center>
-                  </div>
-                </div>
-              </div>
-          </div>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+           
     <!-- Modal -->
     <div class="modal fade" id="myModifyProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">

@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.practice.webapp.dao.MemberDAO;
 import com.practice.webapp.dao.ProductDAO;
 import com.practice.webapp.dao.Product_categoryDAO;
-
+import com.practice.webapp.entity.Discount;
+import com.practice.webapp.entity.DiscountDetail;
+import com.practice.webapp.entity.Member;
 import com.practice.webapp.entity.Product;
 import com.practice.webapp.entity.Product_category;
 
@@ -30,9 +32,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProductController {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
-
-	
-
 	@RequestMapping(value = "/Product/iPhone", method = RequestMethod.GET)
 	public ModelAndView getProductiPhone(String name) {
 		ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
@@ -72,14 +71,12 @@ public class ProductController {
 		// = model.setViewName("Product_Macbook");
 		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
 		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO)context.getBean("Product_categoryDAO");
-
 		List<Product> ProductList = new ArrayList<Product>();
 		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
 		ProductList = Productdao.getList();
 		Product_categoryList = Product_categoryDAO.getList();
 		model.addObject("ProductList", ProductList);
 		model.addObject("Product_categoryList", Product_categoryList);
-		System.out.println(Product_categoryList.get(0).getName());
 		return model;
 	}
 	@RequestMapping(value = "/Product", method = RequestMethod.GET)
@@ -100,7 +97,9 @@ public class ProductController {
 		}
 		Product_categoryList=Product_categoryDAO.getList();
 		model.addObject("Product",product);
+		int click=Productdao.updateClick(product);
 		System.out.println(id);
+		System.out.println(click);
 
 		model.addObject("message");
 		return model;
@@ -118,7 +117,7 @@ public class ProductController {
 		Product_categoryList = Product_categoryDAO.getList();
 		model.addObject("ProductList", ProductList);
 		model.addObject("Product_categoryList", Product_categoryList);
-		System.out.println(Product_categoryList.get(0).getName());
+
 		return model;
 	}
 
@@ -171,8 +170,52 @@ public class ProductController {
 		return model;
 	}
 
-
+	@RequestMapping(value = "/Inventory", method = RequestMethod.GET)
+	public ModelAndView getInventory(String name) {
+		ModelAndView model = new ModelAndView("Inventory");
+		// = model.setViewName("Inventory");
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		ProductList=Productdao.getList();
+		Product product=new Product();
+		for(int i = 0 ; i < ProductList.size();i++){
+			if (ProductList.get(i).getP_inventory()<=20){
+				product=ProductList.get(i);
+			}
+		}
+		model.addObject("ProductList",ProductList);
+		model.addObject("Product",product);
+		model.addObject("message");
+		return model;
+	}
 	
+	@RequestMapping(value = "/addInventory", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
+	public ModelAndView getAddInventory(@ModelAttribute Product aproduct,HttpServletRequest request,@RequestParam("type") String type,@RequestParam("p_inventory") int p_inventory,@RequestParam("inventoryNumber") int inventory) {
+		ModelAndView model = new ModelAndView();
+		// = model.setViewName("Inventory");
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO)context.getBean("Product_categoryDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Product_category> Product_categoryList = new ArrayList<Product_category>();		
+		Product_categoryList = Product_categoryDAO.getList();
+		ProductList=Productdao.getList();
+
+		if (type.equals("modifyInventory")) {
+			int total=inventory+p_inventory;
+			aproduct.setP_inventory(total);
+			
+			Productdao.addInventory(aproduct);
+		
+		}
+		model.addObject("ProductList",ProductList);
+		model.addObject("Product_categoryList",Product_categoryList);
+		model.addObject("message");
+		model.setViewName("redirect:/Inventory");
+
+		return model;
+	}
+	
+
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public ModelAndView search(@ModelAttribute Product product, HttpServletRequest request,
@@ -219,15 +262,21 @@ public class ProductController {
 		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
 		List<Product> ProductList = new ArrayList<Product>();
 		ModelAndView model = new ModelAndView("searchproduct");
-		
 		return model;
-	}
+		}
+	@RequestMapping(value = "/removeInventory", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView deleteMember(@ModelAttribute Product aproduct, HttpServletRequest request,
+			@RequestParam("type") String type) {
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
 
-	@RequestMapping(value = "/Inventory", method = RequestMethod.GET)
-	public ModelAndView getInventory(String name) {
-		ModelAndView model = new ModelAndView("Inventory");
-		// = model.setViewName("Inventory");
-		model.addObject("message");
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+
+		if (type.equals("removeInventory")) {
+			Productdao.delete(aproduct);
+		}
+		model.setViewName("redirect:/AccountList");
 		return model;
 	}
 

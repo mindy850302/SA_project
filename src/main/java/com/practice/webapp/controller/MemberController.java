@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.practice.webapp.dao.A_categoryDAO;
@@ -16,6 +17,7 @@ import com.practice.webapp.dao.MemberDAO;
 import com.practice.webapp.entity.A_category;
 import com.practice.webapp.entity.Administrator;
 import com.practice.webapp.entity.Member;
+import com.practice.webapp.entity.Product;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,7 +62,6 @@ public class MemberController {
 	public ModelAndView getAccountList(String name) {
 		ModelAndView model = new ModelAndView("AccountList");
 		// = model.setViewName("Accountlist");
-
 		MemberDAO memberdao = (MemberDAO) context.getBean("MemberDAO"); // defined
 																		// in
 																		// spring-webapp.xml
@@ -87,31 +88,65 @@ public class MemberController {
 		return model;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView checkLogin(String name) {
-		ModelAndView model = new ModelAndView("index");
-
-		/*
-		 * ServletRequest session = null;
-		 * if(session.getAttribute("login")!=null){
-		 * session.removeAttribute("login"); }
-		 */
-		// = model.setViewName("login");
-		model.addObject("loginsession", "ben");
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView checkLogin(@ModelAttribute Member member) {
+		MemberDAO MemberDAO = (MemberDAO) context.getBean("MemberDAO");
+		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
+		ModelAndView model = new ModelAndView();
+		List<Member> memberList = new ArrayList<Member>();
+		List<Administrator> administratorList = new ArrayList<Administrator>();
+		System.out.println("id before called:" + member.getM_idName());
+		boolean result = MemberDAO.checkLoginMember(member);
+		System.out.println(result);
+		if (result) {
+			model.addObject("loginsession", member.getM_idName());
+			model.setViewName("index");
+		} else {
+			model.setViewName("signup");
+		}
 		return model;
+
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView getLogin(String name) {
+	public ModelAndView getLogin(@ModelAttribute("name") String name, SessionStatus sessionStatus) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
 		ModelAndView model = new ModelAndView("login");
-
+		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
+		List<Member> MemberList = new ArrayList<Member>();
+		MemberList = Memberdao.getList();
+		Member member = new Member();
+		sessionStatus.setComplete();
+		// for(int i =0; i<MemberList.size(); i++){
+		// if(name==MemberList.get(i).getM_name()){
+		// member=MemberList.get(i);
+		// }
+		// }
+		//
 		/*
 		 * ServletRequest session = null;
 		 * if(session.getAttribute("login")!=null){
 		 * session.removeAttribute("login"); }
 		 */
 		// = model.setViewName("login");
+		model.addObject("Member", member);
 		model.addObject("message");
+		return model;
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public ModelAndView getLogOut(SessionStatus sessionStatus) {
+
+		ModelAndView model = new ModelAndView();
+		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
+		List<Member> MemberList = new ArrayList<Member>();
+		MemberList = Memberdao.getList();
+		Member member = new Member();
+
+		// model.addObject("loginsession","logout");
+		sessionStatus.setComplete();
+		model.addObject("Member", member);
+		model.setViewName("redirect:/");
 		return model;
 	}
 
@@ -201,6 +236,7 @@ public class MemberController {
 		model.setViewName("redirect:/AccountList");
 		return model;
 	}
+
 	@RequestMapping(value = "/msearch", method = RequestMethod.POST)
 	public ModelAndView search(@ModelAttribute Member member, HttpServletRequest request,
 		@RequestParam("mkeyword") String mkeyword) {
@@ -223,6 +259,38 @@ public class MemberController {
 		ModelAndView model = new ModelAndView("searchmember");
 		
 		return model;
+	}
+
+	@RequestMapping(value = "/MemberData", method = RequestMethod.GET)
+	public ModelAndView getMemberData(String name) {
+		ModelAndView model = new ModelAndView("MemberData");
+		// = model.setViewName("MemberData");
+		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
+		List<Member> memberList = new ArrayList<Member>();
+		memberList=memberdao.getList();
+		Member member=new Member();
+		for(int i = 0 ; i < memberList.size();i++){
+			if (1==memberList.get(i).getM_id()){
+				member=memberList.get(i);
+			}
+		}
+		model.addObject("Member",member);
+		model.addObject("memberList",memberList);
+		
+		return model;
+	}
+	@RequestMapping(value = "/updateMemberData", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
+	public ModelAndView updateMemberData(@ModelAttribute Member member,HttpServletRequest request,@RequestParam("type") String type){		
+		MemberDAO MemberDAO = (MemberDAO)context.getBean("MemberDAO");
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+		if(type.equals("modifyMemberData")){
+			MemberDAO.update(member);
+		}
+		model.setViewName("redirect:/MemberData");
+		return model; 
+
 	}
 
 }

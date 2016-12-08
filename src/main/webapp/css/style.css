@@ -267,4 +267,3 @@ h1 { font-size: 1.5em; margin: 10px; }
 .rating2 > input:checked ~ label:hover,
 .rating2 > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating2 > input:checked ~ label:hover ~ label { color: #FFED85;  } 
-

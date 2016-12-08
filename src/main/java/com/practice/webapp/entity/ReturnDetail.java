@@ -15,6 +15,16 @@ public class ReturnDetail {
 	private int p_amount;
 
 	private int p_total;
+	
+	private Product prodect=new Product();//create a Product class named product,to get p_name
+	
+	public Product getProdect() {
+		return prodect;
+	}
+
+	public void setProdect(Product prodect) {
+		this.prodect = prodect;
+	}
 
 	public int getReturn_id() {
 		return return_id;

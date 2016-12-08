@@ -17,7 +17,7 @@
 
 <body style="background-image: linear-gradient(to top, rgba(46, 49, 65, 0.7), rgba(46, 49, 65, 0.7)), url(../img/iPad/iPad.jpg)">
 <b>
-	<%@include file="header.jsp"%>
+<%@include file="header.jsp"%>
 <!-- Page Wrapper -->
 	<div id="page-wrapper">
 <!-- Banner -->
@@ -32,7 +32,7 @@
 		<section id="wrapper">
 <!-- One -->
 			<c:forEach  items="${ProductList}" var="product">
-				<c:if test="${product.getP_id()%2 == 1 && product.getP_category() == 2}">
+				<c:if test="${product.getP_id()%2 == 1 && product.getP_category() == 2 && product.isSale()==1}">
             		<section id="one" class="wrapper spotlight style1">
 						<div class="inner">
 							<a href="/webapp/Product?id=${product.getP_id()}" class="image"><img src="<c:out value="${product.getP_image()}"/>" alt="" /></a>
@@ -44,7 +44,7 @@
 						</div>
 					</section>
         		</c:if>
-        		<c:if test="${product.getP_id()%2 == 0 && product.getP_category() == 2}">
+        		<c:if test="${product.getP_id()%2 == 0 && product.getP_category() == 2 && product.isSale()==1}">
             		<section id="two" class="wrapper alt spotlight style2">
 						<div class="inner">
 							<a href="/webapp/Product?id=${product.getP_id()}" class="image"><img src="<c:out value="${product.getP_image()}"/>" alt="" /></a>

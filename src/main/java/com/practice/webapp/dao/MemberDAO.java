@@ -11,6 +11,8 @@ public interface MemberDAO {
     public void delete(Member member);
     public List<Member> search(String keyword);
 	public boolean checkLoginMember(Member member);
+	
+
 //	public int count();
 	
 }

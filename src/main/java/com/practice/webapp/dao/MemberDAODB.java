@@ -262,19 +262,31 @@ public class MemberDAODB implements MemberDAO {
 //	}
 	public boolean checkLoginMember(Member member){
 		boolean flag=false;
-		String sql="SELECT * FROM Member";
+		String sql="SELECT * FROM Member where M_idName =?";
 		
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
+			System.out.println("id:"+member.getM_idName());
+			smt.setString(1, member.getM_idName());
 			rs = smt.executeQuery();
-			while(rs.next()){
+			if(rs.next()){
 				String Member_idName=rs.getString("M_idName");
 				String Member_pwd=rs.getString("M_password");
-				if(Member_idName.equals(member.getM_idName())&&Member_pwd.equals(member.getM_pwd())){
-					flag=true;
+				System.out.println("id2:"+Member_idName);
+				System.out.println("password:"+Member_pwd);
+				
+				if(Member_pwd.equals(member.getM_pwd())){
+					flag=true;//登入成功
 				}
+				else{
+					flag=false;//密碼錯誤，到signup頁面
+					
+				}
+			
+			
 		}
+			
 			rs.close();
 			smt.close();
 		} catch (SQLException e) {

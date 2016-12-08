@@ -19,7 +19,7 @@ public class DiscountDetailDAODB implements DiscountDetailDAO {
 		this.dataSource = dataSource;
 	}
 	public void insert(DiscountDetail discountDetail){
-		String sql = "INSERT INTO DiscountDetail (discount_id,discount_p_id,p_amount,p_total) VALUES(?, ?, ?, ?)";
+		String sql = "INSERT INTO discountDetail (discount_id,discount_p_id,p_amount,p_total) VALUES(?, ?, ?, ?)";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -44,7 +44,7 @@ public class DiscountDetailDAODB implements DiscountDetailDAO {
 		
 	}
 	public void delete(DiscountDetail discountDetail){
-		String sql = "DELETE FROM DiscountDetail WHERE discount_id = ?";
+		String sql = "DELETE FROM discountDetail WHERE discount_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -66,15 +66,15 @@ public class DiscountDetailDAODB implements DiscountDetailDAO {
 
 	}
 	public void update(DiscountDetail discountDetail){
-		String sql = "UPDATE Discount SET discount_id =?, discount_p_id=?,p_amount=?,p_total=?"
+		String sql = "UPDATE discountDetail SET discount_p_id=?,p_amount=?,p_total=? "
 				+ "WHERE discount_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, discountDetail.getDiscount_id());
-			smt.setInt(2, discountDetail.getDiscount_p_id());
-			smt.setInt(3, discountDetail.getP_amount());
-			smt.setInt(4, discountDetail.getP_total());
+			smt.setInt(1, discountDetail.getDiscount_p_id());
+			smt.setInt(2, discountDetail.getP_amount());
+			smt.setInt(3, discountDetail.getP_total());
+			smt.setInt(4, discountDetail.getDiscount_id());
 			smt.executeUpdate();			
 			smt.close();
  
@@ -92,7 +92,7 @@ public class DiscountDetailDAODB implements DiscountDetailDAO {
 		
 	}
 	public List<DiscountDetail> getList() {
-		String sql = "SELECT * FROM DiscountDetail";
+		String sql = "SELECT * FROM discountDetail";
 		return getList(sql);
 		// TODO Auto-generated method stub
 	}
@@ -132,7 +132,7 @@ public class DiscountDetailDAODB implements DiscountDetailDAO {
     public DiscountDetail get(DiscountDetail discountDetail) {
 		// TODO Auto-generated method stub
     	discountDetail = new DiscountDetail();
-		String sql = "SELECT * FROM DiscountDetail WHERE discount_id = ?";
+		String sql = "SELECT * FROM discountDetail WHERE discount_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);

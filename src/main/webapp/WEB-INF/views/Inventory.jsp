@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -78,19 +79,23 @@
                 </tr>
               </thead>
               <tbody>
+              <c:forEach  items="${ProductList}" var="ProductList">
+             	<c:if test="${ProductList.getP_inventory()<=20}" >
                 <tr>
-                  <td><img class="product_img_list"  src="img/macpro1.jpg"></td>
-                  <td>1789</td>
-                  <td>MacBook Pro 13寸</td>
-                  <td>2.0GHz 處理器 , 256GB 儲存容量</td>
-                  <td>43500</td>
-                  <td>450</td>
-                  <td>2016/11/02</td>
-                  <td>2016/11/02</td>
-                  <td>2016/11/02</td>
-                  <td><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myAddInventory">追加存貨</button></td>
-                  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myRemoveProduct">下架產品</button></td>
+                  <td><img class="product_img_list" src="<c:out value="${ProductList.getP_image()}"/>"></td>
+                  <td><c:out value="${ProductList.getP_id()}"/></td>
+                  <td><c:out value="${ProductList.getP_name()}"/></td>
+                  <td><c:out value="${ProductList.getP_describe()}"/></td>
+                  <td><c:out value="${ProductList.getP_price()}"/></td>
+                  <td><c:out value="${ProductList.getP_inventory()}"/></td>
+                  <td><c:out value="${ProductList.getP_onsale_date()}"/></td>
+                  <td><c:out value="${ProductList.getP_update_date()}"/></td>
+                  <td><c:out value="${ProductList.getP_remove_date()}"/></td>
+                  <td><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myAddInventory<c:out value="${ProductList.getP_id()}"/>">追加存貨</button></td>
+                  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myRemoveInventory<c:out value="${ProductList.getP_id()}"/>">下架產品</button></td>
                 </tr>
+                </c:if>
+                </c:forEach>
               </tbody>
             </table>
           </div>
@@ -100,49 +105,61 @@
       </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="myAddInventory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <c:forEach  items="${ProductList}" var="Product">
+    <div class="modal fade" id="myAddInventory<c:out value="${Product.getP_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">追加存貨</h4>
           </div>
-          <div class="modal-body">
-            <form class="form-horizontal">
+          
+            <form class="form-horizontal" method="post" action="addInventory">
+            <div class="modal-body">
+                    <input type="hidden" name="p_id" value="<c:out value="${Product.getP_id()}"/>">
+                	<input type="hidden" name="inventoryNumber" value="<c:out value="${Product.getP_inventory()}"/>">
                 <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">追加量</label>
                 <div class="col-sm-8">
-                  <input type="number" class="form-control" id="inputEmail3" placeholder="追加量" >
+                  <input type="number" class="form-control" id="inputEmail3" placeholder="追加量" name="p_inventory" >
+                  
                 </div>
               </div>
-            </form>
+            
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+            
+            <input type="submit" class="btn btn-primary" name="type" value="modifyInventory"/>
+            </div>
+           </form>
         </div>
       </div>
     </div>
-    <div class="modal fade" id="myRemoveProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">下架</h4>
-                </div>
-                <div class="modal-body">
-                  <p>下架後產品將不顯示於消費者觀看頁面，確定是否下架？</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">確認</button>
-                </div>
-              </div>
-            </div>
-          </div>
+    </c:forEach>
+	<div class="modal fade" id="myRemoveInventory" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">下架</h4>
+				</div>
+				<div class="modal-body">
+					<p>下架後產品將不顯示於消費者觀看頁面，確定是否下架？</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" name="sale"  value="1" >確認</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <!-- Bootstrap core JavaScript
+	<!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

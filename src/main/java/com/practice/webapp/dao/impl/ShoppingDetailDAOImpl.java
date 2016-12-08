@@ -34,9 +34,10 @@ public class ShoppingDetailDAOImpl implements ShoppingDetailDAO{
 	}
 	public ShoppingDetail get(ShoppingDetail shoppingdetail){
 		ShoppingDetail temp =new ShoppingDetail();
-		int id=shoppingdetail.getShopping_cart_id();
+		int m_id=shoppingdetail.getShopping_M_id();
+		int p_id=shoppingdetail.getShopping_M_id();
 		for (int i = 0; i< ShoppingDetailList.size(); i++){
-			if(id==ShoppingDetailList.get(i).getShopping_cart_id()){
+			if((m_id==ShoppingDetailList.get(i).getShopping_M_id())&&(m_id==ShoppingDetailList.get(i).getShopping_p_id())){
 				temp=ShoppingDetailList.get(i);
 			}
 			
@@ -44,9 +45,10 @@ public class ShoppingDetailDAOImpl implements ShoppingDetailDAO{
 		return temp;
 	}
     public void update(ShoppingDetail shoppingdetail){
-		int id=shoppingdetail.getShopping_cart_id();
+    	int m_id=shoppingdetail.getShopping_M_id();
+		int p_id=shoppingdetail.getShopping_M_id();
 		for (int i = 0; i< ShoppingDetailList.size(); i++){
-			if(id==ShoppingDetailList.get(i).getShopping_cart_id()){
+			if((m_id==ShoppingDetailList.get(i).getShopping_M_id())&&(p_id==ShoppingDetailList.get(i).getShopping_p_id())){
 				ShoppingDetailList.get(i).setShopping_p_id(shoppingdetail.getShopping_p_id());
 				ShoppingDetailList.get(i).setP_amount(shoppingdetail.getP_amount());
 				ShoppingDetailList.get(i).setP_total(shoppingdetail.getP_total());
@@ -56,11 +58,12 @@ public class ShoppingDetailDAOImpl implements ShoppingDetailDAO{
 		}
     }
     public void delete(ShoppingDetail shoppingdetail){
-    	int id=shoppingdetail.getShopping_cart_id();
+    	int m_id=shoppingdetail.getShopping_M_id();
+		int p_id=shoppingdetail.getShopping_M_id();
 		// loop through the productList to reset id
 		for (int i = 0; i< ShoppingDetailList.size(); i++){
-			if(id==ShoppingDetailList.get(i).getShopping_cart_id()){
-				ShoppingDetailList.remove(id);
+			if((m_id==ShoppingDetailList.get(i).getShopping_M_id())&&(p_id==ShoppingDetailList.get(i).getShopping_p_id())){
+				ShoppingDetailList.remove(i);
 			}
 		}
     }

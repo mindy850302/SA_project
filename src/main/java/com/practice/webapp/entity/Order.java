@@ -8,8 +8,6 @@ public class Order {
 
 	private int order_M_id;
 
-	private int cart_id;
-
 	private String O_date;
 
 	private String receiver_name;
@@ -17,6 +15,8 @@ public class Order {
 	private String receiver_phone;
 
 	private String receiver_address;
+	
+	private int total;
 
 	public int getOrder_id() {
 		return order_id;
@@ -34,12 +34,12 @@ public class Order {
 		this.order_M_id = order_M_id;
 	}
 
-	public int getCart_id() {
-		return cart_id;
+	public int getTotal() {
+		return total;
 	}
 
-	public void setCart_id(int cart_id) {
-		this.cart_id = cart_id;
+	public void setTotal(int total) {
+		this.total = total;
 	}
 
 	public String getO_date() {

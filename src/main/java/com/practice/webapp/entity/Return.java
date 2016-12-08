@@ -13,6 +13,26 @@ public class Return {
 	private int return_total;
 
 	private int return_A_id;
+	
+	private Member member=new Member();
+	
+	private Administrator administrato=new Administrator();
+	
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	public Administrator getAdministrato() {
+		return administrato;
+	}
+
+	public void setAdministrato(Administrator administrato) {
+		this.administrato = administrato;
+	}
 
 	public int getReturn_id() {
 		return return_id;

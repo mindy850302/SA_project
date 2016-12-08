@@ -61,7 +61,22 @@ public class ProductDAOImpl implements ProductDAO{
     public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
+
     public void addInventory(Product product){
+    	
+    }
     
+
+    public int updateClick(Product product){
+    	int click=0;
+    	for (int i = 0; i < ProductList.size(); i++) {
+			if (ProductList.get(i).getP_id() == product.getP_id()) {
+				click=ProductList.get(i).getClick_count();
+				System.out.println("hi");
+				ProductList.get(i).setClick_count(click);
+			}
+		}
+    	return click;
+
     }
 }

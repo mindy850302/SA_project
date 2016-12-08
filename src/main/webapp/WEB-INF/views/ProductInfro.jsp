@@ -255,8 +255,8 @@
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label">產品狀態</label>
 							<div class="col-sm-8">
-								<input type="radio" id="Member_check_add" name="sale"checked="checked" value="0" />&nbsp&nbsp上架<br> <input
-									id="Administor_check_add" type="radio" name="sale" value="1" />&nbsp&nbsp下架
+								<input type="radio" id="Member_check_add" name="sale"checked="checked" value="1" />&nbsp&nbsp上架<br> <input
+									id="Administor_check_add" type="radio" name="sale" value="0" />&nbsp&nbsp下架
 								
 							</div>
 						</div>

@@ -12,8 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.practice.webapp.dao.MemberDAO;
 import com.practice.webapp.dao.ProductDAO;
 import com.practice.webapp.dao.Product_categoryDAO;
+
 import com.practice.webapp.entity.Discount;
 import com.practice.webapp.entity.DiscountDetail;
+
 import com.practice.webapp.entity.Member;
 import com.practice.webapp.entity.Product;
 import com.practice.webapp.entity.Product_category;
@@ -80,7 +82,7 @@ public class ProductController {
 		return model;
 	}
 	@RequestMapping(value = "/Product", method = RequestMethod.GET)
-	public ModelAndView getiPhone7(@ModelAttribute("id") int id) {
+	public ModelAndView getiPhone7(@ModelAttribute("id") int id,HttpServletRequest request) {
 		ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
 		ModelAndView model = new ModelAndView("Product");
 		// = model.setViewName("Product");
@@ -95,8 +97,21 @@ public class ProductController {
 				product=ProductList.get(i);
 			}
 		}
+		request.getSession().getAttribute("loginsession");
+		String idName=(String) request.getSession().getAttribute("loginsession");
+		int M_id=0;
+		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
+		List<Member> MemberList = new ArrayList<Member>();
+		MemberList = Memberdao.getList();
+		for(int i =0;i<MemberList.size();i++){
+			if(MemberList.get(i).getM_idName().equals(idName)){
+				M_id=MemberList.get(i).getM_id();
+				break;
+			}
+		}
 		Product_categoryList=Product_categoryDAO.getList();
 		model.addObject("Product",product);
+		model.addObject("M_id",M_id);
 		int click=Productdao.updateClick(product);
 		System.out.println(id);
 		System.out.println(click);

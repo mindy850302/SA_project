@@ -17,38 +17,59 @@
     
  <%@include file="header.jsp"%>
  
-  <div class="container">
-    <div class="row" style="margin-top: 50px;">
+  <div class="container" style="margin-top: 80px;">
+    <div class="row" style="margin-top: 120px;">
     <div class="col-lg-1 col-md-1"></div>
     <div class="col-lg-10 col-md-10" style="border: 1px solid #c8c8c8;border-radius: 5px;box-shadow: 6px 0px 73px -6px rgba(0,0,0,0.75);background-color: #FFFFFF;color: #252830;">
-      <h3>訂單編號：1345678</h3>
+      <h3>訂單編號：<c:out value="${order_id}"></c:out></h3>
       <table class="table table-hover" style="margin-top: 20px;">
+      <c:forEach items="${orderDetailList}" var="orderDetail">
+      <c:if test="${orderDetail.getOrderDetail_id()==order_id}">
         <tr>
-          <td><img style="width: 150px;" src="img/macpro1.jpg"></td>
-          <td>1190</td>
-          <td>MacBook Pro 13寸</td> 
-          <td>NT.&nbsp23900</td>
-          <td>數量&nbsp:&nbsp 1</td>
-          <td>NT.&nbsp23900</td>
+          <td><img style="width:140px;" src="<c:out value="${orderDetail.getProduct().getP_image()}"></c:out>"></td>
+          <td><c:out value="${orderDetail.getProduct().getP_name()}"></c:out></td>
+          <td><c:out value="${orderDetail.getProduct().getP_price()}"></c:out></td> 
+          <td><c:out value="${orderDetail.getP_amount()}"></c:out></td>
+          <td><c:out value="${orderDetail.getP_total()}"></c:out></td>
         </tr>
-        <tr>
-          <td><img style="width: 150px;" src="img/macpro2.jpg"></td>
-          <td>1191</td>
-          <td>MacBook Pro 13寸</td> 
-          <td>NT.&nbsp43500</td>
-          <td>數量&nbsp:&nbsp 2</td>
-          <td>NT.&nbsp87000</td>
-        </tr>
+       </c:if>
+       </c:forEach>
       </table>
       <hr>
+      <c:forEach items="${orderList}" var="order1">
+      <c:if test="${order1.getOrder_id()==order_id}">
       <div class="row">
         <div class="col-lg-8 ">
           <h6>欲使用銀行轉帳付款，請致電 0800-020-021。 </h6>
         </div>
         <div class="col-lg-4 ">
-          <h4>總金額 ： NT . 10900</h4>
+          <h4>總金額 ： NT . <c:out value="${order1.getTotal()}"></c:out></h4>
         </div>
       </div>
+      <div class="row">
+      <div class="col-lg-4 ">
+      </div>
+        <div class="col-lg-8 ">
+          <h4>收件人姓名 :<c:out value="${order1.getReceiver_name()}"></c:out></h4>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col-lg-4 ">
+      </div>
+        <div class="col-lg-8 ">
+          <h4>收件人電話 :  <c:out value="${order1.getReceiver_phone()}"></c:out></h4>
+        </div>
+        
+      </div>
+      <div class="row">
+      <div class="col-lg-4 ">
+      </div>
+        <div class="col-lg-8 ">
+          <h4>收件人地址 : <c:out value="${order1.getReceiver_address()}"></c:out></h4>
+        </div>
+      </div>
+      </c:if>
+      </c:forEach>
       <div class="row">
         <div class="col-lg-12">
           <table class="table table-striped" style="margin-top: 20px;">

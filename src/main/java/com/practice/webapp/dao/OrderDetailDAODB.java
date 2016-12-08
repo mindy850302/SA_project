@@ -40,6 +40,7 @@ public class OrderDetailDAODB implements OrderDetailDAO{
 				orderDetail.setOrder_p_id(rs.getInt("order_p_id"));
 				orderDetail.getProduct().setP_name(rs.getString("p_name"));
 				orderDetail.getProduct().setP_price(rs.getInt("p_price"));
+				orderDetail.getProduct().setP_image(rs.getString("p_image"));
 				orderDetail.setP_amount(rs.getInt("p_amount"));
 				orderDetail.setP_total(rs.getInt("p_price")*rs.getInt("p_amount"));
 				OrderDetailList.add(orderDetail);
@@ -95,6 +96,7 @@ public class OrderDetailDAODB implements OrderDetailDAO{
 			if(rs.next()){
 				orderDetail.setOrder_p_id(rs.getInt("order_p_id"));
 				orderDetail.setP_amount(rs.getInt("p_amount"));
+				orderDetail.getProduct().setP_image(rs.getString("p_image"));
 				orderDetail.setP_total(rs.getInt("p_total"));
 			}
 			rs.close();

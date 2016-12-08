@@ -277,6 +277,35 @@ public class ProductDAODB implements ProductDAO {
     	return click;
     }
 
-	
+	public void addInventory(Product product) {
+		
+
+			String sql= "UPDATE product SET p_inventory= ? "
+				+ "WHERE p_id = ?";
+			try {
+				conn = dataSource.getConnection();
+				smt = conn.prepareStatement(sql);
+				smt.setInt(1, product.getP_inventory());
+				
+				smt.setInt(2, product.getP_id());
+				
+				smt.executeUpdate();
+				System.out.println("database"+product.getP_id());
+				smt.close();
+				
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+
+			} finally {
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+					}
+				}
+			
+		}
+	}
+
 
 }

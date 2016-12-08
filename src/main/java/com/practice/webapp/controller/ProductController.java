@@ -127,8 +127,9 @@ public class ProductController {
 		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO"); // define								
 		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO) context.getBean("Product_categoryDAO");
 		List<Product> ProductList = new ArrayList<Product>();
-		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
 		ProductList = Productdao.getList();
+		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
+		
 		Product_categoryList = Product_categoryDAO.getList();
 		model.addObject("ProductList", ProductList);
 		model.addObject("Product_categoryList", Product_categoryList);
@@ -222,27 +223,93 @@ public class ProductController {
 			Productdao.addInventory(aproduct);
 		
 		}
-	
-
 		model.addObject("ProductList",ProductList);
 		model.addObject("Product_categoryList",Product_categoryList);
 		model.addObject("message");
 		model.setViewName("redirect:/Inventory");
+
 		return model;
 	}
-	@RequestMapping(value = "/removeInventory", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-	public ModelAndView deleteMember(@ModelAttribute Product aproduct, HttpServletRequest request,
-			@RequestParam("type") String type) {
+	
+
+
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public ModelAndView search(@ModelAttribute Product product, HttpServletRequest request,
+		@RequestParam("keyword") String keyword) {
 		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		ModelAndView model = new ModelAndView("searchresult");
+		//ModelAndView model1 = new ModelAndView("searchproduct");
+		List<Product> ProductList = new ArrayList<Product>();
+		//List<Product> Product1List = new ArrayList<Product>();
+		ProductList=Productdao.search(keyword);
+		//Product1List=Productdao.search(searchword);
+		model.addObject("ProductList",ProductList);
+		//model1.addObject("Product1List",Product1List);
+		//model.setViewName("redirect:/searchresult");
+		return model;
+		
+	}
+	@RequestMapping(value = "/searchresult", method = RequestMethod.GET)
+	public ModelAndView searchresullt(@ModelAttribute Product product, HttpServletRequest request) {
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		ModelAndView model = new ModelAndView("searchresult");
+		
+		return model;
+	}
+	@RequestMapping(value = "/psearch", method = RequestMethod.POST)
+	public ModelAndView psearch(@ModelAttribute Product product, HttpServletRequest request,
+		@RequestParam("searchword") String searchword) {
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		ModelAndView model = new ModelAndView("searchproduct");
+		//ModelAndView model1 = new ModelAndView("searchproduct");
+		List<Product> ProductList = new ArrayList<Product>();
+		//List<Product> Product1List = new ArrayList<Product>();
+		ProductList=Productdao.search(searchword);
+		//Product1List=Productdao.search(searchword);
+		model.addObject("ProductList",ProductList);
+		//model1.addObject("Product1List",Product1List);
+		//model.setViewName("redirect:/searchresult");
+		return model;
+		
+	}
+	@RequestMapping(value = "/searchword", method = RequestMethod.GET)
+	public ModelAndView searchword(@ModelAttribute Product product, HttpServletRequest request) {
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		ModelAndView model = new ModelAndView("searchproduct");
+		return model;
+		}
+	@RequestMapping(value = "/removeInventory", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView deleteMember(@ModelAttribute Product aproduct, HttpServletRequest request,@RequestParam("sale") int sale,
+			@RequestParam("type") String type) {
 
 		ModelAndView model = new ModelAndView();
-		System.out.println(request.getCharacterEncoding());
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO)context.getBean("Product_categoryDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Product_category> Product_categoryList = new ArrayList<Product_category>();		
+		Product_categoryList = Product_categoryDAO.getList();
+		ProductList=Productdao.getList();
 		System.out.println(type);
 
-		if (type.equals("removeInventory")) {
-			Productdao.delete(aproduct);
+		if (type.equals("removeInventory")) {			
+			int saleCheck=0;
+			Product removeProduct =new Product();
+			for(int i=0;i<ProductList.size();i++){
+				if(aproduct.getP_id()==ProductList.get(i).getP_id()){
+					removeProduct=ProductList.get(i);
+					break;
+				}
+			}
+			removeProduct.setSale(saleCheck);
+			Productdao.update(removeProduct);
+
 		}
-		model.setViewName("redirect:/AccountList");
+		model.addObject("ProductList",ProductList);
+		model.addObject("Product_categoryList",Product_categoryList);
+		model.addObject("message");
+		model.setViewName("redirect:/Inventory");
 		return model;
 	}
 

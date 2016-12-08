@@ -23,7 +23,7 @@ public class ProductDAODB implements ProductDAO {
 		this.dataSource = dataSource;
 	}
 
-	public List<Product> getList(){
+	public List<Product> getList() {
 
 		String sql = "SELECT * FROM product";
 		return getList(sql);
@@ -83,7 +83,7 @@ public class ProductDAODB implements ProductDAO {
 			smt.setString(6, product.getP_name());
 			smt.setInt(7, product.getP_price());
 			smt.setString(8, product.getP_onsale_date());
-			smt.setBoolean(9,product.isSale());
+			smt.setBoolean(9, product.isSale());
 			smt.executeUpdate();
 			smt.close();
 
@@ -193,6 +193,52 @@ public class ProductDAODB implements ProductDAO {
 		}
 	}
 
+	@Override
+	public List<Product> search(String keyword) {
+		List<Product> ProductList = new ArrayList<Product>();
+		
+		String sql = "SELECT * FROM product WHERE p_name LIKE '%"+keyword+"%'";
+		System.out.println(sql);
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			System.out.println(keyword);
+			
+			rs = smt.executeQuery();
+			while (rs.next()) {
+				Product product = new Product();
+				product.setP_id(rs.getInt("p_id"));
+				product.setP_category(rs.getInt("p_category"));
+				product.setClick_count(rs.getInt("click_count"));
+				product.setP_describe(rs.getString("p_describe"));
+				product.setP_image(rs.getString("p_image"));
+				product.setP_inventory(rs.getInt("p_inventory"));
+				product.setP_name(rs.getString("p_name"));
+				product.setP_price(rs.getInt("p_price"));
+				product.setP_onsale_date(rs.getString("p_onsale_date"));
+				product.setP_remove_date(rs.getString("p_remove_date"));
+				product.setP_update_date(rs.getString("p_update_date"));
+				ProductList.add(product);
+			}
+			rs.close();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+
+			}
+
+		}
+		return ProductList;
+	}
+
 	public void average() {
 		List<Product> ProductList = new ArrayList<Product>();
 		for (int i = 0; i < ProductList.size(); i++) {
@@ -224,7 +270,5 @@ public class ProductDAODB implements ProductDAO {
 			}
 		}
 	}
-
-	
 
 }

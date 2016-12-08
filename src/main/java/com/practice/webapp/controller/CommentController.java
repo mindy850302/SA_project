@@ -1,6 +1,9 @@
 package com.practice.webapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +32,7 @@ public class CommentController {
 		CommentDAO commentDAO = (CommentDAO) context.getBean("CommentDAO");
 		ModelAndView model = new ModelAndView("CommentList");
 		// = model.setViewName("CommentList");
-		List<Comment>CommentList = commentDAO.getList();
+		List<Comment>CommentList = new ArrayList<Comment>();
 		CommentList = commentDAO.getList();
 		model.addObject("CommentList", CommentList);
 		return model;
@@ -40,7 +43,11 @@ public class CommentController {
 			@RequestParam("type") String type) {
 		CommentDAO commentDAO = (CommentDAO) context.getBean("CommentDAO");
 		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+		if (type.equals("insertComment")) {
 		commentDAO.insert(comment);
+		}
 		model.setViewName("redirect:/CommentList");
 		return model;
 

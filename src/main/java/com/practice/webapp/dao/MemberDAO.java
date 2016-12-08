@@ -9,6 +9,7 @@ public interface MemberDAO {
 	public Member get(Member member);
     public void update(Member member);
     public void delete(Member member);
+    public List<Member> search(String keyword);
 	public boolean checkLoginMember(Member member);
 //	public int count();
 	

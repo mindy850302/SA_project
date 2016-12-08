@@ -112,8 +112,9 @@ public class ProductController {
 		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO"); // define								
 		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO) context.getBean("Product_categoryDAO");
 		List<Product> ProductList = new ArrayList<Product>();
-		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
 		ProductList = Productdao.getList();
+		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
+		
 		Product_categoryList = Product_categoryDAO.getList();
 		model.addObject("ProductList", ProductList);
 		model.addObject("Product_categoryList", Product_categoryList);
@@ -173,11 +174,52 @@ public class ProductController {
 
 	
 
-	@RequestMapping(value = "/shoppingCart", method = RequestMethod.GET)
-	public ModelAndView getShoppingCart(String name) {
-		ModelAndView model = new ModelAndView("shoppingCart");
-		// = model.setViewName("shoppingCart");
-		model.addObject("message");
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public ModelAndView search(@ModelAttribute Product product, HttpServletRequest request,
+		@RequestParam("keyword") String keyword) {
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		ModelAndView model = new ModelAndView("searchresult");
+		//ModelAndView model1 = new ModelAndView("searchproduct");
+		List<Product> ProductList = new ArrayList<Product>();
+		//List<Product> Product1List = new ArrayList<Product>();
+		ProductList=Productdao.search(keyword);
+		//Product1List=Productdao.search(searchword);
+		model.addObject("ProductList",ProductList);
+		//model1.addObject("Product1List",Product1List);
+		//model.setViewName("redirect:/searchresult");
+		return model;
+		
+	}
+	@RequestMapping(value = "/searchresult", method = RequestMethod.GET)
+	public ModelAndView searchresullt(@ModelAttribute Product product, HttpServletRequest request) {
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		ModelAndView model = new ModelAndView("searchresult");
+		
+		return model;
+	}
+	@RequestMapping(value = "/psearch", method = RequestMethod.POST)
+	public ModelAndView psearch(@ModelAttribute Product product, HttpServletRequest request,
+		@RequestParam("searchword") String searchword) {
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		ModelAndView model = new ModelAndView("searchproduct");
+		//ModelAndView model1 = new ModelAndView("searchproduct");
+		List<Product> ProductList = new ArrayList<Product>();
+		//List<Product> Product1List = new ArrayList<Product>();
+		ProductList=Productdao.search(searchword);
+		//Product1List=Productdao.search(searchword);
+		model.addObject("ProductList",ProductList);
+		//model1.addObject("Product1List",Product1List);
+		//model.setViewName("redirect:/searchresult");
+		return model;
+		
+	}
+	@RequestMapping(value = "/searchword", method = RequestMethod.GET)
+	public ModelAndView searchword(@ModelAttribute Product product, HttpServletRequest request) {
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		ModelAndView model = new ModelAndView("searchproduct");
+		
 		return model;
 	}
 

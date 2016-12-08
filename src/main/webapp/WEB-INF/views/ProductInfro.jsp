@@ -47,25 +47,22 @@
 
 <body>
 	<%@include file="headerBackground.jsp"%>
-	<%
-		request.setCharacterEncoding("utf-8");
-	%>
-	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
-		style="color: #252830;">
+	<%request.setCharacterEncoding("utf-8");%>
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"style="color: #252830;">
 		<div class="row">
 			<div class="col-lg-6">
 				<h1 class="page-header">產品列表</h1>
 			</div>
 			<div class="col-lg-3">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search for..."
-						style="border-radius: 40px;"> <span
-						class="input-group-btn">
-						<button class="btn btn-default" type="button"
-							style="border-radius: 40px;">
+				<form class="navbar-form navbar-right" role="search" action="psearch" method="POST">
+					<input type="text" class="form-control"name="searchword" placeholder="Search for..."style="border-radius: 40px;"> 
+						<span class="input-group-btn">
+						<button type="submit"class="btn btn-default"style="border-radius: 40px;">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						</button>
 					</span>
+					</form>
 				</div>
 				<!-- /input-group -->
 			</div>

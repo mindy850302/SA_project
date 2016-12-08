@@ -14,6 +14,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.practice.webapp.entity.Member;
+import com.practice.webapp.entity.Product;
 
 public class MemberDAODB implements MemberDAO {
 	private DataSource dataSource;
@@ -187,6 +188,49 @@ public class MemberDAODB implements MemberDAO {
 				} catch (SQLException e) {}
 			}
 		}
+	}
+	public List<Member> search(String keyword) {
+		List<Member> MemberList = new ArrayList<Member>();
+		
+		String sql = "SELECT * FROM Member WHERE M_name LIKE '%"+keyword+"%'";
+		System.out.println(sql);
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			System.out.println(keyword);
+			
+			rs = smt.executeQuery();
+			while (rs.next()) {
+				Member member = new Member();
+				member.setM_id(rs.getInt("M_id"));
+				member.setM_email(rs.getString("M_email"));
+				member.setM_address(rs.getString("M_address"));
+				member.setM_discount(rs.getInt("M_discount"));
+				member.setM_pwd(rs.getString("M_password"));
+				member.setM_create_date(rs.getString("M_create_date"));
+				member.setM_update_date(rs.getString("M_update_date"));
+				member.setM_name(rs.getString("M_name"));
+				member.setM_phone(rs.getString("M_phone"));
+				member.setM_idName(rs.getString("M_idName"));
+				MemberList.add(member);
+			}
+			rs.close();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+
+			}
+
+		}
+		return MemberList;
 	}
 
 //	public int count(){

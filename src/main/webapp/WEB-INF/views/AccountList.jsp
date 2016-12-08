@@ -56,10 +56,12 @@
           </div>
           <div class="col-lg-3">
               <div class="input-group"">
-                <input type="text" class="form-control" placeholder="Search for..." style="border-radius: 40px;">
+              <form class="navbar-form navbar-right" role="search" action="msearch" method="POST">
+                <input type="text" class="form-control"name="mkeyword" placeholder="Search for member" style="border-radius: 40px;">
                 <span class="input-group-btn" >
-                  <button class="btn btn-default" type="button" style="border-radius: 40px;"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
+                  <button class="btn btn-default" type="submit" style="border-radius: 40px;"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
                 </span>
+                </form>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
              <div class="col-lg-3">
@@ -229,7 +231,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary" name="type" value="modifyMember" >Save changes
+            <input type="submit" class="btn btn-primary" name="type" value="modifyMember" >
           </div>
         
         </form>

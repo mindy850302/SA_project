@@ -32,7 +32,7 @@
   <body class="align" style="margin-top:160px; ">
 
     <div class="grid">
-    <form action="MemberData" method="get"></form>>
+    <form action="MemberData" method="get"></form>
       <div class="form login">
         <table class="table table-striped">
 

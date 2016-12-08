@@ -13,14 +13,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.practice.webapp.dao.A_categoryDAO;
 import com.practice.webapp.dao.AdministratorDAO;
 import com.practice.webapp.dao.MemberDAO;
+
 import com.practice.webapp.entity.A_category;
 import com.practice.webapp.entity.Administrator;
 import com.practice.webapp.entity.Member;
 import com.practice.webapp.entity.Product;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -51,6 +53,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @SessionAttributes("loginsession")
+
 
 public class MemberController {
 
@@ -234,6 +237,31 @@ public class MemberController {
 		model.setViewName("redirect:/AccountList");
 		return model;
 	}
+
+	@RequestMapping(value = "/msearch", method = RequestMethod.POST)
+	public ModelAndView search(@ModelAttribute Member member, HttpServletRequest request,
+		@RequestParam("mkeyword") String mkeyword) {
+		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
+		ModelAndView model = new ModelAndView("searchmember");
+		
+		List<Member> MemberList = new ArrayList<Member>();
+
+		MemberList=Memberdao.search(mkeyword);
+		
+		model.addObject("MemberList",MemberList);
+	
+		return model;
+		
+	}
+	@RequestMapping(value = "/searchmember", method = RequestMethod.GET)
+	public ModelAndView searchmember(@ModelAttribute Member member, HttpServletRequest request) {
+		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
+		List<Member> MemberList = new ArrayList<Member>();
+		ModelAndView model = new ModelAndView("searchmember");
+		
+		return model;
+	}
+
 	@RequestMapping(value = "/MemberData", method = RequestMethod.GET)
 	public ModelAndView getMemberData(String name) {
 		ModelAndView model = new ModelAndView("MemberData");
@@ -263,6 +291,7 @@ public class MemberController {
 		}
 		model.setViewName("redirect:/MemberData");
 		return model; 
+
 	}
 
 }

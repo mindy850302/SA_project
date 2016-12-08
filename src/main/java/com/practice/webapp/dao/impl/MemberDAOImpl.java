@@ -64,6 +64,9 @@ public class MemberDAOImpl implements MemberDAO{
 			}
 		}
     }
+    public List<Member> search(String keyword){
+    	return MemberList;
+    }
     
 	public boolean checkLoginMember(Member member){
 		String M_idName=member.getM_idName();

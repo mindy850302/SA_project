@@ -15,61 +15,37 @@
 </head>
 <body style="background-color: #434856;color: #181A19;">
   <%@include file="header.jsp"%>
-    <!-- <div style="height: 60px;">
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-nav">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <!-- <center>
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#" style="margin-right: 120px;"><img src="img/tools.png"></a>
-      </div> -->
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      
-      <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="#"><b>About US</b></a></li>
-          <li><a href="#"><b>iPhone</b></a></li>
-          <li><a href="#"><b>iPad</b></a></li>
-          <li><a href="#"><b>MacBook</b></a></li>
-          <li><a href="#"><b>Contact US</b></a></li>
-          <li><a href="#"><b>Sign up</b></a></li>
-          <li><a href="#"><b>Sign in</b></a></li>
-        </ul> -->
-<!--       </div> --><!-- /.navbar-collapse -->
-      <!-- </center> -->
-    <!-- </div> --><!-- /.container-fluid -->
- <!--  </nav>
-  </div> --> 
   <div class="container" style="margin-top:80px;">
     <div class="row" style="margin-top: 50px;">
     <div class="col-lg-12 col-md-10" style="border: 1px solid #c8c8c8;border-radius: 5px;box-shadow: 6px 0px 73px -6px rgba(0,0,0,0.75);background-color: #FFFFFF;color: #252830;">
       <h3>你購物袋中的項目</h3>
       <table class="table table-hover" style="margin-top: 20px;">
       			<tr>
-      			<center>
-     			  <th></th>
+      		     <th></th>
 		          <th>產品名稱</th> 
 		          <th>產品價錢</th>
 		          <th>數量</th>
 		          <th>總額</th>
-		         </center>
+		          <th></th>
+		         <th></th>
+		         
 		        </tr>
         <c:forEach items="${ShoppingDetailList}" var="shoppingdetail">
-     		<c:if test="${shoppingdetail.getMember().getM_idName() =='black'}">
+        
+     		<c:if test="${shoppingdetail.getShopping_M_id() == my_id}">
      			<tr>
      			  <td><img style="width: 140px;" src="<c:out value="${shoppingdetail.getProduct().getP_image()}"></c:out>"></td>
 		          <td><c:out value="${shoppingdetail.getProduct().getP_name()}"></c:out></td> 
 		          <td>ＮＴ.<c:out value="${shoppingdetail.getProduct().getP_price()}"></c:out></td>
 		          <td><c:out value="${shoppingdetail.getP_amount()}"></c:out></td>
 		          <td>ＮＴ.<c:out value="${shoppingdetail.getP_total()}"></c:out></td>
-		          <td><button type="button" class="btn btn-danger"><img src="img/garbage.png"></button></td>
+		          <td><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myModify<c:out value="${shoppingdetail.getShopping_M_id()}"/>_<c:out value="${shoppingdetail.getShopping_p_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></td>
+		          <form action="deleteShoppingDetail" method="post">
+		          	<input type="hidden" name="shopping_M_id" value="<c:out value="${shoppingdetail.getShopping_M_id()}"></c:out>">
+		          	<input type="hidden" name="shopping_p_id" value="<c:out value="${shoppingdetail.getShopping_p_id()}"></c:out>">
+		          	<td><button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myDelete<c:out value="${shoppingdetail.getShopping_M_id()}"/><c:out value="${shoppingdetail.getShopping_p_id()}"/>"><img src="img/garbage.png"></button></td>
+		          </form>
 		        </tr>
      		</c:if>
      	</c:forEach>
@@ -80,93 +56,48 @@
           <h6>欲使用銀行轉帳付款，請致電 0800-020-021。 </h6>
         </div>
         <div class="col-lg-4 ">
-          <h4>總金額 ： NT . 10900</h4>
+        <c:if test="${total==0 }"><h4>購物車內尚無產品</h4></c:if>
+          <c:if test="${total!=0 }"><h4>總額 : N T.<c:out value="${total}"></c:out></h4>
+		         </div>
+		          	<div class="row">
+		        <h3 style="margin-left:50px;">填寫訂購資訊</h3>
+		        <div class="col-lg-2 col-sm-0"></div>
+		        <div class="col-lg-9 col-sm-12">
+				<form action="makeOrder" method="post">
+				<input type="hidden" name="order_M_id" value="<c:out value="${my_id}"></c:out>">
+				<input type="hidden" name="total" value="<c:out value="${total}"></c:out>">
+				
+		          <div class="input-group" style="margin-top: 20px;">
+		          <span class="input-group-addon" id="basic-addon1">收件人姓名 ：</span>
+		          <input type="text" class="form-control" name="receiver_name" placeholder="請輸入收件人姓名" aria-describedby="basic-addon1">
+		          </div>
+		          <div class="input-group" style="margin-top: 20px;">
+		          <span class="input-group-addon" id="basic-addon1">電話 ：</span>
+		          <input type="text" class="form-control" name="receiver_phone" placeholder="請輸入電話" aria-describedby="basic-addon1">
+		          </div>
+		          <div class="input-group" style="margin-top: 20px;">
+		          <span class="input-group-addon" id="basic-addon1">地址 ：</span>
+		          <input type="text" class="form-control" name="receiver_address" placeholder="請輸入地址" aria-describedby="basic-addon1">
+		        </div>
+		        </div>
+		        <div class="col-lg-2 col-sm-0"></div>
+		      </div>
+		      <div class="row" style="margin-top: 20px;">
+		        <div class="col-lg-9 ">
+		        </div>
+		        <div class="col-lg-3 ">
+		          <button type="submit" class="btn btn-default btn-lg" style="padding:10px 30px;margin-bottom: 40px;" data-toggle="modal" data-target="#myModal">結帳</button>
+		        </div>
+		        </form>
+		      </div>
+          </c:if>
         </div>
       </div>
       <hr>
-      <div class="row">
-        <h3>&nbsp&nbsp填寫訂購資訊</h3>
-        <div class="col-lg-1 col-sm-0"></div>
-        <div class="col-lg-9 col-sm-12">
-
-          <div class="input-group" style="margin-top: 20px;">
-          <span class="input-group-addon" id="basic-addon1">收件人姓名 ：</span>
-          <input type="text" class="form-control" placeholder="請輸入收件人姓名" aria-describedby="basic-addon1">
-          </div>
-          <div class="input-group" style="margin-top: 20px;">
-          <span class="input-group-addon" id="basic-addon1">電話 ：</span>
-          <input type="text" class="form-control" placeholder="請輸入電話" aria-describedby="basic-addon1">
-          </div>
-          <div class="input-group" style="margin-top: 20px;">
-          <span class="input-group-addon" id="basic-addon1">地址 ：</span>
-          <input type="text" class="form-control" placeholder="請輸入地址" aria-describedby="basic-addon1">
-        </div>
-        </div>
-        <div class="col-lg-2 col-sm-0"></div>
-      </div>
-      <div class="row" style="margin-top: 20px;">
-        <div class="col-lg-9 ">
-        </div>
-        <div class="col-lg-3 ">
-          <button type="button" class="btn btn-default btn-lg" style="padding:10px 30px;margin-bottom: 40px;" data-toggle="modal" data-target="#myModal">結帳</button>
-        </div>
-      </div>
+      
     </div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: #252830;">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel" style="color: #FFFFFF;"><img src="img/shopping-cart_check.png"> 確定結帳</h4>
-      </div>
-      <div class="modal-body">
-      <table class="table" style="margin-top: 20px;color:#181A19;font-size: 18px;line-height: 40px;">
-     	
-      </table>
-      <div class="row">
-        <div class="col-lg-8 ">
-        </div>
-        <div class="col-lg-4 " style="color:#181A19;font-size: 18px;line-height: 40px;">
-          <h4>總金額 ： NT . 10900</h4>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-      <div class="col-lg-0 col-md-0"></div>
-        <div class="col-lg-10 ">
-            <form class="form-horizontal">
-              <div class="form-group">
-                <label class="col-sm-4 control-label">收件人姓名</label>
-                <div class="col-sm-8">
-                  <p class="form-control-static">許甄珉</p>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-4 control-label">電話</label>
-                <div class="col-sm-8">
-                  <p class="form-control-static">0960730847</p>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-4 control-label">地址</label>
-                <div class="col-sm-8">
-                  <p class="form-control-static">台北市中山區大直街50號3樓</p>
-                </div>
-              </div>
-            </form>
-        </div>
-      <div class="col-lg-2 col-md-0"></div>
-      </div>
-      </div>
-      <div class="modal-footer" style="color: #252830;">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <a href="order.jsp"><button type="button" class="btn btn-default">確定</button></a>
-      </div>
-    </div>
-  </div>
 </div>
+
     <div class="col-lg-1 col-md-1"></div>
     </div>
     <div class="row" style="margin-top: 50px;">
@@ -210,6 +141,43 @@
     </div>
     <div class="col-lg-2 col-md-1"></div>
     </div>
-  </div>
+      <c:forEach  items="${ShoppingDetailList}" var="shoppingdetail1">
+    
+     <!-- Modal -->
+    <div class="modal fade" id="myModify<c:out value="${shoppingdetail1.getShopping_M_id()}"/>_<c:out value="${shoppingdetail1.getShopping_p_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">修改數量</h4>
+
+          </div>
+          <form class="form-horizontal" action="updateShoppingCart"  method="post">
+          <div class="modal-body">
+              <input type="hidden" name="shopping_M_id" value="<c:out value="${shoppingdetail1.getShopping_M_id()}"/>"/>
+              <input type="hidden" name="shopping_p_id" value="<c:out value="${shoppingdetail1.getShopping_p_id()}"/>"/>
+              <input type="hidden" name="p_price" value="<c:out value="${shoppingdetail1.getProduct().getP_price()}"/>"/>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">產品名稱：</label>
+	                <div class="col-sm-5">
+	                	<label for="inputEmail3" class="col-sm-12 control-label" ><c:out value="${shoppingdetail1.getProduct().getP_name()}"/></label>
+					</div>			
+					<div class="col-sm-3">				   
+                  			<input type="number" class="form-control" name="p_amount" placeholder="數量" value="<c:out value="${shoppingdetail1.getP_amount()}"/>">      	
+					</div>
+             </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary" name="type" value="updateShoppingCart" >
+          </div>
+        
+        </form>
+        </div>
+      </div>
+    </div>
+   </div>
+    </c:forEach>
+ 
 </body>
 </html>

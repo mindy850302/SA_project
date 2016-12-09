@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.practice.webapp.dao.CommentDAO;
+import com.practice.webapp.dao.MemberDAO;
+import com.practice.webapp.dao.ProductDAO;
 import com.practice.webapp.entity.Comment;
+import com.practice.webapp.entity.Member;
+import com.practice.webapp.entity.Product;
 
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -29,12 +33,20 @@ public class CommentController {
 
 	@RequestMapping(value = "/CommentList", method = RequestMethod.GET)
 	public ModelAndView getCommentList(String name) {
-		CommentDAO commentDAO = (CommentDAO) context.getBean("CommentDAO");
 		ModelAndView model = new ModelAndView("CommentList");
-		// = model.setViewName("CommentList");
+		CommentDAO commentDAO = (CommentDAO) context.getBean("CommentDAO");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
+		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO");
 		List<Comment>CommentList = new ArrayList<Comment>();
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Member> memberList = new ArrayList<Member>();
 		CommentList = commentDAO.getList();
+		memberList=memberdao.getList();
+		ProductList=Productdao.getList();
 		model.addObject("CommentList", CommentList);
+		model.addObject("ProductList",ProductList);
+		model.addObject("memberList",memberList);
+		model.addObject("message");
 		return model;
 	}
 
@@ -42,13 +54,32 @@ public class CommentController {
 	public ModelAndView insertComment(@ModelAttribute Comment comment, HttpServletRequest request,
 			@RequestParam("type") String type) {
 		CommentDAO commentDAO = (CommentDAO) context.getBean("CommentDAO");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
 		ModelAndView model = new ModelAndView();
 		System.out.println(request.getCharacterEncoding());
 		System.out.println(type);
 		if (type.equals("insertComment")) {
 		commentDAO.insert(comment);
-		}
+		Productdao.average(comment.getComment_p_id());
 		model.setViewName("redirect:/CommentList");
+		}
+		else if (type.equals("Send")) {
+			commentDAO.insert(comment);
+			Productdao.average(comment.getComment_p_id());
+			model.setViewName("redirect:/");
+			}
+		else if (type.equals("Modify")) {
+			commentDAO.update(comment);
+			Productdao.average(comment.getComment_p_id());
+			model.setViewName("redirect:/");
+			}
+		else if (type.equals("delete")) {
+			commentDAO.delete(comment);
+			Productdao.average(comment.getComment_p_id());
+			model.setViewName("redirect:/");
+			}
+		
+		
 		return model;
 
 	}
@@ -70,17 +101,14 @@ public class CommentController {
 	}
 
 	@RequestMapping(value = "/deleteComment", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-	public ModelAndView deleteComment(@ModelAttribute Comment comment, HttpServletRequest request,
-			@RequestParam("type") String type) {
+	public ModelAndView deleteComment(@ModelAttribute Comment comment, HttpServletRequest request) {
 		CommentDAO commentDAO = (CommentDAO) context.getBean("CommentDAO");
 
 		ModelAndView model = new ModelAndView();
 		System.out.println(request.getCharacterEncoding());
-		System.out.println(type);
-
-		if (type.equals("deleteComment")) {
+		
 			commentDAO.delete(comment);
-		}
+		
 		model.setViewName("redirect:/CommentList");
 		return model;
 	}
@@ -89,6 +117,36 @@ public class CommentController {
 	public ModelAndView getComment(String name) {
 		ModelAndView model = new ModelAndView("Comment");
 		model.addObject("message");
+		return model;
+	}
+	@RequestMapping(value = "/csearch", method = RequestMethod.POST)
+	public ModelAndView search(@ModelAttribute Comment comment, HttpServletRequest request,
+		@RequestParam("ckeyword") String ckeyword) {
+		CommentDAO Commentdao = (CommentDAO) context.getBean("CommentDAO");
+		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		ModelAndView model = new ModelAndView("searchcomment");
+		
+		List<Member> MemberList = new ArrayList<Member>();
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Comment> CommentList = new ArrayList<Comment>();
+
+		MemberList= Memberdao.search(ckeyword);
+		ProductList= Productdao.search(ckeyword);
+		CommentList= Commentdao.search(ckeyword);
+		
+		model.addObject("MemberList",MemberList);
+		model.addObject("ProductList",ProductList);
+		model.addObject("CommentList",CommentList);
+		return model;
+		
+	}
+	@RequestMapping(value = "/searchcomment", method = RequestMethod.GET)
+	public ModelAndView searchcomment(@ModelAttribute Comment comment, HttpServletRequest request) {
+		CommentDAO Commentdao = (CommentDAO) context.getBean("CommentDAO");
+		List<Comment> CommentList = new ArrayList<Comment>();
+		ModelAndView model = new ModelAndView("searchcomment");
+		
 		return model;
 	}
 

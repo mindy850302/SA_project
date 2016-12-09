@@ -53,6 +53,14 @@ public class CommentController {
 			commentDAO.insert(comment);
 			model.setViewName("redirect:/");
 			}
+		else if (type.equals("Modify")) {
+			commentDAO.update(comment);
+			model.setViewName("redirect:/");
+			}
+		else if (type.equals("delete")) {
+			commentDAO.delete(comment);
+			model.setViewName("redirect:/");
+			}
 		
 		
 		return model;

@@ -75,17 +75,15 @@ public class CommentDAODB implements CommentDAO {
 
 	public void update( Comment comment) {
 		// TODO Auto-generated method stub
-		String sql = "UPDATE Comment SET  c_comment=?, c_create_date=?,c_update_date=?,score=? "
+		String sql = "UPDATE Comment SET  c_comment=?, c_update_date=CURRENT_TIME(),score=? "
 				+ "WHERE (comment_M_id = ? AND comment_p_id = ?)";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, comment.getC_comment());
-			smt.setString(2, comment.getC_create_date());
-			smt.setString(3, comment.getC_update_date());
-			smt.setInt(4, comment.getScore());
-			smt.setInt(5, comment.getComment_M_id());
-			smt.setInt(6, comment.getComment_p_id());
+			smt.setInt(2, comment.getScore());
+			smt.setInt(3, comment.getComment_M_id());
+			smt.setInt(4, comment.getComment_p_id());
 			smt.executeUpdate();			
 			smt.close();
  

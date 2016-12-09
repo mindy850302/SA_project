@@ -22,7 +22,7 @@ public class OrderDAODB implements OrderDAO{
 		this.dataSource = dataSource;
 	}
 	public List<Order> getList(){
-		String sql = "SELECT * FROM `order`";
+		String sql = "SELECT * FROM `order` a JOIN Member b ON a.order_M_id=b.M_id";
 		return getList(sql);
 	}
 	
@@ -38,6 +38,8 @@ public class OrderDAODB implements OrderDAO{
 				Order order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setOrder_M_id(rs.getInt("order_M_id"));
+				order.getMember().setM_idName(rs.getString("M_idName"));
+				order.getMember().setM_name(rs.getString("M_name"));
 				order.setO_date(rs.getString("O_date"));
 				order.setReceiver_name(rs.getString("receiver_name"));
 				order.setReceiver_phone(rs.getString("receiver_phone"));
@@ -60,10 +62,13 @@ public class OrderDAODB implements OrderDAO{
 		}
 		return OrderList;
 	}
+
+
 	public int insert(Order order) {
 		int id =0;
 		// remove first parameter when Id is auto-increment
 	    String sql = "INSERT INTO `order` ( order_M_id,total, O_date,receiver_name,receiver_phone,receiver_address) VALUES(  ? , ? ,CURRENT_TIME() , ? , ? , ?)";	
+
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);

@@ -44,8 +44,7 @@
             <td>是否出貨</td>
             <td>訂單明細</td>
           </tr>
-          <c:forEach  items="${OrderList}" var="order">
-          	<c:if test="${order.getOrder_M_id() == 1 }">
+          <c:forEach  items="${OrderList2}" var="order">
           		<tr style="background-color:rgb(113, 197, 170)">
             		<td><c:out value="${order.getOrder_id()}"/></td>
 		            <td><c:out value="${order.getO_date()}"/></td>
@@ -56,11 +55,9 @@
 		            <td>已出貨</td>
 		            <td><input type="submit" value="明細"  data-toggle="modal" data-target="#OrderDetail<c:out value="${order.getOrder_id()}"/>"></td>
 	          	</tr>
-	          </c:if>
           </c:forEach>
         </table>
-        <c:forEach  items="${OrderList}" var="order1">
-          <c:if test="${order1.getOrder_M_id() == 1 }">
+        <c:forEach  items="${OrderList2}" var="order1">
         	<div class="modal fade" tabindex="-1" role="dialog" id="OrderDetail<c:out value="${order1.getOrder_id()}"/>">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" style="color:#606468">
@@ -95,7 +92,6 @@
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
       		</div>
-      	</c:if>
       </c:forEach>
     </div>
 </div>

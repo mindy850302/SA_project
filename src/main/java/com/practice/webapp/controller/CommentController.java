@@ -70,17 +70,14 @@ public class CommentController {
 	}
 
 	@RequestMapping(value = "/deleteComment", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-	public ModelAndView deleteComment(@ModelAttribute Comment comment, HttpServletRequest request,
-			@RequestParam("type") String type) {
+	public ModelAndView deleteComment(@ModelAttribute Comment comment, HttpServletRequest request) {
 		CommentDAO commentDAO = (CommentDAO) context.getBean("CommentDAO");
 
 		ModelAndView model = new ModelAndView();
 		System.out.println(request.getCharacterEncoding());
-		System.out.println(type);
-
-		if (type.equals("deleteComment")) {
+		
 			commentDAO.delete(comment);
-		}
+		
 		model.setViewName("redirect:/CommentList");
 		return model;
 	}

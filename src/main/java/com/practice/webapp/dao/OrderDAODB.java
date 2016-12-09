@@ -21,7 +21,7 @@ public class OrderDAODB implements OrderDAO{
 		this.dataSource = dataSource;
 	}
 	public List<Order> getList(){
-		String sql = "SELECT * FROM `order`";
+		String sql = "SELECT * FROM `order` a JOIN Member b ON a.order_M_id=b.M_id";
 		return getList(sql);
 	}
 	
@@ -37,6 +37,8 @@ public class OrderDAODB implements OrderDAO{
 				Order order = new Order();
 				order.setOrder_id(rs.getInt("order_id"));
 				order.setOrder_M_id(rs.getInt("order_M_id"));
+				order.getMember().setM_idName(rs.getString("M_idName"));
+				order.getMember().setM_name(rs.getString("M_name"));
 				order.setO_date(rs.getString("O_date"));
 				order.setReceiver_name(rs.getString("receiver_name"));
 				order.setReceiver_phone(rs.getString("receiver_phone"));
@@ -59,10 +61,11 @@ public class OrderDAODB implements OrderDAO{
 		}
 		return OrderList;
 	}
+
 	public void insert(Order order) {
 
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO order ( order_M_id,total, O_date,receiver_name,receiver_phone,receiver_address) VALUES(  ? , ? , ? , ? , ? , ?)";	
+	    String sql = "INSERT INTO `order` ( order_M_id,total, O_date,receiver_name,receiver_phone,receiver_address) VALUES(  ? , ? , ? , ? , ? , ?)";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -121,7 +124,7 @@ public class OrderDAODB implements OrderDAO{
 	}
 
 public void update(Order order) {
-		String sql = "UPDATE order SET order_M_id=?, total=?,O_date=?, receiver_name=?,receiver_phone=?,receiver_address=? "
+		String sql = "UPDATE `order` SET order_M_id=?, total=?,O_date=?, receiver_name=?,receiver_phone=?,receiver_address=? "
 				+ "WHERE order_id = ?";
 		try {
 			conn = dataSource.getConnection();
@@ -150,7 +153,7 @@ public void update(Order order) {
 	}
 public void delete(Order order) {
 	List<Order> OrderList = new ArrayList<Order>();
-	String sql = "DELETE FROM order WHERE order_id = ?";
+	String sql = "DELETE FROM `order` WHERE order_id = ?";
 	try {
 		conn = dataSource.getConnection();
 		smt = conn.prepareStatement(sql);

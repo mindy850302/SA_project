@@ -1,6 +1,7 @@
 
 package com.practice.webapp.entity;
 
+import javax.servlet.http.HttpServletRequest;
 
 public class Order {
 
@@ -17,6 +18,8 @@ public class Order {
 	private String receiver_address;
 	
 	private int total;
+	
+	private Member member = new Member();
 
 	public int getOrder_id() {
 		return order_id;
@@ -73,6 +76,14 @@ public class Order {
 	public void setReceiver_address(String receiver_address) {
 		this.receiver_address = receiver_address;
 
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 

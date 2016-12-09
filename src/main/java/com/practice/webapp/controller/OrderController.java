@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.practice.webapp.dao.OrderDAO;
@@ -41,6 +42,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 @Controller
+@SessionAttributes("loginsession")
+
 public class OrderController {
 	ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
 	@RequestMapping(value = "/OrderDetail", method = RequestMethod.GET)
@@ -75,26 +78,35 @@ public class OrderController {
 		return model;
 	}
 	@RequestMapping(value = "/OrderRecord", method = RequestMethod.GET)
-	public ModelAndView getOrderRecord(String name) {
+	public ModelAndView getOrderRecord(String name, HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("OrderRecord");
 		// = model.setViewName("OrderDetail");
 		OrderDAO orderdao = (OrderDAO)context.getBean("OrderDAO"); //defined in spring-webapp.xml
 		OrderDetailDAO orderDetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
+		request.getSession().getAttribute("loginsession");
+		String idName=(String)request.getSession().getAttribute("loginsession");
 		List<Order> orderList = new ArrayList<Order>();
+		List<Order> orderList2 = new ArrayList<Order>();
 		List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
 		orderList=orderdao.getList();
 		orderDetailList=orderDetaildao.getList();
 		Order order=new Order();
 		OrderDetail orderDetail=new OrderDetail();
 		for(int i = 0 ; i < orderList.size();i++){
-			if (1==orderList.get(i).getOrder_id()){
-				order=orderList.get(i);
+			System.out.println(orderList.get(i).getMember().getM_idName());
+			if (idName.equals(orderList.get(i).getMember().getM_idName())){
+				
+				orderList2.add(orderList.get(i));
 			}
 		}
+		System.out.println(orderList2.size());
+		
+		System.out.println(idName);
 		
 		model.addObject("Order",order);
 		model.addObject("OrderDetail",orderDetail);
 		model.addObject("OrderList",orderList);
+		model.addObject("OrderList2",orderList2);
 		model.addObject("OrderDetailList",orderDetailList);
 		model.addObject("message");
 		return model;

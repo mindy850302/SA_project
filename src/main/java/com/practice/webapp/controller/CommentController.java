@@ -47,8 +47,14 @@ public class CommentController {
 		System.out.println(type);
 		if (type.equals("insertComment")) {
 		commentDAO.insert(comment);
-		}
 		model.setViewName("redirect:/CommentList");
+		}
+		else if (type.equals("Send")) {
+			commentDAO.insert(comment);
+			model.setViewName("redirect:/");
+			}
+		
+		
 		return model;
 
 	}

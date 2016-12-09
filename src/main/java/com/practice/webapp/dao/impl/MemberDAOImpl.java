@@ -82,6 +82,21 @@ public class MemberDAOImpl implements MemberDAO{
 		}
 		return log;
 	}
+	
+	public boolean checkLoginAdministrator(Member member){
+		String A_idName=member.getM_idName();
+		String password=member.getM_pwd();
+		boolean log=false;
+		for (int i = 0; i< MemberList.size(); i++){
+			String idName=MemberList.get(i).getM_idName();
+			String pwd=MemberList.get(i).getM_pwd();
+			if(idName.equals(A_idName)&&pwd.equals(password)){
+				log=true;
+				break;
+			}
+		}
+		return log;
+	}
 //	public int count(){
 //		
 //	}

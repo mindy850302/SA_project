@@ -12,13 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.practice.webapp.dao.MemberDAO;
 import com.practice.webapp.dao.ProductDAO;
 import com.practice.webapp.dao.Product_categoryDAO;
-
+import com.practice.webapp.dao.ShoppingDetailDAO;
 import com.practice.webapp.entity.Discount;
 import com.practice.webapp.entity.DiscountDetail;
 
 import com.practice.webapp.entity.Member;
 import com.practice.webapp.entity.Product;
 import com.practice.webapp.entity.Product_category;
+import com.practice.webapp.entity.ShoppingDetail;
 
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -99,6 +100,10 @@ public class ProductController {
 		}
 		request.getSession().getAttribute("loginsession");
 		String idName=(String) request.getSession().getAttribute("loginsession");
+		ShoppingDetailDAO shoppingDetaildao = (ShoppingDetailDAO) context.getBean("ShoppingDetailDAO");
+		List<ShoppingDetail> ShoppingDetailList = new ArrayList<ShoppingDetail>();
+		ShoppingDetailList=shoppingDetaildao.getList();
+		
 		int M_id=0;
 		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
 		List<Member> MemberList = new ArrayList<Member>();
@@ -109,10 +114,18 @@ public class ProductController {
 				break;
 			}
 		}
+		int already=0;
+		for(int i=0;i<ShoppingDetailList.size();i++){
+			if(ShoppingDetailList.get(i).getShopping_p_id()==id&&ShoppingDetailList.get(i).getShopping_M_id()==M_id){
+				already=1;
+				break;
+			}
+		}
 		Product_categoryList=Product_categoryDAO.getList();
 		model.addObject("Product",product);
 		model.addObject("my_id",M_id);
 		model.addObject("idName",idName);
+		model.addObject("already",already);
 		int click=Productdao.updateClick(product);
 		System.out.println(id);
 		System.out.println(click);

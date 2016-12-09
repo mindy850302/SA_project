@@ -135,7 +135,7 @@
     <div class="ih-item square colored effect13 right_to_left" ><a href="#">
         <div class="img"><img src="http://images.apple.com/v/apple-pencil/b/images/pencil/ipad_pro_large_2x.jpg" alt="img"></div>
         <div class="info">
-          <h3>iMac</h3>
+          <h3>iPad</h3>
           <p>Learn more >></p>
         </div></a></div>
     <!-- end colored -->

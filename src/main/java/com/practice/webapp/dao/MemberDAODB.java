@@ -276,6 +276,7 @@ public class MemberDAODB implements MemberDAO {
 				System.out.println("id2:"+Member_idName);
 				System.out.println("password:"+Member_pwd);
 				
+				
 				if(Member_pwd.equals(member.getM_pwd())){
 					flag=true;//登入成功
 				}
@@ -283,13 +284,56 @@ public class MemberDAODB implements MemberDAO {
 					flag=false;//密碼錯誤，到signup頁面
 					
 				}
-			
-			
-		}
+				
+			}
 			
 			rs.close();
 			smt.close();
-		} catch (SQLException e) {
+		} 
+			catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		return flag;
+	}
+	
+	public boolean checkLoginAdministrator(Member member){
+		boolean flag=false;
+		String sql="SELECT * FROM Administrator where binary A_idName=?";
+		
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			System.out.println("id:"+member.getM_idName());
+			smt.setString(1, member.getM_idName());
+			rs = smt.executeQuery();
+			if(rs.next()){
+				String A_idName=rs.getString("A_idName");
+				String A_pwd=rs.getString("A_password");
+				System.out.println("id2:"+A_idName);
+				System.out.println("password:"+A_pwd);
+				
+				
+				if(A_pwd.equals(member.getM_pwd())){
+					flag=true;//登入成功
+				}
+				else{
+					flag=false;//密碼錯誤，到signup頁面
+					
+				}
+				
+			}
+			
+			rs.close();
+			smt.close();
+		} 
+			catch (SQLException e) {
 			throw new RuntimeException(e);
  
 		} finally {

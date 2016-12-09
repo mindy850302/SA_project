@@ -11,6 +11,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.practice.webapp.entity.Comment;
+import com.practice.webapp.entity.Product;
 public class CommentDAODB implements CommentDAO {
 	private DataSource dataSource;
 	private Connection conn = null ;
@@ -172,5 +173,45 @@ public class CommentDAODB implements CommentDAO {
 		}
 		return comment;
 		
+	}
+
+	public List<Comment>search(String keyword) {
+		List<Comment> CommentList = new ArrayList<Comment>();
+		
+		String sql = "SELECT * FROM Comment WHERE c_comment LIKE '%"+keyword+"%'";
+		System.out.println(sql);
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			System.out.println(keyword);
+			
+			rs = smt.executeQuery();
+			while (rs.next()) {
+				Comment comment = new Comment();
+				comment.setComment_M_id(rs.getInt("comment_M_id"));
+				comment.setComment_p_id(rs.getInt("comment_p_id"));
+				comment.setC_comment(rs.getString("c_comment"));
+				comment.setC_create_date(rs.getString("c_create_date"));
+				comment.setC_update_date(rs.getString("c_update_date"));
+				comment.setScore(rs.getInt("score"));
+				CommentList.add(comment);
+			}
+			rs.close();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+
+			}
+
+		}
+		return CommentList;
 	}
 }

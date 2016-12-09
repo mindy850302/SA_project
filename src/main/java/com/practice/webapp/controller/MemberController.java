@@ -58,6 +58,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class MemberController {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
+	private Member member;
 
 	@RequestMapping(value = "/AccountList", method = RequestMethod.GET)
 	public ModelAndView getAccountList(String name) {
@@ -88,27 +89,58 @@ public class MemberController {
 		model.addObject("message");
 		return model;
 	}
-
+	
+	@RequestMapping(value = "/loginAdministrator", method = RequestMethod.GET)
+	public ModelAndView getloginAdministrator(String name) {
+		ModelAndView model = new ModelAndView("loginAdministrator");
+		// = model.setViewName("loginAdministrator");
+		
+		model.addObject("message");
+		return model;
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	public ModelAndView checkLogin(@ModelAttribute Member member) {
-		MemberDAO MemberDAO = (MemberDAO) context.getBean("MemberDAO");
+		MemberDAO memberDAO = (MemberDAO) context.getBean("MemberDAO");
 		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
 		ModelAndView model = new ModelAndView();
 		List<Member> memberList = new ArrayList<Member>();
 		List<Administrator> administratorList = new ArrayList<Administrator>();
 		System.out.println("id before called:" + member.getM_idName());
-		boolean result = MemberDAO.checkLoginMember(member);
+		memberList = memberDAO.getList();
+		administratorList = AdministratorDAO.getList();
+		boolean result = memberDAO.checkLoginMember(member);
 		System.out.println(result);
 		if (result) {
 			model.addObject("loginsession", member.getM_idName());
-			model.setViewName("index");
-		} else {
+			
+				model.setViewName("index");
+				}
+		else{
 			model.setViewName("signup");
+		}
+			
+		
+		boolean result2 = memberDAO.checkLoginAdministrator(member);
+		System.out.println(result2);
+		if (result2) {
+			model.addObject("loginsession", member.getM_idName());
+			
+			
+				
+			
+				model.setViewName("dashboard");
+			}
+			 else {
+			model.setViewName("index");
 		}
 		return model;
 
 	}
 
+	
+	
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView getLogin(@ModelAttribute("name") String name, SessionStatus sessionStatus) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");

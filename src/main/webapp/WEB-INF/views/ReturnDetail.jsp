@@ -209,7 +209,7 @@
           </div>
           <div class="modal-body">
             <form class="form-horizontal" method="post" action="addReturn">
-           <div class="form-group">
+              <div class="form-group">
                 <label for="inputEmail3" class="col-sm-3 control-label">退貨人姓名</label>
                 <div class="col-sm-7">
                   <select name="return_M_id" class="form-control">
@@ -221,7 +221,7 @@
               </div>
               <div id="product_return">
 	            <div class="form-group" >
-	                <label for="inputEmail3" class="col-sm-3 control-label">產品編號</label>
+	                <label for="inputEmail3" class="col-sm-3 control-label">產品名稱</label>
 	                <div class="col-sm-5">
 		                <select name="return_p_id" class="form-control">
 	                     <c:forEach items="${ProductList}" var="Product">

@@ -56,14 +56,16 @@
 				<h1 class="page-header">評論查看</h1>
 			</div>
 			<div class="col-lg-3">
+			<form class="navbar-form navbar-right" role="search" action="csearch" method="POST">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search for..." style="border-radius: 40px;"/>
+					<input type="text" class="form-control" name="ckeyword" placeholder="Search for..." style="border-radius: 40px;"/>
 						 <span class="input-group-btn">
-						<button class="btn btn-default" type="button" style="border-radius: 40px;">
+						<button class="btn btn-default" type="submit" style="border-radius: 40px;">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						</button>
 					</span>
 				</div>
+				</form>
 				<!-- /input-group -->
 			</div>
 			<!-- /.col-lg-6 -->
@@ -136,17 +138,25 @@
 				<div class="modal-body">
 					<form class="form-horizontal" method="post" action="insertComment">
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">會員id</label>
-							<div class="col-sm-8">
-								<input type="number" class="form-control" id="inputEmail3"name="comment_M_id" placeholder="帳號">
-							</div>
+				<label for="inputEmail3" class="col-sm-3 control-label">評論者姓名</label>
+                       <div class="col-sm-8">
+                       <select name="comment_M_id" class="form-control">
+	                     <c:forEach items="${memberList}" var="member">
+	        					<option value="<c:out value="${member.getM_id()}"/>"><c:out value="${member.getM_name()}"/></option>
+	        			</c:forEach>
+					   </select>
+                </div>
 						</div>
 						<div class="form-group">
-				        <label for="inputPassword3" class="col-sm-2 control-label">產品id</label>
-					    <div class="col-sm-8">
-					    <input type="number" class="form-control" id="inputPassword3"name="comment_p_id" placeholder="產品id"/>
-						</div>
-						</div>
+				 <label for="inputEmail3" class="col-sm-3 control-label">產品名稱</label>
+	                    <div class="col-sm-8">
+		                <select name="comment_p_id" class="form-control">
+	                     <c:forEach items="${ProductList}" var="Product">
+	        					<option value="<c:out value="${Product.getP_id()}"/>"><c:out value="${Product.getP_name()}"/></option>
+	        			</c:forEach>
+					   </select>
+				   </div>
+					  	</div>
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-2 control-label">評論內容</label>
 							<div class="col-sm-8">

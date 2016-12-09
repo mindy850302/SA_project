@@ -132,7 +132,10 @@
                                         <label class="col-sm-2 control-label" style="font-size:18px">評分</label>
                                         <!-- Rating Star -->
                                         <div class="col-sm-9">
-                                        <form action="ratingStar" method="post">
+                                        <form action="insertComment" method="post">
+                                        <input type="hidden" value="<c:out value="${my_id}"></c:out>" name="comment_M_id">
+                                        <input type="hidden" value="<c:out value="${id}"></c:out>" name="comment_p_id">
+                                        <input type="hidden" value=" " name="c_comment">
                                             <fieldset class="rating">
                                                 <input type="radio" id="star5" name="score" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>                                           
                                                 <input type="radio" id="star4" name="score" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>                                            
@@ -140,7 +143,7 @@
                                                 <input type="radio" id="star2" name="score" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>                                           
                                                 <input type="radio" id="star1" name="score" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>                                          
                                             </fieldset>
-                                            &nbsp&nbsp&nbsp<input type="submit" class="btn-default btn " name="comment" value="送出評論"/>
+                                            &nbsp&nbsp&nbsp<input type="submit" class="btn-default btn "  name="type" value="Send"/>
                                         </form>
                                         </div>
                                     </div>

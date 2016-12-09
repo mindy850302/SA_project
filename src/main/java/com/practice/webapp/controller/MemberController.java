@@ -58,6 +58,20 @@ import org.springframework.web.servlet.ModelAndView;
 public class MemberController {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public ModelAndView signup() {
+		ModelAndView model = new ModelAndView("signup");
+		MemberDAO MemberDAO = (MemberDAO) context.getBean("MemberDAO");
+		Member member=new Member();
+		List<Member> memberList = new ArrayList<Member>();
+		memberList=MemberDAO.getList();
+		model.addObject("member",member);
+
+		model.addObject("memberList",memberList);
+		model.addObject("message");
+		return model;
+	
+	}
 
 	@RequestMapping(value = "/AccountList", method = RequestMethod.GET)
 	public ModelAndView getAccountList(String name) {
@@ -81,19 +95,106 @@ public class MemberController {
 		return model;
 	}
 
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public ModelAndView getSignup(String name) {
-		ModelAndView model = new ModelAndView("signup");
-		// = model.setViewName("signup");
-		model.addObject("message");
-		return model;
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-	public ModelAndView checkLogin(@ModelAttribute Member member) {
+	@RequestMapping(value = "/insertMember", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView insertMember(@ModelAttribute Member member,@RequestParam("type") String type) {
 		MemberDAO MemberDAO = (MemberDAO) context.getBean("MemberDAO");
 		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
+
 		ModelAndView model = new ModelAndView();
+		List<Administrator> administratorList = new ArrayList<Administrator>();
+
+		List<Member> memberList = new ArrayList<Member>();
+		administratorList=AdministratorDAO.getList();
+
+		memberList=MemberDAO.getList();
+		// = model.setViewName("signup");
+		String Mid=member.getM_idName();
+		String Mpwd=member.getM_pwd();
+		String Mphone=member.getM_phone();
+		int checkid=1;//1:true 0:false
+		int checkpwd=1;
+		int checkphone=1;
+		int flag=1;
+		if (type.equals("Check")) {
+		
+		for(int i=0;i<memberList.size();i++){
+			if(Mid.equals(memberList.get(i).getM_idName())){
+				checkid=0;//帳號錯誤，到signup頁面	
+				flag=0;
+				System.out.println("1");
+				break;
+			}
+			
+		}
+		for(int i=0;i<administratorList.size();i++){
+			if(Mid.equals(administratorList.get(i).getM_idName())){
+				checkid=0;//帳號錯誤，到signup頁面	
+				flag=0;
+				System.out.println("1");
+				break;
+			}
+			
+		}
+
+		char mpwd[] = new char[Mpwd.length()];
+		int countnum=0;
+		int countletter=0;
+		for(int i=0; i<Mpwd.length(); i++){
+		    mpwd[i] = Mpwd.charAt(i);
+		    if(Character.isLetter(mpwd[i])){
+		    	countletter++;
+		    }
+		    if(Character.isDigit(mpwd[i])){
+		    	countnum++;
+		    }
+		    if(countletter==0 && countnum==0)
+		    	checkpwd=0;//密碼錯誤，到signup頁面
+		    	flag=0;
+				System.out.println("2");
+		    	break;
+			
+		}
+		char mphone[] = new char[Mphone.length()];
+		for(int j=0; j<Mphone.length(); j++){
+			mphone[j] = Mphone.charAt(j);
+			if(Character.isDigit(mphone[j])==false){
+				checkphone=0;//電話錯誤，到signup頁面
+				flag=0;
+				System.out.println("3");
+
+				break;
+		}			    
+			 }	
+		if(flag==1){
+			MemberDAO.insert(member);
+			System.out.println("4");
+			model.setViewName("redirect:/login");
+
+
+		}
+		else {
+			System.out.println("5");
+
+			model.setViewName("redirect:/signup");
+			
+		}
+		}
+		model.addObject("memberList", memberList);
+		model.addObject("flag",flag);
+		model.addObject("checkid",checkid);
+		model.addObject("checkpwd",checkpwd);
+		model.addObject("checkphone",checkphone);
+
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView checkLogin(@ModelAttribute Member member) {
+		MemberDAO MemberDAO = (MemberDAO)context.getBean("MemberDAO");
+		ModelAndView model = new ModelAndView();
+
+		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
 		List<Member> memberList = new ArrayList<Member>();
 		List<Administrator> administratorList = new ArrayList<Administrator>();
 		System.out.println("id before called:" + member.getM_idName());

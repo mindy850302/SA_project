@@ -352,6 +352,7 @@ public class ProductDAODB implements ProductDAO {
 				}
 			
 		}
+			
 	}
 
 

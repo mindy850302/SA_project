@@ -1,3 +1,4 @@
+
 package com.practice.webapp.dao;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public interface ProductDAO {
     public void average();
     public void addInventory(Product product);
     public int updateClick(Product product);
+ //   public void hotProduct(Product product);
  
 
 }

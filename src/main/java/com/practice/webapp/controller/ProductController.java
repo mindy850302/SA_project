@@ -92,11 +92,17 @@ public class ProductController {
 		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
 		ProductList=Productdao.getList();
 		Product product=new Product();
-		for(int i = 0 ; i < ProductList.size();i++){
-			if (id==ProductList.get(i).getP_id()){
-				product=ProductList.get(i);
-			}
-		}
+//		int count=0;
+//		for(int j=0;j<ProductList.size()-1;j++){
+//			if(ProductList.get(j).getClick_count()<ProductList.get(j+1).getClick_count()){
+//				count=j+1;
+//			}
+//		}
+//		for(int i = 0 ; i < ProductList.size();i++){
+//			if (id==ProductList.get(i).getP_id()){
+//				product=ProductList.get(i);
+//			}
+//		}
 		request.getSession().getAttribute("loginsession");
 		String idName=(String) request.getSession().getAttribute("loginsession");
 		int M_id=0;
@@ -115,7 +121,8 @@ public class ProductController {
 		int click=Productdao.updateClick(product);
 		System.out.println(id);
 		System.out.println(click);
-
+		model.addObject("ProductList",ProductList);
+		//model.addObject("count",count);
 		model.addObject("message");
 		return model;
 	}

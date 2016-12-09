@@ -262,7 +262,7 @@ public class MemberDAODB implements MemberDAO {
 //	}
 	public boolean checkLoginMember(Member member){
 		boolean flag=false;
-		String sql="SELECT * FROM Member where M_idName =?";
+		String sql="SELECT * FROM Member where binary M_idName=?";
 		
 		try {
 			conn = dataSource.getConnection();

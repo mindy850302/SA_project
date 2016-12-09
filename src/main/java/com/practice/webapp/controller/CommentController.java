@@ -60,6 +60,7 @@ public class CommentController {
 		System.out.println(type);
 		if (type.equals("insertComment")) {
 		commentDAO.insert(comment);
+		Productdao.average(comment.getComment_p_id());
 		model.setViewName("redirect:/CommentList");
 		}
 		else if (type.equals("Send")) {

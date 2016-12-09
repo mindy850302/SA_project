@@ -111,7 +111,7 @@ public class ProductController {
 		}
 		Product_categoryList=Product_categoryDAO.getList();
 		model.addObject("Product",product);
-		model.addObject("M_id",M_id);
+		model.addObject("my_id",M_id);
 		model.addObject("idName",idName);
 		int click=Productdao.updateClick(product);
 		System.out.println(id);

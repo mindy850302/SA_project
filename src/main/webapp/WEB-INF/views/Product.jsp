@@ -170,7 +170,7 @@
                         <div class="modal-body" >
                         
                             <form class="form-horizontal" action="insertShoppingCart">
-                            <input type="hidden" name="shopping_M_id" value="<c:out value="${M_id}"></c:out>">
+                            <input type="hidden" name="shopping_id" value="<c:out value="${my_id}"></c:out>">
                             <div class="form-group" style="font-size:18px;">
                                 <label for="inputEmail3" class="col-sm-3 control-label" style="padding-top:0px;">機款</label>
                                 <div class="col-sm-8" class="form-control" >

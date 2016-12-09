@@ -14,8 +14,10 @@ public class OrderDAOImpl {
 	public List<Order> getList(){
 		return OrderList;
 	}
-	public void insert(Order order){
+	public int insert(Order order){
+		int id=0;
 		OrderList.add(order);
+		return id;
 	}
 	public Order get(Order order){
 		Order getOrder=new Order();

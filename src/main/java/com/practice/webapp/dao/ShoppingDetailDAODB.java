@@ -192,7 +192,32 @@ public class ShoppingDetailDAODB implements ShoppingDetailDAO {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	public int getTotal(int M_id){
+		String sql = "SELECT SUM(p_total) as AllTotal FROM shoppingDetail WHERE shopping_M_id = ?";
+		int total=0;
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setLong(1, M_id);
+			rs = smt.executeQuery();
+			if(rs.next()){
+				total=rs.getInt("AllTotal");
+			}
+			rs.close();
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		return total;
+	}
 //	public int count(){
 //		String sql="SELECT DATE_FORMAT(M_create_date, '%Y%m' ) as time  ,  count (*)  as count  FROM Member  GROUP BY time";
 //		

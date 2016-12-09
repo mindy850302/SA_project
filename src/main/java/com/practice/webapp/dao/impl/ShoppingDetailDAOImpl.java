@@ -72,7 +72,9 @@ public class ShoppingDetailDAOImpl implements ShoppingDetailDAO{
 		// TODO Auto-generated method stub
 		return false;
 	}
-    
+	public int getTotal(int M_id){
+		return 0;
+	}
 
 //	public int count(){
 //		

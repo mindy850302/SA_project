@@ -1,5 +1,6 @@
 package com.practice.webapp.dao;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,6 +40,7 @@ public class OrderDetailDAODB implements OrderDetailDAO{
 				orderDetail.setOrder_p_id(rs.getInt("order_p_id"));
 				orderDetail.getProduct().setP_name(rs.getString("p_name"));
 				orderDetail.getProduct().setP_price(rs.getInt("p_price"));
+				orderDetail.getProduct().setP_image(rs.getString("p_image"));
 				orderDetail.setP_amount(rs.getInt("p_amount"));
 				orderDetail.setP_total(rs.getInt("p_price")*rs.getInt("p_amount"));
 				OrderDetailList.add(orderDetail);
@@ -61,13 +63,14 @@ public class OrderDetailDAODB implements OrderDetailDAO{
 	public void insert(OrderDetail orderDetail) {
 
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO orderDetail ( order_p_id,p_amount,p_total ) VALUES(  ? , ? , ? )";	
+	    String sql = "INSERT INTO orderDetail ( orderDetail_id,order_p_id,p_amount,p_total ) VALUES(?,  ? , ? , ? )";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, orderDetail.getOrder_p_id());
-			smt.setInt(2, orderDetail.getP_amount());
-			smt.setInt(3, orderDetail.getP_total());
+			smt.setInt(1, orderDetail.getOrderDetail_id());
+			smt.setInt(2, orderDetail.getOrder_p_id());
+			smt.setInt(3, orderDetail.getP_amount());
+			smt.setInt(4, orderDetail.getP_total());
 			smt.executeUpdate();			
 			smt.close();
 		} catch (SQLException e) {
@@ -93,6 +96,7 @@ public class OrderDetailDAODB implements OrderDetailDAO{
 			if(rs.next()){
 				orderDetail.setOrder_p_id(rs.getInt("order_p_id"));
 				orderDetail.setP_amount(rs.getInt("p_amount"));
+				orderDetail.getProduct().setP_image(rs.getString("p_image"));
 				orderDetail.setP_total(rs.getInt("p_total"));
 			}
 			rs.close();

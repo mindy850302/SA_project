@@ -30,6 +30,7 @@ public class CommentDAODB implements CommentDAO {
 			smt.setInt(2, comment.getComment_p_id());
 			smt.setString(3, comment.getC_comment());
 			smt.setInt(4, comment.getScore());
+			
 			smt.executeUpdate();			
 			smt.close();
  

@@ -12,7 +12,7 @@ public interface ProductDAO {
     public void update(Product product);
     public void delete(Product product);
     public List<Product>  search(String keyword);
-    public void average();
+    public void average(int id);
     public void addInventory(Product product);
     public int updateClick(Product product);
  

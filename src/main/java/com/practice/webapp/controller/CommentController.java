@@ -54,6 +54,7 @@ public class CommentController {
 	public ModelAndView insertComment(@ModelAttribute Comment comment, HttpServletRequest request,
 			@RequestParam("type") String type) {
 		CommentDAO commentDAO = (CommentDAO) context.getBean("CommentDAO");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
 		ModelAndView model = new ModelAndView();
 		System.out.println(request.getCharacterEncoding());
 		System.out.println(type);
@@ -63,14 +64,17 @@ public class CommentController {
 		}
 		else if (type.equals("Send")) {
 			commentDAO.insert(comment);
+			Productdao.average(comment.getComment_p_id());
 			model.setViewName("redirect:/");
 			}
 		else if (type.equals("Modify")) {
 			commentDAO.update(comment);
+			Productdao.average(comment.getComment_p_id());
 			model.setViewName("redirect:/");
 			}
 		else if (type.equals("delete")) {
 			commentDAO.delete(comment);
+			Productdao.average(comment.getComment_p_id());
 			model.setViewName("redirect:/");
 			}
 		

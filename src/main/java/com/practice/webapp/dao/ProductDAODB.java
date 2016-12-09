@@ -16,6 +16,7 @@ public class ProductDAODB implements ProductDAO {
 	private DataSource dataSource;
 	private Connection conn = null;
 	private ResultSet rs = null;
+	private ResultSet rs1 = null;
 	private PreparedStatement smt = null;
 	private PreparedStatement smt1 = null;
 
@@ -245,24 +246,36 @@ public class ProductDAODB implements ProductDAO {
 		return ProductList;
 	}
 
-	public void average() {
-		List<Product> ProductList = new ArrayList<Product>();
-		for (int i = 0; i < ProductList.size(); i++) {
+	public void average(int id) {
+		System.out.println("in average function");
+		
 
-			String sql = "Select AVG(score) as p_average FROM Comment WHERE p_id = ?";
-			String sql1 = "Update product SET average =?" + "WHERE p_id = ?";
+			String sql = "Select AVG(score) as p_average FROM Comment WHERE comment_p_id = ?";
+			String sql1 = "Update product SET average =? " + "WHERE p_id = ?";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);
-				smt.setInt(1, ProductList.get(i).getP_id());
+				smt.setInt(1, id);
 				rs = smt.executeQuery();
+				int average=0;
+				while(rs.next()){
+					average = (int)rs.getDouble("p_average");
+				}
+				
+				System.out.println("average:"+average);
+				System.out.println("id:"+id);
+				
+				System.out.println("sql1"+sql1);
 				smt1 = conn.prepareStatement(sql1);
-				int average = rs.getInt("average");
 				smt1.setInt(1, average);
-				smt.setInt(2, ProductList.get(i).getP_id());
+				smt1.setInt(2, id);
+				
+				smt1.executeUpdate();
 				smt.close();
 				smt1.close();
-
+				
+				rs.close();
+				
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
 
@@ -275,7 +288,7 @@ public class ProductDAODB implements ProductDAO {
 				}
 			}
 		}
-	}
+	
 	public int  updateClick(Product product){
 		List<Product> ProductList = new ArrayList<Product>();
 		int click=0;

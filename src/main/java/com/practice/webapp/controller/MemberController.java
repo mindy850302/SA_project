@@ -271,7 +271,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/msearch", method = RequestMethod.POST)
-	public ModelAndView search(@ModelAttribute Member member, HttpServletRequest request,
+	public ModelAndView msearch(@ModelAttribute Member member, HttpServletRequest request,
 		@RequestParam("mkeyword") String mkeyword) {
 		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
 		ModelAndView model = new ModelAndView("searchmember");

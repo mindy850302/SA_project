@@ -274,7 +274,7 @@ public class ProductController {
 	public ModelAndView psearch(@ModelAttribute Product product, HttpServletRequest request,
 		@RequestParam("searchword") String searchword) {
 		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
-		ModelAndView model = new ModelAndView("searchproduct");
+		ModelAndView model = new ModelAndView("ProductInfro");
 		//ModelAndView model1 = new ModelAndView("searchproduct");
 		List<Product> ProductList = new ArrayList<Product>();
 		//List<Product> Product1List = new ArrayList<Product>();
@@ -290,9 +290,33 @@ public class ProductController {
 	public ModelAndView searchword(@ModelAttribute Product product, HttpServletRequest request) {
 		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
 		List<Product> ProductList = new ArrayList<Product>();
-		ModelAndView model = new ModelAndView("searchproduct");
+		ModelAndView model = new ModelAndView("ProductInfro");
 		return model;
 		}
+	@RequestMapping(value = "/isearch", method = RequestMethod.POST)
+	public ModelAndView isearch(@ModelAttribute Product product, HttpServletRequest request,
+		@RequestParam("keyword") String keyword) {
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		ModelAndView model = new ModelAndView("Inventory");
+		//ModelAndView model1 = new ModelAndView("searchproduct");
+		List<Product> ProductList = new ArrayList<Product>();
+		//List<Product> Product1List = new ArrayList<Product>();
+		ProductList=Productdao.search(keyword);
+		//Product1List=Productdao.search(searchword);
+		model.addObject("ProductList",ProductList);
+		//model1.addObject("Product1List",Product1List);
+		//model.setViewName("redirect:/searchresult");
+		return model;
+		
+	}
+	@RequestMapping(value = "/searchinventory", method = RequestMethod.GET)
+	public ModelAndView searchinventory(@ModelAttribute Product product, HttpServletRequest request) {
+		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
+		List<Product> ProductList = new ArrayList<Product>();
+		ModelAndView model = new ModelAndView("Inventory");
+		
+		return model;
+	}
 	@RequestMapping(value = "/removeInventory", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	public ModelAndView deleteMember(@ModelAttribute Product aproduct, HttpServletRequest request,@RequestParam("sale") int sale,
 			@RequestParam("type") String type) {

@@ -112,7 +112,7 @@ public class CommentController {
 		CommentDAO Commentdao = (CommentDAO) context.getBean("CommentDAO");
 		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
 		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
-		ModelAndView model = new ModelAndView("searchcomment");
+		ModelAndView model = new ModelAndView("CommentList");
 		
 		List<Member> MemberList = new ArrayList<Member>();
 		List<Product> ProductList = new ArrayList<Product>();
@@ -132,7 +132,7 @@ public class CommentController {
 	public ModelAndView searchcomment(@ModelAttribute Comment comment, HttpServletRequest request) {
 		CommentDAO Commentdao = (CommentDAO) context.getBean("CommentDAO");
 		List<Comment> CommentList = new ArrayList<Comment>();
-		ModelAndView model = new ModelAndView("searchcomment");
+		ModelAndView model = new ModelAndView("CommentList");
 		
 		return model;
 	}

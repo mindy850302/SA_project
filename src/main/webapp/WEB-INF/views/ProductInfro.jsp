@@ -54,16 +54,18 @@
 				<h1 class="page-header">產品列表</h1>
 			</div>
 			<div class="col-lg-3">
+			<form class="navbar-form navbar-right" role="search" action="psearch" method="POST">
 				<div class="input-group">
-				<form class="navbar-form navbar-right" role="search" action="psearch" method="POST">
+				
 					<input type="text" class="form-control"name="searchword" placeholder="Search for..."style="border-radius: 40px;"> 
 						<span class="input-group-btn">
 						<button type="submit"class="btn btn-default"style="border-radius: 40px;">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						</button>
 					</span>
-					</form>
+					
 				</div>
+				</form>
 				<!-- /input-group -->
 			</div>
 			<!-- /.col-lg-6 -->

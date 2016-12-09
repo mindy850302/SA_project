@@ -59,4 +59,10 @@ public class CommentDAOImpl implements CommentDAO {
 		return comment1;
 	}
 
+	@Override
+	public List<Comment> search(String keyword) {
+		
+		return CommentList;
+	}
+
 }

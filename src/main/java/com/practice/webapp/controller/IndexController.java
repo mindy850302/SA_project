@@ -67,8 +67,7 @@ public class IndexController {
 		model.addObject("message");
 		return model;
 	}
-
-
-
+	
+	
 
 }

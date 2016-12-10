@@ -65,7 +65,7 @@ public class ProductDAOImpl implements ProductDAO {
 		return ProductList;
 	}
 
-	public void average() {
+	public void average(int id) {
 
 	}
 

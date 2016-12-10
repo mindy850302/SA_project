@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.practice.webapp.dao.CommentDAO;
 import com.practice.webapp.dao.MemberDAO;
 import com.practice.webapp.dao.ProductDAO;
 import com.practice.webapp.dao.Product_categoryDAO;
 import com.practice.webapp.dao.ShoppingDetailDAO;
+import com.practice.webapp.entity.Comment;
 import com.practice.webapp.entity.Discount;
 import com.practice.webapp.entity.DiscountDetail;
 
@@ -109,7 +111,9 @@ public class ProductController {
 		ShoppingDetailDAO shoppingDetaildao = (ShoppingDetailDAO) context.getBean("ShoppingDetailDAO");
 		List<ShoppingDetail> ShoppingDetailList = new ArrayList<ShoppingDetail>();
 		ShoppingDetailList=shoppingDetaildao.getList();
-		
+		CommentDAO commentDAO = (CommentDAO) context.getBean("CommentDAO");
+		List<Comment>CommentList = new ArrayList<Comment>();
+		CommentList = commentDAO.getList();
 		int M_id=0;
 		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
 		List<Member> MemberList = new ArrayList<Member>();
@@ -117,6 +121,15 @@ public class ProductController {
 		for(int i =0;i<MemberList.size();i++){
 			if(MemberList.get(i).getM_idName().equals(idName)){
 				M_id=MemberList.get(i).getM_id();
+				break;
+			}
+		}
+		int comment=0;
+		int score_number=0;
+		for(int i=0;i<CommentList.size();i++){
+			if(CommentList.get(i).getComment_p_id()==id&&CommentList.get(i).getComment_M_id()==M_id){
+				comment=1;
+				score_number=CommentList.get(i).getScore();
 				break;
 			}
 		}
@@ -129,9 +142,11 @@ public class ProductController {
 		}
 		Product_categoryList=Product_categoryDAO.getList();
 		model.addObject("Product",product);
+		model.addObject("comment",comment);
 		model.addObject("my_id",M_id);
 		model.addObject("idName",idName);
 		model.addObject("already",already);
+		model.addObject("score_number",score_number);
 		int click=Productdao.updateClick(product);
 		System.out.println(id);
 		System.out.println(click);

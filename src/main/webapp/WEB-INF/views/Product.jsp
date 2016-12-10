@@ -143,7 +143,20 @@
                                                 <input type="radio" id="star2" name="score" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>                                           
                                                 <input type="radio" id="star1" name="score" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>                                          
                                             </fieldset>
-                                            &nbsp&nbsp&nbsp<input type="submit" class="btn-default btn "  name="type" value="Send"/>
+                                             <c:if test="${loginsession!=null }">
+	                                             <c:if test="${comment==0 }">
+	                                            &nbsp&nbsp&nbsp<input type="submit" class="btn-default btn "  name="type" value="Send"/>
+	                                            </c:if>
+	                                            <c:if test="${comment==1 }">
+	                                            評分紀錄：<c:out value="${score_number}"></c:out>
+	                                            &nbsp&nbsp&nbsp<input type="submit" class="btn-default btn "  name="type" value="Modify"/>
+	                                            <input type="submit" class="btn-default btn "  name="type" value="delete"/>
+	                                            </c:if>
+                                            </c:if>
+                                            <c:if test="${loginsession==null }">
+                                            請先登入在做評論
+                                            </c:if>
+                                            
                                         </form>
                                         </div>
                                     </div>
@@ -153,8 +166,11 @@
                             <c:if test="${already==1 }">
                             	<td style="vertical-align:middle">已經加入購物車！</td>
                             </c:if>
-                            <c:if test="${already==0 }">
+                            <c:if test="${already==0 && loginsession!=null }">
                                 <td style="vertical-align:middle"><button style="background-color: #286090;border-color: #204d74;" type="button" class="btn btn-success"  data-toggle="modal" data-target="#addToCart">加入購物車</button></td>
+                            </c:if>
+                            <c:if test="${loginsession==null }">
+                                <td style="vertical-align:middle">如欲購買，請先登入</td>
                             </c:if>
                             </tr>
                         </tbody>

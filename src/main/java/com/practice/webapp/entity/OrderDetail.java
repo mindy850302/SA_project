@@ -13,7 +13,6 @@ public class OrderDetail {
 	private int p_total;
 	
 	private Product product = new Product();
-	private Order order = new Order();
 
 	public int getOrderDetail_id() {
 		return orderDetail_id;
@@ -55,14 +54,5 @@ public class OrderDetail {
 		this.product = product;
 	}
 
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-	
-	
-
+		
 }

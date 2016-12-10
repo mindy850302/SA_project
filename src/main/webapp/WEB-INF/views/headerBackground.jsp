@@ -17,7 +17,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp設定 <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">修改密碼</a></li>
+                
                 <li><a href="/webapp/logout">Log out</a></li>
               </ul>
             </li>
@@ -30,9 +30,9 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-          	<li><form class="navbar-form "">
+          	<!-- <li><form class="navbar-form "">
             <input style="background-color:#434856;border:0px solid #434856;color: #FFFFFF;" type="text" class="form-control" placeholder="Search...">
-          </form></li>
+          </form></li> -->
           </ul>
           <ul class="nav nav-sidebar">
             <li>

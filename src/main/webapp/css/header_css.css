@@ -5,6 +5,7 @@
     font-size: 16px;
     border: 0px solid #303841 !important;
     font-weight: bold;
+    position:fixed;
 }
 /*.navbar-fixed-top {
     top: -18px;

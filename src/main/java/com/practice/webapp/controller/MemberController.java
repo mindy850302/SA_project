@@ -274,13 +274,13 @@ public class MemberController {
 	public ModelAndView msearch(@ModelAttribute Member member, HttpServletRequest request,
 		@RequestParam("mkeyword") String mkeyword) {
 		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
-		ModelAndView model = new ModelAndView("searchmember");
+		ModelAndView model = new ModelAndView("AccountList");
 		
 		List<Member> MemberList = new ArrayList<Member>();
 
 		MemberList=Memberdao.search(mkeyword);
 		
-		model.addObject("MemberList",MemberList);
+		model.addObject("memberList",MemberList);
 	
 		return model;
 		
@@ -289,7 +289,7 @@ public class MemberController {
 	public ModelAndView searchmember(@ModelAttribute Member member, HttpServletRequest request) {
 		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
 		List<Member> MemberList = new ArrayList<Member>();
-		ModelAndView model = new ModelAndView("searchmember");
+		ModelAndView model = new ModelAndView("AccountList");
 		
 		return model;
 	}

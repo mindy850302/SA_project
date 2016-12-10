@@ -105,6 +105,7 @@
           </div>
           </div>
 </div>
+</div>
 
 <c:forEach  items="${memberList}" var="member1">
     <div class="modal fade" id="myMModify<c:out value="${member1.getM_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -200,6 +201,7 @@
           </div>
           </form>
 </c:forEach>
+ 
 
         
 

@@ -225,6 +225,8 @@ public class ProductDAODB implements ProductDAO {
 				product.setP_onsale_date(rs.getString("p_onsale_date"));
 				product.setP_remove_date(rs.getString("p_remove_date"));
 				product.setP_update_date(rs.getString("p_update_date"));
+				product.setSale(rs.getInt("sale"));
+				
 				ProductList.add(product);
 			}
 			rs.close();

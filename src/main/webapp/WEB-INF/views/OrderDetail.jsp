@@ -50,11 +50,11 @@
             <h1 class="page-header">訂單明細</h1>
           </div>
           <div class="col-lg-3">
-              <div class="input-group"">
-                <input type="text" class="form-control" placeholder="訂單查詢" style="border-radius: 40px;">
+              <div class="input-group">
+               <!--  <input type="text" class="form-control" placeholder="訂單查詢" style="border-radius: 40px;">
                 <span class="input-group-btn" >
                   <button class="btn btn-default" type="button" style="border-radius: 40px;"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
-                </span>
+                </span> -->
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
         </div>
@@ -102,7 +102,7 @@
             </table>
           </div>
             </div>
-    
+    </div>
     <!-- Detail -->
     <c:forEach  items="${OrderList}" var="order1">
         	<div class="modal fade" tabindex="-1" role="dialog" id="OrderDetail<c:out value="${order1.getOrder_id()}"/>">

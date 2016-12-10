@@ -247,7 +247,6 @@ public class ProductController {
 		if (type.equals("modifyInventory")) {
 			int total=inventory+p_inventory;
 			aproduct.setP_inventory(total);
-			
 			Productdao.addInventory(aproduct);
 		
 		}

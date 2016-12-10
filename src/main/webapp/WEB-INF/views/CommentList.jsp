@@ -50,6 +50,11 @@
 
 <body>
 	<%@include file="headerBackground.jsp"%>
+	<script>
+	 if(<c:out value="${commentAlready}" />==1){
+		 alert("此評論已存在！！");
+	 }
+	</script>
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="color: #252830;">
 		<div class="row">
 			<div class="col-lg-6">
@@ -160,7 +165,7 @@
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-2 control-label">評論內容</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control comment-input"id="inputPassword3" name="c_comment" placeholder="評論內容">
+								<input type="text" class="form-control comment-input"id="inputPassword3" name="c_comment" placeholder="評論內容" required>
 							</div>
 						</div>
 						<div class="form-group">

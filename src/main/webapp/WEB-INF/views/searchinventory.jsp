@@ -52,7 +52,7 @@
             <h1 class="page-header">搜尋結果</h1>
           </div>
           <div class="col-lg-3">
-              <div class="input-group"">
+              <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search for..." style="border-radius: 40px;">
                 <span class="input-group-btn" >
                   <button class="btn btn-default" type="button" style="border-radius: 40px;"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
@@ -69,38 +69,112 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#id</th>
-                  <th>帳號</th>
-                  <th>姓名</th>
-                  <th>電話</th>
-                  <th>Email</th>
-                  <th>地址</th>
-                  <th>建立日期</th>
-                  <th>更新日期</th>
                   <th></th>
+                  <th>產品編號</th>
+                  <th>產品名稱</th>
+                  <th>產品描述</th>
+                  <th>價錢</th>
+                  <th>存貨數量</th>
+                  <th>上架日期</th>
+                  <th>更新日期</th>
+                  <th>下架日期</th>
+                  <th>產品狀態</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-              <c:forEach  items="${MemberList}" var="member">
+             <c:forEach  items="${ProductList}" var="ProductList">
+             	<c:if test="${ProductList.getP_inventory()<=20}" >
                 <tr>
-                  <td><c:out value="${member.getM_id()}"/></td>
-                  <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp&nbsp<c:out value="${member.getM_idName()}"/></td>
-                  <td><c:out value="${member.getM_name()}"/></td>
-                  <td><c:out value="${member.getM_phone()}"/></td>
-                  <td><c:out value="${member.getM_email()}"/></td>
-                  <td><c:out value="${member.getM_address()}"/></td>
-                  <td><c:out value="${member.getM_create_date()}"/></td>
-                  <td><c:out value="${member.getM_update_date()}"/></td>
+                  <td><img class="product_img_list" src="<c:out value="${ProductList.getP_image()}"/>"></td>
+                  <td><c:out value="${ProductList.getP_id()}"/></td>
+                  <td><c:out value="${ProductList.getP_name()}"/></td>
+                  <td><c:out value="${ProductList.getP_describe()}"/></td>
+                  <td><c:out value="${ProductList.getP_price()}"/></td>
+                  <td><c:out value="${ProductList.getP_inventory()}"/></td>
+                  <td><c:out value="${ProductList.getP_onsale_date()}"/></td>
+                  <td><c:out value="${ProductList.getP_update_date()}"/></td>
+                  <td><c:out value="${ProductList.getP_remove_date()}"/></td>
+                  <td>	<c:if test="${ProductList.isSale()==0}" >已下架</c:if>
+                  	<c:if test="${ProductList.isSale()==1}" >上架中</c:if>
                   
+                 </td>
+                  
+                  <td><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myAddInventory<c:out value="${ProductList.getP_id()}"/>">追加存貨</button></td>
+                  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myRemoveInventory<c:out value="${ProductList.getP_id()}"/>">下架產品</button></td>
                 </tr>
+                </c:if>
                 </c:forEach>
               </tbody>
             </table>
           </div>
+          </div>
+</div>
+</div>
+<c:forEach  items="${ProductList}" var="Product">
+    <div class="modal fade" id="myAddInventory<c:out value="${Product.getP_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">追加存貨</h4>
+          </div>
+          
+            <form class="form-horizontal" method="post" action="addInventory">
+            <div class="modal-body">
+                    <input type="hidden" name="p_id" value="<c:out value="${Product.getP_id()}"/>">
+                	<input type="hidden" name="inventoryNumber" value="<c:out value="${Product.getP_inventory()}"/>">
+                <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">追加量</label>
+                <div class="col-sm-8">
+                  <input type="number" class="form-control" id="inputEmail3" placeholder="追加量" name="p_inventory" >
+                  
+                </div>
+              </div>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            
+            <input type="submit" class="btn btn-primary" name="type" value="modifyInventory"/>
             </div>
-</div>
-</div>
+           </form>
+        </div>
+      </div>
+    </div>
+    </c:forEach>
+    
+    
+   <c:forEach  items="${ProductList}" var="Product1">
+    
+	<div class="modal fade" id="myRemoveInventory<c:out value="${Product1.getP_id()}"/>" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">下架</h4>
+				</div>
+				            <form class="form-horizontal" method="post" action="removeInventory">
+				
+				<div class="modal-body">
+				<input type="hidden" name="p_id" value="<c:out value="${Product1.getP_id()}"/>">
+                	<input type="hidden" name="sale" value="<c:out value="${Product1.isSale()}"/>">
+                	
+					<p>下架後產品將不顯示於消費者觀看頁面，確定是否下架？</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<input type="submit" class="btn btn-primary" name="type"  value="removeInventory" />
+				</div>
+				</form>
+			</div>
+		</div>
+		</div>
+		</c:forEach>
         
 
     <!-- Bootstrap core JavaScript

@@ -61,8 +61,11 @@ public class CommentDAOImpl implements CommentDAO {
 
 	@Override
 	public List<Comment> search(String keyword) {
-		
 		return CommentList;
+	}
+	public int countComment(){
+		int count=0;
+		return count;
 	}
 
 }

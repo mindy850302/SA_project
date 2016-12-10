@@ -97,11 +97,12 @@ public class MemberDAOImpl implements MemberDAO{
 		}
 		return log;
 	}
-//	public int count(){
-//		
-//	}
-//	
-	
+
+	public int countMember() {
+		int count=0;
+		return count;
+	}
+
 	
 }
 

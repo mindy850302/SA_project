@@ -32,7 +32,7 @@ public class CommentController {
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
 
 	@RequestMapping(value = "/CommentList", method = RequestMethod.GET)
-	public ModelAndView getCommentList(String name) {
+	public ModelAndView getCommentList(String name,@ModelAttribute("commentAlready")String commentAlready) {
 		ModelAndView model = new ModelAndView("CommentList");
 		CommentDAO commentDAO = (CommentDAO) context.getBean("CommentDAO");
 		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
@@ -54,12 +54,24 @@ public class CommentController {
 	public ModelAndView insertComment(@ModelAttribute Comment comment, HttpServletRequest request,
 			@RequestParam("type") String type) {
 		CommentDAO commentDAO = (CommentDAO) context.getBean("CommentDAO");
+		List<Comment>CommentList = new ArrayList<Comment>();
+		CommentList=commentDAO.getList();
 		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
 		ModelAndView model = new ModelAndView();
 		System.out.println(request.getCharacterEncoding());
 		System.out.println(type);
+		int commentAlready=0;
 		if (type.equals("insertComment")) {
-		commentDAO.insert(comment);
+			for(int i=0;i<CommentList.size();i++){
+				if((CommentList.get(i).getComment_M_id()==comment.getComment_M_id())&&(CommentList.get(i).getComment_p_id()==comment.getComment_p_id())){
+					commentAlready=1;
+					break;
+				}			
+			}
+			if(commentAlready==0){
+				commentDAO.insert(comment);
+			}
+		
 		Productdao.average(comment.getComment_p_id());
 		model.setViewName("redirect:/CommentList");
 		}
@@ -79,7 +91,7 @@ public class CommentController {
 			model.setViewName("redirect:/");
 			}
 		
-		
+		model.addObject("commentAlready",commentAlready);
 		return model;
 
 	}
@@ -125,7 +137,7 @@ public class CommentController {
 		CommentDAO Commentdao = (CommentDAO) context.getBean("CommentDAO");
 		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
 		ProductDAO Productdao = (ProductDAO) context.getBean("ProductDAO");
-		ModelAndView model = new ModelAndView("searchcomment");
+		ModelAndView model = new ModelAndView("CommentList");
 		
 		List<Member> MemberList = new ArrayList<Member>();
 		List<Product> ProductList = new ArrayList<Product>();
@@ -145,7 +157,7 @@ public class CommentController {
 	public ModelAndView searchcomment(@ModelAttribute Comment comment, HttpServletRequest request) {
 		CommentDAO Commentdao = (CommentDAO) context.getBean("CommentDAO");
 		List<Comment> CommentList = new ArrayList<Comment>();
-		ModelAndView model = new ModelAndView("searchcomment");
+		ModelAndView model = new ModelAndView("CommentList");
 		
 		return model;
 	}

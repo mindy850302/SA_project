@@ -232,34 +232,33 @@ public class MemberDAODB implements MemberDAO {
 		}
 		return MemberList;
 	}
-
-//	public int count(){
-//		String sql="SELECT DATE_FORMAT(M_create_date, '%Y%m' ) as time  ,  count (*)  as count  FROM Member  GROUP BY time";
-//		
-//		try {
-//			conn = dataSource.getConnection();
-//			smt = conn.prepareStatement(sql);
-//			rs = smt.executeQuery();
-//			while(rs.next()){
-//				String Member_idName=rs.getString("M_idName");
-//				String Member_pwd=rs.getString("M_pwd");
-//				if(Member_idName==M_idName&&password.equals(Member_pwd)){
-//					flag=true;
-//				}
-//		}
-//			rs.close();
-//			smt.close();
-//		} catch (SQLException e) {
-//			throw new RuntimeException(e);
-// 
-//		} finally {
-//			if (conn != null) {
-//				try {
-//					conn.close();
-//				} catch (SQLException e) {}
-//			}
-//		}
-//	}
+	public int countMember() {
+		// TODO Auto-generated method stub
+		String sql = "SELECT COUNT(M_create_date) as Count_member FROM `Member` WHERE month(M_create_date)=month(CURRENT_TIME)";
+		int count=0;
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+			while(rs.next()){
+				count=rs.getInt("Count_member");
+			}
+			rs.close();
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		return count;
+		
+	}
 	public boolean checkLoginMember(Member member){
 		boolean flag=false;
 		String sql="SELECT * FROM Member where binary M_idName=?";
@@ -346,6 +345,75 @@ public class MemberDAODB implements MemberDAO {
 		return flag;
 	}
 	
+//	public boolean checkSignup(Member member){
+//		String sql = "SELECT * FROM Member WHERE M_id = ?";
+//		boolean checkid=true;
+//		boolean checkpwd=true;
+//		boolean checkphone=true;
+//		boolean flag=true;
+//
+//		try {
+//			
+//			conn = dataSource.getConnection();
+//			if(rs.next()){
+//				smt = conn.prepareStatement(sql);
+//				smt.setString(1, member.getM_idName());
+//				smt.setString(2, member.getM_name());
+//				smt.setString(3, member.getM_phone());
+//				smt.setString(4, member.getM_email());
+//				smt.setString(5, member.getM_address());
+//				smt.setInt(6, member.getM_discount());
+//				smt.setString(7, member.getM_pwd());
+//				
+////				String Member_idName=rs.getString("M_idName");
+////				String Member_pwd=rs.getString("M_password");
+////				String Member_phone=rs.getString("M_phone");
+////				if(Member_idName.equals(member.getM_idName())){
+////					checkid=false;//帳號錯誤，到signup頁面	
+////					flag=false;
+////					return checkid;	
+////				}
+////				
+////				char Mpwd[] = new char[Member_pwd.length()];
+////				for(int i=0; i<Member_pwd.length(); i++){
+////				    Mpwd[i] = Member_pwd.charAt(i);
+////				    if(Character.isLetterOrDigit(Mpwd[i])==false){
+////				    	checkpwd=false;//密碼錯誤，到signup頁面
+////				    	flag=false;
+////				    	return checkpwd;
+////					}
+////				}
+////					    
+////				char Mphone[] = new char[Member_phone.length()];
+////				for(int j=0; j<Member_phone.length(); j++){
+////					Mpwd[j] = Member_phone.charAt(j);
+////					if(Character.isDigit(Mphone[j])==false){
+////						checkphone=false;//電話錯誤，到signup頁面
+////						flag=false;
+////						break;
+////				}			    
+////					 }	
+////							
+//		
+//			smt.executeUpdate();	
+//			smt.close();
+//			 
+//		} 
+//			}
+//		catch (SQLException e) {
+//			throw new RuntimeException(e);
+// 
+//		} finally {
+//			if (conn != null) {
+//				try {
+//					conn.close();
+//				} catch (SQLException e) {}
+//			}
+//			
+//		}
+//		return flag;
+//	}
+
 
 }//ProductDAOBean
 

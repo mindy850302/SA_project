@@ -10,6 +10,8 @@ public interface CommentDAO {
 	public List<Comment> getList();
 	public Comment get(Comment comment);
 	 public List<Comment>search(String keyword);
+	 public int countComment();
 	
+
 
 }

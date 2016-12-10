@@ -266,7 +266,22 @@ public class MemberController {
 		model.setViewName("redirect:/");
 		return model;
 	}
-
+//	
+//	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+//	public ModelAndView getcheckLogOut(SessionStatus sessionStatus) {
+//		ModelAndView model = new ModelAndView();
+//		AdministratorDAO Administratordao = (AdministratorDAO) context.getBean("AdministratorDAO");
+//		List<Administrator> AdministratorList = new ArrayList<Administrator>();
+//		AdministratorList = Administratordao.getList();
+//		Administrator administrator = new Administrator();
+//
+//		// model.addObject("loginsession","logout");
+//		sessionStatus.setComplete();
+//		model.addObject("Administrator", administrator);
+//		model.setViewName("redirect:/");
+//		return model;
+//	}
+	
 	@RequestMapping(value = "/AccountList", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	public ModelAndView add(@ModelAttribute Member member, HttpServletRequest request,
 			@RequestParam("action_type") String type, @RequestParam("m_category") String m_category,

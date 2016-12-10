@@ -163,6 +163,7 @@ public class AdministratorDAODB implements AdministratorDAO {
 				administrator.setM_create_date(rs.getString("A_create_date"));
 				administrator.setM_update_date(rs.getString("A_update_date"));
 				administrator.setA_category(rs.getInt("A_category"));
+//				administrator.getA_category1().setC_id(rs.getInt("id"));
 				AdministratorList.add(administrator);
 			}
 			rs.close();

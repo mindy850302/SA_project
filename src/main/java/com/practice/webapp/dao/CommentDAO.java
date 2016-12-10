@@ -11,5 +11,7 @@ public interface CommentDAO {
 	public Comment get(Comment comment);
 	 public List<Comment>search(String keyword);
 	 public int countComment();
+	
+
 
 }

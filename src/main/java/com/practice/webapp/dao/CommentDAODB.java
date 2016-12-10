@@ -206,7 +206,7 @@ public class CommentDAODB implements CommentDAO {
 	public List<Comment>search(String keyword) {
 		List<Comment> CommentList = new ArrayList<Comment>();
 		
-		String sql = "SELECT * FROM Comment WHERE c_comment LIKE '%"+keyword+"%'";
+		String sql = "SELECT * FROM Comment a JOIN product b ON a.comment_p_id = b.p_id JOIN Member c ON a.comment_M_id =c.M_id WHERE b.p_name LIKE '%"+keyword+"%'";
 		System.out.println(sql);
 		try {
 			conn = dataSource.getConnection();
@@ -219,6 +219,9 @@ public class CommentDAODB implements CommentDAO {
 				comment.setComment_M_id(rs.getInt("comment_M_id"));
 				comment.setComment_p_id(rs.getInt("comment_p_id"));
 				comment.setC_comment(rs.getString("c_comment"));
+				comment.getMember().setM_idName(rs.getString("M_idName"));
+				comment.getMember().setM_name(rs.getString("M_name"));
+				comment.getProduct().setP_name(rs.getString("p_name"));
 				comment.setC_create_date(rs.getString("c_create_date"));
 				comment.setC_update_date(rs.getString("c_update_date"));
 				comment.setScore(rs.getInt("score"));

@@ -50,11 +50,11 @@
             <h1 class="page-header">訂單明細</h1>
           </div>
           <div class="col-lg-3">
-              <div class="input-group"">
-                <input type="text" class="form-control" placeholder="訂單查詢" style="border-radius: 40px;">
+              <div class="input-group">
+               <!--  <input type="text" class="form-control" placeholder="訂單查詢" style="border-radius: 40px;">
                 <span class="input-group-btn" >
                   <button class="btn btn-default" type="button" style="border-radius: 40px;"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
-                </span>
+                </span> -->
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
         </div>
@@ -81,18 +81,18 @@
               <tbody>
                 <tr>
                   <td><c:out value="${order.getOrder_id()}"/></td>
-                  <td>許甄珉</td>
+                  <td><c:out value="${order.getMember().getM_name()}"/></td>
                   <td><c:out value="${order.getReceiver_name()}"/></td>
 		          <td><c:out value="${order.getReceiver_address()}"/></td>
 		          <td><c:out value="${order.getReceiver_phone()}"/></td>
                   <td><c:out value="${order.getTotal()}"/></td>
                   <td><c:out value="${order.getO_date()}"/></td>
-                  <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModifyProduct<c:out value="${product.getP_id()}" />" style="background-color: #303841;border-color: #101010">明細</button></td>
+                  <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#OrderDetail<c:out value="${order.getOrder_id()}"/>" style="background-color: #303841;border-color: #101010">明細</button></td>
                   <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModifyProduct<c:out value="${product.getP_id()}" />">
 						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 					  </button>
 				  </td>
-				  <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#mydeleteProduct<c:out value="${product.getP_id()}" />">
+				  <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#OrderRecordDelete<c:out value="${order.getOrder_id()}" />">
 					      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 					  </button>
 				  </td>
@@ -102,8 +102,45 @@
             </table>
           </div>
             </div>
-           
-    <!-- Modal -->
+    </div>
+    <!-- Detail -->
+    <c:forEach  items="${OrderList}" var="order1">
+        	<div class="modal fade" tabindex="-1" role="dialog" id="OrderDetail<c:out value="${order1.getOrder_id()}"/>">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="color:#606468">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">訂單明細</h4>
+                        </div>
+                        <div class="modal-body">
+                          <form class="form-horizontal" role="form">
+                            <table class="table">
+                              <tr>
+                                <td>產品編號</td>
+                                <td>產品名稱</td>
+                                <td>產品價格</td>
+                                <td>產品數量</td>
+                                <td>產品金額</td>
+                              </tr>
+                          	  <c:forEach items="${OrderDetailList}" var="orderDetail">
+                          		<c:if test="${orderDetail.getOrderDetail_id() == order1.getOrder_id() }">
+                              		<tr>
+                                		<td><c:out value="${orderDetail.getOrder_p_id()}"/></td>
+                                		<td><c:out value="${orderDetail.getProduct().getP_name()}"/></td>
+                                		<td><c:out value="${orderDetail.getProduct().getP_price()}"/></td>
+                                		<td><c:out value="${orderDetail.getP_amount()}"/></td>
+                                		<td><c:out value="${orderDetail.getP_total()}"/></td>
+                              		</tr>
+                          		</c:if>
+                          	</c:forEach>
+                          </table>
+                        </form>
+                      </div>
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+      		</div>
+      </c:forEach>
+    <!-- Modify -->
     <div class="modal fade" id="myModifyProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -158,64 +195,9 @@
         </div>
       </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="myAddProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">新增產品</h4>
-          </div>
-          <div class="modal-body">
-            <div class="modal-body">
-            <form class="form-horizontal">
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">產品圖片</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="產品圖片" >
-                </div>
-              </div>
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">產品名稱</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="產品名稱" >
-                </div>
-              </div>
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">產品描述</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="產品描述" >
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">價錢</label>
-                <div class="col-sm-8">
-                  <input type="number" class="form-control" id="inputEmail3" placeholder="價錢" >
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">存貨數量</label>
-                <div class="col-sm-8">
-                  <input type="number" class="form-control" id="inputEmail3" placeholder="存貨數量">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">產品狀態</label>
-                <div class="col-sm-8">
-                  <input type="radio" id="Member_check_add" name="product_status" checked="checked" value="upSale"/>&nbsp&nbsp上架<br><input id="Administor_check_add" type="radio" name="product_status" value="removeSale"/>&nbsp&nbsp下架
-                </div>
-              </div>
-            </form>
-          </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="mydeleteProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <!-- Delete -->
+    <c:forEach  items="${OrderList}" var="order3">
+    <div class="modal fade" id="OrderRecordDelete<c:out value="${order1.getOrder_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -248,7 +230,7 @@
               </div>
             </div>
           </div>
-
+	</c:forEach>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

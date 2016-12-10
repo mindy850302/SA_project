@@ -224,6 +224,8 @@ public class ProductDAODB implements ProductDAO {
 				product.setP_onsale_date(rs.getString("p_onsale_date"));
 				product.setP_remove_date(rs.getString("p_remove_date"));
 				product.setP_update_date(rs.getString("p_update_date"));
+				product.setSale(rs.getInt("sale"));
+				
 				ProductList.add(product);
 			}
 			rs.close();
@@ -450,8 +452,7 @@ public class ProductDAODB implements ProductDAO {
 	public void addInventory(Product product) {
 		
 
-			String sql= "UPDATE product SET p_inventory= ? "
-				+ "WHERE p_id = ?";
+			String sql= "UPDATE product SET p_inventory= ? ";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);
@@ -472,11 +473,8 @@ public class ProductDAODB implements ProductDAO {
 						conn.close();
 					} catch (SQLException e) {
 					}
-				}
+				}}}
 			
-		}
-	}
-
 
 
 

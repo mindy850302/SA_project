@@ -11,6 +11,9 @@ public interface MemberDAO {
     public void delete(Member member);
     public List<Member> search(String keyword);
 	public boolean checkLoginMember(Member member);
+
+	//public boolean checkSignup(Member member);
+
 	public boolean checkLoginAdministrator(Member member) ;
 	public int countMember();
 		// TODO Auto-generated method stub

@@ -10,6 +10,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.mysql.jdbc.Statement;
+import com.practice.webapp.entity.Comment;
 import com.practice.webapp.entity.Discount;
 
 public class DiscountDAODB implements DiscountDAO {
@@ -185,6 +186,46 @@ public class DiscountDAODB implements DiscountDAO {
 			}
 		}
 		return discount;
+	}
+
+	@Override
+	public List<Discount> search(String keyword) {
+List<Discount> DiscountList = new ArrayList<Discount>();
+		
+		String sql = "SELECT * FROM discount WHERE discount_M_id LIKE '%"+keyword+"%'";
+		System.out.println(sql);
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			System.out.println(keyword);
+			
+			rs = smt.executeQuery();
+			while (rs.next()) {
+				Discount discount = new Discount();
+				discount.setDiscount_id(rs.getInt("	discount_id"));
+				discount.setDiscount_M_id(rs.getInt("discount_M_id"));
+				discount.setDiscount_date(rs.getString("discount_date"));
+				discount.setDiscount_total(rs.getInt("discount_total"));
+				discount.setDiscount_A_id(rs.getInt("discount_A_id"));
+				DiscountList.add(discount);
+			}
+			rs.close();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+
+			}
+
+		}
+		return DiscountList;
 	}
 
 }

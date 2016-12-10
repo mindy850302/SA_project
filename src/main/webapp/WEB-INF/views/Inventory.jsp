@@ -52,12 +52,14 @@
             <h1 class="page-header">存貨情況</h1>
           </div>
           <div class="col-lg-3">
-              <div class="input-group"">
-                <input type="text" class="form-control" placeholder="Search for..." style="border-radius: 40px;">
+          <form class="navbar-form navbar-right" role="search" action="isearch" method="POST">
+              <div class="input-group">
+                <input type="text" class="form-control" name="keyword"placeholder="Search for..." style="border-radius: 40px;">
                 <span class="input-group-btn" >
-                  <button class="btn btn-default" type="button" style="border-radius: 40px;"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
+                  <button class="btn btn-default" type="submit" style="border-radius: 40px;"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
                 </span>
-              </div><!-- /input-group -->
+              </div>
+              </form><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
         </div>
           <div class="row">
@@ -80,25 +82,26 @@
                 </tr>
               </thead>
               <tbody>
-              <c:forEach  items="${ProductList}" var="ProductList">
-             	<c:if test="${ProductList.getP_inventory()<=20}" >
+              <c:forEach  items="${ProductList}" var="Product1">
+             	<c:if test="${Product1.getP_inventory()<20}" >
                 <tr>
-                  <td><img class="product_img_list" src="<c:out value="${ProductList.getP_image()}"/>"></td>
-                  <td><c:out value="${ProductList.getP_id()}"/></td>
-                  <td><c:out value="${ProductList.getP_name()}"/></td>
-                  <td><c:out value="${ProductList.getP_describe()}"/></td>
-                  <td><c:out value="${ProductList.getP_price()}"/></td>
-                  <td><c:out value="${ProductList.getP_inventory()}"/></td>
-                  <td><c:out value="${ProductList.getP_onsale_date()}"/></td>
-                  <td><c:out value="${ProductList.getP_update_date()}"/></td>
-                  <td><c:out value="${ProductList.getP_remove_date()}"/></td>
-                  <td>	<c:if test="${ProductList.isSale()==0}" >已下架</c:if>
-                  	<c:if test="${ProductList.isSale()==1}" >上架中</c:if>
+                  <td><img class="product_img_list" src="<c:out value="${Product1.getP_image()}"/>"></td>
+                  <td><c:out value="${Product1.getP_id()}"/></td>
+                  <td><c:out value="${Product1.getP_name()}"/></td>
+                  <td><c:out value="${Product1.getP_describe()}"/></td>
+                  <td><c:out value="${Product1.getP_price()}"/></td>
+                  <td><c:out value="${Product1.getP_inventory()}"/></td>
+                  <td><c:out value="${Product1.getP_onsale_date()}"/></td>
+                  <td><c:out value="${Product1.getP_update_date()}"/></td>
+                  <td><c:out value="${Product1.getP_remove_date()}"/></td>
+                  <td>	
+                  <c:if test="${Product1.isSale()==0}" >已下架</c:if>
+                  <c:if test="${Product1.isSale()==1}" >上架中</c:if>
                   
                  </td>
                   
-                  <td><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myAddInventory<c:out value="${ProductList.getP_id()}"/>">追加存貨</button></td>
-                  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myRemoveInventory<c:out value="${ProductList.getP_id()}"/>">下架產品</button></td>
+                  <td><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myAddInventory<c:out value="${Product1.getP_id()}"/>">追加存貨</button></td>
+                  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myRemoveInventory<c:out value="${Product1.getP_id()}"/>">下架產品</button></td>
                 </tr>
                 </c:if>
                 </c:forEach>

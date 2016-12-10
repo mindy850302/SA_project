@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language = "java" import = "java.util.*" language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -75,34 +77,35 @@
                     </div>
 
                 </div>
+          
 
           <h2 class="sub-header">熱門產品</h2>
           <div class="row">
+
           <c:forEach items="${HotProductList}" var="hotproduct">
+
               <div class="col-sm-3 col-md-3">
                 <div class="thumbnail">
                   <img  src="<c:out value="${hotproduct.getP_image()}"></c:out>" alt="...">
                   <div class="caption">
                     <center>
+
                     <h5><c:out value="${hotproduct.getP_name()}"></c:out></h5>
                     <h5 style="color: #777070;line-height: 25px;"><c:out value="${hotproduct.getP_describe()}"></c:out></h5>
                     <h5><c:out value="${hotproduct.getP_price()}"></c:out></h5>
                     <h5><c:out value="${hotproduct.getP_inventory()}"></c:out></h5>
-                    <h5>上架日期：<c:out value="${hotproduct.getP_onsale_date()}"></c:out></h5>
-                    
+                    <h5>上架日期：<c:out value="${hotproduct.getP_onsale_date()}"></c:out></h5> 
                     </center>
                   </div>
                 </div>
               </div>
-              </c:forEach>
-              
-              
-              
+              </c:forEach>          
             </div>
             <h2 class="sub-header">最新產品</h2>
           <div class="row">
           <c:forEach items="${newProductList}" var="newproduct">
               <div class="col-sm-3 col-md-3">
+
                 <div class="thumbnail">
                   <img  src="<c:out value="${newproduct.getP_image()}"></c:out>" alt="...">
                   <div class="caption">
@@ -121,8 +124,10 @@
               
               
               
-            </div>
+       </div>
+ 
         </div>
+                            
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

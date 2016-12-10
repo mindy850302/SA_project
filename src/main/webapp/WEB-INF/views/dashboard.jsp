@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -51,7 +52,7 @@
                     <div class="col-md-4">
                         <div class="main-box mb-red">
                             <a href="#">
-                                <h1>40</h1>
+                                <h1><c:out value="${count_product}"></c:out></h1>
                                 <h5>New Products</h5>
                             </a>
                         </div>
@@ -59,7 +60,7 @@
                     <div class="col-md-4">
                         <div class="main-box mb-dull">
                             <a href="#">
-                                <h1>653</h1>
+                                <h1><c:out value="${count_member}"></c:out></h1>
                                 <h5>New Member</h5>
                             </a>
                         </div>
@@ -67,7 +68,7 @@
                     <div class="col-md-4">
                         <div class="main-box mb-pink">
                             <a href="#">
-                                <h1>94</h1>
+                                <h1><c:out value="${count_comment}"></c:out></h1>
                                 <h5>New Comment</h5>
                             </a>
                         </div>
@@ -77,74 +78,48 @@
 
           <h2 class="sub-header">熱門產品</h2>
           <div class="row">
+          <c:forEach items="${HotProductList}" var="hotproduct">
               <div class="col-sm-3 col-md-3">
                 <div class="thumbnail">
-                  <img  src="img/macpro1.jpg" alt="...">
+                  <img  src="<c:out value="${hotproduct.getP_image()}"></c:out>" alt="...">
                   <div class="caption">
                     <center>
-                    <h5>13 吋 MacBook Pro</h5>
-                    <h5 style="color: #777070;line-height: 25px;">2.0GHz 處理器 <br>256GB 儲存容量</h5>
-                    <h5>價錢：43500</h5>
-                    <h5>存貨數量：653</h5>
-                    <h5>上架日期：2016/11/09</h5>
-                    <h5>更新日期：2016/11/09</h5>
-                    <h5>下架日期：2016/11/09</h5>
+                    <h5><c:out value="${hotproduct.getP_name()}"></c:out></h5>
+                    <h5 style="color: #777070;line-height: 25px;"><c:out value="${hotproduct.getP_describe()}"></c:out></h5>
+                    <h5><c:out value="${hotproduct.getP_price()}"></c:out></h5>
+                    <h5><c:out value="${hotproduct.getP_inventory()}"></c:out></h5>
+                    <h5>上架日期：<c:out value="${hotproduct.getP_onsale_date()}"></c:out></h5>
                     
                     </center>
                   </div>
                 </div>
               </div>
+              </c:forEach>
+              
+              
+              
+            </div>
+            <h2 class="sub-header">最新產品</h2>
+          <div class="row">
+          <c:forEach items="${newProductList}" var="newproduct">
               <div class="col-sm-3 col-md-3">
                 <div class="thumbnail">
-                  <img  src="img/macpro1.jpg" alt="...">
+                  <img  src="<c:out value="${newproduct.getP_image()}"></c:out>" alt="...">
                   <div class="caption">
                     <center>
-                    <h5>13 吋 MacBook Pro</h5>
-                    <h5 style="color: #777070;line-height: 25px;">2.0GHz 處理器 <br>256GB 儲存容量</h5>
-                    <h5>價錢：43500</h5>
-                    <h5>存貨數量：653</h5>
-                    <h5>上架日期：2016/11/09</h5>
-                    <h5>更新日期：2016/11/09</h5>
-                    <h5>下架日期：2016/11/09</h5>
+                    <h5><c:out value="${newproduct.getP_name()}"></c:out></h5>
+                    <h5 style="color: #777070;line-height: 25px;"><c:out value="${newproduct.getP_describe()}"></c:out></h5>
+                    <h5><c:out value="${newproduct.getP_price()}"></c:out></h5>
+                    <h5><c:out value="${newproduct.getP_inventory()}"></c:out></h5>
+                    <h5>上架日期：<c:out value="${newproduct.getP_onsale_date()}"></c:out></h5>
                     
                     </center>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-3 col-md-3">
-                <div class="thumbnail">
-                  <img  src="img/macpro1.jpg" alt="...">
-                  <div class="caption">
-                    <center>
-                    <h5>13 吋 MacBook Pro</h5>
-                    <h5 style="color: #777070;line-height: 25px;">2.0GHz 處理器 <br>256GB 儲存容量</h5>
-                    <h5>價錢：43500</h5>
-                    <h5>存貨數量：653</h5>
-                    <h5>上架日期：2016/11/09</h5>
-                    <h5>更新日期：2016/11/09</h5>
-                    <h5>下架日期：2016/11/09</h5>
-       
-                    </center>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3 col-md-3">
-                <div class="thumbnail">
-                  <img  src="img/macpro1.jpg" alt="...">
-                  <div class="caption">
-                    <center>
-                    <h5>13 吋 MacBook Pro</h5>
-                    <h5 style="color: #777070;line-height: 25px;">2.0GHz 處理器 <br>256GB 儲存容量</h5>
-                    <h5>價錢：43500</h5>
-                    <h5>存貨數量：653</h5>
-                    <h5>上架日期：2016/11/09</h5>
-                    <h5>更新日期：2016/11/09</h5>
-                    <h5>下架日期：2016/11/09</h5>
-                    
-                    </center>
-                  </div>
-                </div>
-              </div>
+              </c:forEach>
+              
+              
               
             </div>
         </div>

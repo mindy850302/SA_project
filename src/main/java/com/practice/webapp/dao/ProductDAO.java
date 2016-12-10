@@ -15,6 +15,8 @@ public interface ProductDAO {
     public void average(int id);
     public void addInventory(Product product);
     public int updateClick(Product product);
- 
+    public int countProduct();
+    public List<Product> hotProduct();
+    public List<Product> newProduct();
 
 }

@@ -12,6 +12,7 @@ public interface MemberDAO {
     public List<Member> search(String keyword);
 	public boolean checkLoginMember(Member member);
 	public boolean checkLoginAdministrator(Member member) ;
+	public int countMember();
 		// TODO Auto-generated method stub
 
 	

@@ -146,12 +146,12 @@ public class MemberController {
 		    if(Character.isDigit(mpwd[i])){
 		    	countnum++;
 		    }
-		    if(countletter==0 && countnum==0)
+		    if(countletter==0 && countnum==0){
 		    	checkpwd=0;//密碼錯誤，到signup頁面
 		    	flag=0;
 				System.out.println("2");
 		    	break;
-			
+		    }
 		}
 		char mphone[] = new char[Mphone.length()];
 		for(int j=0; j<Mphone.length(); j++){
@@ -162,14 +162,12 @@ public class MemberController {
 				System.out.println("3");
 
 				break;
-		}			    
-			 }	
+			}			    
+		}	
 		if(flag==1){
 			MemberDAO.insert(member);
 			System.out.println("4");
 			model.setViewName("redirect:/login");
-
-
 		}
 		else {
 			System.out.println("5");

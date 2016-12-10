@@ -61,4 +61,10 @@ public class DiscountDAOImpl implements DiscountDAO {
 		return discount1;
 	}
 
+	@Override
+	public List<Discount> search(String keyword) {
+		
+		return DiscountList;
+	}
+
 }

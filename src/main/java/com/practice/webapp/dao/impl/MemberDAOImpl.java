@@ -100,7 +100,12 @@ public class MemberDAOImpl implements MemberDAO{
 //	public int count(){
 //		
 //	}
+	
 //	
+//	public boolean checkSignup(Member member){
+//		
+//		return true;
+//	}
 	
 	
 }

@@ -56,6 +56,20 @@ import org.springframework.web.servlet.ModelAndView;
 public class MemberController {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public ModelAndView signup(@ModelAttribute Member member,@ModelAttribute("checkid") String checkid,@ModelAttribute("checkpwd") String checkpwd,@ModelAttribute("checkphone") String checkphone) {
+		ModelAndView model = new ModelAndView("signup");
+		MemberDAO MemberDAO = (MemberDAO) context.getBean("MemberDAO");
+		List<Member> memberList = new ArrayList<Member>();
+		memberList=MemberDAO.getList();
+		
+		model.addObject("member",member);
+
+		model.addObject("memberList",memberList);
+		model.addObject("message");
+		return model;
+	
+	}
 	private Member member;
 
 	@RequestMapping(value = "/AccountList", method = RequestMethod.GET)
@@ -80,11 +94,97 @@ public class MemberController {
 		return model;
 	}
 
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public ModelAndView getSignup(String name) {
-		ModelAndView model = new ModelAndView("signup");
+	@RequestMapping(value = "/insertMember", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView insertMember(@ModelAttribute Member member,@RequestParam("type") String type) {
+		MemberDAO MemberDAO = (MemberDAO) context.getBean("MemberDAO");
+		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
+
+		ModelAndView model = new ModelAndView();
+		List<Administrator> administratorList = new ArrayList<Administrator>();
+
+		List<Member> memberList = new ArrayList<Member>();
+		administratorList=AdministratorDAO.getList();
+
+		memberList=MemberDAO.getList();
 		// = model.setViewName("signup");
-		model.addObject("message");
+		String Mid=member.getM_idName();
+		String Mpwd=member.getM_pwd();
+		String Mphone=member.getM_phone();
+		int checkid=1;//1:true 0:false
+		int checkpwd=1;
+		int checkphone=1;
+		int flag=1;
+		if (type.equals("Check")) {
+		
+		for(int i=0;i<memberList.size();i++){
+			if(Mid.equals(memberList.get(i).getM_idName())){
+				checkid=0;//帳號錯誤，到signup頁面	
+				flag=0;
+				System.out.println("1");
+				break;
+			}
+			
+		}
+		for(int i=0;i<administratorList.size();i++){
+			if(Mid.equals(administratorList.get(i).getM_idName())){
+				checkid=0;//帳號錯誤，到signup頁面	
+				flag=0;
+				System.out.println("1");
+				break;
+			}
+			
+		}
+
+		char mpwd[] = new char[Mpwd.length()];
+		int countnum=0;
+		int countletter=0;
+		for(int i=0; i<Mpwd.length(); i++){
+		    mpwd[i] = Mpwd.charAt(i);
+		    if(Character.isLetter(mpwd[i])){
+		    	countletter++;
+		    }
+		    if(Character.isDigit(mpwd[i])){
+		    	countnum++;
+		    }
+		    if(countletter==0 && countnum==0)
+		    	checkpwd=0;//密碼錯誤，到signup頁面
+		    	flag=0;
+				System.out.println("2");
+		    	break;
+			
+		}
+		char mphone[] = new char[Mphone.length()];
+		for(int j=0; j<Mphone.length(); j++){
+			mphone[j] = Mphone.charAt(j);
+			if(Character.isDigit(mphone[j])==false){
+				checkphone=0;//電話錯誤，到signup頁面
+				flag=0;
+				System.out.println("3");
+
+				break;
+		}			    
+			 }	
+		if(flag==1){
+			MemberDAO.insert(member);
+			System.out.println("4");
+			model.setViewName("redirect:/login");
+
+
+		}
+		else {
+			System.out.println("5");
+
+			model.setViewName("redirect:/signup");
+			
+		}
+		}
+		model.addObject("memberList", memberList);
+		model.addObject("flag",flag);
+		model.addObject("checkid",checkid);
+		model.addObject("checkpwd",checkpwd);
+		model.addObject("checkphone",checkphone);
+
+		
 		return model;
 	}
 
@@ -102,6 +202,7 @@ public class MemberController {
 		MemberDAO memberDAO = (MemberDAO) context.getBean("MemberDAO");
 		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
 		ModelAndView model = new ModelAndView();
+
 		List<Member> memberList = new ArrayList<Member>();
 		List<Administrator> administratorList = new ArrayList<Administrator>();
 		System.out.println("id before called:" + member.getM_idName());
@@ -256,16 +357,18 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/msearch", method = RequestMethod.POST)
-	public ModelAndView search(@ModelAttribute Member member, HttpServletRequest request,
-			@RequestParam("mkeyword") String mkeyword) {
-		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
-		ModelAndView model = new ModelAndView("searchmember");
 
+	public ModelAndView msearch(@ModelAttribute Member member, HttpServletRequest request,
+		@RequestParam("mkeyword") String mkeyword) {
+		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
+		ModelAndView model = new ModelAndView("AccountList");
+		
 		List<Member> MemberList = new ArrayList<Member>();
 
-		MemberList = Memberdao.search(mkeyword);
-
-		model.addObject("MemberList", MemberList);
+		MemberList=Memberdao.search(mkeyword);
+		
+		model.addObject("memberList",MemberList);
+	
 
 		return model;
 
@@ -275,8 +378,8 @@ public class MemberController {
 	public ModelAndView searchmember(@ModelAttribute Member member, HttpServletRequest request) {
 		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
 		List<Member> MemberList = new ArrayList<Member>();
-		ModelAndView model = new ModelAndView("searchmember");
 
+		ModelAndView model = new ModelAndView("AccountList");
 		return model;
 	}
 

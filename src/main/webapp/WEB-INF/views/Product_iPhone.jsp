@@ -30,8 +30,11 @@
 		<section id="wrapper">
 <!-- One -->
 <!-- Two -->
+			<c:set var="count" value="${0}"/>
 			<c:forEach  items="${ProductList}" var="product">
-				<c:if test="${product.getP_id()%2 == 1 && product.getP_category() == 1 && product.isSale()==1}">
+			<c:if test="${product.getP_category() == 1 && product.isSale()==1}">
+				<c:set var="count" value="${count+1}"/>
+				<c:if test="${count%2 == 1}">
             		<section id="one" class="wrapper spotlight style1">
 						<div class="inner">
 							<a href="/webapp/Product?id=${product.getP_id()}" class="image"><img src="<c:out value="${product.getP_image()}"/>" alt="" /></a>
@@ -43,7 +46,7 @@
 						</div>
 					</section>
         		</c:if>
-        		<c:if test="${product.getP_id()%2 == 0 && product.getP_category() == 1 && product.isSale()==1}">
+        		<c:if test="${count%2 == 0}">
             		<section id="two" class="wrapper alt spotlight style2">
 						<div class="inner">
 							<a href="/webapp/Product?id=${product.getP_id()}" class="image"><img src="<c:out value="${product.getP_image()}"/>" alt="" /></a>
@@ -55,41 +58,11 @@
 						</div>
 					</section>
         		</c:if>
+        	</c:if>
 			</c:forEach>
 <!-- Footer -->
 		<section id="footer">
 			<div class="inner">
-				<h2 class="major">Get in touch</h2>
-				<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
-				<form method="post" action="#">
-					<div class="field">
-						<label for="name">Name</label>
-						<input type="text" name="name" id="name" />
-					</div>
-					<div class="field">
-						<label for="email">Email</label>
-						<input type="email" name="email" id="email" />
-					</div>
-					<div class="field">
-						<label for="message">Message</label>
-						<textarea name="message" id="message" rows="4"></textarea>
-					</div>
-					<ul class="actions">
-						<li><input type="submit" value="Send Message" /></li>
-					</ul>
-				</form>
-				<ul class="contact">
-					<li class="fa-home">
-						Untitled Inc<br />
-						1234 Somewhere Road Suite #2894<br />
-						Nashville, TN 00000-0000
-					</li>
-					<li class="fa-phone">(000) 000-0000</li>
-					<li class="fa-envelope"><a href="#">information@untitled.tld</a></li>
-					<li class="fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
-					<li class="fa-facebook"><a href="#">facebook.com/untitled-tld</a></li>
-					<li class="fa-instagram"><a href="#">instagram.com/untitled-tld</a></li>
-				</ul>
 				<ul class="copyright">
 					<li>&copy; Untitled Inc. All rights reserved.</li>
 				</ul>

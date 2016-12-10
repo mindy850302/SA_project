@@ -49,7 +49,7 @@
 
       <p class="text--center">Not a member? <a href="/webapp/signup">Sign up now</a> </p>
       <center>
-      <a href="/webapp/loginAdministrator">I am Administrator:-)</a>
+      <a href="/webapp/loginAdministrator">I am Administrator</a>
       </center>
 
     </div>

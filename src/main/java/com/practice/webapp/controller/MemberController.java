@@ -19,7 +19,6 @@ import com.practice.webapp.entity.Administrator;
 import com.practice.webapp.entity.Member;
 import com.practice.webapp.entity.Product;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -53,7 +52,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @SessionAttributes("loginsession")
-
 
 public class MemberController {
 
@@ -89,16 +87,16 @@ public class MemberController {
 		model.addObject("message");
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/loginAdministrator", method = RequestMethod.GET)
 	public ModelAndView getloginAdministrator(String name) {
 		ModelAndView model = new ModelAndView("loginAdministrator");
 		// = model.setViewName("loginAdministrator");
-		
+
 		model.addObject("message");
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	public ModelAndView checkLogin(@ModelAttribute Member member) {
 		MemberDAO memberDAO = (MemberDAO) context.getBean("MemberDAO");
@@ -110,37 +108,24 @@ public class MemberController {
 		memberList = memberDAO.getList();
 		administratorList = AdministratorDAO.getList();
 		boolean result = memberDAO.checkLoginMember(member);
-		System.out.println(result);
+		
 		if (result) {
 			model.addObject("loginsession", member.getM_idName());
-			
-				model.setViewName("index");
-				}
-		else{
-			model.setViewName("signup");
+			model.setViewName("index");
+		} else {
+			model.setViewName("login");
 		}
-			
-		
+
 		boolean result2 = memberDAO.checkLoginAdministrator(member);
-		System.out.println(result2);
+		
 		if (result2) {
 			model.addObject("loginsession", member.getM_idName());
-			
-			
-				
-			
-				model.setViewName("dashboard");
-			}
-			 else {
-			model.setViewName("index");
-		}
+			model.setViewName("dashboard");
+		} 
 		return model;
 
 	}
 
-	
-	
-	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView getLogin(@ModelAttribute("name") String name, SessionStatus sessionStatus) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
@@ -272,67 +257,74 @@ public class MemberController {
 
 	@RequestMapping(value = "/msearch", method = RequestMethod.POST)
 	public ModelAndView search(@ModelAttribute Member member, HttpServletRequest request,
-		@RequestParam("mkeyword") String mkeyword) {
+			@RequestParam("mkeyword") String mkeyword) {
 		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
 		ModelAndView model = new ModelAndView("searchmember");
-		
+
 		List<Member> MemberList = new ArrayList<Member>();
 
-		MemberList=Memberdao.search(mkeyword);
-		
-		model.addObject("MemberList",MemberList);
-	
+		MemberList = Memberdao.search(mkeyword);
+
+		model.addObject("MemberList", MemberList);
+
 		return model;
-		
+
 	}
+
 	@RequestMapping(value = "/searchmember", method = RequestMethod.GET)
 	public ModelAndView searchmember(@ModelAttribute Member member, HttpServletRequest request) {
 		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
 		List<Member> MemberList = new ArrayList<Member>();
 		ModelAndView model = new ModelAndView("searchmember");
-		
+
 		return model;
 	}
 
 	@RequestMapping(value = "/MemberData", method = RequestMethod.GET)
 	public ModelAndView getMemberData(String name, HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("MemberData");
-		
+
 		// = model.setViewName("MemberData");
-		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
+		MemberDAO memberdao = (MemberDAO) context.getBean("MemberDAO"); // defined
+																		// in
+																		// spring-webapp.xml
 		List<Member> memberList = new ArrayList<Member>();
-		memberList=memberdao.getList();
-		Member member=new Member();
-		
+		memberList = memberdao.getList();
+		Member member = new Member();
+
 		request.getSession().getAttribute("loginsession");
-		String idName=(String)request.getSession().getAttribute("loginsession");
-		MemberDAO Memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
+		String idName = (String) request.getSession().getAttribute("loginsession");
+		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO"); // defined
+																		// in
+																		// spring-webapp.xml
 		List<Member> MemberList = new ArrayList<Member>();
-		MemberList=Memberdao.getList();
+		MemberList = Memberdao.getList();
 		System.out.print(idName);
-		for(int i = 0 ; i < MemberList.size();i++){
-			if (MemberList.get(i).getM_idName().equals(idName)){
+		for (int i = 0; i < MemberList.size(); i++) {
+			if (MemberList.get(i).getM_idName().equals(idName)) {
 				member = MemberList.get(i);
 				break;
 			}
 		}
-		
-		model.addObject("Member",member);
-		model.addObject("memberList",memberList);
-		
+
+		model.addObject("Member", member);
+		model.addObject("memberList", memberList);
+
 		return model;
 	}
-	@RequestMapping(value = "/updateMemberData", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
-	public ModelAndView updateMemberData(@ModelAttribute Member member,HttpServletRequest request,@RequestParam("type") String type){		
-		MemberDAO MemberDAO = (MemberDAO)context.getBean("MemberDAO");
+
+	@RequestMapping(value = "/updateMemberData", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView updateMemberData(@ModelAttribute Member member, HttpServletRequest request,
+			@RequestParam("type") String type) {
+		MemberDAO MemberDAO = (MemberDAO) context.getBean("MemberDAO");
 		ModelAndView model = new ModelAndView();
 		System.out.println(request.getCharacterEncoding());
 		System.out.println(type);
-		if(type.equals("modifyMemberData")){
+		if (type.equals("modifyMemberData")) {
 			MemberDAO.update(member);
 		}
 		model.setViewName("redirect:/MemberData");
-		return model; 
+		return model;
 
 	}
 

@@ -14,13 +14,9 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/webapp/dashboard"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbspDashboard</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp設定 <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                
-                <li><a href="/webapp/logout">Log out</a></li>
-              </ul>
-            </li>
+            <li><a href="/webapp/AdminstratorData" accesskey="5" title=""><c:out value="${loginsession}"/></a></li>            
+                <li><a href="/webapp/MemberData" accesskey="5" title="">修改個人資料</a></li>
+                <li><a href="/webapp/logout">Log out</a></li>        
           </ul>
         </div>
       </div>
@@ -41,9 +37,10 @@
                     <li>
                         <a href="/webapp/AccountList"><i class="fa fa-toggle-on"></i>成員列表</a>
                     </li>
-                   <!--  <li>
-                        <a href="#"><i class="fa fa-toggle-on"></i>新增成員</a>
+                    <li>
+                        <a href="#"><i class="fa fa-toggle-on"></i>新增部門</a>
                     </li>
+                    <!--
                     <li>
                         <a href="#"><i class="fa fa-bell "></i>修改成員資料</a>
                     </li>
@@ -55,10 +52,10 @@
             <li>
                 <a href="/webapp/ProductInfro"><i class="fa fa-desktop "></i>產品列表</a>
                  <ul class="nav nav-second-level">
-                    <!-- <li>
-                        <a href="#"><i class="fa fa-toggle-on"></i>產品資訊</a>
+                   <li>
+                        <a href="#"><i class="fa fa-toggle-on"></i>新增產品種類</a>
                     </li>
-                    <li>
+                     <!-- <li>
                         <a href="#"><i class="fa fa-toggle-on"></i>新增產品</a>
                     </li>
                     <li>

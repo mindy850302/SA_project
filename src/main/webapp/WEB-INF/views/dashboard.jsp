@@ -92,9 +92,10 @@
 
                     <h5><c:out value="${hotproduct.getP_name()}"></c:out></h5>
                     <h5 style="color: #777070;line-height: 25px;"><c:out value="${hotproduct.getP_describe()}"></c:out></h5>
-                    <h5><c:out value="${hotproduct.getP_price()}"></c:out></h5>
-                    <h5><c:out value="${hotproduct.getP_inventory()}"></c:out></h5>
+                    <h5>NT . <c:out value="${hotproduct.getP_price()}"></c:out></h5>
+                    <h5>存貨數量：<c:out value="${hotproduct.getP_inventory()}"></c:out></h5>
                     <h5>上架日期：<c:out value="${hotproduct.getP_onsale_date()}"></c:out></h5> 
+                    <h5>瀏覽次數：<c:out value="${hotproduct.getClick_count()}"></c:out></h5> 
                     </center>
                   </div>
                 </div>
@@ -112,8 +113,8 @@
                     <center>
                     <h5><c:out value="${newproduct.getP_name()}"></c:out></h5>
                     <h5 style="color: #777070;line-height: 25px;"><c:out value="${newproduct.getP_describe()}"></c:out></h5>
-                    <h5><c:out value="${newproduct.getP_price()}"></c:out></h5>
-                    <h5><c:out value="${newproduct.getP_inventory()}"></c:out></h5>
+                    <h5>NT . <c:out value="${newproduct.getP_price()}"></c:out></h5>
+                    <h5>存貨數量：<c:out value="${newproduct.getP_inventory()}"></c:out></h5>
                     <h5>上架日期：<c:out value="${newproduct.getP_onsale_date()}"></c:out></h5>
                     
                     </center>

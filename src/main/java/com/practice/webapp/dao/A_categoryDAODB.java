@@ -19,12 +19,11 @@ public class A_categoryDAODB implements A_categoryDAO {
 	}
 
 	public void insert(A_category a_category){
-		String sql = "INSERT INTO A_category (c_id,c_name) VALUES(?, ?)";	
+		String sql = "INSERT INTO A_category (c_name) VALUES(?)";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, a_category.getC_id());
-			smt.setString(2, a_category.getC_name());
+			smt.setString(1, a_category.getC_name());
 			smt.executeUpdate();			
 			smt.close();
  
@@ -41,7 +40,7 @@ public class A_categoryDAODB implements A_categoryDAO {
 		
 	}
 	public void delete(A_category a_category){
-		String sql = "DELETE FROM A_category WHERE c_id = ?";
+		String sql = "DELETE FROM A_category WHERE id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -63,12 +62,12 @@ public class A_categoryDAODB implements A_categoryDAO {
 	}
 	public void update(A_category a_category){
 			// TODO Auto-generated method stub
-			String sql = "UPDATE A_category SET c_id =?, c_name=? "+ "WHERE c_id = ?";
+			String sql = "UPDATE A_category SET c_name=? "+ "WHERE id = ?";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);
-				smt.setInt(1, a_category.getC_id());
-				smt.setString(2, a_category.getC_name());
+				smt.setString(1, a_category.getC_name());
+				smt.setInt(2, a_category.getC_id());
 				smt.executeUpdate();			
 				smt.close();
 	 

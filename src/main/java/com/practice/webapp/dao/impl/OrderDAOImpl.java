@@ -14,8 +14,10 @@ public class OrderDAOImpl {
 	public List<Order> getList(){
 		return OrderList;
 	}
-	public void insert(Order order){
+	public int insert(Order order){
+		int id=0;
 		OrderList.add(order);
+		return id;
 	}
 	public Order get(Order order){
 		Order getOrder=new Order();
@@ -27,9 +29,12 @@ public class OrderDAOImpl {
 		return getOrder;
 	}
     public void update(Order order){
-    	for(int i=0;i<OrderList.size();i++){
-    		
-    	}
+    	for (int i = 0; i < OrderList.size(); i++) {
+			if (OrderList.get(i).getOrder_id() == order.getOrder_id()) {
+				OrderList.remove(i);
+				OrderList.add(i, order);
+			}
+		}
     }
     public void delete(int id){
     	OrderList.remove((int)id);

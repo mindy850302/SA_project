@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language = "java" import = "java.util.*" language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -74,17 +76,21 @@
                     </div>
 
                 </div>
+          <form  action="hotProduct"  method="post">
 
           <h2 class="sub-header">熱門產品</h2>
           <div class="row">
+                             <c:forEach items="${ProductList}" var="hot">
+          
               <div class="col-sm-3 col-md-3">
                 <div class="thumbnail">
                   <img  src="img/macpro1.jpg" alt="...">
                   <div class="caption">
                     <center>
-                    <h5>13 吋 MacBook Pro</h5>
+                    
+                    <h5><c:out value="${hot.getP_id()}" /></h5>
                     <h5 style="color: #777070;line-height: 25px;">2.0GHz 處理器 <br>256GB 儲存容量</h5>
-                    <h5>價錢：43500</h5>
+                    <h5><c:out value="${hot.getP_rice()}" /></h5>
                     <h5>存貨數量：653</h5>
                     <h5>上架日期：2016/11/09</h5>
                     <h5>更新日期：2016/11/09</h5>
@@ -94,7 +100,9 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-3 col-md-3">
+              </c:forEach>
+              
+            <!--   <div class="col-sm-3 col-md-3">
                 <div class="thumbnail">
                   <img  src="img/macpro1.jpg" alt="...">
                   <div class="caption">
@@ -146,8 +154,10 @@
                 </div>
               </div>
               
-            </div>
+ -->            </div>
+ </form>
         </div>
+                            
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

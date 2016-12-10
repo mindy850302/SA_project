@@ -46,6 +46,9 @@
  <bean id="OrderDAO" class="com.practice.webapp.dao.OrderDAODB">
  	<property name="dataSource" ref="dataSource"></property>
  </bean>
+ <bean id="OrderDetailDAO" class="com.practice.webapp.dao.OrderDetailDAODB">
+ 	<property name="dataSource" ref="dataSource"></property>
+ </bean>
  <bean id="Product_categoryDAO" class="com.practice.webapp.dao.Product_categoryDAODB">
  	<property name="dataSource" ref="dataSource"></property>
  </bean>
@@ -61,6 +64,4 @@
  <bean id="ShoppingDetailDAO" class="com.practice.webapp.dao.ShoppingDetailDAODB">
  	<property name="dataSource" ref="dataSource"></property>
  </bean>
-
-
 </beans>

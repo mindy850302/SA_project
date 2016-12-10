@@ -327,8 +327,7 @@ public class ProductDAODB implements ProductDAO {
 	public void addInventory(Product product) {
 		
 
-			String sql= "UPDATE product SET p_inventory= ? "
-				+ "WHERE p_id = ?";
+			String sql= "UPDATE product SET p_inventory= ? ";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);
@@ -352,9 +351,57 @@ public class ProductDAODB implements ProductDAO {
 				}
 			
 		}
+		    
 			
 	}
 
+	public List<Product> hotProduct(){
+		List<Product> ProductList = new ArrayList<Product>(4);
+
+		String sql= "SELECT * ORDER BY click_count DESC"
+				+ "WHERE p_id = ?";
+			try {
+				conn = dataSource.getConnection();
+				smt = conn.prepareStatement(sql);
+				
+				Product product = new Product();
+				product.setP_id(rs.getInt("p_id"));
+				product.setP_category(rs.getInt("p_category"));
+				product.setClick_count(rs.getInt("click_count"));
+				product.setP_describe(rs.getString("p_describe"));
+				product.setP_image(rs.getString("p_image"));
+				product.setP_inventory(rs.getInt("p_inventory"));
+				product.setP_name(rs.getString("p_name"));
+				product.setP_price(rs.getInt("p_price"));
+				product.setP_onsale_date(rs.getString("p_onsale_date"));
+				product.setP_remove_date(rs.getString("p_remove_date"));
+				product.setP_update_date(rs.getString("p_update_date"));
+				ProductList.add(product);
+
+				smt.executeUpdate();
+				System.out.println("database"+product.getP_id());
+				smt.close();
+				
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+
+			} finally {
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+					}
+				}
+				for(int i=0;i<ProductList.size();i++){
+				System.out.println(ProductList.get(i).getClick_count());
+				}
+				return ProductList;
+			
+		}
+		    
+
+    	
+    }
 
 
 

@@ -1,5 +1,8 @@
 <%@ page language = "java" import = "java.util.*" language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!doctype html>
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <!doctype html>
+    
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -13,7 +16,7 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <link rel="stylesheet" type="text/css" href="css/header_css.css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 </head>
 
 <body class="align" style="margin-top:200px">
@@ -25,14 +28,14 @@
 
         <div class="form__field">
           <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg><span class="hidden">姓名</span></label>
-          <input id="signup__username" type="text" name="M_name" class="form__input" placeholder="Username" required>
+          <input id="signup__username" type="text" name="M_name" class="form__input" placeholder="姓名" required>
         </div>
 
         <div class="form__field">
           <label for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">帳號</span></label>
-          <input id="signup__Account" type="text" name="M_idName" class="form__input" placeholder="Account" required>
-           <c:if test="${checkid==0}">
-           <c:out value="123"/>
+          <input id="signup__Account" type="text" name="M_idName" class="form__input" placeholder="帳號" required>
+           <c:if test="${checkid.equals('0')}">
+           
 	            帳號重複
 	            
             </c:if>
@@ -40,8 +43,9 @@
            <div class="form__field">
           <label for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">Password</span></label>
           <input id="signup__password" type="password" name="M_pwd" class="form__input" placeholder="Password" required>
-        <c:if test="${checkpwd==0}">
-	            密碼格式錯誤k,需中英混合
+        <c:if test="${checkpwd.equals('0')}">
+        <c:out value="密碼格式錯誤,需中英混合"/>
+	            
             </c:if>
         </div> 
         
@@ -53,7 +57,7 @@
           <div class="form__field">
           <label for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">Phone</span></label>
           <input id="signup__phone" type="text" name="M_phone" class="form__input" placeholder="phone" required>
-       <c:if test="${checkphone==0}">
+       <c:if test="${checkphone.equals('0')}">
 	            電話格式錯誤，只能輸入數字
             </c:if>
         </div> 

@@ -23,7 +23,7 @@ public class ReturnDetailDAODB implements ReturnDetailDAO {
 	}
 	
 	public List<ReturnDetail> getList(){
-		String sql = "SELECT * FROM returnDetail";
+		String sql = "SELECT * FROM returnDetail a JOIN product b ON a.return_p_id = b.p_id";
 		return getList(sql);
 	}
 	
@@ -35,6 +35,8 @@ public class ReturnDetailDAODB implements ReturnDetailDAO {
 			rs = smt.executeQuery();
 			while(rs.next()){
 				ReturnDetail return_detail = new ReturnDetail();
+				return_detail.getProduct().setP_name(rs.getString("p_Name"));
+				return_detail.getProduct().setP_price(rs.getInt("p_price"));
 				return_detail.setP_amount(rs.getInt("p_amount"));
 				return_detail.setP_total(rs.getInt("p_total"));
 				return_detail.setReturn_id(rs.getInt("return_id"));

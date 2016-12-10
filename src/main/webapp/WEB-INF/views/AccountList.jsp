@@ -55,17 +55,20 @@
             <h1 class="page-header">成員列表</h1>
           </div>
           <div class="col-lg-3">
-              <div class="input-group"">
-              <form class="navbar-form navbar-right" role="search" action="msearch" method="POST">
+          <form class="navbar-form navbar-right" role="search" action="msearch" method="POST">
+              <div class="input-group">
+              
                 <input type="text" class="form-control"name="mkeyword" placeholder="Search for member" style="border-radius: 40px;">
                 <span class="input-group-btn" >
-                  <button class="btn btn-default" type="submit" style="border-radius: 40px;"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
+                  <button class="btn btn-default" type="submit" style="border-radius: 40px;">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
                 </span>
-                </form>
+                
               </div><!-- /input-group -->
+              </form>
             </div><!-- /.col-lg-6 -->
              <div class="col-lg-3">
-              <div class="input-group"">
+              <div class="input-group">
                 <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#myAdd"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增成員</button>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->

@@ -13,6 +13,10 @@ public class Discount {
 	private int discount_total;
 
 	private int discount_A_id;
+    
+	private Member member=new Member();
+	
+	private Administrator administrator=new Administrator();
 
 	public int getDiscount_id() {
 		return discount_id;
@@ -59,7 +63,21 @@ public class Discount {
 		this.discount_A_id = discount_A_id;
 
 	}
+	public Member getMember() {
+		return member;
+	}
 
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	public Administrator getAdministrator() {
+		return administrator;
+	}
+
+	public void setAdministrato(Administrator administrator) {
+		this.administrator = administrator;
+	}
 	
 
 }

@@ -73,6 +73,7 @@
                   <th>運送地址</th>
                   <th>收件人電話</th>
                   <th>總金額</th>
+                  <th>訂貨日期</th>
                   <th>出貨日期</th>
                   <th>產品明細</th>
                 </tr>
@@ -87,8 +88,9 @@
 		          <td><c:out value="${order.getReceiver_phone()}"/></td>
                   <td><c:out value="${order.getTotal()}"/></td>
                   <td><c:out value="${order.getO_date()}"/></td>
+                   <td><c:out value="${order.getShipping_Date()}"/></td>
                   <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#OrderDetail<c:out value="${order.getOrder_id()}"/>" style="background-color: #303841;border-color: #101010">明細</button></td>
-                  <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModifyProduct<c:out value="${product.getP_id()}" />">
+                  <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#OrderDetailModify<c:out value="${order.getOrder_id()}"/>">
 						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 					  </button>
 				  </td>
@@ -141,95 +143,128 @@
       		</div>
       </c:forEach>
     <!-- Modify -->
-    <div class="modal fade" id="myModifyProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">修改產品</h4>
-          </div>
-          <div class="modal-body">
-            <form class="form-horizontal">
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">產品圖片</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="產品圖片" value="macpro1.png">
-                </div>
-              </div>
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">產品名稱</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="產品名稱" value="MacBook Pro 13寸">
-                </div>
-              </div>
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">產品描述</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="產品描述" value="2.0GHz 處理器 , 256GB 儲存容量">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">價錢</label>
-                <div class="col-sm-8">
-                  <input type="number" class="form-control" id="inputEmail3" placeholder="價錢" value="43500">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">存貨數量</label>
-                <div class="col-sm-8">
-                  <input type="number" class="form-control" id="inputEmail3" placeholder="存貨數量" value="674">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">產品狀態</label>
-                <div class="col-sm-8">
-                  <input type="radio" id="Member_check_add" name="product_status" checked="checked" value="upSale"/>&nbsp&nbsp上架<br><input id="Administor_check_add" type="radio" name="product_status" value="removeSale"/>&nbsp&nbsp下架
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
+	<c:forEach  items="${OrderList}" var="order2">
+    	<div class="modal fade" id="OrderDetailModify<c:out value="${order2.getOrder_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+          			<div class="modal-header">
+            			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            			<h4 class="modal-title" id="myModalLabel">修改訂單</h4>
+          			</div>
+          			<div class="modal-body">
+            			<form class="form-horizontal" action="updateOrderDetail" method="post">
+            				<div class="form-group">
+                				<label for="inputEmail3" class="col-sm-3 control-label">#訂單編號</label>
+                				<div class="col-sm-7">
+                  					<input type="hidden" name="order_id" value="<c:out value="${order2.getOrder_id()}"/>">
+                  					<p class="form-control-static" style="margin-top: 0rem;color:#606468"><c:out value="${order2.getOrder_id()}"/></p>
+                				</div>
+              				</div>
+            				<div class="form-group">
+			                	<label for="inputEmail3" class="col-sm-3 control-label">訂購人姓名</label>
+			                	<div class="col-sm-7">
+			                		<input type="hidden" name="order_M_id" value="<c:out value="${order2.getOrder_M_id()}"/>">
+			                    	<p class="form-control-static" style="margin-top: 0rem;color:#606468"><c:out value="${order2.getMember().getM_name()}"/></p>
+			                	</div>
+			              	</div>
+				            <div class="form-group">
+				                <label for="inputEmail3" class="col-sm-3 control-label">收件人姓名</label>
+				                <div class="col-sm-7">
+				                	<input type="text" class="form-control" name="receiver_name" id="inputEmail3" placeholder="收件人姓名" value="<c:out value="${order2.getReceiver_name()}"/>">
+				                </div>
+				            </div>
+				            <div class="form-group">
+				            	<label for="inputEmail3" class="col-sm-3 control-label">收件人地址</label>
+				                <div class="col-sm-7">
+				                	<input type="text" class="form-control" name="receiver_address" id="inputEmail3" placeholder="收件人地址" value="<c:out value="${order2.getReceiver_address()}"/>">
+				                </div>
+				            </div>
+				            <div class="form-group">
+				                <label for="inputEmail3" class="col-sm-3 control-label">收件人電話</label>
+				                <div class="col-sm-7">
+				                	<input type="text" class="form-control" name="receiver_phone" id="inputEmail3" placeholder="收件人電話" value="<c:out value="${order2.getReceiver_phone()}"/>">
+				                </div>
+				            </div>
+				            <div class="form-group">
+				                <label for="inputEmail3" class="col-sm-3 control-label">總金額</label>
+				                <div class="col-sm-7">
+				                    <input type="hidden" name="total" value="<c:out value="${order2.getTotal()}"/>">
+				                    <p class="form-control-static" style="margin-top: 0rem;color:#606468"><c:out value="${order2.getTotal()}"/></p>
+				                </div>
+				            </div>
+				             <div class="form-group">
+				                <label for="inputEmail3" class="col-sm-3 control-label">訂貨日期</label>
+				                <div class="col-sm-7">
+				                    <input type="hidden" name="O_date" value="<c:out value="${order2.getO_date()}"/>">
+				                    <p class="form-control-static" style="margin-top: 0rem;color:#606468"><c:out value="${order2.getO_date()}"/></p>
+				                </div>
+				            </div>
+				            <div class="form-group">
+				                <label for="inputEmail3" class="col-sm-3 control-label">出貨日期</label>
+				                <div class="col-sm-7">
+				                    <input type="hidden" name="shipping_Date" value="<c:out value="${order2.getShipping_Date()}"/>">
+				                    <p class="form-control-static" style="margin-top: 0rem;color:#606468"><c:out value="${order2.getShipping_Date()}"/></p>
+				                </div>
+				            </div>
+				            <div class="form-group">
+				                <label for="inputEmail3" class="col-sm-3 control-label">出貨情況</label>
+				                <div class="col-sm-7">
+				                <c:if test="${order2.getShipping()==0}">
+				                	<input type="radio" id="Member_check_add" name="shipping" checked="checked" value="0"/>未出貨<br><input id="Administor_check_add" type="radio" name="shipping" value="1"/>已出貨
+				                </c:if>
+				                <c:if test="${order2.getShipping()==1}">
+				                	<p class="form-control-static" style="margin-top: 0rem;color:#606468">已出貨</p>
+				                </c:if>
+				                	
+				                </div>
+				            </div>
+						
+          			</div>
+          			<div class="modal-footer">
+            			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            			<button type="submit" class="btn btn-primary" name="type" value="modifyOrderDetail">Save changes</button>
+          			</div>
+          			</form>
+        		</div>
+      		</div>
+    	</div>
+    </c:forEach>
     <!-- Delete -->
     <c:forEach  items="${OrderList}" var="order3">
-    <div class="modal fade" id="OrderRecordDelete<c:out value="${order1.getOrder_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    	<form action="deleteOrderDetail" method="post">
+    		<div class="modal fade" id="OrderRecordDelete<c:out value="${order3.getOrder_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">刪除產品</h4>
+                  <h4 class="modal-title" id="myModalLabel">刪除訂單</h4>
                 </div>
                 <div class="modal-body">
                   <table class="table table-striped table-show-product-delete">
-              <tbody>
-                <tr>
-                  <tr>
-                  <td><img class="product_img_list"  src="img/macpro1.jpg"></td>
-                  <td>1789</td>
-                  <td>MacBook Pro 13寸</td>
-                  <td>2.0GHz 處理器 , 256GB 儲存容量</td>
-                  <td>43500</td>
-                  <td>450</td>
-                  <td>2016/11/02</td>
-                  <td>2016/11/02</td>
-                  <td>2016/11/02</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
-                </div>
+                  	<tbody>
+                		<tr>
+                  			<tr>
+                  			<input type="hidden" name="order_id" value="<c:out value="${order3.getOrder_id()}"/>">
+                  				<td><c:out value="${order3.getOrder_id()}"/></td>
+                  				<td><c:out value="${order3.getMember().getM_name()}"/></td>
+                  				<td><c:out value="${order3.getReceiver_name()}"/></td>
+		          				<td><c:out value="${order3.getReceiver_address()}"/></td>
+		          				<td><c:out value="${order3.getReceiver_phone()}"/></td>
+                  				<td><c:out value="${order3.getTotal()}"/></td>
+                  				<td><c:out value="${order3.getO_date()}"/></td>
+                			</tr>
+                		</tr>
+              		</tbody>
+            	   </table>
+                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">確認</button>
+                	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                	<button type="submit" action="OrderDetail"name="type" class="btn btn-primary" value="deleteOrderDetail">確認</button>
                 </div>
-              </div>
-            </div>
+             </div>
           </div>
+    	</div>
+    	</form>
 	</c:forEach>
     <!-- Bootstrap core JavaScript
     ================================================== -->

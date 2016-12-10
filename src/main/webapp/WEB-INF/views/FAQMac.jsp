@@ -30,6 +30,7 @@ Released   : 20131203
         </head>
 
     <body>
+    <%@include file="header.jsp"%>
         <div id="logo">
             <h1><a href="#">F A Q</a></h1>
             <br>

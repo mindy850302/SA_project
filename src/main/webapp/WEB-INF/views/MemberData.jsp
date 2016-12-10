@@ -36,39 +36,36 @@
       <div class="form login">
         <table class="table table-striped">
 
-        
-          <tr style="background-color: #D2E9FF;color:#5B5B5B">
-
-          <tr style="background-color: #D2E9FF;color:#5B5B5B">
+          <tr style="background-color: #5e788e;color:#eee">
 
             <td>帳號</td>
             <td><c:out value="${Member.getM_idName()}"></c:out></td>
           </tr>
-          <tr style="background-color:#D2E9FF ;color:#5B5B5B">
+          <tr style="background-color:#5e788e ;color:#eee">
             <td>姓名</td>
             <td><c:out value="${Member.getM_name()}"></c:out></td>
           </tr>
-          <tr style="background-color: 	#D2E9FF ;color:#5B5B5B">
+          <tr style="background-color:#5e788e ;color:#eee">
             <td>密碼</td>
             <td><c:out value="${Member.getM_pwd()}"></c:out></td>
           </tr>
-          <tr style="background-color:#D2E9FF	;color:#5B5B5B">
+          <tr style="background-color:#5e788e;color:#eee">
             <td>電話</td>
             <td><c:out value="${Member.getM_phone()}"></c:out></td>
           </tr>
-          <tr style="background-color: 	#D2E9FF ;color:#5B5B5B">
+          <tr style="background-color:#5e788e ;color:#eee">
             <td>地址</td>
             <td><c:out value="${Member.getM_address()}"></c:out></td>
           </tr>
-          <tr style="background-color:#D2E9FF ;color:#5B5B5B">
+          <tr style="background-color:#5e788e;color:#eee">
             <td>E-mail</td>
             <td><c:out value="${Member.getM_email()}"></c:out></td>
           </tr>
-          <tr style="background-color: #D2E9FF ;color:#5B5B5B">
+          <tr style="background-color: #5e788e ;color:#eee">
             <td>註冊日期</td>
             <td><c:out value="${Member.getM_create_date()}"></c:out></td>
           </tr>
-          <tr style="background-color: #D2E9FF ;color:#5B5B5B">
+          <tr style="background-color:#5e788e;color:#eee">
             <td>更新日期</td>
             <td><c:out value="${Member.getM_update_date()}"></c:out></td>
           </tr>

@@ -370,8 +370,7 @@
 								<input type="hidden" name="p_id" value="${product2.getP_id()}"/>
 									
 									<tr>
-										<td><img class="product_img_list"
-											src="<c:out value="${product2.getP_image()}" />"></td>
+										<td><img class="product_img_list" src="<c:out value="${product2.getP_image()}" />"></td>
 										<td><c:out value="${product2.getP_id()}" /></td>
 										<td><c:out value="${product2.getP_name()}" /></td>
 										<td><c:out value="${product2.getP_describe()}" /></td>

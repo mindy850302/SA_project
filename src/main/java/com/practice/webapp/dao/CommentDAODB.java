@@ -174,6 +174,34 @@ public class CommentDAODB implements CommentDAO {
 		return comment;
 		
 	}
+	@Override
+	public int countComment() {
+		// TODO Auto-generated method stub
+		String sql = "SELECT COUNT(c_create_date) as Count_comment FROM `Comment` WHERE month(c_create_date)=month(CURRENT_TIME)";
+		int count=0;
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+			while(rs.next()){
+				count=rs.getInt("Count_comment");
+			}
+			rs.close();
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		return count;
+		
+	}
 
 	public List<Comment>search(String keyword) {
 		List<Comment> CommentList = new ArrayList<Comment>();

@@ -74,7 +74,7 @@ public class ProductDAODB implements ProductDAO {
 	public void insert(Product product) {
 
 		// remove first parameter when Id is auto-increment
-		String sql = "INSERT INTO product ( p_category,click_count, p_describe,p_image,p_inventory,p_name,p_price,p_onsale_date,sale) VALUES( ?, ?, ? , ? , ? , ? , ? , ? ,?)";
+		String sql = "INSERT INTO product ( p_category,click_count, p_describe,p_image,p_inventory,p_name,p_price,p_onsale_date,sale) VALUES( ?, ?, ? , ? , ? , ? , ? , CURRENT_TIME() ,?)";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -85,8 +85,7 @@ public class ProductDAODB implements ProductDAO {
 			smt.setInt(5, product.getP_inventory());
 			smt.setString(6, product.getP_name());
 			smt.setInt(7, product.getP_price());
-			smt.setString(8, product.getP_onsale_date());
-			smt.setInt(9,product.isSale());
+			smt.setInt(8,product.isSale());
 
 			smt.executeUpdate();
 			smt.close();
@@ -338,6 +337,117 @@ public class ProductDAODB implements ProductDAO {
 		}
     	return click;
     }
+	public int countProduct() {
+		// TODO Auto-generated method stub
+		String sql = "SELECT COUNT(p_onsale_date) as Count_product FROM `product` WHERE month(p_onsale_date)=month(CURRENT_TIME)";
+		int count=0;
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+			while(rs.next()){
+				count=rs.getInt("Count_product");
+			}
+			rs.close();
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		return count;
+		
+	}
+	public List<Product> hotProduct() {
+		// TODO Auto-generated method stub
+		String sql = "SELECT * FROM `product` order BY click_count DESC limit 4";
+		List<Product> ProductList = new ArrayList<Product>();
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+			while (rs.next()) {
+				Product product = new Product();
+				product.setP_id(rs.getInt("p_id"));
+				product.setP_category(rs.getInt("p_category"));
+				product.setClick_count(rs.getInt("click_count"));
+				product.setP_describe(rs.getString("p_describe"));
+				product.setP_image(rs.getString("p_image"));
+				product.setP_inventory(rs.getInt("p_inventory"));
+				product.setP_name(rs.getString("p_name"));
+				product.setP_price(rs.getInt("p_price"));
+				product.setAverage(rs.getInt("average"));
+				product.setP_onsale_date(rs.getString("p_onsale_date"));
+				product.setP_remove_date(rs.getString("p_remove_date"));
+				product.setP_update_date(rs.getString("p_update_date"));
+				product.setSale(rs.getInt("sale"));
+				ProductList.add(product);
+			}
+		
+			rs.close();
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		return ProductList;
+		
+	}
+	public List<Product> newProduct() {
+		// TODO Auto-generated method stub
+		String sql = "SELECT * FROM `product` order BY p_onsale_date DESC LIMIT 4";
+		List<Product> ProductList = new ArrayList<Product>();
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+			while (rs.next()) {
+				Product product = new Product();
+				product.setP_id(rs.getInt("p_id"));
+				product.setP_category(rs.getInt("p_category"));
+				product.setClick_count(rs.getInt("click_count"));
+				product.setP_describe(rs.getString("p_describe"));
+				product.setP_image(rs.getString("p_image"));
+				product.setP_inventory(rs.getInt("p_inventory"));
+				product.setP_name(rs.getString("p_name"));
+				product.setP_price(rs.getInt("p_price"));
+				product.setAverage(rs.getInt("average"));
+				product.setP_onsale_date(rs.getString("p_onsale_date"));
+				product.setP_remove_date(rs.getString("p_remove_date"));
+				product.setP_update_date(rs.getString("p_update_date"));
+				product.setSale(rs.getInt("sale"));
+				ProductList.add(product);
+			}
+		
+			rs.close();
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		return ProductList;
+		
+	}
 
 	public void addInventory(Product product) {
 		
@@ -365,97 +475,6 @@ public class ProductDAODB implements ProductDAO {
 					}
 				}}}
 			
-		
-
-//	public void newestproduct(Product product) {
-//
-//		String sql= "SELECT p_onsale_date FROM product";
-//	    int dt = new Date();
-//		 month = new Array(12);
-//		month[0] = "一月";
-//		month[1] = "二月";
-//		month[2] = "三月";
-//		month[3] = "四月";
-//		month[4] = "五月";
-//		month[5] = "六月";
-//		month[6] = "七月";
-//		month[7] = "八月";
-//		month[8] = "九月";
-//		month[9] = "十月";
-//		month[10] = "十一月";
-//		month[11] = "十二月";
-//		document.write("本月份 = " + month[dt.getMonth()]);
-//		
-//		try {
-//			conn = dataSource.getConnection();
-//			smt = conn.prepareStatement(sql);
-//			smt.setInt(1, product.getP_inventory());
-//			
-//			smt.setInt(2, product.getP_id());
-//			
-//			smt.executeUpdate();
-//			smt.close();
-//			
-//		} catch (SQLException e) {
-//			throw new RuntimeException(e);
-//
-//		} finally {
-//			if (conn != null) {
-//				try {
-//					conn.close();
-//				} catch (SQLException e) {
-//				}
-//			}
-//		
-//	}
-
-	public List<Product> hotProduct(){
-		List<Product> ProductList = new ArrayList<Product>(4);
-
-		String sql= "SELECT * ORDER BY click_count DESC"
-				+ "WHERE p_id = ?";
-			try {
-				conn = dataSource.getConnection();
-				smt = conn.prepareStatement(sql);
-				
-				Product product = new Product();
-				product.setP_id(rs.getInt("p_id"));
-				product.setP_category(rs.getInt("p_category"));
-				product.setClick_count(rs.getInt("click_count"));
-				product.setP_describe(rs.getString("p_describe"));
-				product.setP_image(rs.getString("p_image"));
-				product.setP_inventory(rs.getInt("p_inventory"));
-				product.setP_name(rs.getString("p_name"));
-				product.setP_price(rs.getInt("p_price"));
-				product.setP_onsale_date(rs.getString("p_onsale_date"));
-				product.setP_remove_date(rs.getString("p_remove_date"));
-				product.setP_update_date(rs.getString("p_update_date"));
-				ProductList.add(product);
-
-				smt.executeUpdate();
-				System.out.println("database"+product.getP_id());
-				smt.close();
-				
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-
-			} finally {
-				if (conn != null) {
-					try {
-						conn.close();
-					} catch (SQLException e) {
-					}
-				}
-				for(int i=0;i<ProductList.size();i++){
-				System.out.println(ProductList.get(i).getClick_count());
-				}
-				return ProductList;
-			
-		}
-		    
-
-    	
-    }
 
 
 

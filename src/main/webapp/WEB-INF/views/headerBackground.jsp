@@ -18,7 +18,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp設定 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#">修改密碼</a></li>
-                <li><a href="/dashboard">Log out</a></li>
+                <li><a href="/webapp/logout">Log out</a></li>
               </ul>
             </li>
           </ul>

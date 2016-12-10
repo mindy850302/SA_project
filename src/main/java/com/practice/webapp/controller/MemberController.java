@@ -57,7 +57,7 @@ public class MemberController {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public ModelAndView signup(@ModelAttribute Member member,@ModelAttribute("checkid") String checkid,@ModelAttribute("checkpwd") String checkpwd,@ModelAttribute("checkphone") String checkphone) {
+	public ModelAndView signup(@ModelAttribute Member member,@ModelAttribute("checkid") String checkid,@ModelAttribute("flag") String flag,@ModelAttribute("checkpwd") String checkpwd,@ModelAttribute("checkphone") String checkphone) {
 		ModelAndView model = new ModelAndView("signup");
 		MemberDAO MemberDAO = (MemberDAO) context.getBean("MemberDAO");
 		List<Member> memberList = new ArrayList<Member>();
@@ -146,12 +146,12 @@ public class MemberController {
 		    if(Character.isDigit(mpwd[i])){
 		    	countnum++;
 		    }
-		    if(countletter==0 && countnum==0)
+		    if(countletter==0 && countnum==0){
 		    	checkpwd=0;//密碼錯誤，到signup頁面
 		    	flag=0;
 				System.out.println("2");
 		    	break;
-			
+		    }
 		}
 		char mphone[] = new char[Mphone.length()];
 		for(int j=0; j<Mphone.length(); j++){
@@ -162,14 +162,12 @@ public class MemberController {
 				System.out.println("3");
 
 				break;
-		}			    
-			 }	
+			}			    
+		}	
 		if(flag==1){
 			MemberDAO.insert(member);
 			System.out.println("4");
 			model.setViewName("redirect:/login");
-
-
 		}
 		else {
 			System.out.println("5");
@@ -268,7 +266,22 @@ public class MemberController {
 		model.setViewName("redirect:/");
 		return model;
 	}
-
+//	
+//	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+//	public ModelAndView getcheckLogOut(SessionStatus sessionStatus) {
+//		ModelAndView model = new ModelAndView();
+//		AdministratorDAO Administratordao = (AdministratorDAO) context.getBean("AdministratorDAO");
+//		List<Administrator> AdministratorList = new ArrayList<Administrator>();
+//		AdministratorList = Administratordao.getList();
+//		Administrator administrator = new Administrator();
+//
+//		// model.addObject("loginsession","logout");
+//		sessionStatus.setComplete();
+//		model.addObject("Administrator", administrator);
+//		model.setViewName("redirect:/");
+//		return model;
+//	}
+	
 	@RequestMapping(value = "/AccountList", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	public ModelAndView add(@ModelAttribute Member member, HttpServletRequest request,
 			@RequestParam("action_type") String type, @RequestParam("m_category") String m_category,

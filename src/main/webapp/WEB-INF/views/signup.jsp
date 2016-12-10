@@ -34,19 +34,20 @@
         <div class="form__field">
           <label for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">帳號</span></label>
           <input id="signup__Account" type="text" name="M_idName" class="form__input" placeholder="帳號" required>
-           <c:if test="${checkid.equals('0')}">
-           
-	            帳號重複
-	            
-            </c:if>
+           <script>
+           if(<c:out value="${checkid}"/>==0){
+	        alert("此帳號已被使用");
+	        }
+            </script>
         </div> 
            <div class="form__field">
           <label for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">Password</span></label>
-          <input id="signup__password" type="password" name="M_pwd" class="form__input" placeholder="Password" required>
-        <c:if test="${checkpwd.equals('0')}">
-        <c:out value="密碼格式錯誤,需中英混合"/>
-	            
-            </c:if>
+          <input id="signup__password" type="password" name="M_pwd" class="form__input" placeholder="Password需中英混合" required>
+            <script>
+           if(<c:out value="${checkpwd}"/>==0){
+	        alert("密碼需要中英混合");
+	        }
+            </script>
         </div> 
         
            <div class="form__field">
@@ -57,9 +58,11 @@
           <div class="form__field">
           <label for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">Phone</span></label>
           <input id="signup__phone" type="text" name="M_phone" class="form__input" placeholder="phone" required>
-       <c:if test="${checkphone.equals('0')}">
-	            電話格式錯誤，只能輸入數字
-            </c:if>
+       	<script>
+           if(<c:out value="${checkphone}"/>==0){
+	        alert("電話請重新輸入");
+	        }
+            </script>
         </div> 
          <div class="form__field">
           <label for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">Address</span></label>

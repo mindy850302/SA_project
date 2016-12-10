@@ -341,5 +341,9 @@ p {
     height: 216px;
 }
 /***********login signup end*****************/
-	
+.login input[type='password'], .login input[type='email'] {
+    background-color: #3b4148;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
 	

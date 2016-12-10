@@ -57,7 +57,7 @@ public class MemberController {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public ModelAndView signup(@ModelAttribute Member member,@ModelAttribute("checkid") String checkid,@ModelAttribute("checkpwd") String checkpwd,@ModelAttribute("checkphone") String checkphone) {
+	public ModelAndView signup(@ModelAttribute Member member,@ModelAttribute("checkid") String checkid,@ModelAttribute("flag") String flag,@ModelAttribute("checkpwd") String checkpwd,@ModelAttribute("checkphone") String checkphone) {
 		ModelAndView model = new ModelAndView("signup");
 		MemberDAO MemberDAO = (MemberDAO) context.getBean("MemberDAO");
 		List<Member> memberList = new ArrayList<Member>();

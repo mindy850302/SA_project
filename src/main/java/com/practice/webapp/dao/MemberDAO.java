@@ -15,6 +15,7 @@ public interface MemberDAO {
 	//public boolean checkSignup(Member member);
 
 	public boolean checkLoginAdministrator(Member member) ;
+	public int countMember();
 		// TODO Auto-generated method stub
 
 	

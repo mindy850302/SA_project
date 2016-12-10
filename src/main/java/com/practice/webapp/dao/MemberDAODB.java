@@ -232,34 +232,33 @@ public class MemberDAODB implements MemberDAO {
 		}
 		return MemberList;
 	}
-
-//	public int count(){
-//		String sql="SELECT DATE_FORMAT(M_create_date, '%Y%m' ) as time  ,  count (*)  as count  FROM Member  GROUP BY time";
-//		
-//		try {
-//			conn = dataSource.getConnection();
-//			smt = conn.prepareStatement(sql);
-//			rs = smt.executeQuery();
-//			while(rs.next()){
-//				String Member_idName=rs.getString("M_idName");
-//				String Member_pwd=rs.getString("M_pwd");
-//				if(Member_idName==M_idName&&password.equals(Member_pwd)){
-//					flag=true;
-//				}
-//		}
-//			rs.close();
-//			smt.close();
-//		} catch (SQLException e) {
-//			throw new RuntimeException(e);
-// 
-//		} finally {
-//			if (conn != null) {
-//				try {
-//					conn.close();
-//				} catch (SQLException e) {}
-//			}
-//		}
-//	}
+	public int countMember() {
+		// TODO Auto-generated method stub
+		String sql = "SELECT COUNT(M_create_date) as Count_member FROM `Member` WHERE month(M_create_date)=month(CURRENT_TIME)";
+		int count=0;
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+			while(rs.next()){
+				count=rs.getInt("Count_member");
+			}
+			rs.close();
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		return count;
+		
+	}
 	public boolean checkLoginMember(Member member){
 		boolean flag=false;
 		String sql="SELECT * FROM Member where binary M_idName=?";

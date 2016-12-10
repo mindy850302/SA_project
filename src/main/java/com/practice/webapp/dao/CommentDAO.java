@@ -9,7 +9,9 @@ public interface CommentDAO {
 	public void update(Comment comment);  
 	public List<Comment> getList();
 	public Comment get(Comment comment);
-	public List<Comment>search(String keyword);
+	 public List<Comment>search(String keyword);
+	 public int countComment();
 	
+
 
 }

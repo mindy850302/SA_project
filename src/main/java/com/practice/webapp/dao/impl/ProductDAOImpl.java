@@ -91,9 +91,17 @@ public class ProductDAOImpl implements ProductDAO {
     	return click;
 
     }
-	public List<Product> hotProduct(){
-		return ProductList;
-	}
+
+    public int countProduct(){
+    	int count_Product=0;
+    	return count_Product;
+    }
+    public List<Product> hotProduct(){
+    	return ProductList;
+    }
+    public List<Product> newProduct() {
+    	return ProductList;
+    }
 
 
 }

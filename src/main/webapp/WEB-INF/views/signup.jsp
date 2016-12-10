@@ -70,8 +70,7 @@
         </div> 
 
         <div class="form__field">
-          <input type="submit" class="btn btn-primary" name="type"
-								value="Check"></input>
+          <input type="submit" class="btn btn-primary" name="type" value="Check" style="border-color:#ab425a"></input>
         </div>
 
 

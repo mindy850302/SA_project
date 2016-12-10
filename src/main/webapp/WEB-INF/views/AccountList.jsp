@@ -270,7 +270,7 @@
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">部門</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="A_cat egory" placeholder="種類" required="required" value="<c:out value="${admin1.getM_name()}"/>">
+                  
                   <select name="A_category" class="form-control">
 	                     <c:forEach items="${A_categoryList}" var="A_category2">
 	                     <c:if test="${admin1.getA_category()==A_category2.getC_id()}">

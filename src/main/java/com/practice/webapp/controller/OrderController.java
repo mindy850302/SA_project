@@ -190,4 +190,34 @@ public class OrderController {
 	
 		return model;
 	}
+	@RequestMapping(value = "/deleteOrderDetail", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView deleteProduct(@ModelAttribute Order order, HttpServletRequest request,
+			@RequestParam("type") String type) {
+		OrderDAO Orderdao = (OrderDAO) context.getBean("OrderDAO");
+
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+
+		if (type.equals("deleteOrderDetail")) {
+			Orderdao.delete(order);
+		}
+		model.setViewName("redirect:/OrderDetail");
+		return model;
+	}
+	@RequestMapping(value = "/updateOrderDetail", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView updateProduct(@ModelAttribute Order order, HttpServletRequest request,
+			@RequestParam("type") String type) {
+		OrderDAO Orderdao = (OrderDAO) context.getBean("OrderDAO");
+
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+
+		if (type.equals("modifyOrderDetail")) {
+			Orderdao.update(order);
+		}
+		model.setViewName("redirect:/OrderDetail");
+		return model;
+	}
 }

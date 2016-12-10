@@ -365,7 +365,50 @@ public class ProductDAODB implements ProductDAO {
 				}
 			
 		}
+			
+			
 	}
+//	public void newestproduct(Product product) {
+//
+//		String sql= "SELECT p_onsale_date FROM product";
+//	    int dt = new Date();
+//		 month = new Array(12);
+//		month[0] = "一月";
+//		month[1] = "二月";
+//		month[2] = "三月";
+//		month[3] = "四月";
+//		month[4] = "五月";
+//		month[5] = "六月";
+//		month[6] = "七月";
+//		month[7] = "八月";
+//		month[8] = "九月";
+//		month[9] = "十月";
+//		month[10] = "十一月";
+//		month[11] = "十二月";
+//		document.write("本月份 = " + month[dt.getMonth()]);
+//		
+//		try {
+//			conn = dataSource.getConnection();
+//			smt = conn.prepareStatement(sql);
+//			smt.setInt(1, product.getP_inventory());
+//			
+//			smt.setInt(2, product.getP_id());
+//			
+//			smt.executeUpdate();
+//			smt.close();
+//			
+//		} catch (SQLException e) {
+//			throw new RuntimeException(e);
+//
+//		} finally {
+//			if (conn != null) {
+//				try {
+//					conn.close();
+//				} catch (SQLException e) {
+//				}
+//			}
+//		
+//	}
 
 
 

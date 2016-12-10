@@ -68,6 +68,14 @@ public class IndexController {
 		return model;
 	}
 	
-	
+//	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+//	public ModelAndView getdashboard(String name) {
+//		ModelAndView model = new ModelAndView("dashboard");
+//		// = model.setViewName("dashboard");
+//		model.addObject("message");
+//		return model;
+//	}
+//	
+//	
 
 }

@@ -48,7 +48,7 @@
 							<h2>strawberry</h2>
 							<span class="byline"></span>
 						</header>
-						<a href="/webapp/Product"  style="text-decoration: none;" class="button medium">快速體驗產品>></a>
+						<a href="/webapp/Product/iPhone"  style="text-decoration: none;" class="button medium">快速體驗產品>></a>
 					</section>	
 				</div>
 			</div>
@@ -99,7 +99,7 @@
 							<h2>Instagram</h2>
 						</header>
 						<span><img src="images/instagram-photo-camera-logo-outline.png"></span>
-                        <p>@shana85317</p>
+                        <p>@strawberry</p>
 						
 					</section>
 					<section class="3u">
@@ -107,14 +107,14 @@
 							<h2>faceboook</h2>
 						</header>
 						<span ><img src="images/facebook.png"></span>
-                        <p>shana hsieh</p>
+                        <p>strawberry</p>
 					</section>
 					<section class="3u">
 						<header>
 							<h2>phone</h2>
 						</header>
 						<span><img src="images/phone-call.png"></span>
-                        <p>0988546556</p>
+                        <p>02-2533-8253</p>
 						
 						</section>
 					<section class="3u">
@@ -122,10 +122,11 @@
 							<h2>message</h2>
 						</header>
 						<span ><img src="images/message.png"></span>
-                        <p>shana850317@gmail.com</p>
+                        <p>strawberry@gmail.com</p>
 					</section>
 				</div>
-				<a href="/webapp/strawberry/Contect" style="text-decoration: none;" class="button medium">線上客服>></a>
+				
+				<a target="_blank" href="https://www.surveycake.com/s/RWbpz" style="text-decoration: none;" class="button medium"><h1>線上客服：</h1><img src="http://chart.apis.google.com/chart?cht=qr&chl=https://www.surveycake.com/s/RWbpz&chs=300x300"/></a>
 			</div>
 		</div>
 

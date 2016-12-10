@@ -20,6 +20,11 @@
 <%@include file="header.jsp"%>
 <a href="login"> ${loginsession.username}</a>
     <div class="grid">
+    <script>
+     if(<c:out value="${flag}"/>==1){
+	  alert("成功註冊！！！立即登入吧！！");
+	  }
+    </script>
 
       <form action="login" method="post" class="form login">
 
@@ -49,10 +54,8 @@
 
       <p class="text--center">Not a member? <a href="/webapp/signup">Sign up now</a> </p>
       <center>
-      	<a href="/webapp/loginAdministrator">I am Administrator:-)</a>
       <a href="/webapp/loginAdministrator">I am Administrator</a>
       </center>
-
 
     </div>
     

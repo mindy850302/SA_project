@@ -340,12 +340,16 @@ p {
     width: 100%;
     height: 216px;
 }
-/***********login signup end*****************/
+
+
+.login input[type='password'], .login input[type='email'] {
+    background-color: #3b4148;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
 .tr_class{
 	backbround-color:rgba(37, 30, 30, 0.22);
 }
-.tr_class > td{
-	0px solid rgba(37, 30, 30, 0.22)
-}
 
-	
+

@@ -6,6 +6,8 @@
     border: 0px solid #303841 !important;
     font-weight: bold;
     position:fixed;
+   width:100%;
+   font-family: 'Raleway', sans-serif;
 }
 /*.navbar-fixed-top {
     top: -18px;

@@ -20,6 +20,26 @@ public class Order {
 	private int total;
 	
 	private Member member = new Member();
+	
+	private int shipping;
+	
+	private String shipping_Date;
+
+	public String getShipping_Date() {
+		return shipping_Date;
+	}
+
+	public void setShipping_Date(String shipping_Date) {
+		this.shipping_Date = shipping_Date;
+	}
+
+	public int getShipping() {
+		return shipping;
+	}
+
+	public void setShipping(int shipping) {
+		this.shipping = shipping;
+	}
 
 	public int getOrder_id() {
 		return order_id;

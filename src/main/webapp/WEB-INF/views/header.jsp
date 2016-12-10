@@ -1,10 +1,10 @@
 <% request.setCharacterEncoding("utf-8");%>
 
-<div class="container">
+<div class="container2">
 <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
 
    
-   <div class="row" style="margin: 10px 10px 10px auto">                
+   <div class="row" style="margin: 10px 10px 10px 10px">                
  
     
     <div id="logo2">

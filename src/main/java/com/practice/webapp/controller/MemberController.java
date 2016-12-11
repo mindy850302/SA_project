@@ -442,5 +442,96 @@ public class MemberController {
 		return model;
 
 	}
+	
+	@RequestMapping(value = "/AdministratorData", method = RequestMethod.GET)
+	public ModelAndView getAdministratorData(String name, HttpServletRequest request) {
+		ModelAndView model = new ModelAndView("AdministratorData");
 
+		// = model.setViewName("AdministratorData");
+		AdministratorDAO administratordao = (AdministratorDAO) context.getBean("AdministratorDAO"); 
+		A_categoryDAO a_categorydao = (A_categoryDAO) context.getBean("A_categoryDAO");
+		List<Administrator> administratorList = new ArrayList<Administrator>();
+		List<A_category> a_categoryList = new ArrayList<A_category>();
+		administratorList = administratordao.getList();
+		a_categoryList = a_categorydao.getList();
+		Administrator administrator = new Administrator();
+
+		request.getSession().getAttribute("loginsession");
+		String idName = (String) request.getSession().getAttribute("loginsession"); // defined
+																		// in
+																		// spring-webapp.xml
+		List<Administrator> AdministratorList = new ArrayList<Administrator>();
+		AdministratorList = administratordao.getList();
+		System.out.print(idName);
+		for (int i = 0; i < AdministratorList.size(); i++) {
+			if (AdministratorList.get(i).getM_idName().equals(idName)) {
+				administrator = AdministratorList.get(i);
+				break;
+			}
+		}
+
+		model.addObject("Administrator", administrator);
+		model.addObject("AdministratorList", AdministratorList);
+		model.addObject("A_categoryList", a_categoryList);
+		return model;
+	}
+
+	@RequestMapping(value = "/updateAdministratorData", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView updateAdministratorData(@ModelAttribute Administrator administrator, HttpServletRequest request,
+			@RequestParam("type") String type) {
+		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+		if (type.equals("modifyAdministratorData")) {
+			AdministratorDAO.update(administrator);
+		}
+		model.setViewName("redirect:/AdministratorData");
+		return model;
+
+	}
+	
+	@RequestMapping(value = "/AdministratorCategory", method = RequestMethod.GET)
+	public ModelAndView getA_CategoryList(String name) {
+		ModelAndView model = new ModelAndView("AdministratorCategory");
+		// = model.setViewName("AdministratorCategory");
+		A_categoryDAO A_categoryDAO = (A_categoryDAO) context.getBean("A_categoryDAO");
+		List<A_category> A_categoryList = new ArrayList<A_category>();
+		A_categoryList = A_categoryDAO.getList();
+		model.addObject("A_categoryList", A_categoryList);
+
+		return model;
+	}
+	
+	@RequestMapping(value = "/updateA_category", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView updateA_category(@ModelAttribute A_category a_category, HttpServletRequest request,
+			@RequestParam("type") String type) {
+		A_categoryDAO A_categoryDAO = (A_categoryDAO) context.getBean("A_categoryDAO");
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+		if (type.equals("modifyA_category")) {
+			A_categoryDAO.update(a_category);
+		}
+		model.setViewName("redirect:/AdministratorCategory");
+		return model;
+
+	}
+	
+	@RequestMapping(value = "/addA_category", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView addA_category(@ModelAttribute A_category a_category, HttpServletRequest request,
+			@RequestParam("action_type") String type) {
+		A_categoryDAO A_categoryDAO = (A_categoryDAO) context.getBean("A_categoryDAO");
+
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+
+		if (type.equals("addA_category")) {
+			A_categoryDAO.insert(a_category);
+
+		}
+		model.setViewName("redirect:/AdministratorCategory");
+		return model;
+	}
 }

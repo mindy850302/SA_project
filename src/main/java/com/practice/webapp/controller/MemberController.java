@@ -218,7 +218,7 @@ public class MemberController {
 		
 		if (result2) {
 			model.addObject("loginsession", member.getM_idName());
-			model.setViewName("dashboard");
+			model.setViewName("redirect:/dashboard");
 		} 
 		return model;
 

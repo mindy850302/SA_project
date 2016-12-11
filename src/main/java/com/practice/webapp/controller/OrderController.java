@@ -86,6 +86,10 @@ public class OrderController {
 		OrderDetailDAO orderDetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
 		List<Order> orderList = new ArrayList<Order>();
 		List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); 
+		List<Product> HotProductList = new ArrayList<Product>();
+		HotProductList=Productdao.hotProduct();
+		model.addObject("HotProductList",HotProductList);
 		orderList=orderdao.getList();
 		orderDetailList=orderDetaildao.getList();
 		model.addObject("order_id",order_id);

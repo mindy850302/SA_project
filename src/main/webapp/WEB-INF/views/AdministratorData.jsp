@@ -80,7 +80,7 @@
 				          </tr>
 				          <tr>
 				            <td>部門</td>
-				            <td><c:out value="${Administrator.getA_category()}"></c:out></td>
+				            <td><c:out value="${Administrator.getA_category1().getC_name()}"></c:out></td>
 				          </tr>
 				          <tr style="background-color:#f9f9f9">
 				            <td>電話</td>

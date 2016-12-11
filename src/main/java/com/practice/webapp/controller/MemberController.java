@@ -57,7 +57,7 @@ public class MemberController {
 
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public ModelAndView signup(@ModelAttribute Member member,@ModelAttribute("checkid") String checkid,@ModelAttribute("flag") String flag,@ModelAttribute("checkpwd") String checkpwd,@ModelAttribute("checkphone") String checkphone) {
+	public ModelAndView signup(@ModelAttribute Member member,@ModelAttribute("checkid") String checkid,@ModelAttribute("result") String result,@ModelAttribute("flag") String flag,@ModelAttribute("checkpwd") String checkpwd,@ModelAttribute("checkphone") String checkphone) {
 		ModelAndView model = new ModelAndView("signup");
 		MemberDAO MemberDAO = (MemberDAO) context.getBean("MemberDAO");
 		List<Member> memberList = new ArrayList<Member>();
@@ -208,13 +208,18 @@ public class MemberController {
 		System.out.println("id before called:" + member.getM_idName());
 		memberList = memberDAO.getList();
 		administratorList = AdministratorDAO.getList();
-		boolean result = memberDAO.checkLoginMember(member);
-		
-		if (result) {
+//		boolean result = memberDAO.checkLoginMember(member);
+		String result = memberDAO.checkLoginMember(member);
+		if (result.equals("1")) {
+			model.addObject("result", result);
 			model.addObject("loginsession", member.getM_idName());
 			model.setViewName("index");
-		} else {
+		} else if (result.equals("2")){//帳號對，密碼錯，顯示密碼錯
+			model.addObject("result", result);
 			model.setViewName("login");
+		}else if (result.equals("3")){
+			model.addObject("result", result);
+			model.setViewName("signup");
 		}
 
 		boolean result2 = memberDAO.checkLoginAdministrator(member);
@@ -228,7 +233,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView getLogin(@ModelAttribute("name") String name, SessionStatus sessionStatus,@ModelAttribute("flag") String flag) {
+	public ModelAndView getLogin(@ModelAttribute("name") String name, SessionStatus sessionStatus,@ModelAttribute("result") String result,@ModelAttribute("flag") String flag) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
 		ModelAndView model = new ModelAndView("login");
 		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");

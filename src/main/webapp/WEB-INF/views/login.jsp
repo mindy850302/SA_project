@@ -20,7 +20,10 @@
 <%@include file="header.jsp"%>
 <a href="login"> ${loginsession}</a>
     <div class="grid">
-    
+    <script type="text/javascript">
+    if(<c:out value="${result}"/>==2){
+        alert("請輸入正確密碼！！");
+        }</script>
 	<script>
      if(<c:out value="${flag}"/>==1){
 	  alert("成功註冊！！！立即登入吧！！");

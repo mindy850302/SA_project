@@ -452,7 +452,7 @@ public class ProductDAODB implements ProductDAO {
 	public void addInventory(Product product) {
 		
 
-			String sql= "UPDATE product SET p_inventory= ? ";
+			String sql= "UPDATE product SET p_inventory= ? Where p_id=?";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);

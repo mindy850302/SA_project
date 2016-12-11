@@ -84,10 +84,11 @@
 			<li role="presentation" class="active"><a href="#home"
 				aria-controls="home" role="tab" data-toggle="tab"
 				style="color: #252830;">條列式</a></li>
-			<li role="presentation"><a href="#profile"
+			<!-- <li role="presentation"><a href="#profile"
 				aria-controls="profile" role="tab" data-toggle="tab"
 				style="color: #252830;">區塊式</a></li>
-		</ul>
+				-->
+				</ul>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane fade in active" id="home">
 				<h2 id="MacBook_Pro">產品</h2>

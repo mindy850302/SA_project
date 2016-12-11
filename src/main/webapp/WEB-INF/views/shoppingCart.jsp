@@ -69,15 +69,15 @@
 				
 		          <div class="input-group" style="margin-top: 20px;">
 		          <span class="input-group-addon" id="basic-addon1">收件人姓名 ：</span>
-		          <input type="text" class="form-control" name="receiver_name" placeholder="請輸入收件人姓名" aria-describedby="basic-addon1">
+		          <input type="text" class="form-control" name="receiver_name" placeholder="請輸入收件人姓名" aria-describedby="basic-addon1" required>
 		          </div>
 		          <div class="input-group" style="margin-top: 20px;">
 		          <span class="input-group-addon" id="basic-addon1">電話 ：</span>
-		          <input type="text" class="form-control" name="receiver_phone" placeholder="請輸入電話" aria-describedby="basic-addon1">
+		          <input type="text" class="form-control" name="receiver_phone" placeholder="請輸入電話" aria-describedby="basic-addon1" required>
 		          </div>
 		          <div class="input-group" style="margin-top: 20px;">
 		          <span class="input-group-addon" id="basic-addon1">地址 ：</span>
-		          <input type="text" class="form-control" name="receiver_address" placeholder="請輸入地址" aria-describedby="basic-addon1">
+		          <input type="text" class="form-control" name="receiver_address" placeholder="請輸入地址" aria-describedby="basic-addon1" required>
 		        </div>
 		        </div>
 		        <div class="col-lg-2 col-sm-0"></div>

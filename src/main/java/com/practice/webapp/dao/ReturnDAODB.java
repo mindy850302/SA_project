@@ -40,7 +40,7 @@ public class ReturnDAODB implements ReturnDAO {
 				areturn.setReturn_M_id(rs.getInt("return_M_id"));
 				areturn.setReturn_total(rs.getInt("return_total"));
 				areturn.getMember().setM_name(rs.getString("M_name"));
-				areturn.getAdministrato().setM_name(rs.getString("M_name"));
+				areturn.getAdministrato().setM_name(rs.getString("A_name"));
 				ReturnList.add(areturn);
 			}
 			rs.close();

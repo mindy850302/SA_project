@@ -112,7 +112,7 @@
 <div  class="col-xs-10 col-md-10" style="background-color:#333; height:20px"></div>
  <div class="col-xs-1 col-md-1"></div>
  </div>
- <div class="row" style="margin:40px auto 20px auto">
+ <div class="row" style="margin:40px auto 100px auto">
 
 
   <div class="col-xs-4 col-md-4" >
@@ -154,6 +154,30 @@
     <!-- end normal -->
  
   </div>
+</div>
+          <div class="row" style="margin-top:100px;">
+<h2 class="sub-header" style="margin-top:100px;margin-bottom:50px;">熱門產品</h2>
+          <c:forEach items="${HotProductList}" var="hotproduct">
+
+              <div class="col-sm-3 col-md-3">
+                <div class="thumbnail">
+                  <img  src="<c:out value="${hotproduct.getP_image()}"></c:out>" alt="...">
+                  <div class="caption">
+                    <center>
+
+                    <h5><c:out value="${hotproduct.getP_name()}"></c:out></h5>
+                    <%-- <h5 style="color: #777070;line-height: 25px;"><c:out value="${hotproduct.getP_describe()}"></c:out></h5> --%>
+                    <h5>NT . <c:out value="${hotproduct.getP_price()}"></c:out></h5>
+                   <%--  <h5>存貨數量：<c:out value="${hotproduct.getP_inventory()}"></c:out></h5>
+                    <h5>上架日期：<c:out value="${hotproduct.getP_onsale_date()}"></c:out></h5>  --%>
+                    <h5>瀏覽次數：<c:out value="${hotproduct.getClick_count()}"></c:out></h5> 
+                    <a class="button btn-primary btn" href="Product?id=${hotproduct.getP_id()}">查看商品</a>
+                    </center>
+                  </div>
+                </div>
+              </div>
+              </c:forEach>          
+            </div>
   
   
  </center>

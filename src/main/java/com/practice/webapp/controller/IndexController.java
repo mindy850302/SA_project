@@ -1,11 +1,16 @@
 package com.practice.webapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.practice.webapp.dao.ProductDAO;
+import com.practice.webapp.entity.Product;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -29,6 +34,10 @@ public class IndexController {
 	public ModelAndView getIndex(String name) {
 		ModelAndView model = new ModelAndView("index");
 		// = model.setViewName("index");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); 
+		List<Product> HotProductList = new ArrayList<Product>();
+		HotProductList=Productdao.hotProduct();
+		model.addObject("HotProductList",HotProductList);
 		model.addObject("message");
 		return model;
 	}

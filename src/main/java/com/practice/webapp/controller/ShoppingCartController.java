@@ -112,6 +112,10 @@ public class ShoppingCartController {
 		ShoppingDetailDAO shoppingDetaildao = (ShoppingDetailDAO) context.getBean("ShoppingDetailDAO");
 		List<ShoppingDetail> ShoppingDetailList = new ArrayList<ShoppingDetail>();
 		ShoppingDetailList=shoppingDetaildao.getList();
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); 
+		List<Product> newProductList = new ArrayList<Product>();
+		newProductList=Productdao.newProduct();
+		model.addObject("newProductList",newProductList);
 		model.addObject("ShoppingDetailList",ShoppingDetailList);
 		request.getSession().getAttribute("loginsession");
 		String idName=(String) request.getSession().getAttribute("loginsession");

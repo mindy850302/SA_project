@@ -212,7 +212,7 @@ public class MemberController {
 		if (result.equals("1")) {
 			model.addObject("result", result);
 			model.addObject("loginsession", member.getM_idName());
-			model.setViewName("index");
+			model.setViewName("redirect:/");
 		} else if (result.equals("2")) {// 帳號對，密碼錯，顯示密碼錯
 			model.addObject("result", result);
 			model.setViewName("login");
@@ -529,6 +529,17 @@ public class MemberController {
 		List<Member> MemberList = new ArrayList<Member>();
 
 		MemberList = Memberdao.search(mkeyword);
+		AdministratorDAO AdministratorDAO = (AdministratorDAO) context.getBean("AdministratorDAO");
+		A_categoryDAO A_categoryDAO = (A_categoryDAO) context.getBean("A_categoryDAO");
+		
+		List<Administrator> administratorList = new ArrayList<Administrator>();
+		List<A_category> A_categoryList = new ArrayList<A_category>();
+		
+		administratorList = AdministratorDAO.getList();
+		A_categoryList = A_categoryDAO.getList();
+		
+		model.addObject("administratorList", administratorList);
+		model.addObject("A_categoryList", A_categoryList);
 
 		model.addObject("memberList", MemberList);
 

@@ -83,8 +83,8 @@ public class AdministratorDAODB implements AdministratorDAO {
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setString(1, administrator.getM_idName());
-			smt.setString(2, administrator.getM_name());
+			smt.setString(1, administrator.getM_name());
+			smt.setString(2, administrator.getM_idName());
 			smt.setString(3, administrator.getM_phone());
 			smt.setString(4, administrator.getM_email());
 			smt.setString(5, administrator.getM_address());

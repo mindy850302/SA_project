@@ -42,10 +42,10 @@
         </div> 
            <div class="form__field">
           <label for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">Password</span></label>
-          <input id="signup__password" type="password" name="M_pwd" class="form__input" placeholder="Password需中英混合" required>
+          <input id="signup__password" type="password" name="M_pwd" class="form__input" placeholder="Password需英數混合" required>
             <script>
            if(<c:out value="${checkpwd}"/>==0){
-	        alert("密碼需要中英混合");
+	        alert("密碼需要英數混合");
 	        }
             </script>
         </div> 

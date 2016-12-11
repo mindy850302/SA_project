@@ -23,7 +23,17 @@ public class Administrator {
 	private String M_update_date;
 
 	private int A_category;
-//	private A_category a_category1 = new A_category();
+	
+	
+	private A_category a_category1 = new A_category();
+
+	public A_category getA_category1() {
+		return a_category1;
+	}
+
+	public void setA_category1(A_category a_category1) {
+		this.a_category1 = a_category1;
+	}
 
 	public int getA_id() {
 		return A_id;

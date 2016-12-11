@@ -141,7 +141,7 @@ public class AdministratorDAODB implements AdministratorDAO {
 	}
 
 	public List<Administrator> getList() {
-		String sql = "SELECT * FROM Administrator";
+		String sql = "SELECT * FROM Administrator a JOIN A_category b ON a.A_category = b.id";
 		return getList(sql);
 	}
 
@@ -163,6 +163,7 @@ public class AdministratorDAODB implements AdministratorDAO {
 				administrator.setM_create_date(rs.getString("A_create_date"));
 				administrator.setM_update_date(rs.getString("A_update_date"));
 				administrator.setA_category(rs.getInt("A_category"));
+				administrator.getA_category1().setC_name(rs.getString("c_name"));
 //				administrator.getA_category1().setC_id(rs.getInt("id"));
 				AdministratorList.add(administrator);
 			}

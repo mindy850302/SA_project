@@ -292,9 +292,11 @@
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label">產品種類</label>
 							<div class="col-sm-8">
-								<input type="radio" name="p_category" value="1" />iPhone <input
-									type="radio" name="p_category" value="2" />iPad <input
-									type="radio" name="p_category" value="3" />MacBook
+							<select class="form-control">
+								<c:forEach items="${ Product_categoryList}" var="prod_c">
+									<option value="<c:out value="${prod_c.getId()}"/>"><c:out value="${prod_c.getName() }"/>
+								</c:forEach>
+							</select>
 							</div>
 						</div>
 

@@ -49,6 +49,22 @@
   <body>
         <%@include file="headerBackground.jsp"%>
         <% request.setCharacterEncoding("utf-8");%>
+       
+        <script>
+           if(<c:out value="${checkid}"/>==0){
+	        alert("此帳號已被使用");
+	        }
+            </script>
+        <script>
+           if(<c:out value="${checkpwd}"/>==0){
+	        alert("密碼需要英數混合");
+	        }
+            </script>
+            <script>
+           if(<c:out value="${checkphone}"/>==0){
+	        alert("電話請重新輸入");
+	        }
+            </script>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="color: #252830;">
         <div class="row">
           <div class="col-lg-6">
@@ -92,7 +108,7 @@
                   <th>地址</th>
                   <th>建立日期</th>
                   <th>更新日期</th>
-                  <th></th>
+                 <!--  <th></th> -->
                   <th></th>
                 </tr>
               </thead>
@@ -107,7 +123,7 @@
                   <td><c:out value="${member.getM_address()}"/></td>
                   <td><c:out value="${member.getM_create_date()}"/></td>
                   <td><c:out value="${member.getM_update_date()}"/></td>
-                  <th><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myMModify<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></th>
+                  <%-- <th><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myMModify<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></th> --%>
                   <th><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myMDelete<c:out value="${member.getM_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></th>
                 </tr>
                 </c:forEach>

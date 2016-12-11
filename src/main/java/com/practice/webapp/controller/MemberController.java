@@ -135,24 +135,24 @@ public class MemberController {
 			
 		}
 
-		char mpwd[] = new char[Mpwd.length()];
+		char mpwd[] = Mpwd.toCharArray();
 		int countnum=0;
 		int countletter=0;
-		for(int i=0; i<Mpwd.length(); i++){
-		    mpwd[i] = Mpwd.charAt(i);
+		for(int i=0; i<mpwd.length; i++){
 		    if(Character.isLetter(mpwd[i])){
 		    	countletter++;
 		    }
 		    if(Character.isDigit(mpwd[i])){
 		    	countnum++;
 		    }
-		    if(countletter==0 && countnum==0){
-		    	checkpwd=0;//密碼錯誤，到signup頁面
-		    	flag=0;
-				System.out.println("2");
-		    	break;
-		    }
+		    
 		}
+		if(countletter==0 || countnum==0){
+	    	checkpwd=0;//密碼錯誤，到signup頁面
+	    	flag=0;
+			System.out.println("2");
+	    	
+	    }
 		char mphone[] = new char[Mphone.length()];
 		for(int j=0; j<Mphone.length(); j++){
 			mphone[j] = Mphone.charAt(j);

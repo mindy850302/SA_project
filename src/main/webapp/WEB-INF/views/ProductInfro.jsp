@@ -102,6 +102,7 @@
 								<th>產品描述</th>
 								<th>價錢</th>
 								<th>存貨數量</th>
+								<th>產品狀態</th>
 								<th>上架日期</th>
 								<th>更新日期</th>
 								<th>下架日期</th>
@@ -117,6 +118,7 @@
 									<td><c:out value="${product.getP_describe()}" /></td>
 									<td><c:out value="${product.getP_price()}" /></td>
 									<td><c:out value="${product.getP_inventory()}" /></td>
+									<td><c:if test="${product.isSale()==0}">下架中</c:if><c:if test="${product.isSale()==1}">上架中</c:if></td>
 									<td><c:out value="${product.getP_onsale_date()}" /></td>
 									<td><c:out value="${product.getP_update_date()}" /></td>
 									<td><c:out value="${product.getP_remove_date()}" /></td>
@@ -290,9 +292,11 @@
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label">產品種類</label>
 							<div class="col-sm-8">
-								<input type="radio" name="p_category" value="1" />iPhone <input
-									type="radio" name="p_category" value="2" />iPad <input
-									type="radio" name="p_category" value="3" />MacBook
+							<select class="form-control">
+								<c:forEach items="${ Product_categoryList}" var="prod_c">
+									<option value="<c:out value="${prod_c.getId()}"/>"><c:out value="${prod_c.getName() }"/>
+								</c:forEach>
+							</select>
 							</div>
 						</div>
 

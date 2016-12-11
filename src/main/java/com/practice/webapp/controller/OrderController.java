@@ -154,6 +154,7 @@ public class OrderController {
 		
 		for(int i=0;i<ShoppingDetailList.size();i++){
 			if(ShoppingDetailList.get(i).getShopping_M_id()==order.getOrder_M_id()){
+				
 				orderDetail.setOrderDetail_id(id);
 				orderDetail.setOrder_p_id(ShoppingDetailList.get(i).getShopping_p_id());
 				orderDetail.setP_amount(ShoppingDetailList.get(i).getP_amount());
@@ -163,12 +164,18 @@ public class OrderController {
 				orderDetailList.add(0, orderDetail);
 				Product product=new Product();
 				product.setP_id(ShoppingDetailList.get(i).getShopping_p_id());
+				System.out.println("1");
 				for(int j=0;j<ProductList.size();j++){
-					if(ShoppingDetailList.get(i).getShopping_p_id()==ProductList.get(i).getP_id()){
-						int inventory=ProductList.get(i).getP_inventory();
+					if(ShoppingDetailList.get(i).getShopping_p_id()==ProductList.get(j).getP_id()){
+						System.out.println("2");
+						int inventory=ProductList.get(j).getP_inventory();
+						System.out.println("3");
 						System.out.println("inventory "+inventory);
 						System.out.println("ShoppingDetailList.get(i).getP_amount() "+ShoppingDetailList.get(i).getP_amount());
 						product.setP_inventory(inventory-ShoppingDetailList.get(i).getP_amount());
+						System.out.println("原本的inventory"+ProductList.get(j).getP_inventory());
+						System.out.println("消費者買的inventory"+ShoppingDetailList.get(i).getP_amount());
+						System.out.println("inventory"+product.getP_inventory());
 						Productdao.addInventory(product);
 					}
 				}

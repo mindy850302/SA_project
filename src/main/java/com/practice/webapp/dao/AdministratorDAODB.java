@@ -155,7 +155,7 @@ public class AdministratorDAODB implements AdministratorDAO {
 				Administrator administrator = new Administrator();
 				administrator.setA_id(rs.getInt("A_id"));
 				administrator.setM_idName(rs.getString("A_idName"));
-				administrator.setM_name(rs.getString("A_Name"));
+				administrator.setM_name(rs.getString("A_name"));
 				administrator.setM_phone(rs.getString("A_phone"));
 				administrator.setM_email(rs.getString("A_email"));
 				administrator.setM_address(rs.getString("A_address"));

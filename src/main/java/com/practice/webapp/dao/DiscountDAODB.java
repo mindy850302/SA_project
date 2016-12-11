@@ -137,7 +137,7 @@ public class DiscountDAODB implements DiscountDAO {
 				discount.setDiscount_total(rs.getInt("discount_total"));
 				discount.setDiscount_A_id(rs.getInt("discount_A_id"));
 				discount.getMember().setM_name(rs.getString("M_name"));
-				discount.getAdministrator().setM_name(rs.getString("M_name"));
+				discount.getAdministrator().setM_name(rs.getString("A_name"));
 				DiscountList.add(discount);
 
 			}

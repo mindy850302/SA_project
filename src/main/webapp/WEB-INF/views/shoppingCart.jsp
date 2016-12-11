@@ -101,45 +101,33 @@
     <div class="col-lg-1 col-md-1"></div>
     </div>
     <div class="row" style="margin-top: 50px;">
-    <div class="col-lg-2 col-md-1"></div>
-    <div class="col-lg-8 col-md-10" style="border: 1px solid #c8c8c8;border-radius: 5px;box-shadow: 6px 0px 73px -6px rgba(0,0,0,0.75);background-color: #FFFFFF;color: #252830;">
+    <div class="col-lg-0 col-md-1"></div>
+    <div class="col-lg-12 col-md-10" style="border: 1px solid #c8c8c8;border-radius: 5px;box-shadow: 6px 0px 73px -6px rgba(0,0,0,0.75);background-color: #FFFFFF;color: #252830;">
       <h3>建議產品</h3>
       <hr>
       <div class="row">
-      <div class="col-sm-1 col-md-"></div>
-      <div class="col-sm-5 col-md-5">
+      <c:forEach items="${newProductList}" var="newproduct">
+      <div class="col-sm-3 col-md-3">
         <div class="thumbnail">
-          <img  src="img/macpro1.jpg" alt="...">
+          <img  src="<c:out value="${newproduct.getP_image()}"></c:out>" alt="...">
           <div class="caption">
-            <h3>13 吋 MacBook Pro</h3>
+            
             <center>
-            <h4 style="color: #777070;line-height: 25px;">2.0GHz 處理器 <br>256GB 儲存容量</h4>
-            <p style="margin-top: 30px;"><a href="#" class="btn btn-default" role="button">加入購物車</a></p>
+            <h3><c:out value="${newproduct.getP_name()}"></c:out></h3>
+            <p style="margin-top: 30px;"><a href="Product?id=${newproduct.getP_id()}" class="btn btn-default" role="button">了解更多</a></p>
             </center>
           </div>
         </div>
       </div>
-      <div class="col-sm-5 col-md-5">
-        <div class="thumbnail">
-          <img src="img/macpro2.jpg" alt="...">
-          <div class="caption">
-            <h3>13 吋 MacBook Pro</h3>
-            <center>
-            <h4 style="color: #777070;line-height: 25px;">Touch Bar 和 Touch ID<br>2.9GHz 處理器 <br>256GB 儲存容量</h4>
-            <p style="margin-top: 30px;"><a href="#" class="btn btn-default" role="button">加入購物車</a></p>
-            </center>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-1 col-md-"></div>
+      </c:forEach>
     </div>
     <div class="row">
         <center>
-          <p style="margin-top: 30px;"><a href="#" class="btn btn-lg btn-default" role="button">More&nbsp></a></p>
+          <p style="margin-top: 30px;"><a href="Product/iPad" class="btn btn-lg btn-default" role="button">More&nbsp></a></p>
         </center>
     </div>
     </div>
-    <div class="col-lg-2 col-md-1"></div>
+    <div class="col-lg-0 col-md-1"></div>
     </div>
       <c:forEach  items="${ShoppingDetailList}" var="shoppingdetail1">
     

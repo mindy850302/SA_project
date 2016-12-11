@@ -43,4 +43,7 @@ public class OrderDAOImpl {
 			OrderList.get(i).setOrder_id(i);
 		}
     }
+    public List<Order> getOrderShippingList(){
+    	return OrderList;
+    }
 }

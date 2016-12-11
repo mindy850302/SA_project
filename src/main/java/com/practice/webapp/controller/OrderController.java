@@ -78,6 +78,7 @@ public class OrderController {
 		model.addObject("message");
 		return model;
 	}
+	
 	@RequestMapping(value = "/order", method = RequestMethod.GET)
 	public ModelAndView getOrder(String name,@RequestParam("order_id") String order_id) {
 		ModelAndView model = new ModelAndView("order");
@@ -229,6 +230,21 @@ public class OrderController {
 			Orderdao.update(order);
 		}
 		model.setViewName("redirect:/OrderDetail");
+		return model;
+	}
+	
+	@RequestMapping(value = "/OrderShipping", method = RequestMethod.GET)
+	public ModelAndView getOrderShipping(String name) {
+		ModelAndView model = new ModelAndView("OrderShipping");
+		// = model.setViewName("OrderDetail");
+		OrderDAO orderdao = (OrderDAO)context.getBean("OrderDAO"); //defined in spring-webapp.xml
+		OrderDetailDAO orderDetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
+		List<Order> orderList = new ArrayList<Order>();
+		orderList=orderdao.getOrderShippingList();
+		
+		model.addObject("OrderList",orderList);
+		
+		model.addObject("message");
 		return model;
 	}
 }

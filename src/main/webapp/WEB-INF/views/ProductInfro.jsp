@@ -102,6 +102,7 @@
 								<th>產品描述</th>
 								<th>價錢</th>
 								<th>存貨數量</th>
+								<th>產品狀態</th>
 								<th>上架日期</th>
 								<th>更新日期</th>
 								<th>下架日期</th>
@@ -117,6 +118,7 @@
 									<td><c:out value="${product.getP_describe()}" /></td>
 									<td><c:out value="${product.getP_price()}" /></td>
 									<td><c:out value="${product.getP_inventory()}" /></td>
+									<td><c:if test="${product.isSale()==0}">下架中</c:if><c:if test="${product.isSale()==1}">上架中</c:if></td>
 									<td><c:out value="${product.getP_onsale_date()}" /></td>
 									<td><c:out value="${product.getP_update_date()}" /></td>
 									<td><c:out value="${product.getP_remove_date()}" /></td>

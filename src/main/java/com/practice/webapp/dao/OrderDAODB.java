@@ -194,7 +194,7 @@ public void delete(Order order) {
 	}
 }
 public List<Order> getOrderShippingList(){
-	String sql = "select datediff(CURRENT_TIME,O_date) as Subtract,order_id,order_M_id,total,O_date,M_name from `order` a JOIN Member b on a.order_M_id=b.M_id WHERE datediff(CURRENT_TIME,O_date)>3";
+	String sql = "select datediff(CURRENT_TIME,O_date) as Subtract,order_id,order_M_id,total,O_date,M_name,shipping from `order` a JOIN Member b on a.order_M_id=b.M_id WHERE datediff(CURRENT_TIME,O_date)>3 and shipping=0";
 	List<Order> OrderList = new ArrayList<Order>();
 	try {
 		conn = dataSource.getConnection();
@@ -207,6 +207,7 @@ public List<Order> getOrderShippingList(){
 			order.setO_date(rs.getString("O_date"));
 			order.setTotal(rs.getInt("total"));
 			order.getMember().setM_name(rs.getString("M_name"));
+			order.setShipping(rs.getInt("shipping"));
 			order.setOverShipping(rs.getInt("Subtract"));
 			OrderList.add(order);
 		}

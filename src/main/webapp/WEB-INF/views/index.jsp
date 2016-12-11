@@ -19,6 +19,11 @@
 <% request.setCharacterEncoding("utf-8");%>
 
 <%@include file="header.jsp"%>
+			<script>
+           if(<c:out value="${result}"/>==1){
+	        alert("登入成功！！");
+	        }
+            </script>
 <div class="modal fade" id="myLogout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -98,7 +103,7 @@
  <form class="navbar-form navbar-right" role="search"action="search"method="POST">
    <span class="glyphicon glyphicon-search"></span>
                          <div class="form-group">
-                          <input type="text" class="form-control"name="keyword" placeholder="Search you like">
+                          <input type="text" class="form-control"name="keyword" placeholder="Search Product name">
                          </div>
                              <button type="submit" class="btn btn-default">Submit</button>
                   </form>

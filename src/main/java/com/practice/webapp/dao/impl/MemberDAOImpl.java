@@ -68,15 +68,15 @@ public class MemberDAOImpl implements MemberDAO{
     	return MemberList;
     }
     
-	public boolean checkLoginMember(Member member){
+	public String checkLoginMember(Member member){
 		String M_idName=member.getM_idName();
 		String password=member.getM_pwd();
-		boolean log=false;
+		String log="3";
 		for (int i = 0; i< MemberList.size(); i++){
 			String idName=MemberList.get(i).getM_idName();
 			String pwd=MemberList.get(i).getM_pwd();
 			if(idName.equals(M_idName)&&pwd.equals(password)){
-				log=true;
+				log="1";
 				break;
 			}
 		}

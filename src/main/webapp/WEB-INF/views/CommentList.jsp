@@ -97,7 +97,7 @@
 								<th>帳號</th>
 								<th>姓名</th>
 								<th>產品名稱</th>
-								<th>評論內容</th>
+								<!-- <th>評論內容</th> -->
 								<th>評分</th>
 								<th>建立日期</th>
 								<th></th>
@@ -111,7 +111,7 @@
 									<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span><c:out value="${comment.getMember().getM_idName()}"/></td>
 									<td><c:out value="${comment.getMember().getM_name()}" /></td>
 									<td><c:out value="${comment.getProduct().getP_name()}" /></td>
-									<td><c:out value="${comment.getC_comment()}" /></td>
+									<%-- <td><c:out value="${comment.getC_comment()}" /></td> --%>
 									<td><c:out value="${comment.getScore()}" /></td>
 									<td><c:out value="${comment.getC_create_date()}" /></td>
 									<form action="deleteComment" method="post">
@@ -165,7 +165,7 @@
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-2 control-label">評論內容</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control comment-input"id="inputPassword3" name="c_comment" placeholder="評論內容" required>
+								<input type="text" class="form-control comment-input"id="inputPassword3" name="c_comment" placeholder="評論內容">
 							</div>
 						</div>
 						<div class="form-group">

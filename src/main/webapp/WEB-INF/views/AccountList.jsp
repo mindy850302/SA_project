@@ -141,18 +141,7 @@
                   <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp&nbsp<c:out value="${admin.getM_idName()}"/></td>
                   <td><c:out value="${admin.getM_name()}"/></td>
                  <%--  <%int categoryNum = request.getParameter(admin.getA_category()); %> --%>
-                 <c:forEach  items="${A_categoryList}" var="A_category">
-                  <script>
-                /*   for(int i=0;i<<c:out value="${A_categoryList.size()}"/>;i++){ */
-                	  
-                		 /*  $(document).ready(function(){
-                			  $('#<c:out value="${admin.getA_id()}"/>categoryName').append('<c:out value="${A_category.getC_name()}"/>');
-                		  
-                		  break; */
-                	
-                 /*  } */
-                  </script>
-                  </c:forEach>
+                 
                  <%--  <%
                   	String categoryName ;
                   	switch(categoryNum){

@@ -47,7 +47,7 @@ public class ProductDAODB implements ProductDAO {
 				product.setP_inventory(rs.getInt("p_inventory"));
 				product.setP_name(rs.getString("p_name"));
 				product.setP_price(rs.getInt("p_price"));
-				product.setAverage(rs.getInt("average"));
+				product.setAverage(rs.getDouble("average"));
 				product.setP_onsale_date(rs.getString("p_onsale_date"));
 				product.setP_remove_date(rs.getString("p_remove_date"));
 				product.setP_update_date(rs.getString("p_update_date"));
@@ -122,7 +122,7 @@ public class ProductDAODB implements ProductDAO {
 				product.setP_inventory(rs.getInt("p_inventory"));
 				product.setP_name(rs.getString("p_name"));
 				product.setP_price(rs.getInt("p_price"));
-				product.setAverage(rs.getInt("average"));
+				product.setAverage(rs.getDouble("average"));
 				product.setSale(rs.getInt("sale"));
 				product.setP_onsale_date(rs.getString("p_onsale_date"));
 				product.setP_remove_date(rs.getString("p_remove_date"));
@@ -258,9 +258,9 @@ public class ProductDAODB implements ProductDAO {
 				smt = conn.prepareStatement(sql);
 				smt.setInt(1, id);
 				rs = smt.executeQuery();
-				int average=0;
+				Double average=0.0;
 				while(rs.next()){
-					average = (int)rs.getDouble("p_average");
+					average = rs.getDouble("p_average");
 				}
 				
 				System.out.println("average:"+average);
@@ -268,7 +268,7 @@ public class ProductDAODB implements ProductDAO {
 				
 				System.out.println("sql1"+sql1);
 				smt1 = conn.prepareStatement(sql1);
-				smt1.setInt(1, average);
+				smt1.setDouble(1, average);
 				smt1.setInt(2, id);
 				
 				smt1.executeUpdate();
@@ -382,7 +382,7 @@ public class ProductDAODB implements ProductDAO {
 				product.setP_inventory(rs.getInt("p_inventory"));
 				product.setP_name(rs.getString("p_name"));
 				product.setP_price(rs.getInt("p_price"));
-				product.setAverage(rs.getInt("average"));
+				product.setAverage(rs.getDouble("average"));
 				product.setP_onsale_date(rs.getString("p_onsale_date"));
 				product.setP_remove_date(rs.getString("p_remove_date"));
 				product.setP_update_date(rs.getString("p_update_date"));
@@ -424,7 +424,7 @@ public class ProductDAODB implements ProductDAO {
 				product.setP_inventory(rs.getInt("p_inventory"));
 				product.setP_name(rs.getString("p_name"));
 				product.setP_price(rs.getInt("p_price"));
-				product.setAverage(rs.getInt("average"));
+				product.setAverage(rs.getDouble("average"));
 				product.setP_onsale_date(rs.getString("p_onsale_date"));
 				product.setP_remove_date(rs.getString("p_remove_date"));
 				product.setP_update_date(rs.getString("p_update_date"));

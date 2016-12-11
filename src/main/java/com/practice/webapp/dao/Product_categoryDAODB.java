@@ -60,12 +60,11 @@ public class Product_categoryDAODB implements Product_categoryDAO {
 	public void insert(Product_category product_category) {
 
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO product_category (id,name) VALUES(?, ?)";	
+	    String sql = "INSERT INTO product_category (name) VALUES(?)";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, product_category.getId());
-			smt.setString(2, product_category.getName());
+			smt.setString(1, product_category.getName());
 			smt.executeUpdate();			
 			smt.close();
  
@@ -111,13 +110,13 @@ public class Product_categoryDAODB implements Product_categoryDAO {
 
 public void update(Product_category product_category) {
 		
-		String sql = "UPDATE product_category SET id=?, name=?"
+		String sql = "UPDATE product_category SET name=?"
 				+ "WHERE id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, product_category.getId());
-			smt.setString(2, product_category.getName());
+			smt.setString(1, product_category.getName());
+			smt.setInt(2, product_category.getId());
 			smt.executeUpdate();			
 			smt.close();
  

@@ -31,21 +31,22 @@
 
   <body class="align" style="margin-top:160px; ">
 
-    <div class="grid">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
       <div class="form login">
         <table class="table">
-          <tr style="background-color: #5EB990"> 
-            <td>產品名稱</td>
-            <td>產品描述</td>
-            <td>總金額</td>
-            <td>目前存貨</td>
-            <td>上架日期</td>
-            <td>產品樣式</td>
+          <tr style="background-color: rgba(37, 30, 30, 0.22)"> 
+            <td style="border-top: rgba(37, 30, 30, 0.22)">產品名稱</td>
+            <td style="border-top: rgba(37, 30, 30, 0.22)">產品描述</td>
+            <td style="border-top: rgba(37, 30, 30, 0.22)">總金額</td>
+            <td style="border-top: rgba(37, 30, 30, 0.22)">目前存貨</td>
+            <td style="border-top: rgba(37, 30, 30, 0.22)">上架日期</td>
+            <td style="border-top: rgba(37, 30, 30, 0.22)">產品樣式</td>
           
           </tr>
           <c:forEach  items="${ProductList}" var="search">
          
-          <tr style="background-color:rgb(113, 197, 170)">
+          <tr style="background-color:#5e788e">
             <td><c:out value="${search.getP_name()}"/></td>
             <td><c:out value="${search.getP_describe()}"/></td>
             <td><c:out value="${search.getP_price()}"/></td>

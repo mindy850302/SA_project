@@ -283,7 +283,7 @@ input[type='submit'] {
 .login input[type='text'],
 .login input[type='password'],
 .login input[type='submit'] {
-  border-radius: 0.25rem;
+  border-radius: 2.25rem;
   padding: 16px;
   padding: 1rem;
 }
@@ -313,7 +313,7 @@ input[type='submit'] {
 }
 
 .login input[type='submit'] {
-  background-color:rgb(113, 197, 170);
+  background-color:#ab425a;
   color: #eee;
   font-weight: 700;
   text-transform: uppercase;
@@ -321,7 +321,7 @@ input[type='submit'] {
 
 .login input[type='submit']:focus,
 .login input[type='submit']:hover {
-  background-color:  rgb(79, 169, 128);
+  background-color: #ab425a;
 }
 
 /* modules/text.css */
@@ -340,6 +340,16 @@ p {
     width: 100%;
     height: 216px;
 }
-/***********login signup end*****************/
-	
-	
+
+
+.login input[type='password'], .login input[type='email'] {
+    background-color: #3b4148;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.tr_class{
+	backbround-color:rgba(37, 30, 30, 0.22);
+}
+
+

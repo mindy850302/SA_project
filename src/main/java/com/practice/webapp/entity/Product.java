@@ -29,7 +29,7 @@ public class Product {
 
 	private int sale;
 	
-	private int average;
+	private Double average;
 
 	
 
@@ -113,11 +113,11 @@ public class Product {
 		this.click_count = click_count;
 	}
 
-	public int getAverage() {
+	public Double getAverage() {
 		return average;
 	}
 
-	public void setAverage(int average) {
+	public void setAverage(Double average) {
 		this.average = average;
 	}
 

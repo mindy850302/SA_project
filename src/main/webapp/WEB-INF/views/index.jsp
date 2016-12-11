@@ -119,10 +119,10 @@
  
     <!-- normal -->
     <p align="center"  style="font-size: 30px; color:#333;margin-left:100px"><B><span class="glyphicon glyphicon-off"></span> New</B></p>
-    <div class="ih-item square effect13 left_to_right" style="margin-left:100px" ><a href="#">
+    <div class="ih-item square effect13 left_to_right" style="margin-left:100px" ><a href="/webapp/Product/iPhone">
         <div class="img"><img src="http://store.storeimages.cdn-apple.com/8749/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/gallery2/iphone6s-gallery2-2015?wid=4000&hei=3072&fmt=jpeg&qlt=80&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=2Vkkj2" alt="img"></div>
         <div class="info">
-          <h3>iphone7</h3>
+          <h3>iphone</h3>
           <p>Learn more >></p>
         </div></a></div>
     <!-- end normal -->
@@ -132,7 +132,7 @@
  <p align="center"  style="font-size: 30px; color:#333; " ><B><span class="glyphicon glyphicon-off"></span> Hot!</B></p>
     <!-- colored -->
     
-    <div class="ih-item square colored effect13 right_to_left" ><a href="#">
+    <div class="ih-item square colored effect13 right_to_left" ><a href="/webapp/Product/iPad">
         <div class="img"><img src="http://images.apple.com/v/apple-pencil/b/images/pencil/ipad_pro_large_2x.jpg" alt="img"></div>
         <div class="info">
           <h3>iPad</h3>
@@ -145,7 +145,7 @@
 <div class="col-xs-4 col-md-4">
  <p align="center"  style="font-size: 30px; color:#333; margin-right:100px"><B><span class="glyphicon glyphicon-off"></span> Hot!</B></p>
     <!-- colored -->
-    <div class="ih-item square effect13 top_to_bottom" style="margin-right:100px"><a href="#">
+    <div class="ih-item square effect13 top_to_bottom" style="margin-right:100px"><a href="/webapp/Product/Macbook">
         <div class="img"><img src="http://images.apple.com/v/macbook-pro/l/images/overview/performance_large_2x.jpg" alt="img"></div>
         <div class="info">
           <h3>MacBook</h3>

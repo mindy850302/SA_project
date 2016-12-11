@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.practice.webapp.dao.A_categoryDAO;
 import com.practice.webapp.dao.CommentDAO;
 import com.practice.webapp.dao.MemberDAO;
 import com.practice.webapp.dao.ProductDAO;
 import com.practice.webapp.dao.Product_categoryDAO;
 import com.practice.webapp.dao.ShoppingDetailDAO;
+import com.practice.webapp.entity.A_category;
 import com.practice.webapp.entity.Comment;
 import com.practice.webapp.entity.Discount;
 import com.practice.webapp.entity.DiscountDetail;
@@ -95,6 +97,12 @@ public class ProductController {
 		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
 		ProductList=Productdao.getList();
 		Product product=new Product();
+		for(int i = 0 ; i < ProductList.size();i++){
+			if (id==ProductList.get(i).getP_id()){
+				product=ProductList.get(i);
+			}
+		}
+
 //		int count=0;
 //		for(int j=0;j<ProductList.size()-1;j++){
 //			if(ProductList.get(j).getClick_count()<ProductList.get(j+1).getClick_count()){
@@ -149,7 +157,7 @@ public class ProductController {
 		model.addObject("score_number",score_number);
 		int click=Productdao.updateClick(product);
 		System.out.println(id);
-		System.out.println(click);
+		System.out.println(product.getP_id());
 		model.addObject("ProductList",ProductList);
 		//model.addObject("count",count);
 		model.addObject("message");
@@ -400,7 +408,49 @@ public class ProductController {
 		model.setViewName("redirect:/Inventory");
 		return model;
 	}
+	
+	@RequestMapping(value = "/ProductCategory", method = RequestMethod.GET)
+	public ModelAndView getA_CategoryList(String name) {
+		ModelAndView model = new ModelAndView("ProductCategory");
+		// = model.setViewName("ProductCategory");
+		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO) context.getBean("Product_categoryDAO");
+		List<Product_category> Product_categoryList = new ArrayList<Product_category>();
+		Product_categoryList = Product_categoryDAO.getList();
+		model.addObject("Product_categoryList", Product_categoryList);
 
+		return model;
+	}
+	
+	@RequestMapping(value = "/updateProduct_category", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView updateProduct_category(@ModelAttribute Product_category product_category, HttpServletRequest request,
+			@RequestParam("type") String type) {
+		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO) context.getBean("Product_categoryDAO");
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+		if (type.equals("modifyProduct_category")) {
+			Product_categoryDAO.update(product_category);
+		}
+		model.setViewName("redirect:/ProductCategory");
+		return model;
 
+	}
+	
+	@RequestMapping(value = "/addProduct_category", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView addA_category(@ModelAttribute Product_category product_category, HttpServletRequest request,
+			@RequestParam("action_type") String type) {
+		Product_categoryDAO Product_categoryDAO = (Product_categoryDAO) context.getBean("Product_categoryDAO");
+
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+
+		if (type.equals("addProduct_category")) {
+			Product_categoryDAO.insert(product_category);
+
+		}
+		model.setViewName("redirect:/ProductCategory");
+		return model;
+	}
 	
 }

@@ -63,7 +63,7 @@
 			<!-- /.col-lg-6 -->
 		</div>
 		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="color: #252830;">逾期訂單->預計出貨時間三天</a></li>
+			<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="color: #252830;">逾期訂單&nbsp&nbsp-&nbsp>&nbsp預計出貨時間為訂單時間後三天</a></li>
 		</ul>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane fade in active" id="home">

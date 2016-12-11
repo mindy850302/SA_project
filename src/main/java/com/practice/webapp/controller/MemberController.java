@@ -146,12 +146,12 @@ public class MemberController {
 		    if(Character.isDigit(mpwd[i])){
 		    	countnum++;
 		    }
-		    if(countletter==0 && countnum==0)
+		    if(countletter==0 && countnum==0){
 		    	checkpwd=0;//密碼錯誤，到signup頁面
 		    	flag=0;
 				System.out.println("2");
 		    	break;
-			
+		    }
 		}
 		char mphone[] = new char[Mphone.length()];
 		for(int j=0; j<Mphone.length(); j++){
@@ -228,7 +228,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView getLogin(@ModelAttribute("name") String name, SessionStatus sessionStatus) {
+	public ModelAndView getLogin(@ModelAttribute("name") String name, SessionStatus sessionStatus,@ModelAttribute("flag") String flag) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
 		ModelAndView model = new ModelAndView("login");
 		MemberDAO Memberdao = (MemberDAO) context.getBean("MemberDAO");
@@ -445,5 +445,49 @@ public class MemberController {
 		return model;
 
 	}
+	@RequestMapping(value = "/AdministratorCategory", method = RequestMethod.GET)
+	public ModelAndView getA_CategoryList(String name) {
+		ModelAndView model = new ModelAndView("AdministratorCategory");
+		// = model.setViewName("AdministratorCategory");
+		A_categoryDAO A_categoryDAO = (A_categoryDAO) context.getBean("A_categoryDAO");
+		List<A_category> A_categoryList = new ArrayList<A_category>();
+		A_categoryList = A_categoryDAO.getList();
+		model.addObject("A_categoryList", A_categoryList);
+
+		return model;
+	}
+
+	@RequestMapping(value = "/updateA_category", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView updateA_category(@ModelAttribute A_category a_category, HttpServletRequest request,
+			@RequestParam("type") String type) {
+		A_categoryDAO A_categoryDAO = (A_categoryDAO) context.getBean("A_categoryDAO");
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+		if (type.equals("modifyA_category")) {
+			A_categoryDAO.update(a_category);
+		}
+		model.setViewName("redirect:/AdministratorCategory");
+		return model;
+
+	}
+	
+	@RequestMapping(value = "/addA_category", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public ModelAndView addA_category(@ModelAttribute A_category a_category, HttpServletRequest request,
+			@RequestParam("action_type") String type) {
+		A_categoryDAO A_categoryDAO = (A_categoryDAO) context.getBean("A_categoryDAO");
+
+		ModelAndView model = new ModelAndView();
+		System.out.println(request.getCharacterEncoding());
+		System.out.println(type);
+
+		if (type.equals("addA_category")) {
+			A_categoryDAO.insert(a_category);
+
+		}
+		model.setViewName("redirect:/AdministratorCategory");
+		return model;
+	}
+
 
 }

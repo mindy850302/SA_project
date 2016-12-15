@@ -52,12 +52,7 @@
             <h1 class="page-header">折讓紀錄</h1>
           </div>
           <div class="col-lg-3">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="折讓查詢" style="border-radius: 40px;">
-                <span class="input-group-btn" >
-                  <button class="btn btn-default" type="button" style="border-radius: 40px;"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
-                </span>
-              </div><!-- /input-group -->
+              
             </div><!-- /.col-lg-6 -->
              <div class="col-lg-3">
               <div class="input-group">

@@ -683,4 +683,9 @@
 	{
 		padding-right: 0.50em;
 	}
+	h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+    /* padding-top: 80px; */
+}
 	

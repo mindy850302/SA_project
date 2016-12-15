@@ -52,7 +52,7 @@
             <td><c:out value="${search.getP_price()}"/></td>
             <td><c:out value="${search.getP_inventory()}"/></td>
             <td><c:out value="${search.getP_onsale_date()}"/></td>
-            <td><img src="<c:out value="${search.getP_image()}" />" alt="..." style="width:300px"></td>
+            <td><a href="Product?id=<c:out value="${search.getP_id()}"/>"><img src="<c:out value="${search.getP_image()}" />" alt="..." style="width:300px"></a></td>
           </tr>
           
           </c:forEach>

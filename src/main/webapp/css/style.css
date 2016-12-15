@@ -7,7 +7,7 @@ a{
 }
 a:hover{
     color: #ffffff;
-    background-color: #414653 !important;
+    
 }
 .container-nav{
     margin-left: 5%;
@@ -23,6 +23,7 @@ a:hover{
     font-size: 16px;
     border: 0px solid #303841 !important;
     font-weight:bold;
+    position:fixed;
 }
 
 .navbar-inverse .navbar-nav > .active > a:hover,

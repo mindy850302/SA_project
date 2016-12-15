@@ -118,18 +118,7 @@
             </div>
         </div>
     </div>
-    <div id="wrapper2">
-        <div id="featured" class="container">
-            <div class="box1">
-                <h2><span class="icon icon-group"></span>更多選購方式</h2>
-                <p></p>
-            </div>
-            <div class="box2">
-                <h2><span class="icon icon-briefcase"></span>尋找經銷商</h2>
-                <p></p>
-            </div>
-        </div>
-    </div>
+   
     <div id="copyright">
         <div class="title">
             <h2>更多資訊</h2> <span class="byline">follow us in anyway</span> </div>

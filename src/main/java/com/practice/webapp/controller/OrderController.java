@@ -78,6 +78,7 @@ public class OrderController {
 		model.addObject("message");
 		return model;
 	}
+	
 	@RequestMapping(value = "/order", method = RequestMethod.GET)
 	public ModelAndView getOrder(String name,@RequestParam("order_id") String order_id) {
 		ModelAndView model = new ModelAndView("order");
@@ -86,6 +87,10 @@ public class OrderController {
 		OrderDetailDAO orderDetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
 		List<Order> orderList = new ArrayList<Order>();
 		List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); 
+		List<Product> HotProductList = new ArrayList<Product>();
+		HotProductList=Productdao.hotProduct();
+		model.addObject("HotProductList",HotProductList);
 		orderList=orderdao.getList();
 		orderDetailList=orderDetaildao.getList();
 		model.addObject("order_id",order_id);
@@ -150,6 +155,7 @@ public class OrderController {
 		
 		for(int i=0;i<ShoppingDetailList.size();i++){
 			if(ShoppingDetailList.get(i).getShopping_M_id()==order.getOrder_M_id()){
+				
 				orderDetail.setOrderDetail_id(id);
 				orderDetail.setOrder_p_id(ShoppingDetailList.get(i).getShopping_p_id());
 				orderDetail.setP_amount(ShoppingDetailList.get(i).getP_amount());
@@ -159,12 +165,18 @@ public class OrderController {
 				orderDetailList.add(0, orderDetail);
 				Product product=new Product();
 				product.setP_id(ShoppingDetailList.get(i).getShopping_p_id());
+				System.out.println("1");
 				for(int j=0;j<ProductList.size();j++){
-					if(ShoppingDetailList.get(i).getShopping_p_id()==ProductList.get(i).getP_id()){
-						int inventory=ProductList.get(i).getP_inventory();
+					if(ShoppingDetailList.get(i).getShopping_p_id()==ProductList.get(j).getP_id()){
+						System.out.println("2");
+						int inventory=ProductList.get(j).getP_inventory();
+						System.out.println("3");
 						System.out.println("inventory "+inventory);
 						System.out.println("ShoppingDetailList.get(i).getP_amount() "+ShoppingDetailList.get(i).getP_amount());
 						product.setP_inventory(inventory-ShoppingDetailList.get(i).getP_amount());
+						System.out.println("原本的inventory"+ProductList.get(j).getP_inventory());
+						System.out.println("消費者買的inventory"+ShoppingDetailList.get(i).getP_amount());
+						System.out.println("inventory"+product.getP_inventory());
 						Productdao.addInventory(product);
 					}
 				}
@@ -218,6 +230,21 @@ public class OrderController {
 			Orderdao.update(order);
 		}
 		model.setViewName("redirect:/OrderDetail");
+		return model;
+	}
+	
+	@RequestMapping(value = "/OrderShipping", method = RequestMethod.GET)
+	public ModelAndView getOrderShipping(String name) {
+		ModelAndView model = new ModelAndView("OrderShipping");
+		// = model.setViewName("OrderDetail");
+		OrderDAO orderdao = (OrderDAO)context.getBean("OrderDAO"); //defined in spring-webapp.xml
+		OrderDetailDAO orderDetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
+		List<Order> orderList = new ArrayList<Order>();
+		orderList=orderdao.getOrderShippingList();
+		
+		model.addObject("OrderList",orderList);
+		
+		model.addObject("message");
 		return model;
 	}
 }

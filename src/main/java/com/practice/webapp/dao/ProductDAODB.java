@@ -146,8 +146,15 @@ public class ProductDAODB implements ProductDAO {
 	}
 
 	public void update(Product product) {
-		String sql = "UPDATE product SET click_count=?, p_describe=?,p_image=?, p_inventory=?,sale=?,p_name=?,p_price=?,p_update_date=CURRENT_TIME() "
-				+ "WHERE p_id = ?";
+		String sql="";
+		if(product.isSale()==1){
+			 sql = "UPDATE product SET click_count=?, p_describe=?,p_image=?, p_inventory=?,sale=?,p_name=?,p_price=?,p_onsale_date=CURRENT_TIME(),p_update_date=CURRENT_TIME() "
+					+ "WHERE p_id = ?";
+		}else if(product.isSale()==0){
+			sql = "UPDATE product SET click_count=?, p_describe=?,p_image=?, p_inventory=?,sale=?,p_name=?,p_price=?,p_update_date=CURRENT_TIME(),p_remove_date=CURRENT_TIME() "
+					+ "WHERE p_id = ?";
+		}
+		
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -157,8 +164,7 @@ public class ProductDAODB implements ProductDAO {
 			smt.setInt(4, product.getP_inventory());
 			smt.setInt(5, product.isSale());
 			smt.setString(6, product.getP_name());
-			smt.setInt(7, product.getP_price());
-			
+			smt.setInt(7, product.getP_price());	
 			smt.setInt(8, product.getP_id());
 			smt.executeUpdate();
 			smt.close();
@@ -452,7 +458,7 @@ public class ProductDAODB implements ProductDAO {
 	public void addInventory(Product product) {
 		
 
-			String sql= "UPDATE product SET p_inventory= ? ";
+			String sql= "UPDATE product SET p_inventory= ?  Where p_id=? ";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);

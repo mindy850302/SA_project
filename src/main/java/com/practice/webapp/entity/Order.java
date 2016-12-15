@@ -24,6 +24,16 @@ public class Order {
 	private int shipping;
 	
 	private String shipping_Date;
+	
+	private int overShipping;
+
+	public int getOverShipping() {
+		return overShipping;
+	}
+
+	public void setOverShipping(int overShipping) {
+		this.overShipping = overShipping;
+	}
 
 	public String getShipping_Date() {
 		return shipping_Date;

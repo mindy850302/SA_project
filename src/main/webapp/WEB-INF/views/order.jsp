@@ -41,6 +41,7 @@
       <div class="row">
         <div class="col-lg-8 ">
           <h6>欲使用銀行轉帳付款，請致電 0800-020-021。 </h6>
+          <h6>預計出貨時間七天，如未收取，請填寫線上客服。</h6>
         </div>
         <div class="col-lg-4 ">
           <h4>總金額 ： NT . <c:out value="${order1.getTotal()}"></c:out></h4>
@@ -104,59 +105,26 @@
       <hr>
       <center>
       <div class="row container">
-      <div class="col-sm-4 col-md-3">
+      <c:forEach items="${HotProductList}" var="hotproduct">
+      <div class="col-sm-3 col-md-3">
         <div class="thumbnail">
-          <img  src="img/macpro1.jpg" alt="...">
+          <img  src="${hotproduct.getP_image()}" alt="...">
           <div class="caption">
-            <h3>13 吋 MacBook Pro</h3>
+            <h3><c:out value="${hotproduct.getP_name()}"></c:out></h3>
             <center>
-            <h4 style="color: #777070;line-height: 25px;">2.0GHz 處理器 <br>256GB 儲存容量</h4>
-            <p style="margin-top:30px;"><a href="#" class="btn btn-default" role="button">加入購物車</a></p>
+           
+            <p style="margin-top:30px;"><a href="Product?id=<c:out value="${hotproduct.getP_id()}"></c:out>" class="btn btn-default" role="button">加入購物車</a></p>
             </center>
           </div>
         </div>
       </div>
-      <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-          <img src="img/macpro2.jpg" alt="...">
-          <div class="caption">
-            <h3>13 吋 MacBook Pro</h3>
-            <center>
-            <h4 style="color: #777070;line-height: 25px;">Touch Bar 和 Touch ID<br>2.9GHz 處理器 <br>256GB 儲存容量</h4>
-            <p style="margin-top: 30px;"><a href="#" class="btn btn-default" role="button">加入購物車</a></p>
-            </center>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-          <img src="img/macpro2.jpg" alt="...">
-          <div class="caption">
-            <h3>13 吋 MacBook Pro</h3>
-            <center>
-            <h4 style="color: #777070;line-height: 25px;">Touch Bar 和 Touch ID<br>2.9GHz 處理器 <br>256GB 儲存容量</h4>
-            <p style="margin-top: 30px;"><a href="#" class="btn btn-default" role="button">加入購物車</a></p>
-            </center>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-          <img src="img/macpro2.jpg" alt="...">
-          <div class="caption">
-            <h3>13 吋 MacBook Pro</h3>
-            <center>
-            <h4 style="color: #777070;line-height: 25px;">Touch Bar 和 Touch ID<br>2.9GHz 處理器 <br>256GB 儲存容量</h4>
-            <p style="margin-top: 30px;"><a href="#" class="btn btn-default" role="button">加入購物車</a></p>
-            </center>
-          </div>
-        </div>
-      </div>
+      </c:forEach>
+      
     </div>
     </center>
     <div class="row">
         <center>
-          <p style="margin-top: 30px;"><a href="#" class="btn btn-default btn-lg" role="button">More&nbsp></a></p>
+          <p style="margin-top: 30px;"><a href="Product/iPhone" class="btn btn-default btn-lg" role="button">More&nbsp></a></p>
         </center>
     </div>
     </div>

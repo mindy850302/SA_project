@@ -19,6 +19,11 @@
 <% request.setCharacterEncoding("utf-8");%>
 
 <%@include file="header.jsp"%>
+			<script>
+           if(<c:out value="${result}"/>==1){
+	        alert("登入成功！！");
+	        }
+            </script>
 <div class="modal fade" id="myLogout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -98,7 +103,7 @@
  <form class="navbar-form navbar-right" role="search"action="search"method="POST">
    <span class="glyphicon glyphicon-search"></span>
                          <div class="form-group">
-                          <input type="text" class="form-control"name="keyword" placeholder="Search you like">
+                          <input type="text" class="form-control"name="keyword" placeholder="Search Product name">
                          </div>
                              <button type="submit" class="btn btn-default">Submit</button>
                   </form>
@@ -112,17 +117,17 @@
 <div  class="col-xs-10 col-md-10" style="background-color:#333; height:20px"></div>
  <div class="col-xs-1 col-md-1"></div>
  </div>
- <div class="row" style="margin:40px auto 20px auto">
+ <div class="row" style="margin:40px auto 100px auto">
 
 
   <div class="col-xs-4 col-md-4" >
  
     <!-- normal -->
     <p align="center"  style="font-size: 30px; color:#333;margin-left:100px"><B><span class="glyphicon glyphicon-off"></span> New</B></p>
-    <div class="ih-item square effect13 left_to_right" style="margin-left:100px" ><a href="#">
+    <div class="ih-item square effect13 left_to_right" style="margin-left:100px" ><a href="/webapp/Product/iPhone">
         <div class="img"><img src="http://store.storeimages.cdn-apple.com/8749/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone6s/gallery2/iphone6s-gallery2-2015?wid=4000&hei=3072&fmt=jpeg&qlt=80&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=2Vkkj2" alt="img"></div>
         <div class="info">
-          <h3>iphone7</h3>
+          <h3>iphone</h3>
           <p>Learn more >></p>
         </div></a></div>
     <!-- end normal -->
@@ -132,7 +137,7 @@
  <p align="center"  style="font-size: 30px; color:#333; " ><B><span class="glyphicon glyphicon-off"></span> Hot!</B></p>
     <!-- colored -->
     
-    <div class="ih-item square colored effect13 right_to_left" ><a href="#">
+    <div class="ih-item square colored effect13 right_to_left" ><a href="/webapp/Product/iPad">
         <div class="img"><img src="http://images.apple.com/v/apple-pencil/b/images/pencil/ipad_pro_large_2x.jpg" alt="img"></div>
         <div class="info">
           <h3>iPad</h3>
@@ -145,7 +150,7 @@
 <div class="col-xs-4 col-md-4">
  <p align="center"  style="font-size: 30px; color:#333; margin-right:100px"><B><span class="glyphicon glyphicon-off"></span> Hot!</B></p>
     <!-- colored -->
-    <div class="ih-item square effect13 top_to_bottom" style="margin-right:100px"><a href="#">
+    <div class="ih-item square effect13 top_to_bottom" style="margin-right:100px"><a href="/webapp/Product/Macbook">
         <div class="img"><img src="http://images.apple.com/v/macbook-pro/l/images/overview/performance_large_2x.jpg" alt="img"></div>
         <div class="info">
           <h3>MacBook</h3>
@@ -154,6 +159,30 @@
     <!-- end normal -->
  
   </div>
+</div>
+          <div class="row" style="margin-top:100px;">
+<h2 class="sub-header" style="margin-top:100px;margin-bottom:50px;">熱門產品</h2>
+          <c:forEach items="${HotProductList}" var="hotproduct">
+
+              <div class="col-sm-3 col-md-3">
+                <div class="thumbnail">
+                  <img  src="<c:out value="${hotproduct.getP_image()}"></c:out>" alt="...">
+                  <div class="caption">
+                    <center>
+
+                    <h5><c:out value="${hotproduct.getP_name()}"></c:out></h5>
+                    <%-- <h5 style="color: #777070;line-height: 25px;"><c:out value="${hotproduct.getP_describe()}"></c:out></h5> --%>
+                    <h5>NT . <c:out value="${hotproduct.getP_price()}"></c:out></h5>
+                   <%--  <h5>存貨數量：<c:out value="${hotproduct.getP_inventory()}"></c:out></h5>
+                    <h5>上架日期：<c:out value="${hotproduct.getP_onsale_date()}"></c:out></h5>  --%>
+                    <h5>瀏覽次數：<c:out value="${hotproduct.getClick_count()}"></c:out></h5> 
+                    <a class="button btn-primary btn" href="Product?id=${hotproduct.getP_id()}">查看商品</a>
+                    </center>
+                  </div>
+                </div>
+              </div>
+              </c:forEach>          
+            </div>
   
   
  </center>

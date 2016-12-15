@@ -18,7 +18,7 @@
 <body class="align" style="margin-top:200px">
 <% request.setCharacterEncoding("utf-8");%>
 <%@include file="header.jsp"%>
-<a href="login"> ${loginsession.username}</a>
+<a href="login"> ${loginsession}</a>
     <div class="grid">
 
       <form action="login" method="post" class="form login">

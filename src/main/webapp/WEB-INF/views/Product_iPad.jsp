@@ -42,7 +42,7 @@
 							<div class="content">
 								<h2 class="major"><c:out value="${product.getP_name()}"/></h2>
 								<p><c:out value="${product.getP_describe()}"/></p>
-								<a href="/webapp/Product?id=${product.getP_id()}" class="special">Learn more</a>
+								<h2><a href="/webapp/Product?id=${product.getP_id()}" class="special">購買產品</a></h2>
 							</div>
 						</div>
 					</section>
@@ -54,7 +54,7 @@
 							<div class="content">
 								<h2 class="major"><c:out value="${product.getP_name()}"/></h2>
 								<p><c:out value="${product.getP_describe()}"/></p>
-								<a href="/webapp/Product?id=${product.getP_id()}" class="special">Learn more</a>
+								<h2><a href="/webapp/Product?id=${product.getP_id()}" class="special">購買產品</a></h2>
 							</div>
 						</div>
 					</section>

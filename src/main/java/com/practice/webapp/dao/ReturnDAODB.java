@@ -22,7 +22,7 @@ public class ReturnDAODB implements ReturnDAO {
 	}
 	
 	public List<Return> getList(){
-		String sql = "SELECT * FROM `return` a JOIN Member b ON a.return_M_id=b.M_id JOIN Administrator c ON a.return_A_id=c.A_id";
+		String sql = "SELECT * FROM `return` a JOIN `order` b ON a.return_order_id=b.order_id JOIN Administrator c ON a.return_A_id=c.A_id";
 		return getList(sql);
 	}
 	
@@ -37,10 +37,9 @@ public class ReturnDAODB implements ReturnDAO {
 				areturn.setReturn_A_id(rs.getInt("return_A_id"));
 				areturn.setReturn_date(rs.getString("return_date"));
 				areturn.setReturn_id(rs.getInt("return_id"));
-				areturn.setReturn_M_id(rs.getInt("return_M_id"));
+				areturn.setReturn_order_id(rs.getInt("return_order_id"));
 				areturn.setReturn_total(rs.getInt("return_total"));
-				areturn.getMember().setM_name(rs.getString("M_name"));
-				areturn.getAdministrato().setM_name(rs.getString("A_name"));
+				areturn.getAdministrator().setM_name(rs.getString("A_name"));
 				ReturnList.add(areturn);
 			}
 			rs.close();
@@ -61,17 +60,15 @@ public class ReturnDAODB implements ReturnDAO {
 	public int insert(Return areturn) {
 		int id =0;
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO `return`(`return_M_id`,`return_date`,`return_total`,`return_A_id`) VALUES(?,?,?,?)";	
+	    String sql = "INSERT INTO `return`(`return_order_id`,`return_total`,`return_A_id`,`return_date`) VALUES(?,?,?,CURRENT_TIME())";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			
 			System.out.println(id);
-
-			smt.setInt(1, areturn.getReturn_M_id());
-			smt.setString(2, areturn.getReturn_date());
-			smt.setInt(3, areturn.getReturn_total());
-			smt.setInt(4, areturn.getReturn_A_id());
+			smt.setInt(1, areturn.getReturn_order_id());
+			smt.setInt(2, areturn.getReturn_total());
+			smt.setInt(3, areturn.getReturn_A_id());
 			smt.executeUpdate();	
 			rs = smt.getGeneratedKeys();
 			if (rs != null && rs.next()) {
@@ -101,7 +98,7 @@ public class ReturnDAODB implements ReturnDAO {
 				if(rs.next()){
 					areturn.setReturn_A_id(rs.getInt("return_A_id"));
 					areturn.setReturn_date(rs.getString("return_date"));
-					areturn.setReturn_M_id(rs.getInt("return_M_id"));
+					areturn.setReturn_order_id(rs.getInt("return_order_id"));
 					areturn.setReturn_total(rs.getInt("return_total"));
 				}
 				rs.close();
@@ -122,14 +119,14 @@ public class ReturnDAODB implements ReturnDAO {
 		
 		public void update(Return areturn) {
 			
-			String sql = "UPDATE `return` SET `return_A_id`=?, `return_date`=?, `return_M_id`=?, `return_total`=? "
+			String sql = "UPDATE `return` SET `return_A_id`=?, `return_date`=?, `return_order_id`=?, `return_total`=? "
 					+ "WHERE `return_id` =?";
 			try {
 				conn = dataSource.getConnection();
 				smt = conn.prepareStatement(sql);
 				smt.setInt(1, areturn.getReturn_A_id());
 				smt.setString(2, areturn.getReturn_date());
-				smt.setInt(3, areturn.getReturn_M_id());
+				smt.setInt(3, areturn.getReturn_order_id());
 				smt.setInt(4, areturn.getReturn_total());
 				smt.setInt(5, areturn.getReturn_id());
 				smt.executeUpdate();			
@@ -167,6 +164,20 @@ public class ReturnDAODB implements ReturnDAO {
 				}
 			}
 		}
-		
+//		public void isReturn(Return areturn) {
+//			try {
+//				conn = dataSource.getConnection();
+//	 
+//			} catch (SQLException e) {
+//				throw new RuntimeException(e);
+//	 
+//			} finally {
+//				if (conn != null) {
+//					try {
+//						conn.close();
+//					} catch (SQLException e) {}
+//				}
+//			}	
+//		}
 	}
 

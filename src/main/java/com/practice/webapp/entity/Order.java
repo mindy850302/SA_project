@@ -23,6 +23,8 @@ public class Order {
 	
 	private int shipping;
 	
+	private int order_status;
+	
 	private String shipping_Date;
 	
 	private int overShipping;
@@ -114,6 +116,14 @@ public class Order {
 
 	public void setMember(Member member) {
 		this.member = member;
+	}
+
+	public int getOrder_status() {
+		return order_status;
+	}
+
+	public void setOrder_status(int order_status) {
+		this.order_status = order_status;
 	}
 
 

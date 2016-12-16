@@ -9,6 +9,7 @@ public interface OrderDAO {
 	public int insert(Order order);
 	public Order get(Order order);
     public void update(Order order);
+    public void updateOrder_status(Order order);
     public void delete(Order order);
     public List<Order> getOrderShippingList();
 //	public int count();

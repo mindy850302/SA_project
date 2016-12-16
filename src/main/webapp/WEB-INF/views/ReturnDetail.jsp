@@ -206,7 +206,7 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">新增退貨</h4>
-          </div>
+          </div> 
           <div class="modal-body">
             <form class="form-horizontal" method="post" action="addReturn">
            <div class="form-group">

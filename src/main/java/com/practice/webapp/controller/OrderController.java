@@ -197,8 +197,8 @@ public class OrderController {
 		// = model.setViewName("order");
 		OrderDAO orderdao = (OrderDAO)context.getBean("OrderDAO"); //defined in spring-webapp.xml
 		OrderDetailDAO orderDetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
-		List<Order> orderList = new ArrayList<Order>();
-		List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
+		List<Order> OrderList = new ArrayList<Order>();
+		List<OrderDetail> OrderDetailList = new ArrayList<OrderDetail>();
 	
 		return model;
 	}

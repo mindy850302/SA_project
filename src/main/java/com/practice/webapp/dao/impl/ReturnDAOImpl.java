@@ -12,11 +12,13 @@ import javax.sql.DataSource;
 //import com.mysql.jdbc.Statement;
 
 import com.practice.webapp.entity.Return;
-import com.practice.webapp.entity.ReturnDetail;
+import com.practice.webapp.entity.Order;
 import com.practice.webapp.dao.ReturnDAO;
+import com.practice.webapp.dao.OrderDAO;
 
 public class ReturnDAOImpl implements ReturnDAO{
 	private List<Return> ReturnList = new ArrayList<Return>();
+	private List<Order> OrderList = new ArrayList<Order>();
 	public ReturnDAOImpl(){
 		Return temp=new Return();
 	}
@@ -55,7 +57,14 @@ public class ReturnDAOImpl implements ReturnDAO{
 //			ReturnList.get(i).setReturn_id(i);
 //		}
     }
-	
+//    public void isReturn(Return areturn){
+//    	for (int i = 0; i< OrderList.size(); i++){
+//    		if(OrderList.get(i).getOrder_id()==areturn.getReturn_order_id()){
+//    			OrderList.get(i).setOrder_status(1);
+//    		}
+//    		
+//    	}
+//    }
 	
 	
 }

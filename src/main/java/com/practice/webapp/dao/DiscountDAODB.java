@@ -28,13 +28,13 @@ public class DiscountDAODB implements DiscountDAO {
 		// TODO Auto-generated method stub
 		int id =0;
 
-		String sql = "INSERT INTO discount (discount_id,discount_M_id,discount_date,discount_total,discount_A_id) VALUES(?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO discount (discount_id,discount_order_id,discount_date,discount_total,discount_A_id) VALUES(?, ?, ?, ?, ?)";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			System.out.println(id);
 			smt.setInt(1, discount.getDiscount_id());
-			smt.setInt(2, discount.getDiscount_M_id());
+			smt.setInt(2, discount.getDiscount_order_id());
 			smt.setString(3, discount.getDiscount_date());
 			smt.setInt(4, discount.getDiscount_total());
 			smt.setInt(5, discount.getDiscount_A_id());
@@ -89,12 +89,12 @@ public class DiscountDAODB implements DiscountDAO {
 	@Override
 	public void update(Discount discount) {
 		// TODO Auto-generated method stub
-		String sql = "UPDATE discount SET  discount_M_id=?,discount_date=?,discount_total=?,discount_A_id=? "
+		String sql = "UPDATE discount SET  discount_order_id=?,discount_date=?,discount_total=?,discount_A_id=? "
 				+ "WHERE discount_id = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, discount.getDiscount_M_id());
+			smt.setInt(1, discount.getDiscount_order_id());
 			smt.setString(2, discount.getDiscount_date());
 			smt.setInt(3, discount.getDiscount_total());
 			smt.setInt(4, discount.getDiscount_A_id());
@@ -116,7 +116,7 @@ public class DiscountDAODB implements DiscountDAO {
 	}
 
 	public List<Discount> getList() {
-		String sql = "SELECT * FROM discount a JOIN Member b ON a.discount_M_id=b.M_id JOIN Administrator c ON a.discount_A_id=c.A_id";
+		String sql = "SELECT * FROM discount a JOIN `order` b ON a.discount_order_id=b.order_M_id JOIN Administrator c ON a.discount_A_id=c.A_id";
 		return getList(sql);
 		// TODO Auto-generated method stub
 	}
@@ -132,7 +132,7 @@ public class DiscountDAODB implements DiscountDAO {
 			while (rs.next()) {
 				Discount discount = new Discount();
 				discount.setDiscount_id(rs.getInt("discount_id"));
-				discount.setDiscount_M_id(rs.getInt("discount_M_id"));
+				discount.setDiscount_order_id(rs.getInt("discount_order_id"));
 				discount.setDiscount_date(rs.getString("discount_date"));
 				discount.setDiscount_total(rs.getInt("discount_total"));
 				discount.setDiscount_A_id(rs.getInt("discount_A_id"));
@@ -192,7 +192,7 @@ public class DiscountDAODB implements DiscountDAO {
 	public List<Discount> search(String keyword) {
 List<Discount> DiscountList = new ArrayList<Discount>();
 		
-		String sql = "SELECT * FROM discount WHERE discount_M_id LIKE '%"+keyword+"%'";
+		String sql = "SELECT * FROM discount WHERE discount_order_id LIKE '%"+keyword+"%'";
 		System.out.println(sql);
 		try {
 			conn = dataSource.getConnection();
@@ -203,7 +203,7 @@ List<Discount> DiscountList = new ArrayList<Discount>();
 			while (rs.next()) {
 				Discount discount = new Discount();
 				discount.setDiscount_id(rs.getInt("	discount_id"));
-				discount.setDiscount_M_id(rs.getInt("discount_M_id"));
+				discount.setDiscount_order_id(rs.getInt("discount_order_id"));
 				discount.setDiscount_date(rs.getString("discount_date"));
 				discount.setDiscount_total(rs.getInt("discount_total"));
 				discount.setDiscount_A_id(rs.getInt("discount_A_id"));

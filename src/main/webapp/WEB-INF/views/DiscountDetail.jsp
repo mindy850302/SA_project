@@ -208,7 +208,7 @@
     </c:forEach>
     </c:forEach>
     <!-- Modal -->
-       <div class="modal fade" id="myAddDiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+       <%-- <div class="modal fade" id="myAddDiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -280,7 +280,7 @@
           
         </div>
       </div>
-    </div>
+    </div> --%>
  <c:forEach  items="${DiscountList}" var="Discount2">
  <c:forEach  items="${DiscountDetailList}" var="DiscountDetail2">
   <c:if test="${Discount2.getDiscount_id()==DiscountDetail2.getDiscount_id()}" >

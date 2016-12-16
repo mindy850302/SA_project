@@ -28,6 +28,17 @@ public class Order {
 	private String shipping_Date;
 	
 	private int overShipping;
+	
+	private int order_status;
+	
+	
+	public int getOrder_status() {
+		return order_status;
+	}
+
+	public void setOrder_status(int order_status) {
+		this.order_status = order_status;
+	}
 
 	public int getOverShipping() {
 		return overShipping;

@@ -82,24 +82,19 @@
                 </tr>
               </thead>
               <tbody>
-             <c:forEach  items="${DiscountList}" var="Discount">
-             	<c:forEach  items="${DiscountDetailList}" var="DiscountDetail">
-             	<c:if test="${Discount.getDiscount_id()==DiscountDetail.getDiscount_id()}" >
-	                <tr>
-	                  <td><c:out value="${DiscountDetail.getDiscount_id()}"/></td>
-		              <td><c:out value="${DiscountDetail.getDiscount_p_id()}"/></td>
-		              <td><c:out value="${DiscountDetail.getProduct().getP_name()}"/></td>
-		              <td><c:out value="${DiscountDetail.getProduct().getP_price()}"/></td>
-	                  <td><c:out value="${DiscountDetail.getP_amount()}"/></td>
-	                  <td><c:out value="${Discount.getMember().getM_name()}"/></td>
-	                  <td><c:out value="${Discount.getAdministrator().getM_name()}"/></td>
-	                  <td><c:out value="${Discount.getDiscount_total()}"/></td>
-	                  <td><c:out value="${Discount.getDiscount_date()}"/></td>
-	                 
-	                </tr>
-	                </c:if>
-	                </c:forEach>
-	          </c:forEach>
+             	<c:forEach  items="${DiscountDetailList}" var="discountDetail">
+	                <tr>            
+	                  <td>${discountDetail.getDiscount_id()}</td>
+		              <td>${discountDetail.getDiscount_p_id()}</td>
+		              <td>${discountDetail.getProduct().getP_name()}</td>
+		              <td>${discountDetail.getProduct().getP_price()}</td>
+	                  <td>${discountDetail.getP_amount()}</td>
+	                  <td>${discountDetail.getDiscount().getMember().getM_name()}</td>   
+	                  <td>${discountDetail.getDiscount().getAdministrator().getM_name()}</td>
+		              <td>${discountDetail.getDiscount().getDiscount_total()}</td>
+		              <td>${discountDetail.getDiscount().getDiscount_date()}</td>            
+	                </tr>	              
+	            </c:forEach>
               </tbody>
             </table>
           </div>
@@ -280,7 +275,7 @@
         </div>
       </div>
     </div> --%>
- <c:forEach  items="${DiscountList}" var="Discount2">
+ <%-- <c:forEach  items="${DiscountList}" var="Discount2">
  <c:forEach  items="${DiscountDetailList}" var="DiscountDetail2">
   <c:if test="${Discount2.getDiscount_id()==DiscountDetail2.getDiscount_id()}" >
      <form action="deleteDiscount" method="post">
@@ -329,7 +324,7 @@
           </form>
           </c:if>
 </c:forEach>
-</c:forEach>
+</c:forEach> --%>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

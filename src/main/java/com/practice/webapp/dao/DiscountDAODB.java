@@ -28,16 +28,15 @@ public class DiscountDAODB implements DiscountDAO {
 		// TODO Auto-generated method stub
 		int id =0;
 
-		String sql = "INSERT INTO discount (discount_id,discount_order_id,discount_date,discount_total,discount_A_id) VALUES(?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO discount (discount_id,discount_order_id,discount_date,discount_total,discount_A_id) VALUES(?, ?, CURRENT_TIME(), ?,?)";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-			System.out.println(id);
+			System.out.println(discount.getDiscount_A_id());
 			smt.setInt(1, discount.getDiscount_id());
 			smt.setInt(2, discount.getDiscount_order_id());
-			smt.setString(3, discount.getDiscount_date());
-			smt.setInt(4, discount.getDiscount_total());
-			smt.setInt(5, discount.getDiscount_A_id());
+			smt.setInt(3, discount.getDiscount_total());
+			smt.setInt(4, discount.getDiscount_A_id());
 			smt.executeUpdate();
 			rs = smt.getGeneratedKeys();
 			if (rs != null && rs.next()) {
@@ -116,7 +115,7 @@ public class DiscountDAODB implements DiscountDAO {
 	}
 
 	public List<Discount> getList() {
-		String sql = "SELECT * FROM discount a JOIN `order` b ON a.discount_order_id=b.order_M_id JOIN Administrator c ON a.discount_A_id=c.A_id";
+		String sql = "SELECT * FROM discount a JOIN `order` b ON a.discount_order_id=b.order_id JOIN Administrator c ON a.discount_A_id=c.A_id Join Member d ON b.order_M_id=d.M_id";
 		return getList(sql);
 		// TODO Auto-generated method stub
 	}

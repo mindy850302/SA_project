@@ -49,7 +49,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="color: #252830;">
         <div class="row">
           <div class="col-lg-6">
-            <h1 class="page-header">退貨</h1>
+            <h1 class="page-header">折讓</h1>
           </div>
           <div class="col-lg-3">
               <div class="input-group">
@@ -59,7 +59,11 @@
                 </span> -->
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
-             
+             <div class="col-lg-3">
+              <div class="input-group">
+                <a type="button" class="btn btn-default" href="DiscountDetail"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>折讓明細</a>
+              </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
         </div>
           <ul class="nav nav-tabs" role="tablist" >
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="color: #252830;">已出貨訂單</a></li>
@@ -90,7 +94,7 @@
 	                  <td><c:out value="${order.getO_date()}"/></td>
 	                  <td><c:out value="${order.getShipping_Date()}"/></td>
 	                  <td><c:out value="${order.getTotal()}"/></td>
-	                  <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myReturn<c:out value="${order.getOrder_id()}"/>">退貨</button></td>
+	                  <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myReturn<c:out value="${order.getOrder_id()}"/>">折讓</button></td>
 	                </tr>
 	                </c:if>
 	          </c:forEach>
@@ -111,35 +115,40 @@
             <h4 class="modal-title" id="myModalLabel">新增折讓</h4>
           </div>
           <div class="modal-body">
-            <form class="form-horizontal" method="post" action="addReturn">
+            <form class="form-horizontal" method="post" action="addDiscount">
            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">退貨人姓名</label>
+                <label for="inputEmail3" class="col-sm-3 control-label">折讓人姓名</label>
                 <div class="col-sm-7">
-                  <input type="hidden" name="return_order_id" value="<c:out value="${order1.getOrder_id()}"/>">
+                  <input type="hidden" name="discount_order_id" value="<c:out value="${order1.getOrder_id()}"/>">
                   <p class="form-control-static" style="margin-top: 0rem"><c:out value="${order1.getMember().getM_name()}"></c:out></p>
                 </div>
               </div>
               
               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">退貨訂單金額</label>
+                <label for="inputEmail3" class="col-sm-3 control-label">訂單總額</label>
                 <div class="col-sm-7">
-                  <input type="hidden" name="return_total" value="<c:out value="${order1.getTotal()}"/>">
                   <p class="form-control-static" style="margin-top: 0rem"><c:out value="${order1.getTotal()}"></c:out></p>
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-3 control-label">承辦人姓名</label>
                 <div class="col-sm-7">
-                  <select name="return_A_id" class="form-control">
+                  <select name="discount_A_id" class="form-control">
                      <c:forEach items="${administratorList}" var="administrator">
         					<option value="<c:out value="${administrator.getA_id()}"/>"><c:out value="${administrator.getM_name()}"/></option>
         			</c:forEach>
 				   </select>
                 </div>
               </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">折讓訂單金額</label>
+                <div class="col-sm-7">
+                  <input type="number" name="discount_total" class="form-control">
+                </div>
+              </div>
               <div class="modal-footer">
 		            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		            <input type="submit" class="btn btn-primary" name="type" value="addReturn"/>
+		            <input type="submit" class="btn btn-primary" name="type" value="addDiscount"/>
          	 </div>
             </form>
           </div>

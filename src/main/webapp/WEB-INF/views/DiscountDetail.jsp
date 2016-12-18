@@ -56,7 +56,7 @@
             </div><!-- /.col-lg-6 -->
              <div class="col-lg-3">
               <div class="input-group">
-                <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#myAddDiscount"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增折讓</button>
+                <a type="button" class="btn btn-default" href="DiscountOrder"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增折讓</a>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
         </div>
@@ -95,8 +95,7 @@
 	                  <td><c:out value="${Discount.getAdministrator().getM_name()}"/></td>
 	                  <td><c:out value="${Discount.getDiscount_total()}"/></td>
 	                  <td><c:out value="${Discount.getDiscount_date()}"/></td>
-	                  <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${DiscountDetail.getDiscount_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></td>
-                  	  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete<c:out value="${DiscountDetail.getDiscount_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
+	                 
 	                </tr>
 	                </c:if>
 	                </c:forEach>
@@ -107,7 +106,7 @@
             </div>
         </div>
       </div>
-    <c:forEach  items="${DiscountList}" var="Discount1">
+  <%--   <c:forEach  items="${DiscountList}" var="Discount1">
     <c:forEach  items="${DiscountDetailList}" var="DiscountDetail1">
      <!-- Modal -->
      <c:if test="${Discount1.getDiscount_id()==DiscountDetail1.getDiscount_id()}" >
@@ -206,7 +205,7 @@
     </div>
     </c:if>
     </c:forEach>
-    </c:forEach>
+    </c:forEach> --%>
     <!-- Modal -->
        <%-- <div class="modal fade" id="myAddDiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">

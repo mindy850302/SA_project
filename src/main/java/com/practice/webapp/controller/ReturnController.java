@@ -130,6 +130,7 @@ public class ReturnController {
 			returnDAO.insert(areturn);
 			for(int i=0;i<OrderList.size();i++){
 				if(OrderList.get(i).getOrder_id()==areturn.getReturn_order_id()){
+					OrderList.get(i).setOrder_status(1);
 					orderDAO.updateOrder_status(OrderList.get(i));
 					break;
 				}

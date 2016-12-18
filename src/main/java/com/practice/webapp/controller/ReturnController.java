@@ -128,7 +128,13 @@ public class ReturnController {
 //		ProductList=Productdao.getList();
 		if(type.equals("addReturn")){
 			returnDAO.insert(areturn);
-			orderDAO.updateOrder_status(OrderList.get(areturn.getReturn_order_id()));
+			for(int i=0;i<OrderList.size();i++){
+				if(OrderList.get(i).getOrder_id()==areturn.getReturn_order_id()){
+					orderDAO.updateOrder_status(OrderList.get(i));
+					break;
+				}
+			}
+			
 		}
 		
 		model.addObject("ReturnList",ReturnList);

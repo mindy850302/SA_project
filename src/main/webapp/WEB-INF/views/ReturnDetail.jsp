@@ -61,7 +61,7 @@
             </div><!-- /.col-lg-6 -->
              <div class="col-lg-3">
               <div class="input-group">
-                <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#myAddReturn"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增退貨</button>
+                <a type="button" class="btn btn-default" href="Return"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增退貨</a>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
         </div>
@@ -95,11 +95,11 @@
 		              <td><c:out value="${ReturnDetail.getProduct().getP_name()}"/></td>
 	                  <td><c:out value="${ReturnDetail.getP_amount()}"/></td>
 	                  <td><c:out value="${Return.getMember().getM_name()}"/></td>
-	                  <td><c:out value="${Return.getAdministrato().getM_name()}"/></td>
+	                  <td><c:out value="${Return.getAdministrator().getM_name()}"/></td>
 	                  <td><c:out value="${Return.getReturn_total()}"/></td>
 	                  <td><c:out value="${Return.getReturn_date()}"/>2</td>
-	                  <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${ReturnDetail.getReturn_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></td>
-                  	  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete<c:out value="${ReturnDetail.getReturn_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
+	                  <%-- <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${ReturnDetail.getReturn_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></td>
+                  	  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete<c:out value="${ReturnDetail.getReturn_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td> --%>
 	                </tr>
 	                </c:if>
 	                </c:forEach>
@@ -110,7 +110,7 @@
             </div>
         </div>
       </div>
-    <c:forEach  items="${ReturnList}" var="Return1">
+  <%--   <c:forEach  items="${ReturnList}" var="Return1">
     <c:forEach  items="${ReturnDetailList}" var="ReturnDetail1">
      <!-- Modal -->
      <c:if test="${Return1.getReturn_id()==ReturnDetail1.getReturn_id()}" >
@@ -309,7 +309,7 @@
           </form>
           </c:if>
 </c:forEach>
-</c:forEach>
+</c:forEach> --%>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

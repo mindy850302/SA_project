@@ -59,7 +59,11 @@
                 </span> -->
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
-             
+             <div class="col-lg-3">
+              <div class="input-group">
+                <a type="button" class="btn btn-default" href="ReturnDetail"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>退貨明細</a>
+              </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
         </div>
           <ul class="nav nav-tabs" role="tablist" >
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="color: #252830;">已出貨訂單</a></li>

@@ -69,7 +69,7 @@
             <li><a href="/webapp/Inventory"><i class="fa fa-desktop "></i>存貨情況</a></li>
             <li><a href="/webapp/OrderDetail"><i class="fa fa-desktop "></i>訂單明細</a></li>
             <li><a href="/webapp/OrderShipping"><i class="fa fa-desktop "></i>逾期訂單查詢</a></li>
-            <li><a href="/webapp/ReturnDetail"><i class="fa fa-desktop "></i>退貨紀錄</a></li>
+            <li><a href="/webapp/Return"><i class="fa fa-desktop "></i>退貨紀錄</a></li>
             <li><a href="/webapp/DiscountOrder"><i class="fa fa-desktop "></i>折讓紀錄</a></li>
           </ul>
         </div>

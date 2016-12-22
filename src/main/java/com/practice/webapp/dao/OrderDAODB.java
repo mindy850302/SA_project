@@ -229,11 +229,12 @@ public List<Order> getOrderShippingList(){
 	return OrderList;
 }
 public void updateOrder_status(Order order) {
-	String sql="UPDATE `order` SET order_status=1 " + "WHERE order_id = ?";
+	String sql="UPDATE `order` SET order_status=? " + "WHERE order_id = ?";
 	try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, order.getOrder_id());
+			smt.setInt(1, order.getOrder_status());
+			smt.setInt(2, order.getOrder_id());
 			smt.executeUpdate();
 			smt.close();
  

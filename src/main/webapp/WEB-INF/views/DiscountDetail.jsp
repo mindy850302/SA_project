@@ -56,7 +56,7 @@
             </div><!-- /.col-lg-6 -->
              <div class="col-lg-3">
               <div class="input-group">
-                <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#myAddDiscount"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增折讓</button>
+                <a type="button" class="btn btn-default" href="DiscountOrder"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增折讓</a>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
         </div>
@@ -82,32 +82,26 @@
                 </tr>
               </thead>
               <tbody>
-             <c:forEach  items="${DiscountList}" var="Discount">
-             	<c:forEach  items="${DiscountDetailList}" var="DiscountDetail">
-             	<c:if test="${Discount.getDiscount_id()==DiscountDetail.getDiscount_id()}" >
-	                <tr>
-	                  <td><c:out value="${DiscountDetail.getDiscount_id()}"/></td>
-		              <td><c:out value="${DiscountDetail.getDiscount_p_id()}"/></td>
-		              <td><c:out value="${DiscountDetail.getProduct().getP_name()}"/></td>
-		              <td><c:out value="${DiscountDetail.getProduct().getP_price()}"/></td>
-	                  <td><c:out value="${DiscountDetail.getP_amount()}"/></td>
-	                  <td><c:out value="${Discount.getMember().getM_name()}"/></td>
-	                  <td><c:out value="${Discount.getAdministrator().getM_name()}"/></td>
-	                  <td><c:out value="${Discount.getDiscount_total()}"/></td>
-	                  <td><c:out value="${Discount.getDiscount_date()}"/></td>
-	                  <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${DiscountDetail.getDiscount_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></td>
-                  	  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete<c:out value="${DiscountDetail.getDiscount_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
-	                </tr>
-	                </c:if>
-	                </c:forEach>
-	          </c:forEach>
+             	<c:forEach  items="${DiscountDetailList}" var="discountDetail">
+	                <tr>            
+	                  <td>${discountDetail.getDiscount_id()}</td>
+		              <td>${discountDetail.getDiscount_p_id()}</td>
+		              <td>${discountDetail.getProduct().getP_name()}</td>
+		              <td>${discountDetail.getProduct().getP_price()}</td>
+	                  <td>${discountDetail.getP_amount()}</td>
+	                  <td>${discountDetail.getDiscount().getMember().getM_name()}</td>   
+	                  <td>${discountDetail.getDiscount().getAdministrator().getM_name()}</td>
+		              <td>${discountDetail.getDiscount().getDiscount_total()}</td>
+		              <td>${discountDetail.getDiscount().getDiscount_date()}</td>            
+	                </tr>	              
+	            </c:forEach>
               </tbody>
             </table>
           </div>
             </div>
         </div>
       </div>
-    <c:forEach  items="${DiscountList}" var="Discount1">
+  <%--   <c:forEach  items="${DiscountList}" var="Discount1">
     <c:forEach  items="${DiscountDetailList}" var="DiscountDetail1">
      <!-- Modal -->
      <c:if test="${Discount1.getDiscount_id()==DiscountDetail1.getDiscount_id()}" >
@@ -206,7 +200,7 @@
     </div>
     </c:if>
     </c:forEach>
-    </c:forEach>
+    </c:forEach> --%>
     <!-- Modal -->
        <%-- <div class="modal fade" id="myAddDiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -281,7 +275,7 @@
         </div>
       </div>
     </div> --%>
- <c:forEach  items="${DiscountList}" var="Discount2">
+ <%-- <c:forEach  items="${DiscountList}" var="Discount2">
  <c:forEach  items="${DiscountDetailList}" var="DiscountDetail2">
   <c:if test="${Discount2.getDiscount_id()==DiscountDetail2.getDiscount_id()}" >
      <form action="deleteDiscount" method="post">
@@ -330,7 +324,7 @@
           </form>
           </c:if>
 </c:forEach>
-</c:forEach>
+</c:forEach> --%>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

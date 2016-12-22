@@ -61,7 +61,7 @@
             </div><!-- /.col-lg-6 -->
              <div class="col-lg-3">
               <div class="input-group">
-                <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#myAddReturn"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增退貨</button>
+                <a type="button" class="btn btn-default" href="ReturnDetail"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>退貨明細</a>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
         </div>

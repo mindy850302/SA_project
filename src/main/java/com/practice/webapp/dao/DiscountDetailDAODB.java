@@ -92,7 +92,7 @@ public class DiscountDetailDAODB implements DiscountDetailDAO {
 		
 	}
 	public List<DiscountDetail> getList() {
-		String sql = "SELECT * FROM discountDetail a JOIN product b ON a.discount_p_id = b.p_id";
+		String sql = "SELECT * FROM discountDetail a JOIN product b ON a.discount_p_id = b.p_id JOIN discount c ON a.discount_id=c.discount_id JOIN Administrator d ON c.discount_A_id=d.A_id JOIN mydb.order e ON c.discount_order_id=e.order_id JOIN Member f ON e.order_M_id=f.M_id";
 		return getList(sql);
 		// TODO Auto-generated method stub
 	} 
@@ -112,6 +112,13 @@ public class DiscountDetailDAODB implements DiscountDetailDAO {
 				discountDetail.getProduct().setP_price(rs.getInt("p_price"));
 				discountDetail.setP_amount(rs.getInt("p_amount"));
 				discountDetail.setP_total(rs.getInt("p_total"));
+				discountDetail.getDiscount().setDiscount_A_id(rs.getInt("discount_A_id"));
+				discountDetail.getDiscount().setDiscount_date(rs.getString("discount_date"));
+				discountDetail.getDiscount().setDiscount_order_id(rs.getInt("discount_order_id"));
+				discountDetail.getDiscount().setDiscount_total(rs.getInt("discount_total"));
+				discountDetail.getDiscount().getAdministrator().setM_name(rs.getString("A_name"));
+				discountDetail.getDiscount().getMember().setM_name(rs.getString("M_name"));
+				discountDetail.getDiscount().setDiscount_order_id(rs.getInt("order_id"));
 				DiscountDetailList.add(discountDetail);
 		
 		}

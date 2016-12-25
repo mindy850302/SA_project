@@ -61,17 +61,20 @@ public class ReturnController {
 		// = model.setViewName("Return");
 		ReturnDAO returndao = (ReturnDAO)context.getBean("ReturnDAO"); //defined in spring-webapp.xml
 		OrderDAO orderDAO = (OrderDAO)context.getBean("OrderDAO");
+		OrderDetailDAO orderDetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
 		AdministratorDAO AdministratorDAO = (AdministratorDAO)context.getBean("AdministratorDAO");
 		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
 		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
 		List<Return> ReturnList = new ArrayList<Return>();
 		List<Order> OrderList = new ArrayList<Order>();
+		List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
 		List<Administrator> administratorList = new ArrayList<Administrator>();
 		List<Product> ProductList = new ArrayList<Product>();
 		List<Member> memberList = new ArrayList<Member>();
 		ReturnList=returndao.getList();
 		memberList=memberdao.getList();
 		OrderList=orderDAO.getList();
+		orderDetailList=orderDetaildao.getList();
 		administratorList=AdministratorDAO.getList();
 		ProductList=Productdao.getList();
 		model.addObject("ProductList",ProductList);
@@ -79,6 +82,7 @@ public class ReturnController {
 		model.addObject("memberList",memberList);
 		model.addObject("ReturnList",ReturnList);
 		model.addObject("OrderList",OrderList);
+		model.addObject("OrderDetailList",orderDetailList);
 		model.addObject("message");
 		return model;
 	}
@@ -92,24 +96,28 @@ public class ReturnController {
 		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
 		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
 		OrderDAO orderdao = (OrderDAO)context.getBean("OrderDAO");
+		OrderDetailDAO orderDetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
 		List<Return> ReturnList = new ArrayList<Return>();
 		List<ReturnDetail> ReturnDetailList = new ArrayList<ReturnDetail>();
 		List<Administrator> administratorList = new ArrayList<Administrator>();
 		List<Product> ProductList = new ArrayList<Product>();
 		List<Member> memberList = new ArrayList<Member>();
 		List<Order> OrderList = new ArrayList<Order>();
+		List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
 		ReturnList=returndao.getList();
 		memberList=memberdao.getList();
 		ReturnDetailList=returnDetailDAO.getList();
 		administratorList=AdministratorDAO.getList();
 		ProductList=Productdao.getList();
 		OrderList=orderdao.getList();
+		orderDetailList=orderDetaildao.getList();
 		model.addObject("ProductList",ProductList);
 		model.addObject("administratorList",administratorList);
 		model.addObject("memberList",memberList);
 		model.addObject("ReturnList",ReturnList);
 		model.addObject("ReturnDetailList",ReturnDetailList);
 		model.addObject("OrderList",OrderList);
+		model.addObject("OrderDetailList",orderDetailList);
 		model.addObject("message");
 		return model;
 	}

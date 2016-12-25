@@ -76,33 +76,27 @@
               <thead>
                 <tr>
                   <th>#退貨編號</th>
-                  <th>產品編號</th>
-                  <th>產品名稱</th>
-                  <th>產品數量</th>
+                  <th>退貨訂單編號</th>
                   <th>退貨人姓名</th>
                   <th>承辦人員</th>
                   <th>總金額</th>
                   <th>退貨日期</th>
+                  <th>明細</th>
                 </tr>
               </thead>
               <tbody>
              <c:forEach  items="${ReturnList}" var="Return">
-             	<c:forEach  items="${ReturnDetailList}" var="ReturnDetail">
-             	<c:if test="${Return.getReturn_id()==ReturnDetail.getReturn_id()}" >
-	                <tr>
-	                  <td><c:out value="${ReturnDetail.getReturn_id()}"/></td>
-		              <td><c:out value="${ReturnDetail.getReturn_p_id()}"/></td>
-		              <td><c:out value="${ReturnDetail.getProduct().getP_name()}"/></td>
-	                  <td><c:out value="${ReturnDetail.getP_amount()}"/></td>
+	             <tr>
+	                  <td><c:out value="${Return.getReturn_id()}"/></td>
+	                  <td><c:out value="${Return.getReturn_order_id()}"/></td>
 	                  <td><c:out value="${Return.getMember().getM_name()}"/></td>
 	                  <td><c:out value="${Return.getAdministrator().getM_name()}"/></td>
 	                  <td><c:out value="${Return.getReturn_total()}"/></td>
-	                  <td><c:out value="${Return.getReturn_date()}"/>2</td>
+	                  <td><c:out value="${Return.getReturn_date()}"/></td>
+	                  <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#OrderDetail<c:out value="${Return.getReturn_order_id()}"/>" style="background-color: #303841;border-color: #101010">明細</button></td>
 	                  <%-- <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myModify<c:out value="${ReturnDetail.getReturn_id()}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button></td>
                   	  <td><button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#mydelete<c:out value="${ReturnDetail.getReturn_id()}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td> --%>
-	                </tr>
-	                </c:if>
-	                </c:forEach>
+	             </tr>
 	          </c:forEach>
               </tbody>
             </table>
@@ -110,6 +104,42 @@
             </div>
         </div>
       </div>
+<c:forEach  items="${OrderList}" var="order2">
+        	<div class="modal fade" tabindex="-1" role="dialog" id="OrderDetail<c:out value="${order2.getOrder_id()}"/>">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="color:#606468">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">明細</h4>
+                        </div>
+                        <div class="modal-body">
+                          <form class="form-horizontal" role="form">
+                            <table class="table">
+                              <tr>
+                                <td>產品編號</td>
+                                <td>產品名稱</td>
+                                <td>產品價格</td>
+                                <td>產品數量</td>
+                                <td>產品金額</td>
+                              </tr>
+                          	  <c:forEach items="${OrderDetailList}" var="orderDetail">
+                          		<c:if test="${orderDetail.getOrderDetail_id() == order2.getOrder_id() }">
+                              		<tr>
+                                		<td><c:out value="${orderDetail.getOrder_p_id()}"/></td>
+                                		<td><c:out value="${orderDetail.getProduct().getP_name()}"/></td>
+                                		<td><c:out value="${orderDetail.getProduct().getP_price()}"/></td>
+                                		<td><c:out value="${orderDetail.getP_amount()}"/></td>
+                                		<td><c:out value="${orderDetail.getP_total()}"/></td>
+                              		</tr>
+                          		</c:if>
+                          	</c:forEach>
+                          </table>
+                        </form>
+                      </div>
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+      		</div>
+      </c:forEach>
   <%--   <c:forEach  items="${ReturnList}" var="Return1">
     <c:forEach  items="${ReturnDetailList}" var="ReturnDetail1">
      <!-- Modal -->

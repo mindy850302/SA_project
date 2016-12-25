@@ -106,14 +106,26 @@
                    </td>
                   
                   <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#OrderDetail<c:out value="${order.getOrder_id()}"/>" style="background-color: #303841;border-color: #101010">明細</button></td>
-                  <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#OrderDetailModify<c:out value="${order.getOrder_id()}"/>">
-						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-					  </button>
-				  </td>
-				  <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#OrderRecordDelete<c:out value="${order.getOrder_id()}" />">
+                  <c:if test="${order.getShipping()==0}">
+                  	<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#OrderDetailModify<c:out value="${order.getOrder_id()}"/>">
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					  	</button>
+				  	</td>
+				  	<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#OrderRecordDelete<c:out value="${order.getOrder_id()}" />">
 					      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-					  </button>
-				  </td>
+					  	</button>
+				  	</td>
+				  </c:if>
+				  <c:if test="${order.getShipping()==1}">
+                  	<td><button type="button" class="btn btn-success" data-toggle="modal" disabled="disabled" data-target="#OrderDetailModify<c:out value="${order.getOrder_id()}"/>">
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					  	</button>
+				  	</td>
+				  	<td><button type="button" class="btn btn-danger" data-toggle="modal" disabled="disabled" data-target="#OrderRecordDelete<c:out value="${order.getOrder_id()}" />">
+					      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					  	</button>
+				  	</td>
+				  </c:if>
                 </tr>
               </tbody>
             </c:forEach>

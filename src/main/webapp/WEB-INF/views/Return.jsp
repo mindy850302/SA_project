@@ -81,6 +81,7 @@
                   <th>訂貨日期</th>
                   <th>出貨日期</th>
                   <th>訂單金額</th>
+                  <th>訂單明細</th>
                   <th></th>
                 </tr>
               </thead>
@@ -94,6 +95,7 @@
 	                  <td><c:out value="${order.getO_date()}"/></td>
 	                  <td><c:out value="${order.getShipping_Date()}"/></td>
 	                  <td><c:out value="${order.getTotal()}"/></td>
+	                  <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#OrderDetail<c:out value="${order.getOrder_id()}"/>" style="background-color: #303841;border-color: #101010">明細</button></td>
 	                  <td><button type="button" class="btn btn-success"   data-toggle="modal" data-target="#myReturn<c:out value="${order.getOrder_id()}"/>">退貨</button></td>
 	                </tr>
 	                </c:if>
@@ -104,8 +106,7 @@
             </div>
         </div>
       </div>
-    
-    <!-- Modal -->
+<!-- AddReturn -->
   <c:forEach  items="${OrderList}" var="order1">
     <div class="modal fade" id="myReturn<c:out value="${order1.getOrder_id()}"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -152,7 +153,42 @@
       </div>
     </div>
    </c:forEach>
- 
+<c:forEach  items="${OrderList}" var="order2">
+        	<div class="modal fade" tabindex="-1" role="dialog" id="OrderDetail<c:out value="${order2.getOrder_id()}"/>">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="color:#606468">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">訂單明細</h4>
+                        </div>
+                        <div class="modal-body">
+                          <form class="form-horizontal" role="form">
+                            <table class="table">
+                              <tr>
+                                <td>產品編號</td>
+                                <td>產品名稱</td>
+                                <td>產品價格</td>
+                                <td>產品數量</td>
+                                <td>產品金額</td>
+                              </tr>
+                          	  <c:forEach items="${OrderDetailList}" var="orderDetail">
+                          		<c:if test="${orderDetail.getOrderDetail_id() == order2.getOrder_id() }">
+                              		<tr>
+                                		<td><c:out value="${orderDetail.getOrder_p_id()}"/></td>
+                                		<td><c:out value="${orderDetail.getProduct().getP_name()}"/></td>
+                                		<td><c:out value="${orderDetail.getProduct().getP_price()}"/></td>
+                                		<td><c:out value="${orderDetail.getP_amount()}"/></td>
+                                		<td><c:out value="${orderDetail.getP_total()}"/></td>
+                              		</tr>
+                          		</c:if>
+                          	</c:forEach>
+                          </table>
+                        </form>
+                      </div>
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+      		</div>
+      </c:forEach>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

@@ -2,6 +2,7 @@ package com.practice.webapp.dao;
 
 import java.util.List;
 
+
 import com.practice.webapp.entity.Member;
 public interface MemberDAO {
 	public List<Member> getList();

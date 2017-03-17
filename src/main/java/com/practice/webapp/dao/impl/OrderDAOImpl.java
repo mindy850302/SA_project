@@ -43,4 +43,15 @@ public class OrderDAOImpl {
 			OrderList.get(i).setOrder_id(i);
 		}
     }
+    public List<Order> getOrderShippingList(){
+    	return OrderList;
+    }
+    public void updateOrder_status(Order order){
+    	for (int i = 0; i < OrderList.size(); i++) {
+			if (OrderList.get(i).getOrder_id() == order.getOrder_id()) {
+				OrderList.remove(i);
+				OrderList.add(i, order);
+			}
+		}
+    }
 }

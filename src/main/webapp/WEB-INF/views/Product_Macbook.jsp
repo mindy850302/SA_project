@@ -53,7 +53,7 @@
 							<div class="content">
 								<h2 class="major"><c:out value="${product.getP_name()}"/></h2>
 								<p><c:out value="${product.getP_describe()}"/></p>
-								<h2><a href="/webapp/Product?id=${product.getP_id()}" class="special">購買產品</a></h2>/
+								<h2><a href="/webapp/Product?id=${product.getP_id()}" class="special">購買產品</a></h2>
 							</div>
 						</div>
 					</section>

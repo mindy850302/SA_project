@@ -24,7 +24,11 @@
 <%@include file="header.jsp"%>
     <div class="grid">
 <form action="insertMember" method="post" class="form login" >
-      
+      <script>
+           if(<c:out value="${result}"/>==3){
+	        alert("尚未註冊！！");
+	        }
+            </script>
 
         <div class="form__field">
           <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg><span class="hidden">姓名</span></label>
@@ -79,8 +83,9 @@
 
     </div>
           
-
-  </form>
+</form>
+  
+  
 
 
   

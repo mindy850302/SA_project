@@ -9,4 +9,5 @@ public interface ReturnDAO {
 	public Return get(Return areturn);
     public void update(Return areturn);
     public void delete(Return areturn);
+//    public void isReturn(Return areturn);
 }

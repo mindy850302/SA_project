@@ -21,6 +21,8 @@ import com.practice.webapp.dao.AdministratorDAO;
 import com.practice.webapp.dao.DiscountDAO;
 import com.practice.webapp.dao.DiscountDetailDAO;
 import com.practice.webapp.dao.MemberDAO;
+import com.practice.webapp.dao.OrderDAO;
+import com.practice.webapp.dao.OrderDetailDAO;
 import com.practice.webapp.dao.ProductDAO;
 import com.practice.webapp.dao.ReturnDAO;
 import com.practice.webapp.dao.ReturnDetailDAO;
@@ -28,6 +30,8 @@ import com.practice.webapp.entity.Administrator;
 import com.practice.webapp.entity.Discount;
 import com.practice.webapp.entity.DiscountDetail;
 import com.practice.webapp.entity.Member;
+import com.practice.webapp.entity.Order;
+import com.practice.webapp.entity.OrderDetail;
 import com.practice.webapp.entity.Product;
 import com.practice.webapp.entity.Return;
 import com.practice.webapp.entity.ReturnDetail;
@@ -66,7 +70,7 @@ public class DiscountController {
 		model.addObject("DiscountList",DiscountList);
 		model.addObject("DiscountDetailList",DiscountDetailList);
 		model.addObject("message");
-		model.setViewName("redirect:/DiscountDetail");
+		model.setViewName("redirect:/DiscountOrder");
 		return model;
 	}
 
@@ -95,12 +99,101 @@ public class DiscountController {
 		model.addObject("DiscountList",DiscountList);
 		model.addObject("DiscountDetailList",DiscountDetailList);
 		model.addObject("message");
-		model.setViewName("redirect:/DiscountDetail");
+		model.setViewName("redirect:/DiscountOrder");
 		return model;
 	}
 
-	@RequestMapping(value = "/DiscountDetail", method = RequestMethod.GET)
+	@RequestMapping(value = "/DiscountOrder", method = RequestMethod.GET)
 	public ModelAndView getDiscountDetail() {
+		ModelAndView model = new ModelAndView("DiscountOrder");
+		DiscountDAO Discountdao = (DiscountDAO) context.getBean("DiscountDAO"); // defined
+		// in
+		// spring-webapp.xml
+		DiscountDetailDAO DiscountDetailDAO = (DiscountDetailDAO) context.getBean("DiscountDetailDAO");
+		List<Discount> DiscountList = new ArrayList<Discount>();
+		List<DiscountDetail> DiscountDetailList = new ArrayList<DiscountDetail>();		
+		AdministratorDAO AdministratorDAO = (AdministratorDAO)context.getBean("AdministratorDAO");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
+		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
+		OrderDAO orderdao = (OrderDAO)context.getBean("OrderDAO");
+		OrderDetailDAO orderdetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
+		List<Administrator> administratorList = new ArrayList<Administrator>();
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Member> memberList = new ArrayList<Member>();
+		List<Order> orderList = new ArrayList<Order>();
+		List<OrderDetail> orderdetailList = new ArrayList<OrderDetail>();
+		memberList=memberdao.getList();
+		orderList=orderdao.getList();
+		orderdetailList=orderdetaildao.getList();
+		DiscountList = Discountdao.getList();
+		DiscountDetailList = DiscountDetailDAO.getList();
+		administratorList=AdministratorDAO.getList();
+		ProductList=Productdao.getList();
+		model.addObject("ProductList",ProductList);
+		model.addObject("administratorList",administratorList);
+		model.addObject("memberList",memberList);
+		model.addObject("DiscountList",DiscountList);
+		model.addObject("DiscountDetailList",DiscountDetailList);
+		model.addObject("orderList",orderList);
+		model.addObject("orderdetailList",orderdetailList);
+		model.addObject("message");
+		return model;
+	}
+	@RequestMapping(value = "/addDiscount", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
+	public ModelAndView getAddDiscount(@ModelAttribute Discount adiscount,HttpServletRequest request,@ModelAttribute("type") String type,@ModelAttribute("discount_A_id") int discount_A_id){
+		ModelAndView model = new ModelAndView();
+		// = model.setViewName("DiscountDetail");
+		DiscountDAO discountDAOdao = (DiscountDAO)context.getBean("DiscountDAO"); //defined in spring-webapp.xml
+		DiscountDetailDAO discountDetailDAO = (DiscountDetailDAO)context.getBean("DiscountDetailDAO");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO");
+		OrderDAO orderdao = (OrderDAO)context.getBean("OrderDAO");
+		OrderDetailDAO orderdetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
+		List<Discount> DiscountList = new ArrayList<Discount>();
+		List<DiscountDetail> DiscountDetailList = new ArrayList<DiscountDetail>();
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Order> orderList = new ArrayList<Order>();
+		List<OrderDetail> orderdetailList = new ArrayList<OrderDetail>();
+		DiscountList=discountDAOdao.getList();
+		DiscountDetailList=discountDetailDAO.getList();
+		ProductList=Productdao.getList();
+		orderList=orderdao.getList();
+		orderdetailList=orderdetaildao.getList();
+		
+		if(type.equals("addDiscount")){	
+			System.out.println("1:"+discount_A_id);
+			adiscount.setDiscount_A_id(discount_A_id);
+			System.out.println("2:"+adiscount.getDiscount_A_id());
+			System.out.println("order id:"+adiscount.getDiscount_order_id());
+			int id=discountDAOdao.insert(adiscount);
+			
+			//adiscountDetail.setDiscount_id(id);
+			//discountDetailDAO.insert(adiscountDetail);
+			for(int i=0;i<orderList.size();i++){
+				if(orderList.get(i).getOrder_id()==adiscount.getDiscount_order_id()){
+					orderList.get(i).setOrder_status(2);
+					int order_id=orderList.get(i).getOrder_id();
+					for(int j=0;j<orderdetailList.size();j++){
+						if(orderdetailList.get(j).getOrderDetail_id()==order_id){
+							DiscountDetail discountDetail=new DiscountDetail();
+							discountDetail.setDiscount_id(id);
+							discountDetail.setDiscount_p_id(orderdetailList.get(j).getOrder_p_id());
+							discountDetail.setP_amount(orderdetailList.get(j).getP_amount());
+							discountDetail.setP_total(orderdetailList.get(j).getP_total());
+							discountDetailDAO.insert(discountDetail);
+						}
+							
+					}
+					orderdao.updateOrder_status(orderList.get(i));
+					break;
+				}
+			}
+		}
+
+		model.setViewName("redirect:/DiscountOrder");
+		return model;
+	}
+	@RequestMapping(value = "/DiscountDetail", method = RequestMethod.GET)
+	public ModelAndView getDiscountDetailList() {
 		ModelAndView model = new ModelAndView("DiscountDetail");
 		DiscountDAO Discountdao = (DiscountDAO) context.getBean("DiscountDAO"); // defined
 		// in
@@ -111,10 +204,16 @@ public class DiscountController {
 		AdministratorDAO AdministratorDAO = (AdministratorDAO)context.getBean("AdministratorDAO");
 		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
 		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
+		OrderDAO orderdao = (OrderDAO)context.getBean("OrderDAO");
+		OrderDetailDAO orderdetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
 		List<Administrator> administratorList = new ArrayList<Administrator>();
 		List<Product> ProductList = new ArrayList<Product>();
 		List<Member> memberList = new ArrayList<Member>();
+		List<Order> orderList = new ArrayList<Order>();
+		List<OrderDetail> orderdetailList = new ArrayList<OrderDetail>();
 		memberList=memberdao.getList();
+		orderList=orderdao.getList();
+		orderdetailList=orderdetaildao.getList();
 		DiscountList = Discountdao.getList();
 		DiscountDetailList = DiscountDetailDAO.getList();
 		administratorList=AdministratorDAO.getList();
@@ -124,32 +223,9 @@ public class DiscountController {
 		model.addObject("memberList",memberList);
 		model.addObject("DiscountList",DiscountList);
 		model.addObject("DiscountDetailList",DiscountDetailList);
+		model.addObject("orderList",orderList);
+		model.addObject("orderdetailList",orderdetailList);
 		model.addObject("message");
-		return model;
-	}
-	@RequestMapping(value = "/addDiscount", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
-	public ModelAndView getAddDiscount(@ModelAttribute Discount adiscount,HttpServletRequest request,@RequestParam("type") String type,@ModelAttribute DiscountDetail adiscountDetail){
-		ModelAndView model = new ModelAndView();
-		// = model.setViewName("DiscountDetail");
-		DiscountDAO discountDAOdao = (DiscountDAO)context.getBean("DiscountDAO"); //defined in spring-webapp.xml
-		DiscountDetailDAO discountDetailDAO = (DiscountDetailDAO)context.getBean("DiscountDetailDAO");
-		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO");
-		List<Discount> DiscountList = new ArrayList<Discount>();
-		List<DiscountDetail> DiscountDetailList = new ArrayList<DiscountDetail>();
-		List<Product> ProductList = new ArrayList<Product>();
-		DiscountList=discountDAOdao.getList();
-		DiscountDetailList=discountDetailDAO.getList();
-		ProductList=Productdao.getList();
-		if(type.equals("addDiscount")){
-			int id=discountDAOdao.insert(adiscount);
-			adiscountDetail.setDiscount_id(id);
-			discountDetailDAO.insert(adiscountDetail);
-		}
-
-		model.addObject("DiscountList",DiscountList);
-		model.addObject("DiscountDetailList",DiscountDetailList);
-		model.addObject("message");
-		model.setViewName("redirect:/DiscountDetail");
 		return model;
 	}
 

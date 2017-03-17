@@ -127,7 +127,7 @@
                             </tr>
                             <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label" style="font-size:18px">NT . <c:out value="${Product.getP_price()}"></c:out></label></td></tr>
                             <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label" style="font-size:16px"><c:out value="${Product.getP_describe()}"></c:out></label></td></tr>
-                            <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label" style="font-size:16px">存貨 ： <c:out value="${Product.getP_inventory()}"></c:out></label></td></tr>
+                            <tr><td style="vertical-align:middle"><label class="col-sm-11 control-label" style="font-size:16px">存貨 ：<c:if test="${Product.getP_inventory()==0}">存貨不足</c:if><c:if test="${Product.getP_inventory()!=0}"><c:out value="${Product.getP_inventory()}"></c:out></c:if></label></td></tr>
                             <tr><td style="vertical-align:middle"><div class="form-group">
                                         <label class="col-sm-2 control-label" style="font-size:18px">評分</label>
                                         <!-- Rating Star -->

@@ -41,6 +41,7 @@
       <div class="row">
         <div class="col-lg-8 ">
           <h6>欲使用銀行轉帳付款，請致電 0800-020-021。 </h6>
+          <h6>預計出貨時間七天，如未收取，請填寫線上客服。</h6>
         </div>
         <div class="col-lg-4 ">
           <h4>總金額 ： NT . <c:out value="${order1.getTotal()}"></c:out></h4>

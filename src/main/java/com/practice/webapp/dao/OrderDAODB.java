@@ -47,6 +47,7 @@ public class OrderDAODB implements OrderDAO{
 				order.setTotal(rs.getInt("total"));
 				order.setShipping(rs.getInt("shipping"));
 				order.setShipping_Date(rs.getString("shipping_Date"));
+				order.setOrder_status(rs.getInt("order_status"));
 				OrderList.add(order);
 			}
 			rs.close();
@@ -69,7 +70,7 @@ public class OrderDAODB implements OrderDAO{
 	public int insert(Order order) {
 		int id =0;
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO `order` ( order_M_id,total, O_date,receiver_name,receiver_phone,receiver_address,shipping) VALUES(  ? , ? ,CURRENT_TIME() , ? , ? , ?,0)";	
+	    String sql = "INSERT INTO `order` ( order_M_id,total, O_date,receiver_name,receiver_phone,receiver_address,shipping,order_status) VALUES(  ? , ? ,CURRENT_TIME() , ? , ? , ?,0,0)";	
 
 		try {
 			conn = dataSource.getConnection();
@@ -120,6 +121,7 @@ public class OrderDAODB implements OrderDAO{
 				order.setReceiver_address(rs.getString("receiver_address"));
 				order.setReceiver_address(rs.getString("shipping"));
 				order.setShipping_Date(rs.getString("shipping_Date"));
+				order.setOrder_status(rs.getInt("order_status"));
 			}
 			rs.close();
 			smt.close();
@@ -193,5 +195,59 @@ public void delete(Order order) {
 		}
 	}
 }
+public List<Order> getOrderShippingList(){
+	String sql = "select datediff(CURRENT_TIME,O_date) as Subtract,order_id,order_M_id,total,O_date,M_name,shipping from `order` a JOIN Member b on a.order_M_id=b.M_id WHERE datediff(CURRENT_TIME,O_date)>3 and shipping=0";
+	List<Order> OrderList = new ArrayList<Order>();
+	try {
+		conn = dataSource.getConnection();
+		smt = conn.prepareStatement(sql);
+		rs = smt.executeQuery();
+		while(rs.next()){
+			Order order = new Order();
+			order.setOrder_id(rs.getInt("order_id"));
+			order.setOrder_M_id(rs.getInt("order_M_id"));
+			order.setO_date(rs.getString("O_date"));
+			order.setTotal(rs.getInt("total"));
+			order.getMember().setM_name(rs.getString("M_name"));
+			order.setShipping(rs.getInt("shipping"));
+			order.setOverShipping(rs.getInt("Subtract"));
+			OrderList.add(order);
+		}
+		rs.close();
+		smt.close();
 
+	} catch (SQLException e) {
+		throw new RuntimeException(e);
+
+	} finally {
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {}
+		}
+	}
+	return OrderList;
+}
+public void updateOrder_status(Order order) {
+	String sql="UPDATE `order` SET order_status=? " + "WHERE order_id = ?";
+	try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setInt(1, order.getOrder_status());
+			smt.setInt(2, order.getOrder_id());
+			smt.executeUpdate();
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		
+	}
 }

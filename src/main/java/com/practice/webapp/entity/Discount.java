@@ -6,7 +6,7 @@ public class Discount {
 
 	private int discount_id;
 
-	private int discount_M_id;
+	private int discount_order_id;
 
 	private String discount_date;
 
@@ -22,8 +22,8 @@ public class Discount {
 		return discount_id;
 	}
 
-	public int getDiscount_M_id() {
-		return discount_M_id;
+	public int getDiscount_order_id() {
+		return discount_order_id;
 	}
 
 
@@ -44,8 +44,8 @@ public class Discount {
 
 	}
 
-	public void setDiscount_M_id(int discount_M_id) {
-		this.discount_M_id = discount_M_id;
+	public void setDiscount_order_id(int discount_M_id) {
+		this.discount_order_id = discount_M_id;
 
 	}
 

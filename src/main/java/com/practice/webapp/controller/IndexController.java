@@ -31,7 +31,7 @@ public class IndexController {
 	ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView getIndex(String name) {
+	public ModelAndView getIndex(String name,@ModelAttribute("result") String result) {
 		ModelAndView model = new ModelAndView("index");
 		// = model.setViewName("index");
 		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); 

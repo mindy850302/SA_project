@@ -9,11 +9,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.practice.webapp.dao.AdministratorDAO;
 import com.practice.webapp.dao.MemberDAO;
+import com.practice.webapp.dao.OrderDAO;
+import com.practice.webapp.dao.OrderDetailDAO;
 import com.practice.webapp.dao.ProductDAO;
 import com.practice.webapp.dao.ReturnDAO;
 import com.practice.webapp.dao.ReturnDetailDAO;
 import com.practice.webapp.entity.Administrator;
+import com.practice.webapp.entity.DiscountDetail;
 import com.practice.webapp.entity.Member;
+import com.practice.webapp.entity.Order;
+import com.practice.webapp.entity.OrderDetail;
 import com.practice.webapp.entity.Product;
 import com.practice.webapp.entity.Return;
 import com.practice.webapp.entity.ReturnDetail;
@@ -50,6 +55,37 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ReturnController {
 	ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
+	@RequestMapping(value = "/Return", method = RequestMethod.GET)
+	public ModelAndView getReturnList(String name) {
+		ModelAndView model = new ModelAndView("Return");
+		// = model.setViewName("Return");
+		ReturnDAO returndao = (ReturnDAO)context.getBean("ReturnDAO"); //defined in spring-webapp.xml
+		OrderDAO orderDAO = (OrderDAO)context.getBean("OrderDAO");
+		OrderDetailDAO orderDetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
+		AdministratorDAO AdministratorDAO = (AdministratorDAO)context.getBean("AdministratorDAO");
+		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
+		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
+		List<Return> ReturnList = new ArrayList<Return>();
+		List<Order> OrderList = new ArrayList<Order>();
+		List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
+		List<Administrator> administratorList = new ArrayList<Administrator>();
+		List<Product> ProductList = new ArrayList<Product>();
+		List<Member> memberList = new ArrayList<Member>();
+		ReturnList=returndao.getList();
+		memberList=memberdao.getList();
+		OrderList=orderDAO.getList();
+		orderDetailList=orderDetaildao.getList();
+		administratorList=AdministratorDAO.getList();
+		ProductList=Productdao.getList();
+		model.addObject("ProductList",ProductList);
+		model.addObject("administratorList",administratorList);
+		model.addObject("memberList",memberList);
+		model.addObject("ReturnList",ReturnList);
+		model.addObject("OrderList",OrderList);
+		model.addObject("OrderDetailList",orderDetailList);
+		model.addObject("message");
+		return model;
+	}
 	@RequestMapping(value = "/ReturnDetail", method = RequestMethod.GET)
 	public ModelAndView getReturnDetailList(String name) {
 		ModelAndView model = new ModelAndView("ReturnDetail");
@@ -59,51 +95,78 @@ public class ReturnController {
 		AdministratorDAO AdministratorDAO = (AdministratorDAO)context.getBean("AdministratorDAO");
 		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO"); //defined in spring-webapp.xml
 		MemberDAO memberdao = (MemberDAO)context.getBean("MemberDAO"); //defined in spring-webapp.xml
+		OrderDAO orderdao = (OrderDAO)context.getBean("OrderDAO");
+		OrderDetailDAO orderDetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
 		List<Return> ReturnList = new ArrayList<Return>();
 		List<ReturnDetail> ReturnDetailList = new ArrayList<ReturnDetail>();
 		List<Administrator> administratorList = new ArrayList<Administrator>();
 		List<Product> ProductList = new ArrayList<Product>();
 		List<Member> memberList = new ArrayList<Member>();
+		List<Order> OrderList = new ArrayList<Order>();
+		List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
 		ReturnList=returndao.getList();
 		memberList=memberdao.getList();
 		ReturnDetailList=returnDetailDAO.getList();
 		administratorList=AdministratorDAO.getList();
 		ProductList=Productdao.getList();
+		OrderList=orderdao.getList();
+		orderDetailList=orderDetaildao.getList();
 		model.addObject("ProductList",ProductList);
 		model.addObject("administratorList",administratorList);
 		model.addObject("memberList",memberList);
 		model.addObject("ReturnList",ReturnList);
 		model.addObject("ReturnDetailList",ReturnDetailList);
+		model.addObject("OrderList",OrderList);
+		model.addObject("OrderDetailList",orderDetailList);
 		model.addObject("message");
 		return model;
 	}
 	@RequestMapping(value = "/addReturn", method = RequestMethod.POST,produces="text/html;charset=UTF-8")
-	public ModelAndView getAddReturn(@ModelAttribute Return areturn,HttpServletRequest request,@RequestParam("type") String type,@ModelAttribute ReturnDetail areturnDetail){
+	public ModelAndView getAddReturn(@ModelAttribute Return areturn,HttpServletRequest request,@ModelAttribute("type") String type){
 		ModelAndView model = new ModelAndView();
 		// = model.setViewName("ReturnDetail");
-		ReturnDAO returnDAOdao = (ReturnDAO)context.getBean("ReturnDAO"); //defined in spring-webapp.xml
+		ReturnDAO returnDAO = (ReturnDAO)context.getBean("ReturnDAO"); //defined in spring-webapp.xml
+		OrderDAO orderDAO = (OrderDAO)context.getBean("OrderDAO"); 
+		OrderDetailDAO orderdetaildao = (OrderDetailDAO)context.getBean("OrderDetailDAO");
+		List<OrderDetail> orderdetailList = new ArrayList<OrderDetail>();
 		ReturnDetailDAO returnDetailDAO = (ReturnDetailDAO)context.getBean("ReturnDetailDAO");
-		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO");
+//		ProductDAO Productdao = (ProductDAO)context.getBean("ProductDAO");
 		List<Return> ReturnList = new ArrayList<Return>();
-		List<ReturnDetail> ReturnDetailList = new ArrayList<ReturnDetail>();
-		List<Product> ProductList = new ArrayList<Product>();
-		ReturnList=returnDAOdao.getList();
-		ReturnDetailList=returnDetailDAO.getList();
-		ProductList=Productdao.getList();
+		List<Order> OrderList = new ArrayList<Order>();
+//		List<ReturnDetail> ReturnDetailList = new ArrayList<ReturnDetail>();
+//		List<Product> ProductList = new ArrayList<Product>();
+		ReturnList=returnDAO.getList();
+		OrderList=orderDAO.getList();
+		orderdetailList=orderdetaildao.getList();
+//		ReturnDetailList=returnDetailDAO.getList();
+//		ProductList=Productdao.getList();
 		if(type.equals("addReturn")){
-			int price =0;
-			for(int i=0;i<ProductList.size();i++){
-				 price=ProductList.get(i).getP_price();
+			int id=returnDAO.insert(areturn);
+			for(int i=0;i<OrderList.size();i++){
+				if(OrderList.get(i).getOrder_id()==areturn.getReturn_order_id()){
+					OrderList.get(i).setOrder_status(1);
+					int order_id=OrderList.get(i).getOrder_id();
+					for(int j=0;j<orderdetailList.size();j++){
+						if(orderdetailList.get(j).getOrderDetail_id()==order_id){
+							ReturnDetail returnDetail=new ReturnDetail();
+							returnDetail.setReturn_id(id);
+							returnDetail.setReturn_p_id(orderdetailList.get(j).getOrder_p_id());
+							returnDetail.setP_amount(orderdetailList.get(j).getP_amount());
+							returnDetail.setP_total(orderdetailList.get(j).getP_total());
+							returnDetailDAO.insert(returnDetail);
+						}
+							
+					}
+					orderDAO.updateOrder_status(OrderList.get(i));
+					break;
+				}
 			}
-			int total=areturnDetail.getP_amount()*price;
-			areturn.setReturn_total(total);
-			int id=returnDAOdao.insert(areturn);
-			areturnDetail.setReturn_id(id);
-			returnDetailDAO.insert(areturnDetail);
+			
 		}
-
+		
 		model.addObject("ReturnList",ReturnList);
-		model.addObject("ReturnDetailList",ReturnDetailList);
+		model.addObject("OrderList",OrderList);
+		//model.addObject("ReturnDetailList",ReturnDetailList);
 		model.addObject("message");
 		model.setViewName("redirect:/ReturnDetail");
 		return model;

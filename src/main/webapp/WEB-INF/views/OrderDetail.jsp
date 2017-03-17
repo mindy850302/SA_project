@@ -75,6 +75,7 @@
                   <th>總金額</th>
                   <th>訂貨日期</th>
                   <th>出貨日期</th>
+                  <th>產品狀態</th>
                   <th>產品明細</th>
                 </tr>
               </thead>
@@ -89,15 +90,42 @@
                   <td><c:out value="${order.getTotal()}"/></td>
                   <td><c:out value="${order.getO_date()}"/></td>
                    <td><c:out value="${order.getShipping_Date()}"/></td>
+                   <td><c:if test="${order.getOrder_status()==0&&order.getShipping()==0}">
+                   尚未出貨
+                   </c:if>
+                   <c:if test="${order.getOrder_status()==0&&order.getShipping()==1}">
+                   已出貨
+                   </c:if>
+                   <c:if test="${order.getOrder_status()==1&&order.getShipping()==1}">
+                   已退貨
+                   </c:if>
+                   <c:if test="${order.getOrder_status()==2&&order.getShipping()==1}">
+                   已折讓
+                   </c:if>
+                   
+                   </td>
+                  
                   <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#OrderDetail<c:out value="${order.getOrder_id()}"/>" style="background-color: #303841;border-color: #101010">明細</button></td>
-                  <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#OrderDetailModify<c:out value="${order.getOrder_id()}"/>">
-						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-					  </button>
-				  </td>
-				  <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#OrderRecordDelete<c:out value="${order.getOrder_id()}" />">
+                  <c:if test="${order.getShipping()==0}">
+                  	<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#OrderDetailModify<c:out value="${order.getOrder_id()}"/>">
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					  	</button>
+				  	</td>
+				  	<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#OrderRecordDelete<c:out value="${order.getOrder_id()}" />">
 					      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-					  </button>
-				  </td>
+					  	</button>
+				  	</td>
+				  </c:if>
+				  <c:if test="${order.getShipping()==1}">
+                  	<td><button type="button" class="btn btn-success" data-toggle="modal" disabled="disabled" data-target="#OrderDetailModify<c:out value="${order.getOrder_id()}"/>">
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					  	</button>
+				  	</td>
+				  	<td><button type="button" class="btn btn-danger" data-toggle="modal" disabled="disabled" data-target="#OrderRecordDelete<c:out value="${order.getOrder_id()}" />">
+					      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					  	</button>
+				  	</td>
+				  </c:if>
                 </tr>
               </tbody>
             </c:forEach>

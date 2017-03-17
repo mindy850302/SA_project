@@ -78,17 +78,17 @@ public class CommentController {
 		else if (type.equals("Send")) {
 			commentDAO.insert(comment);
 			Productdao.average(comment.getComment_p_id());
-			model.setViewName("redirect:/");
+			model.setViewName("redirect:/Product?id="+comment.getComment_p_id());
 			}
 		else if (type.equals("Modify")) {
 			commentDAO.update(comment);
 			Productdao.average(comment.getComment_p_id());
-			model.setViewName("redirect:/");
+			model.setViewName("redirect:/Product?id="+comment.getComment_p_id());
 			}
 		else if (type.equals("delete")) {
 			commentDAO.delete(comment);
 			Productdao.average(comment.getComment_p_id());
-			model.setViewName("redirect:/");
+			model.setViewName("redirect:/Product?id="+comment.getComment_p_id());
 			}
 		
 		model.addObject("commentAlready",commentAlready);

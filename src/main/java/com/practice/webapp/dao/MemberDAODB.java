@@ -259,8 +259,8 @@ public class MemberDAODB implements MemberDAO {
 		return count;
 		
 	}
-	public boolean checkLoginMember(Member member){
-		boolean flag=false;
+	public String checkLoginMember(Member member){
+		String flag="3";
 		String sql="SELECT * FROM Member where binary M_idName=?";
 		
 		try {
@@ -277,10 +277,10 @@ public class MemberDAODB implements MemberDAO {
 				
 				
 				if(Member_pwd.equals(member.getM_pwd())){
-					flag=true;//登入成功
+					flag="1";//登入成功
 				}
 				else{
-					flag=false;//密碼錯誤，到signup頁面
+					flag="2";//密碼錯誤，到signup頁面
 					
 				}
 				
